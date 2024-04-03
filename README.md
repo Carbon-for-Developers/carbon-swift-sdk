@@ -82,18 +82,18 @@ Connect external data to LLMs, no matter the source.
 
 ### Swift Package Manager<a id="swift-package-manager"></a>
 
-1. In Xcode, select *File > Add Packages…* and enter `https://github.com/Carbon-for-Developers/carbon-sdks/tree/main/swift` as the repository URL.
-1. Select the latest version number from our [tags page](https://github.com/Carbon-for-Developers/carbon-sdks/tree/main/swift/tags).
+1. In Xcode, select *File > Add Packages…* and enter `https://github.com/Carbon-for-Developers/carbon-swift-sdk` as the repository URL.
+1. Select the latest version number from our [tags page](https://github.com/Carbon-for-Developers/carbon-swift-sdk/tags).
 1. Add the *Carbon* product to the [target of your app](https://developer.apple.com/documentation/swift_packages/adding_package_dependencies_to_your_app).
 
 ### Carthage<a id="carthage"></a>
 
 1. Add this line to your `Cartfile`:
 ```shell
-github "Carbon-for-Developers/carbon-sdks/tree/main/swift"
+github "Carbon-for-Developers/carbon-swift-sdk"
 ```
 2. Follow the [Carthage installation instructions](https://github.com/Carthage/Carthage#if-youre-building-for-ios-tvos-or-watchos).
-3. In the future, to update to the latest version of the SDK, run the following command: `carthage update carbon-sdks/tree/main/swift`
+3. In the future, to update to the latest version of the SDK, run the following command: `carthage update carbon-swift-sdk`
 
 ### CocoaPods<a id="cocoapods"></a>
 
