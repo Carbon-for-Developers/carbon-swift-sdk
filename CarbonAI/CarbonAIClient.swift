@@ -1,4 +1,4 @@
-public class CarbonClient {
+public class CarbonAIClient {
     public var accessToken: String?;
     public var apiKey: String?;
     public var customerId: String?;

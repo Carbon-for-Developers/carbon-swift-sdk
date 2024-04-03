@@ -1,10 +1,10 @@
-name: Carbon
+name: CarbonAI
 targets:
-  Carbon:
+  CarbonAI:
     type: framework
     platform: iOS
     deploymentTarget: "13.0"
-    sources: [Carbon]
+    sources: [CarbonAI]
     info:
       path: ./Info.plist
       version: 0.2.0

@@ -12,9 +12,9 @@ import AnyCodable
 
 open class UtilitiesAPI {
 
-    let client: CarbonClient
+    let client: CarbonAIClient
 
-    public init(client: CarbonClient) {
+    public init(client: CarbonAIClient) {
         self.client = client
     }
 
@@ -26,7 +26,7 @@ open class UtilitiesAPI {
      - parameter completion: completion handler to receive the data and the error objects
      */
     @discardableResult
-    open class func fetchUrlsSync(url: String, apiResponseQueue: DispatchQueue = CarbonAPI.apiResponseQueue, completion: @escaping ((_ data: FetchURLsResponse?, _ error: Error?) -> Void)) -> RequestTask {
+    open class func fetchUrlsSync(url: String, apiResponseQueue: DispatchQueue = CarbonAIAPI.apiResponseQueue, completion: @escaping ((_ data: FetchURLsResponse?, _ error: Error?) -> Void)) -> RequestTask {
         return fetchUrlsWithRequestBuilder(url: url).execute(apiResponseQueue) { result in
             switch result {
             case let .success(response):
@@ -126,7 +126,7 @@ open class UtilitiesAPI {
     open class func fetchUrlsWithRequestBuilder(
             url: String
     ) -> RequestBuilder<FetchURLsResponse> {
-        let basePath = CarbonAPI.basePath;
+        let basePath = CarbonAIAPI.basePath;
         let localVariablePath = "/fetch_urls"
         let localVariableURLString = basePath + localVariablePath
         let localVariableParameters: [String: Any]? = nil
@@ -142,10 +142,10 @@ open class UtilitiesAPI {
         var localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
         do {
-            try Authentication.setAuthenticationParameters(headers: &localVariableHeaderParameters, url: &localVariableUrlComponents, in: "header", name: "authorization", value: CarbonAPI.accessToken, prefix: "Token ")
-            try Authentication.setAuthenticationParameters(headers: &localVariableHeaderParameters, url: &localVariableUrlComponents, in: "header", name: "authorization", value: CarbonAPI.apiKey, prefix: "Bearer ")
-            try Authentication.setAuthenticationParameters(headers: &localVariableHeaderParameters, url: &localVariableUrlComponents, in: "header", name: "customer-id", value: CarbonAPI.customerId, prefix: nil)
-            let localVariableRequestBuilder: RequestBuilder<FetchURLsResponse>.Type = CarbonAPI.requestBuilderFactory.getBuilder()
+            try Authentication.setAuthenticationParameters(headers: &localVariableHeaderParameters, url: &localVariableUrlComponents, in: "header", name: "authorization", value: CarbonAIAPI.accessToken, prefix: "Token ")
+            try Authentication.setAuthenticationParameters(headers: &localVariableHeaderParameters, url: &localVariableUrlComponents, in: "header", name: "authorization", value: CarbonAIAPI.apiKey, prefix: "Bearer ")
+            try Authentication.setAuthenticationParameters(headers: &localVariableHeaderParameters, url: &localVariableUrlComponents, in: "header", name: "customer-id", value: CarbonAIAPI.customerId, prefix: nil)
+            let localVariableRequestBuilder: RequestBuilder<FetchURLsResponse>.Type = CarbonAIAPI.requestBuilderFactory.getBuilder()
             let URLString = localVariableUrlComponents?.string ?? localVariableURLString
             return localVariableRequestBuilder.init(method: "GET", URLString: URLString, parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true)
         } catch {
@@ -192,7 +192,7 @@ open class UtilitiesAPI {
             try Authentication.setAuthenticationParameters(headers: &localVariableHeaderParameters, url: &localVariableUrlComponents, in: "header", name: "authorization", value: self.client.accessToken, prefix: "Token ")
             try Authentication.setAuthenticationParameters(headers: &localVariableHeaderParameters, url: &localVariableUrlComponents, in: "header", name: "authorization", value: self.client.apiKey, prefix: "Bearer ")
             try Authentication.setAuthenticationParameters(headers: &localVariableHeaderParameters, url: &localVariableUrlComponents, in: "header", name: "customer-id", value: self.client.customerId, prefix: nil)
-            let localVariableRequestBuilder: RequestBuilder<FetchURLsResponse>.Type = CarbonAPI.requestBuilderFactory.getBuilder()
+            let localVariableRequestBuilder: RequestBuilder<FetchURLsResponse>.Type = CarbonAIAPI.requestBuilderFactory.getBuilder()
             let URLString = localVariableUrlComponents?.string ?? localVariableURLString
             return localVariableRequestBuilder.init(method: "GET", URLString: URLString, parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true)
         } catch {
@@ -211,7 +211,7 @@ open class UtilitiesAPI {
      - parameter completion: completion handler to receive the data and the error objects
      */
     @discardableResult
-    open class func fetchYoutubeTranscriptsSync(id: String, raw: Bool? = nil, apiResponseQueue: DispatchQueue = CarbonAPI.apiResponseQueue, completion: @escaping ((_ data: YoutubeTranscriptResponse?, _ error: Error?) -> Void)) -> RequestTask {
+    open class func fetchYoutubeTranscriptsSync(id: String, raw: Bool? = nil, apiResponseQueue: DispatchQueue = CarbonAIAPI.apiResponseQueue, completion: @escaping ((_ data: YoutubeTranscriptResponse?, _ error: Error?) -> Void)) -> RequestTask {
         return fetchYoutubeTranscriptsWithRequestBuilder(id: id, raw: raw).execute(apiResponseQueue) { result in
             switch result {
             case let .success(response):
@@ -318,7 +318,7 @@ open class UtilitiesAPI {
             id: String,
             raw: Bool? = nil
     ) -> RequestBuilder<YoutubeTranscriptResponse> {
-        let basePath = CarbonAPI.basePath;
+        let basePath = CarbonAIAPI.basePath;
         let localVariablePath = "/fetch_youtube_transcript"
         let localVariableURLString = basePath + localVariablePath
         let localVariableParameters: [String: Any]? = nil
@@ -335,10 +335,10 @@ open class UtilitiesAPI {
         var localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
         do {
-            try Authentication.setAuthenticationParameters(headers: &localVariableHeaderParameters, url: &localVariableUrlComponents, in: "header", name: "authorization", value: CarbonAPI.accessToken, prefix: "Token ")
-            try Authentication.setAuthenticationParameters(headers: &localVariableHeaderParameters, url: &localVariableUrlComponents, in: "header", name: "authorization", value: CarbonAPI.apiKey, prefix: "Bearer ")
-            try Authentication.setAuthenticationParameters(headers: &localVariableHeaderParameters, url: &localVariableUrlComponents, in: "header", name: "customer-id", value: CarbonAPI.customerId, prefix: nil)
-            let localVariableRequestBuilder: RequestBuilder<YoutubeTranscriptResponse>.Type = CarbonAPI.requestBuilderFactory.getBuilder()
+            try Authentication.setAuthenticationParameters(headers: &localVariableHeaderParameters, url: &localVariableUrlComponents, in: "header", name: "authorization", value: CarbonAIAPI.accessToken, prefix: "Token ")
+            try Authentication.setAuthenticationParameters(headers: &localVariableHeaderParameters, url: &localVariableUrlComponents, in: "header", name: "authorization", value: CarbonAIAPI.apiKey, prefix: "Bearer ")
+            try Authentication.setAuthenticationParameters(headers: &localVariableHeaderParameters, url: &localVariableUrlComponents, in: "header", name: "customer-id", value: CarbonAIAPI.customerId, prefix: nil)
+            let localVariableRequestBuilder: RequestBuilder<YoutubeTranscriptResponse>.Type = CarbonAIAPI.requestBuilderFactory.getBuilder()
             let URLString = localVariableUrlComponents?.string ?? localVariableURLString
             return localVariableRequestBuilder.init(method: "GET", URLString: URLString, parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true)
         } catch {
@@ -388,7 +388,7 @@ open class UtilitiesAPI {
             try Authentication.setAuthenticationParameters(headers: &localVariableHeaderParameters, url: &localVariableUrlComponents, in: "header", name: "authorization", value: self.client.accessToken, prefix: "Token ")
             try Authentication.setAuthenticationParameters(headers: &localVariableHeaderParameters, url: &localVariableUrlComponents, in: "header", name: "authorization", value: self.client.apiKey, prefix: "Bearer ")
             try Authentication.setAuthenticationParameters(headers: &localVariableHeaderParameters, url: &localVariableUrlComponents, in: "header", name: "customer-id", value: self.client.customerId, prefix: nil)
-            let localVariableRequestBuilder: RequestBuilder<YoutubeTranscriptResponse>.Type = CarbonAPI.requestBuilderFactory.getBuilder()
+            let localVariableRequestBuilder: RequestBuilder<YoutubeTranscriptResponse>.Type = CarbonAIAPI.requestBuilderFactory.getBuilder()
             let URLString = localVariableUrlComponents?.string ?? localVariableURLString
             return localVariableRequestBuilder.init(method: "GET", URLString: URLString, parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true)
         } catch {
@@ -406,7 +406,7 @@ open class UtilitiesAPI {
      - parameter completion: completion handler to receive the data and the error objects
      */
     @discardableResult
-    open class func processSitemapSync(url: String, apiResponseQueue: DispatchQueue = CarbonAPI.apiResponseQueue, completion: @escaping ((_ data: AnyCodable?, _ error: Error?) -> Void)) -> RequestTask {
+    open class func processSitemapSync(url: String, apiResponseQueue: DispatchQueue = CarbonAIAPI.apiResponseQueue, completion: @escaping ((_ data: AnyCodable?, _ error: Error?) -> Void)) -> RequestTask {
         return processSitemapWithRequestBuilder(url: url).execute(apiResponseQueue) { result in
             switch result {
             case let .success(response):
@@ -506,7 +506,7 @@ open class UtilitiesAPI {
     open class func processSitemapWithRequestBuilder(
             url: String
     ) -> RequestBuilder<AnyCodable> {
-        let basePath = CarbonAPI.basePath;
+        let basePath = CarbonAIAPI.basePath;
         let localVariablePath = "/process_sitemap"
         let localVariableURLString = basePath + localVariablePath
         let localVariableParameters: [String: Any]? = nil
@@ -522,10 +522,10 @@ open class UtilitiesAPI {
         var localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
         do {
-            try Authentication.setAuthenticationParameters(headers: &localVariableHeaderParameters, url: &localVariableUrlComponents, in: "header", name: "authorization", value: CarbonAPI.accessToken, prefix: "Token ")
-            try Authentication.setAuthenticationParameters(headers: &localVariableHeaderParameters, url: &localVariableUrlComponents, in: "header", name: "authorization", value: CarbonAPI.apiKey, prefix: "Bearer ")
-            try Authentication.setAuthenticationParameters(headers: &localVariableHeaderParameters, url: &localVariableUrlComponents, in: "header", name: "customer-id", value: CarbonAPI.customerId, prefix: nil)
-            let localVariableRequestBuilder: RequestBuilder<AnyCodable>.Type = CarbonAPI.requestBuilderFactory.getBuilder()
+            try Authentication.setAuthenticationParameters(headers: &localVariableHeaderParameters, url: &localVariableUrlComponents, in: "header", name: "authorization", value: CarbonAIAPI.accessToken, prefix: "Token ")
+            try Authentication.setAuthenticationParameters(headers: &localVariableHeaderParameters, url: &localVariableUrlComponents, in: "header", name: "authorization", value: CarbonAIAPI.apiKey, prefix: "Bearer ")
+            try Authentication.setAuthenticationParameters(headers: &localVariableHeaderParameters, url: &localVariableUrlComponents, in: "header", name: "customer-id", value: CarbonAIAPI.customerId, prefix: nil)
+            let localVariableRequestBuilder: RequestBuilder<AnyCodable>.Type = CarbonAIAPI.requestBuilderFactory.getBuilder()
             let URLString = localVariableUrlComponents?.string ?? localVariableURLString
             return localVariableRequestBuilder.init(method: "GET", URLString: URLString, parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true)
         } catch {
@@ -572,7 +572,7 @@ open class UtilitiesAPI {
             try Authentication.setAuthenticationParameters(headers: &localVariableHeaderParameters, url: &localVariableUrlComponents, in: "header", name: "authorization", value: self.client.accessToken, prefix: "Token ")
             try Authentication.setAuthenticationParameters(headers: &localVariableHeaderParameters, url: &localVariableUrlComponents, in: "header", name: "authorization", value: self.client.apiKey, prefix: "Bearer ")
             try Authentication.setAuthenticationParameters(headers: &localVariableHeaderParameters, url: &localVariableUrlComponents, in: "header", name: "customer-id", value: self.client.customerId, prefix: nil)
-            let localVariableRequestBuilder: RequestBuilder<AnyCodable>.Type = CarbonAPI.requestBuilderFactory.getBuilder()
+            let localVariableRequestBuilder: RequestBuilder<AnyCodable>.Type = CarbonAIAPI.requestBuilderFactory.getBuilder()
             let URLString = localVariableUrlComponents?.string ?? localVariableURLString
             return localVariableRequestBuilder.init(method: "GET", URLString: URLString, parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true)
         } catch {
@@ -590,7 +590,7 @@ open class UtilitiesAPI {
      - parameter completion: completion handler to receive the data and the error objects
      */
     @discardableResult
-    open class func scrapeSitemapSync(sitemapScrapeRequest: SitemapScrapeRequest, apiResponseQueue: DispatchQueue = CarbonAPI.apiResponseQueue, completion: @escaping ((_ data: AnyCodable?, _ error: Error?) -> Void)) -> RequestTask {
+    open class func scrapeSitemapSync(sitemapScrapeRequest: SitemapScrapeRequest, apiResponseQueue: DispatchQueue = CarbonAIAPI.apiResponseQueue, completion: @escaping ((_ data: AnyCodable?, _ error: Error?) -> Void)) -> RequestTask {
         return scrapeSitemapWithRequestBuilder(sitemapScrapeRequest: sitemapScrapeRequest).execute(apiResponseQueue) { result in
             switch result {
             case let .success(response):
@@ -744,7 +744,7 @@ open class UtilitiesAPI {
     open class func scrapeSitemapWithRequestBuilder(
             sitemapScrapeRequest: SitemapScrapeRequest
     ) -> RequestBuilder<AnyCodable> {
-        let basePath = CarbonAPI.basePath;
+        let basePath = CarbonAIAPI.basePath;
         let localVariablePath = "/scrape_sitemap"
         let localVariableURLString = basePath + localVariablePath
         let localVariableParameters = JSONEncodingHelper.encodingParameters(forEncodableObject: sitemapScrapeRequest)
@@ -758,10 +758,10 @@ open class UtilitiesAPI {
         var localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
         do {
-            try Authentication.setAuthenticationParameters(headers: &localVariableHeaderParameters, url: &localVariableUrlComponents, in: "header", name: "authorization", value: CarbonAPI.accessToken, prefix: "Token ")
-            try Authentication.setAuthenticationParameters(headers: &localVariableHeaderParameters, url: &localVariableUrlComponents, in: "header", name: "authorization", value: CarbonAPI.apiKey, prefix: "Bearer ")
-            try Authentication.setAuthenticationParameters(headers: &localVariableHeaderParameters, url: &localVariableUrlComponents, in: "header", name: "customer-id", value: CarbonAPI.customerId, prefix: nil)
-            let localVariableRequestBuilder: RequestBuilder<AnyCodable>.Type = CarbonAPI.requestBuilderFactory.getBuilder()
+            try Authentication.setAuthenticationParameters(headers: &localVariableHeaderParameters, url: &localVariableUrlComponents, in: "header", name: "authorization", value: CarbonAIAPI.accessToken, prefix: "Token ")
+            try Authentication.setAuthenticationParameters(headers: &localVariableHeaderParameters, url: &localVariableUrlComponents, in: "header", name: "authorization", value: CarbonAIAPI.apiKey, prefix: "Bearer ")
+            try Authentication.setAuthenticationParameters(headers: &localVariableHeaderParameters, url: &localVariableUrlComponents, in: "header", name: "customer-id", value: CarbonAIAPI.customerId, prefix: nil)
+            let localVariableRequestBuilder: RequestBuilder<AnyCodable>.Type = CarbonAIAPI.requestBuilderFactory.getBuilder()
             let URLString = localVariableUrlComponents?.string ?? localVariableURLString
             return localVariableRequestBuilder.init(method: "POST", URLString: URLString, parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true)
         } catch {
@@ -806,7 +806,7 @@ open class UtilitiesAPI {
             try Authentication.setAuthenticationParameters(headers: &localVariableHeaderParameters, url: &localVariableUrlComponents, in: "header", name: "authorization", value: self.client.accessToken, prefix: "Token ")
             try Authentication.setAuthenticationParameters(headers: &localVariableHeaderParameters, url: &localVariableUrlComponents, in: "header", name: "authorization", value: self.client.apiKey, prefix: "Bearer ")
             try Authentication.setAuthenticationParameters(headers: &localVariableHeaderParameters, url: &localVariableUrlComponents, in: "header", name: "customer-id", value: self.client.customerId, prefix: nil)
-            let localVariableRequestBuilder: RequestBuilder<AnyCodable>.Type = CarbonAPI.requestBuilderFactory.getBuilder()
+            let localVariableRequestBuilder: RequestBuilder<AnyCodable>.Type = CarbonAIAPI.requestBuilderFactory.getBuilder()
             let URLString = localVariableUrlComponents?.string ?? localVariableURLString
             return localVariableRequestBuilder.init(method: "POST", URLString: URLString, parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true)
         } catch {
@@ -824,7 +824,7 @@ open class UtilitiesAPI {
      - parameter completion: completion handler to receive the data and the error objects
      */
     @discardableResult
-    open class func scrapeWebSync(webscrapeRequest: [WebscrapeRequest], apiResponseQueue: DispatchQueue = CarbonAPI.apiResponseQueue, completion: @escaping ((_ data: AnyCodable?, _ error: Error?) -> Void)) -> RequestTask {
+    open class func scrapeWebSync(webscrapeRequest: [WebscrapeRequest], apiResponseQueue: DispatchQueue = CarbonAIAPI.apiResponseQueue, completion: @escaping ((_ data: AnyCodable?, _ error: Error?) -> Void)) -> RequestTask {
         return scrapeWebWithRequestBuilder(webscrapeRequest: webscrapeRequest).execute(apiResponseQueue) { result in
             switch result {
             case let .success(response):
@@ -926,7 +926,7 @@ open class UtilitiesAPI {
     open class func scrapeWebWithRequestBuilder(
             webscrapeRequest: [WebscrapeRequest]
     ) -> RequestBuilder<AnyCodable> {
-        let basePath = CarbonAPI.basePath;
+        let basePath = CarbonAIAPI.basePath;
         let localVariablePath = "/web_scrape"
         let localVariableURLString = basePath + localVariablePath
         let localVariableParameters = JSONEncodingHelper.encodingParameters(forEncodableObject: webscrapeRequest)
@@ -940,10 +940,10 @@ open class UtilitiesAPI {
         var localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
         do {
-            try Authentication.setAuthenticationParameters(headers: &localVariableHeaderParameters, url: &localVariableUrlComponents, in: "header", name: "authorization", value: CarbonAPI.accessToken, prefix: "Token ")
-            try Authentication.setAuthenticationParameters(headers: &localVariableHeaderParameters, url: &localVariableUrlComponents, in: "header", name: "authorization", value: CarbonAPI.apiKey, prefix: "Bearer ")
-            try Authentication.setAuthenticationParameters(headers: &localVariableHeaderParameters, url: &localVariableUrlComponents, in: "header", name: "customer-id", value: CarbonAPI.customerId, prefix: nil)
-            let localVariableRequestBuilder: RequestBuilder<AnyCodable>.Type = CarbonAPI.requestBuilderFactory.getBuilder()
+            try Authentication.setAuthenticationParameters(headers: &localVariableHeaderParameters, url: &localVariableUrlComponents, in: "header", name: "authorization", value: CarbonAIAPI.accessToken, prefix: "Token ")
+            try Authentication.setAuthenticationParameters(headers: &localVariableHeaderParameters, url: &localVariableUrlComponents, in: "header", name: "authorization", value: CarbonAIAPI.apiKey, prefix: "Bearer ")
+            try Authentication.setAuthenticationParameters(headers: &localVariableHeaderParameters, url: &localVariableUrlComponents, in: "header", name: "customer-id", value: CarbonAIAPI.customerId, prefix: nil)
+            let localVariableRequestBuilder: RequestBuilder<AnyCodable>.Type = CarbonAIAPI.requestBuilderFactory.getBuilder()
             let URLString = localVariableUrlComponents?.string ?? localVariableURLString
             return localVariableRequestBuilder.init(method: "POST", URLString: URLString, parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true)
         } catch {
@@ -988,7 +988,7 @@ open class UtilitiesAPI {
             try Authentication.setAuthenticationParameters(headers: &localVariableHeaderParameters, url: &localVariableUrlComponents, in: "header", name: "authorization", value: self.client.accessToken, prefix: "Token ")
             try Authentication.setAuthenticationParameters(headers: &localVariableHeaderParameters, url: &localVariableUrlComponents, in: "header", name: "authorization", value: self.client.apiKey, prefix: "Bearer ")
             try Authentication.setAuthenticationParameters(headers: &localVariableHeaderParameters, url: &localVariableUrlComponents, in: "header", name: "customer-id", value: self.client.customerId, prefix: nil)
-            let localVariableRequestBuilder: RequestBuilder<AnyCodable>.Type = CarbonAPI.requestBuilderFactory.getBuilder()
+            let localVariableRequestBuilder: RequestBuilder<AnyCodable>.Type = CarbonAIAPI.requestBuilderFactory.getBuilder()
             let URLString = localVariableUrlComponents?.string ?? localVariableURLString
             return localVariableRequestBuilder.init(method: "POST", URLString: URLString, parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true)
         } catch {
@@ -1006,7 +1006,7 @@ open class UtilitiesAPI {
      - parameter completion: completion handler to receive the data and the error objects
      */
     @discardableResult
-    open class func searchUrlsSync(query: String, apiResponseQueue: DispatchQueue = CarbonAPI.apiResponseQueue, completion: @escaping ((_ data: FetchURLsResponse?, _ error: Error?) -> Void)) -> RequestTask {
+    open class func searchUrlsSync(query: String, apiResponseQueue: DispatchQueue = CarbonAIAPI.apiResponseQueue, completion: @escaping ((_ data: FetchURLsResponse?, _ error: Error?) -> Void)) -> RequestTask {
         return searchUrlsWithRequestBuilder(query: query).execute(apiResponseQueue) { result in
             switch result {
             case let .success(response):
@@ -1106,7 +1106,7 @@ open class UtilitiesAPI {
     open class func searchUrlsWithRequestBuilder(
             query: String
     ) -> RequestBuilder<FetchURLsResponse> {
-        let basePath = CarbonAPI.basePath;
+        let basePath = CarbonAIAPI.basePath;
         let localVariablePath = "/search_urls"
         let localVariableURLString = basePath + localVariablePath
         let localVariableParameters: [String: Any]? = nil
@@ -1122,10 +1122,10 @@ open class UtilitiesAPI {
         var localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
         do {
-            try Authentication.setAuthenticationParameters(headers: &localVariableHeaderParameters, url: &localVariableUrlComponents, in: "header", name: "authorization", value: CarbonAPI.accessToken, prefix: "Token ")
-            try Authentication.setAuthenticationParameters(headers: &localVariableHeaderParameters, url: &localVariableUrlComponents, in: "header", name: "authorization", value: CarbonAPI.apiKey, prefix: "Bearer ")
-            try Authentication.setAuthenticationParameters(headers: &localVariableHeaderParameters, url: &localVariableUrlComponents, in: "header", name: "customer-id", value: CarbonAPI.customerId, prefix: nil)
-            let localVariableRequestBuilder: RequestBuilder<FetchURLsResponse>.Type = CarbonAPI.requestBuilderFactory.getBuilder()
+            try Authentication.setAuthenticationParameters(headers: &localVariableHeaderParameters, url: &localVariableUrlComponents, in: "header", name: "authorization", value: CarbonAIAPI.accessToken, prefix: "Token ")
+            try Authentication.setAuthenticationParameters(headers: &localVariableHeaderParameters, url: &localVariableUrlComponents, in: "header", name: "authorization", value: CarbonAIAPI.apiKey, prefix: "Bearer ")
+            try Authentication.setAuthenticationParameters(headers: &localVariableHeaderParameters, url: &localVariableUrlComponents, in: "header", name: "customer-id", value: CarbonAIAPI.customerId, prefix: nil)
+            let localVariableRequestBuilder: RequestBuilder<FetchURLsResponse>.Type = CarbonAIAPI.requestBuilderFactory.getBuilder()
             let URLString = localVariableUrlComponents?.string ?? localVariableURLString
             return localVariableRequestBuilder.init(method: "GET", URLString: URLString, parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true)
         } catch {
@@ -1172,7 +1172,7 @@ open class UtilitiesAPI {
             try Authentication.setAuthenticationParameters(headers: &localVariableHeaderParameters, url: &localVariableUrlComponents, in: "header", name: "authorization", value: self.client.accessToken, prefix: "Token ")
             try Authentication.setAuthenticationParameters(headers: &localVariableHeaderParameters, url: &localVariableUrlComponents, in: "header", name: "authorization", value: self.client.apiKey, prefix: "Bearer ")
             try Authentication.setAuthenticationParameters(headers: &localVariableHeaderParameters, url: &localVariableUrlComponents, in: "header", name: "customer-id", value: self.client.customerId, prefix: nil)
-            let localVariableRequestBuilder: RequestBuilder<FetchURLsResponse>.Type = CarbonAPI.requestBuilderFactory.getBuilder()
+            let localVariableRequestBuilder: RequestBuilder<FetchURLsResponse>.Type = CarbonAIAPI.requestBuilderFactory.getBuilder()
             let URLString = localVariableUrlComponents?.string ?? localVariableURLString
             return localVariableRequestBuilder.init(method: "GET", URLString: URLString, parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true)
         } catch {

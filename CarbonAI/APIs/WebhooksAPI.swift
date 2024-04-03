@@ -12,9 +12,9 @@ import AnyCodable
 
 open class WebhooksAPI {
 
-    let client: CarbonClient
+    let client: CarbonAIClient
 
-    public init(client: CarbonClient) {
+    public init(client: CarbonAIClient) {
         self.client = client
     }
 
@@ -26,7 +26,7 @@ open class WebhooksAPI {
      - parameter completion: completion handler to receive the data and the error objects
      */
     @discardableResult
-    open class func addUrlSync(addWebhookProps: AddWebhookProps, apiResponseQueue: DispatchQueue = CarbonAPI.apiResponseQueue, completion: @escaping ((_ data: Webhook?, _ error: Error?) -> Void)) -> RequestTask {
+    open class func addUrlSync(addWebhookProps: AddWebhookProps, apiResponseQueue: DispatchQueue = CarbonAIAPI.apiResponseQueue, completion: @escaping ((_ data: Webhook?, _ error: Error?) -> Void)) -> RequestTask {
         return addUrlWithRequestBuilder(addWebhookProps: addWebhookProps).execute(apiResponseQueue) { result in
             switch result {
             case let .success(response):
@@ -125,7 +125,7 @@ open class WebhooksAPI {
     open class func addUrlWithRequestBuilder(
             addWebhookProps: AddWebhookProps
     ) -> RequestBuilder<Webhook> {
-        let basePath = CarbonAPI.basePath;
+        let basePath = CarbonAIAPI.basePath;
         let localVariablePath = "/add_webhook"
         let localVariableURLString = basePath + localVariablePath
         let localVariableParameters = JSONEncodingHelper.encodingParameters(forEncodableObject: addWebhookProps)
@@ -139,8 +139,8 @@ open class WebhooksAPI {
         var localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
         do {
-            try Authentication.setAuthenticationParameters(headers: &localVariableHeaderParameters, url: &localVariableUrlComponents, in: "header", name: "authorization", value: CarbonAPI.apiKey, prefix: "Bearer ")
-            let localVariableRequestBuilder: RequestBuilder<Webhook>.Type = CarbonAPI.requestBuilderFactory.getBuilder()
+            try Authentication.setAuthenticationParameters(headers: &localVariableHeaderParameters, url: &localVariableUrlComponents, in: "header", name: "authorization", value: CarbonAIAPI.apiKey, prefix: "Bearer ")
+            let localVariableRequestBuilder: RequestBuilder<Webhook>.Type = CarbonAIAPI.requestBuilderFactory.getBuilder()
             let URLString = localVariableUrlComponents?.string ?? localVariableURLString
             return localVariableRequestBuilder.init(method: "POST", URLString: URLString, parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true)
         } catch {
@@ -176,7 +176,7 @@ open class WebhooksAPI {
 
         do {
             try Authentication.setAuthenticationParameters(headers: &localVariableHeaderParameters, url: &localVariableUrlComponents, in: "header", name: "authorization", value: self.client.apiKey, prefix: "Bearer ")
-            let localVariableRequestBuilder: RequestBuilder<Webhook>.Type = CarbonAPI.requestBuilderFactory.getBuilder()
+            let localVariableRequestBuilder: RequestBuilder<Webhook>.Type = CarbonAIAPI.requestBuilderFactory.getBuilder()
             let URLString = localVariableUrlComponents?.string ?? localVariableURLString
             return localVariableRequestBuilder.init(method: "POST", URLString: URLString, parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true)
         } catch {
@@ -194,7 +194,7 @@ open class WebhooksAPI {
      - parameter completion: completion handler to receive the data and the error objects
      */
     @discardableResult
-    open class func deleteUrlSync(webhookId: Int, apiResponseQueue: DispatchQueue = CarbonAPI.apiResponseQueue, completion: @escaping ((_ data: GenericSuccessResponse?, _ error: Error?) -> Void)) -> RequestTask {
+    open class func deleteUrlSync(webhookId: Int, apiResponseQueue: DispatchQueue = CarbonAIAPI.apiResponseQueue, completion: @escaping ((_ data: GenericSuccessResponse?, _ error: Error?) -> Void)) -> RequestTask {
         return deleteUrlWithRequestBuilder(webhookId: webhookId).execute(apiResponseQueue) { result in
             switch result {
             case let .success(response):
@@ -287,7 +287,7 @@ open class WebhooksAPI {
     open class func deleteUrlWithRequestBuilder(
             webhookId: Int
     ) -> RequestBuilder<GenericSuccessResponse> {
-        let basePath = CarbonAPI.basePath;
+        let basePath = CarbonAIAPI.basePath;
         var localVariablePath = "/delete_webhook/{webhook_id}"
         let webhookIdPreEscape = "\(APIHelper.mapValueToPathItem(webhookId))"
         let webhookIdPostEscape = webhookIdPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
@@ -304,8 +304,8 @@ open class WebhooksAPI {
         var localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
         do {
-            try Authentication.setAuthenticationParameters(headers: &localVariableHeaderParameters, url: &localVariableUrlComponents, in: "header", name: "authorization", value: CarbonAPI.apiKey, prefix: "Bearer ")
-            let localVariableRequestBuilder: RequestBuilder<GenericSuccessResponse>.Type = CarbonAPI.requestBuilderFactory.getBuilder()
+            try Authentication.setAuthenticationParameters(headers: &localVariableHeaderParameters, url: &localVariableUrlComponents, in: "header", name: "authorization", value: CarbonAIAPI.apiKey, prefix: "Bearer ")
+            let localVariableRequestBuilder: RequestBuilder<GenericSuccessResponse>.Type = CarbonAIAPI.requestBuilderFactory.getBuilder()
             let URLString = localVariableUrlComponents?.string ?? localVariableURLString
             return localVariableRequestBuilder.init(method: "DELETE", URLString: URLString, parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true)
         } catch {
@@ -344,7 +344,7 @@ open class WebhooksAPI {
 
         do {
             try Authentication.setAuthenticationParameters(headers: &localVariableHeaderParameters, url: &localVariableUrlComponents, in: "header", name: "authorization", value: self.client.apiKey, prefix: "Bearer ")
-            let localVariableRequestBuilder: RequestBuilder<GenericSuccessResponse>.Type = CarbonAPI.requestBuilderFactory.getBuilder()
+            let localVariableRequestBuilder: RequestBuilder<GenericSuccessResponse>.Type = CarbonAIAPI.requestBuilderFactory.getBuilder()
             let URLString = localVariableUrlComponents?.string ?? localVariableURLString
             return localVariableRequestBuilder.init(method: "DELETE", URLString: URLString, parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true)
         } catch {
@@ -362,7 +362,7 @@ open class WebhooksAPI {
      - parameter completion: completion handler to receive the data and the error objects
      */
     @discardableResult
-    open class func urlsSync(webhookQueryInput: WebhookQueryInput, apiResponseQueue: DispatchQueue = CarbonAPI.apiResponseQueue, completion: @escaping ((_ data: WebhookQueryResponse?, _ error: Error?) -> Void)) -> RequestTask {
+    open class func urlsSync(webhookQueryInput: WebhookQueryInput, apiResponseQueue: DispatchQueue = CarbonAIAPI.apiResponseQueue, completion: @escaping ((_ data: WebhookQueryResponse?, _ error: Error?) -> Void)) -> RequestTask {
         return urlsWithRequestBuilder(webhookQueryInput: webhookQueryInput).execute(apiResponseQueue) { result in
             switch result {
             case let .success(response):
@@ -473,7 +473,7 @@ open class WebhooksAPI {
     open class func urlsWithRequestBuilder(
             webhookQueryInput: WebhookQueryInput
     ) -> RequestBuilder<WebhookQueryResponse> {
-        let basePath = CarbonAPI.basePath;
+        let basePath = CarbonAIAPI.basePath;
         let localVariablePath = "/webhooks"
         let localVariableURLString = basePath + localVariablePath
         let localVariableParameters = JSONEncodingHelper.encodingParameters(forEncodableObject: webhookQueryInput)
@@ -487,8 +487,8 @@ open class WebhooksAPI {
         var localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
         do {
-            try Authentication.setAuthenticationParameters(headers: &localVariableHeaderParameters, url: &localVariableUrlComponents, in: "header", name: "authorization", value: CarbonAPI.apiKey, prefix: "Bearer ")
-            let localVariableRequestBuilder: RequestBuilder<WebhookQueryResponse>.Type = CarbonAPI.requestBuilderFactory.getBuilder()
+            try Authentication.setAuthenticationParameters(headers: &localVariableHeaderParameters, url: &localVariableUrlComponents, in: "header", name: "authorization", value: CarbonAIAPI.apiKey, prefix: "Bearer ")
+            let localVariableRequestBuilder: RequestBuilder<WebhookQueryResponse>.Type = CarbonAIAPI.requestBuilderFactory.getBuilder()
             let URLString = localVariableUrlComponents?.string ?? localVariableURLString
             return localVariableRequestBuilder.init(method: "POST", URLString: URLString, parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true)
         } catch {
@@ -524,7 +524,7 @@ open class WebhooksAPI {
 
         do {
             try Authentication.setAuthenticationParameters(headers: &localVariableHeaderParameters, url: &localVariableUrlComponents, in: "header", name: "authorization", value: self.client.apiKey, prefix: "Bearer ")
-            let localVariableRequestBuilder: RequestBuilder<WebhookQueryResponse>.Type = CarbonAPI.requestBuilderFactory.getBuilder()
+            let localVariableRequestBuilder: RequestBuilder<WebhookQueryResponse>.Type = CarbonAIAPI.requestBuilderFactory.getBuilder()
             let URLString = localVariableUrlComponents?.string ?? localVariableURLString
             return localVariableRequestBuilder.init(method: "POST", URLString: URLString, parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true)
         } catch {

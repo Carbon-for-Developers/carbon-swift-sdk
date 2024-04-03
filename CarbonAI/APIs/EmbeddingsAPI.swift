@@ -12,9 +12,9 @@ import AnyCodable
 
 open class EmbeddingsAPI {
 
-    let client: CarbonClient
+    let client: CarbonAIClient
 
-    public init(client: CarbonClient) {
+    public init(client: CarbonAIClient) {
         self.client = client
     }
 
@@ -26,7 +26,7 @@ open class EmbeddingsAPI {
      - parameter completion: completion handler to receive the data and the error objects
      */
     @discardableResult
-    open class func getDocumentsSync(getEmbeddingDocumentsBody: GetEmbeddingDocumentsBody, apiResponseQueue: DispatchQueue = CarbonAPI.apiResponseQueue, completion: @escaping ((_ data: DocumentResponseList?, _ error: Error?) -> Void)) -> RequestTask {
+    open class func getDocumentsSync(getEmbeddingDocumentsBody: GetEmbeddingDocumentsBody, apiResponseQueue: DispatchQueue = CarbonAIAPI.apiResponseQueue, completion: @escaping ((_ data: DocumentResponseList?, _ error: Error?) -> Void)) -> RequestTask {
         return getDocumentsWithRequestBuilder(getEmbeddingDocumentsBody: getEmbeddingDocumentsBody).execute(apiResponseQueue) { result in
             switch result {
             case let .success(response):
@@ -184,7 +184,7 @@ open class EmbeddingsAPI {
     open class func getDocumentsWithRequestBuilder(
             getEmbeddingDocumentsBody: GetEmbeddingDocumentsBody
     ) -> RequestBuilder<DocumentResponseList> {
-        let basePath = CarbonAPI.basePath;
+        let basePath = CarbonAIAPI.basePath;
         let localVariablePath = "/embeddings"
         let localVariableURLString = basePath + localVariablePath
         let localVariableParameters = JSONEncodingHelper.encodingParameters(forEncodableObject: getEmbeddingDocumentsBody)
@@ -198,10 +198,10 @@ open class EmbeddingsAPI {
         var localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
         do {
-            try Authentication.setAuthenticationParameters(headers: &localVariableHeaderParameters, url: &localVariableUrlComponents, in: "header", name: "authorization", value: CarbonAPI.accessToken, prefix: "Token ")
-            try Authentication.setAuthenticationParameters(headers: &localVariableHeaderParameters, url: &localVariableUrlComponents, in: "header", name: "authorization", value: CarbonAPI.apiKey, prefix: "Bearer ")
-            try Authentication.setAuthenticationParameters(headers: &localVariableHeaderParameters, url: &localVariableUrlComponents, in: "header", name: "customer-id", value: CarbonAPI.customerId, prefix: nil)
-            let localVariableRequestBuilder: RequestBuilder<DocumentResponseList>.Type = CarbonAPI.requestBuilderFactory.getBuilder()
+            try Authentication.setAuthenticationParameters(headers: &localVariableHeaderParameters, url: &localVariableUrlComponents, in: "header", name: "authorization", value: CarbonAIAPI.accessToken, prefix: "Token ")
+            try Authentication.setAuthenticationParameters(headers: &localVariableHeaderParameters, url: &localVariableUrlComponents, in: "header", name: "authorization", value: CarbonAIAPI.apiKey, prefix: "Bearer ")
+            try Authentication.setAuthenticationParameters(headers: &localVariableHeaderParameters, url: &localVariableUrlComponents, in: "header", name: "customer-id", value: CarbonAIAPI.customerId, prefix: nil)
+            let localVariableRequestBuilder: RequestBuilder<DocumentResponseList>.Type = CarbonAIAPI.requestBuilderFactory.getBuilder()
             let URLString = localVariableUrlComponents?.string ?? localVariableURLString
             return localVariableRequestBuilder.init(method: "POST", URLString: URLString, parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true)
         } catch {
@@ -246,7 +246,7 @@ open class EmbeddingsAPI {
             try Authentication.setAuthenticationParameters(headers: &localVariableHeaderParameters, url: &localVariableUrlComponents, in: "header", name: "authorization", value: self.client.accessToken, prefix: "Token ")
             try Authentication.setAuthenticationParameters(headers: &localVariableHeaderParameters, url: &localVariableUrlComponents, in: "header", name: "authorization", value: self.client.apiKey, prefix: "Bearer ")
             try Authentication.setAuthenticationParameters(headers: &localVariableHeaderParameters, url: &localVariableUrlComponents, in: "header", name: "customer-id", value: self.client.customerId, prefix: nil)
-            let localVariableRequestBuilder: RequestBuilder<DocumentResponseList>.Type = CarbonAPI.requestBuilderFactory.getBuilder()
+            let localVariableRequestBuilder: RequestBuilder<DocumentResponseList>.Type = CarbonAIAPI.requestBuilderFactory.getBuilder()
             let URLString = localVariableUrlComponents?.string ?? localVariableURLString
             return localVariableRequestBuilder.init(method: "POST", URLString: URLString, parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true)
         } catch {
@@ -264,7 +264,7 @@ open class EmbeddingsAPI {
      - parameter completion: completion handler to receive the data and the error objects
      */
     @discardableResult
-    open class func getEmbeddingsAndChunksSync(embeddingsAndChunksQueryInput: EmbeddingsAndChunksQueryInput, apiResponseQueue: DispatchQueue = CarbonAPI.apiResponseQueue, completion: @escaping ((_ data: EmbeddingsAndChunksResponse?, _ error: Error?) -> Void)) -> RequestTask {
+    open class func getEmbeddingsAndChunksSync(embeddingsAndChunksQueryInput: EmbeddingsAndChunksQueryInput, apiResponseQueue: DispatchQueue = CarbonAIAPI.apiResponseQueue, completion: @escaping ((_ data: EmbeddingsAndChunksResponse?, _ error: Error?) -> Void)) -> RequestTask {
         return getEmbeddingsAndChunksWithRequestBuilder(embeddingsAndChunksQueryInput: embeddingsAndChunksQueryInput).execute(apiResponseQueue) { result in
             switch result {
             case let .success(response):
@@ -385,7 +385,7 @@ open class EmbeddingsAPI {
     open class func getEmbeddingsAndChunksWithRequestBuilder(
             embeddingsAndChunksQueryInput: EmbeddingsAndChunksQueryInput
     ) -> RequestBuilder<EmbeddingsAndChunksResponse> {
-        let basePath = CarbonAPI.basePath;
+        let basePath = CarbonAIAPI.basePath;
         let localVariablePath = "/text_chunks"
         let localVariableURLString = basePath + localVariablePath
         let localVariableParameters = JSONEncodingHelper.encodingParameters(forEncodableObject: embeddingsAndChunksQueryInput)
@@ -399,10 +399,10 @@ open class EmbeddingsAPI {
         var localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
         do {
-            try Authentication.setAuthenticationParameters(headers: &localVariableHeaderParameters, url: &localVariableUrlComponents, in: "header", name: "authorization", value: CarbonAPI.accessToken, prefix: "Token ")
-            try Authentication.setAuthenticationParameters(headers: &localVariableHeaderParameters, url: &localVariableUrlComponents, in: "header", name: "authorization", value: CarbonAPI.apiKey, prefix: "Bearer ")
-            try Authentication.setAuthenticationParameters(headers: &localVariableHeaderParameters, url: &localVariableUrlComponents, in: "header", name: "customer-id", value: CarbonAPI.customerId, prefix: nil)
-            let localVariableRequestBuilder: RequestBuilder<EmbeddingsAndChunksResponse>.Type = CarbonAPI.requestBuilderFactory.getBuilder()
+            try Authentication.setAuthenticationParameters(headers: &localVariableHeaderParameters, url: &localVariableUrlComponents, in: "header", name: "authorization", value: CarbonAIAPI.accessToken, prefix: "Token ")
+            try Authentication.setAuthenticationParameters(headers: &localVariableHeaderParameters, url: &localVariableUrlComponents, in: "header", name: "authorization", value: CarbonAIAPI.apiKey, prefix: "Bearer ")
+            try Authentication.setAuthenticationParameters(headers: &localVariableHeaderParameters, url: &localVariableUrlComponents, in: "header", name: "customer-id", value: CarbonAIAPI.customerId, prefix: nil)
+            let localVariableRequestBuilder: RequestBuilder<EmbeddingsAndChunksResponse>.Type = CarbonAIAPI.requestBuilderFactory.getBuilder()
             let URLString = localVariableUrlComponents?.string ?? localVariableURLString
             return localVariableRequestBuilder.init(method: "POST", URLString: URLString, parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true)
         } catch {
@@ -446,7 +446,7 @@ open class EmbeddingsAPI {
             try Authentication.setAuthenticationParameters(headers: &localVariableHeaderParameters, url: &localVariableUrlComponents, in: "header", name: "authorization", value: self.client.accessToken, prefix: "Token ")
             try Authentication.setAuthenticationParameters(headers: &localVariableHeaderParameters, url: &localVariableUrlComponents, in: "header", name: "authorization", value: self.client.apiKey, prefix: "Bearer ")
             try Authentication.setAuthenticationParameters(headers: &localVariableHeaderParameters, url: &localVariableUrlComponents, in: "header", name: "customer-id", value: self.client.customerId, prefix: nil)
-            let localVariableRequestBuilder: RequestBuilder<EmbeddingsAndChunksResponse>.Type = CarbonAPI.requestBuilderFactory.getBuilder()
+            let localVariableRequestBuilder: RequestBuilder<EmbeddingsAndChunksResponse>.Type = CarbonAIAPI.requestBuilderFactory.getBuilder()
             let URLString = localVariableUrlComponents?.string ?? localVariableURLString
             return localVariableRequestBuilder.init(method: "POST", URLString: URLString, parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true)
         } catch {
@@ -464,7 +464,7 @@ open class EmbeddingsAPI {
      - parameter completion: completion handler to receive the data and the error objects
      */
     @discardableResult
-    open class func uploadChunksAndEmbeddingsSync(chunksAndEmbeddingsUploadInput: ChunksAndEmbeddingsUploadInput, apiResponseQueue: DispatchQueue = CarbonAPI.apiResponseQueue, completion: @escaping ((_ data: GenericSuccessResponse?, _ error: Error?) -> Void)) -> RequestTask {
+    open class func uploadChunksAndEmbeddingsSync(chunksAndEmbeddingsUploadInput: ChunksAndEmbeddingsUploadInput, apiResponseQueue: DispatchQueue = CarbonAIAPI.apiResponseQueue, completion: @escaping ((_ data: GenericSuccessResponse?, _ error: Error?) -> Void)) -> RequestTask {
         return uploadChunksAndEmbeddingsWithRequestBuilder(chunksAndEmbeddingsUploadInput: chunksAndEmbeddingsUploadInput).execute(apiResponseQueue) { result in
             switch result {
             case let .success(response):
@@ -585,7 +585,7 @@ open class EmbeddingsAPI {
     open class func uploadChunksAndEmbeddingsWithRequestBuilder(
             chunksAndEmbeddingsUploadInput: ChunksAndEmbeddingsUploadInput
     ) -> RequestBuilder<GenericSuccessResponse> {
-        let basePath = CarbonAPI.basePath;
+        let basePath = CarbonAIAPI.basePath;
         let localVariablePath = "/upload_chunks_and_embeddings"
         let localVariableURLString = basePath + localVariablePath
         let localVariableParameters = JSONEncodingHelper.encodingParameters(forEncodableObject: chunksAndEmbeddingsUploadInput)
@@ -599,10 +599,10 @@ open class EmbeddingsAPI {
         var localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
         do {
-            try Authentication.setAuthenticationParameters(headers: &localVariableHeaderParameters, url: &localVariableUrlComponents, in: "header", name: "authorization", value: CarbonAPI.accessToken, prefix: "Token ")
-            try Authentication.setAuthenticationParameters(headers: &localVariableHeaderParameters, url: &localVariableUrlComponents, in: "header", name: "authorization", value: CarbonAPI.apiKey, prefix: "Bearer ")
-            try Authentication.setAuthenticationParameters(headers: &localVariableHeaderParameters, url: &localVariableUrlComponents, in: "header", name: "customer-id", value: CarbonAPI.customerId, prefix: nil)
-            let localVariableRequestBuilder: RequestBuilder<GenericSuccessResponse>.Type = CarbonAPI.requestBuilderFactory.getBuilder()
+            try Authentication.setAuthenticationParameters(headers: &localVariableHeaderParameters, url: &localVariableUrlComponents, in: "header", name: "authorization", value: CarbonAIAPI.accessToken, prefix: "Token ")
+            try Authentication.setAuthenticationParameters(headers: &localVariableHeaderParameters, url: &localVariableUrlComponents, in: "header", name: "authorization", value: CarbonAIAPI.apiKey, prefix: "Bearer ")
+            try Authentication.setAuthenticationParameters(headers: &localVariableHeaderParameters, url: &localVariableUrlComponents, in: "header", name: "customer-id", value: CarbonAIAPI.customerId, prefix: nil)
+            let localVariableRequestBuilder: RequestBuilder<GenericSuccessResponse>.Type = CarbonAIAPI.requestBuilderFactory.getBuilder()
             let URLString = localVariableUrlComponents?.string ?? localVariableURLString
             return localVariableRequestBuilder.init(method: "POST", URLString: URLString, parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true)
         } catch {
@@ -646,7 +646,7 @@ open class EmbeddingsAPI {
             try Authentication.setAuthenticationParameters(headers: &localVariableHeaderParameters, url: &localVariableUrlComponents, in: "header", name: "authorization", value: self.client.accessToken, prefix: "Token ")
             try Authentication.setAuthenticationParameters(headers: &localVariableHeaderParameters, url: &localVariableUrlComponents, in: "header", name: "authorization", value: self.client.apiKey, prefix: "Bearer ")
             try Authentication.setAuthenticationParameters(headers: &localVariableHeaderParameters, url: &localVariableUrlComponents, in: "header", name: "customer-id", value: self.client.customerId, prefix: nil)
-            let localVariableRequestBuilder: RequestBuilder<GenericSuccessResponse>.Type = CarbonAPI.requestBuilderFactory.getBuilder()
+            let localVariableRequestBuilder: RequestBuilder<GenericSuccessResponse>.Type = CarbonAIAPI.requestBuilderFactory.getBuilder()
             let URLString = localVariableUrlComponents?.string ?? localVariableURLString
             return localVariableRequestBuilder.init(method: "POST", URLString: URLString, parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true)
         } catch {

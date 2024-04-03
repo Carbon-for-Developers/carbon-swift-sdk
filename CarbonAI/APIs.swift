@@ -8,7 +8,7 @@ import Foundation
 #if canImport(FoundationNetworking)
 import FoundationNetworking
 #endif
-open class CarbonAPI {
+open class CarbonAIAPI {
     public static var basePath = "https://api.carbon.ai"
     public static var customHeaders: [String: String] = [:]
     public static var credential: URLCredential?
@@ -40,7 +40,7 @@ open class RequestBuilder<T> {
         self.headers = headers
         self.requiresAuthentication = requiresAuthentication
 
-        addHeaders(CarbonAPI.customHeaders)
+        addHeaders(CarbonAIAPI.customHeaders)
     }
 
     open func addHeaders(_ aHeaders: [String: String]) {
@@ -50,7 +50,7 @@ open class RequestBuilder<T> {
     }
 
     @discardableResult
-    open func execute(_ apiResponseQueue: DispatchQueue = CarbonAPI.apiResponseQueue, _ completion: @escaping (_ result: Swift.Result<Response<T>, ErrorResponse>) -> Void) -> RequestTask {
+    open func execute(_ apiResponseQueue: DispatchQueue = CarbonAIAPI.apiResponseQueue, _ completion: @escaping (_ result: Swift.Result<Response<T>, ErrorResponse>) -> Void) -> RequestTask {
         return requestTask
     }
 
@@ -62,7 +62,7 @@ open class RequestBuilder<T> {
     }
 
     open func addCredential() -> Self {
-        credential = CarbonAPI.credential
+        credential = CarbonAIAPI.credential
         return self
     }
 }

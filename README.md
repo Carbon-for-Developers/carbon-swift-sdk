@@ -6,7 +6,7 @@
 
 Connect external data to LLMs, no matter the source.
 
-[![CocoaPods](https://img.shields.io/badge/pod-v0.2.0-blue)](https://cocoapods.org/pods/Carbon)
+[![CocoaPods](https://img.shields.io/badge/pod-v0.2.0-blue)](https://cocoapods.org/pods/CarbonAI)
 
 </div>
 
@@ -20,60 +20,60 @@ Connect external data to LLMs, no matter the source.
   * [CocoaPods](#cocoapods)
 - [Getting Started](#getting-started)
 - [Reference](#reference)
-  * [`carbon.auth.getAccessToken`](#carbonauthgetaccesstoken)
-  * [`carbon.auth.getWhiteLabeling`](#carbonauthgetwhitelabeling)
-  * [`carbon.dataSources.queryUserDataSources`](#carbondatasourcesqueryuserdatasources)
-  * [`carbon.dataSources.revokeAccessToken`](#carbondatasourcesrevokeaccesstoken)
-  * [`carbon.embeddings.getDocuments`](#carbonembeddingsgetdocuments)
-  * [`carbon.embeddings.getEmbeddingsAndChunks`](#carbonembeddingsgetembeddingsandchunks)
-  * [`carbon.embeddings.uploadChunksAndEmbeddings`](#carbonembeddingsuploadchunksandembeddings)
-  * [`carbon.files.createUserFileTags`](#carbonfilescreateuserfiletags)
-  * [`carbon.files.delete`](#carbonfilesdelete)
-  * [`carbon.files.deleteFileTags`](#carbonfilesdeletefiletags)
-  * [`carbon.files.deleteMany`](#carbonfilesdeletemany)
-  * [`carbon.files.deleteV2`](#carbonfilesdeletev2)
-  * [`carbon.files.getParsedFile`](#carbonfilesgetparsedfile)
-  * [`carbon.files.getRawFile`](#carbonfilesgetrawfile)
-  * [`carbon.files.queryUserFiles`](#carbonfilesqueryuserfiles)
-  * [`carbon.files.queryUserFilesDeprecated`](#carbonfilesqueryuserfilesdeprecated)
-  * [`carbon.files.resync`](#carbonfilesresync)
-  * [`carbon.files.upload`](#carbonfilesupload)
-  * [`carbon.files.uploadFromUrl`](#carbonfilesuploadfromurl)
-  * [`carbon.files.uploadText`](#carbonfilesuploadtext)
-  * [`carbon.health.check`](#carbonhealthcheck)
-  * [`carbon.integrations.connectDataSource`](#carbonintegrationsconnectdatasource)
-  * [`carbon.integrations.connectFreshdesk`](#carbonintegrationsconnectfreshdesk)
-  * [`carbon.integrations.connectGitbook`](#carbonintegrationsconnectgitbook)
-  * [`carbon.integrations.createAwsIamUser`](#carbonintegrationscreateawsiamuser)
-  * [`carbon.integrations.getOauthUrl`](#carbonintegrationsgetoauthurl)
-  * [`carbon.integrations.listConfluencePages`](#carbonintegrationslistconfluencepages)
-  * [`carbon.integrations.listDataSourceItems`](#carbonintegrationslistdatasourceitems)
-  * [`carbon.integrations.listFolders`](#carbonintegrationslistfolders)
-  * [`carbon.integrations.listGitbookSpaces`](#carbonintegrationslistgitbookspaces)
-  * [`carbon.integrations.listLabels`](#carbonintegrationslistlabels)
-  * [`carbon.integrations.listOutlookCategories`](#carbonintegrationslistoutlookcategories)
-  * [`carbon.integrations.syncConfluence`](#carbonintegrationssyncconfluence)
-  * [`carbon.integrations.syncDataSourceItems`](#carbonintegrationssyncdatasourceitems)
-  * [`carbon.integrations.syncFiles`](#carbonintegrationssyncfiles)
-  * [`carbon.integrations.syncGitbook`](#carbonintegrationssyncgitbook)
-  * [`carbon.integrations.syncGmail`](#carbonintegrationssyncgmail)
-  * [`carbon.integrations.syncOutlook`](#carbonintegrationssyncoutlook)
-  * [`carbon.integrations.syncRssFeed`](#carbonintegrationssyncrssfeed)
-  * [`carbon.integrations.syncS3Files`](#carbonintegrationssyncs3files)
-  * [`carbon.organizations.callGet`](#carbonorganizationscallget)
-  * [`carbon.users.callGet`](#carbonuserscallget)
-  * [`carbon.users.delete`](#carbonusersdelete)
-  * [`carbon.users.toggleUserFeatures`](#carbonuserstoggleuserfeatures)
-  * [`carbon.users.updateUsers`](#carbonusersupdateusers)
-  * [`carbon.utilities.fetchUrls`](#carbonutilitiesfetchurls)
-  * [`carbon.utilities.fetchYoutubeTranscripts`](#carbonutilitiesfetchyoutubetranscripts)
-  * [`carbon.utilities.processSitemap`](#carbonutilitiesprocesssitemap)
-  * [`carbon.utilities.scrapeSitemap`](#carbonutilitiesscrapesitemap)
-  * [`carbon.utilities.scrapeWeb`](#carbonutilitiesscrapeweb)
-  * [`carbon.utilities.searchUrls`](#carbonutilitiessearchurls)
-  * [`carbon.webhooks.addUrl`](#carbonwebhooksaddurl)
-  * [`carbon.webhooks.deleteUrl`](#carbonwebhooksdeleteurl)
-  * [`carbon.webhooks.urls`](#carbonwebhooksurls)
+  * [`carbonai.auth.getAccessToken`](#carbonaiauthgetaccesstoken)
+  * [`carbonai.auth.getWhiteLabeling`](#carbonaiauthgetwhitelabeling)
+  * [`carbonai.dataSources.queryUserDataSources`](#carbonaidatasourcesqueryuserdatasources)
+  * [`carbonai.dataSources.revokeAccessToken`](#carbonaidatasourcesrevokeaccesstoken)
+  * [`carbonai.embeddings.getDocuments`](#carbonaiembeddingsgetdocuments)
+  * [`carbonai.embeddings.getEmbeddingsAndChunks`](#carbonaiembeddingsgetembeddingsandchunks)
+  * [`carbonai.embeddings.uploadChunksAndEmbeddings`](#carbonaiembeddingsuploadchunksandembeddings)
+  * [`carbonai.files.createUserFileTags`](#carbonaifilescreateuserfiletags)
+  * [`carbonai.files.delete`](#carbonaifilesdelete)
+  * [`carbonai.files.deleteFileTags`](#carbonaifilesdeletefiletags)
+  * [`carbonai.files.deleteMany`](#carbonaifilesdeletemany)
+  * [`carbonai.files.deleteV2`](#carbonaifilesdeletev2)
+  * [`carbonai.files.getParsedFile`](#carbonaifilesgetparsedfile)
+  * [`carbonai.files.getRawFile`](#carbonaifilesgetrawfile)
+  * [`carbonai.files.queryUserFiles`](#carbonaifilesqueryuserfiles)
+  * [`carbonai.files.queryUserFilesDeprecated`](#carbonaifilesqueryuserfilesdeprecated)
+  * [`carbonai.files.resync`](#carbonaifilesresync)
+  * [`carbonai.files.upload`](#carbonaifilesupload)
+  * [`carbonai.files.uploadFromUrl`](#carbonaifilesuploadfromurl)
+  * [`carbonai.files.uploadText`](#carbonaifilesuploadtext)
+  * [`carbonai.health.check`](#carbonaihealthcheck)
+  * [`carbonai.integrations.connectDataSource`](#carbonaiintegrationsconnectdatasource)
+  * [`carbonai.integrations.connectFreshdesk`](#carbonaiintegrationsconnectfreshdesk)
+  * [`carbonai.integrations.connectGitbook`](#carbonaiintegrationsconnectgitbook)
+  * [`carbonai.integrations.createAwsIamUser`](#carbonaiintegrationscreateawsiamuser)
+  * [`carbonai.integrations.getOauthUrl`](#carbonaiintegrationsgetoauthurl)
+  * [`carbonai.integrations.listConfluencePages`](#carbonaiintegrationslistconfluencepages)
+  * [`carbonai.integrations.listDataSourceItems`](#carbonaiintegrationslistdatasourceitems)
+  * [`carbonai.integrations.listFolders`](#carbonaiintegrationslistfolders)
+  * [`carbonai.integrations.listGitbookSpaces`](#carbonaiintegrationslistgitbookspaces)
+  * [`carbonai.integrations.listLabels`](#carbonaiintegrationslistlabels)
+  * [`carbonai.integrations.listOutlookCategories`](#carbonaiintegrationslistoutlookcategories)
+  * [`carbonai.integrations.syncConfluence`](#carbonaiintegrationssyncconfluence)
+  * [`carbonai.integrations.syncDataSourceItems`](#carbonaiintegrationssyncdatasourceitems)
+  * [`carbonai.integrations.syncFiles`](#carbonaiintegrationssyncfiles)
+  * [`carbonai.integrations.syncGitbook`](#carbonaiintegrationssyncgitbook)
+  * [`carbonai.integrations.syncGmail`](#carbonaiintegrationssyncgmail)
+  * [`carbonai.integrations.syncOutlook`](#carbonaiintegrationssyncoutlook)
+  * [`carbonai.integrations.syncRssFeed`](#carbonaiintegrationssyncrssfeed)
+  * [`carbonai.integrations.syncS3Files`](#carbonaiintegrationssyncs3files)
+  * [`carbonai.organizations.callGet`](#carbonaiorganizationscallget)
+  * [`carbonai.users.callGet`](#carbonaiuserscallget)
+  * [`carbonai.users.delete`](#carbonaiusersdelete)
+  * [`carbonai.users.toggleUserFeatures`](#carbonaiuserstoggleuserfeatures)
+  * [`carbonai.users.updateUsers`](#carbonaiusersupdateusers)
+  * [`carbonai.utilities.fetchUrls`](#carbonaiutilitiesfetchurls)
+  * [`carbonai.utilities.fetchYoutubeTranscripts`](#carbonaiutilitiesfetchyoutubetranscripts)
+  * [`carbonai.utilities.processSitemap`](#carbonaiutilitiesprocesssitemap)
+  * [`carbonai.utilities.scrapeSitemap`](#carbonaiutilitiesscrapesitemap)
+  * [`carbonai.utilities.scrapeWeb`](#carbonaiutilitiesscrapeweb)
+  * [`carbonai.utilities.searchUrls`](#carbonaiutilitiessearchurls)
+  * [`carbonai.webhooks.addUrl`](#carbonaiwebhooksaddurl)
+  * [`carbonai.webhooks.deleteUrl`](#carbonaiwebhooksdeleteurl)
+  * [`carbonai.webhooks.urls`](#carbonaiwebhooksurls)
 
 <!-- tocstop -->
 
@@ -84,7 +84,7 @@ Connect external data to LLMs, no matter the source.
 
 1. In Xcode, select *File > Add Packages…* and enter `https://github.com/Carbon-for-Developers/carbon-swift-sdk` as the repository URL.
 1. Select the latest version number from our [tags page](https://github.com/Carbon-for-Developers/carbon-swift-sdk/tags).
-1. Add the *Carbon* product to the [target of your app](https://developer.apple.com/documentation/swift_packages/adding_package_dependencies_to_your_app).
+1. Add the *CarbonAI* product to the [target of your app](https://developer.apple.com/documentation/swift_packages/adding_package_dependencies_to_your_app).
 
 ### Carthage<a id="carthage"></a>
 
@@ -98,7 +98,7 @@ github "Carbon-for-Developers/carbon-swift-sdk"
 ### CocoaPods<a id="cocoapods"></a>
 
 1. Add `source 'https://github.com/CocoaPods/Specs.git'` to your `Podfile`
-2. Add `pod 'Carbon', '~> 0.2.0'` to your `Podfile`
+2. Add `pod 'CarbonAI', '~> 0.2.0'` to your `Podfile`
 
 Your `Podfile` should look like:
 ```ruby
@@ -106,7 +106,7 @@ Your `Podfile` should look like:
 source 'https://github.com/CocoaPods/Specs.git'
 
 target 'Example' do
-  pod 'Carbon', '~> 0.2.0'
+  pod 'CarbonAI', '~> 0.2.0'
 end
 ```
 3. Run `pod install`
@@ -115,21 +115,21 @@ end
 ❯ pod install
 Analyzing dependencies
 Downloading dependencies
-Installing Carbon 0.2.0
+Installing CarbonAI 0.2.0
 Generating Pods project
 Integrating client project
 Pod installation complete! There is 1 dependency from the Podfile and 2 total pods installed.
 ```
 
-4. In the future, to update to the latest version of the SDK, run: `pod update Carbon`
+4. In the future, to update to the latest version of the SDK, run: `pod update CarbonAI`
 
 ## Getting Started<a id="getting-started"></a>
 
 ```swift
-import Carbon
+import CarbonAI
 
 // 1) Get an access token for a customer
-let carbon = CarbonClient(
+let carbon = CarbonAIClient(
 	accessToken: nil,
     apiKey: "API_KEY",
     customerId: "CUSTOMER_ID"
@@ -138,7 +138,7 @@ let carbon = CarbonClient(
 let token = try await carbon.auth.getAccessToken()
 
 // 2) Use the access token to authenticate moving forward
-let carbonWithToken = CarbonClient(
+let carbonWithToken = CarbonAIClient(
 	accessToken: token!.accessToken,
 	apiKey: nil,
 	customerId: nil
@@ -153,19 +153,19 @@ white_labeling = try await carbonWithToken.auth.get_white_labeling()
 ## Reference<a id="reference"></a>
 
 
-### `carbon.auth.getAccessToken`<a id="carbonauthgetaccesstoken"></a>
+### `carbonai.auth.getAccessToken`<a id="carbonaiauthgetaccesstoken"></a>
 
 Get Access Token
 
 #### 🛠️ Usage<a id="🛠️-usage"></a>
 
 ```swift
-let getAccessTokenResponse = try await carbon.auth.getAccessToken()
+let getAccessTokenResponse = try await carbonai.auth.getAccessToken()
 ```
 
 #### 🔄 Return<a id="🔄-return"></a>
 
-[TokenResponse](./Carbon/Models/TokenResponse.swift)
+[TokenResponse](./CarbonAI/Models/TokenResponse.swift)
 
 #### 🌐 Endpoint<a id="🌐-endpoint"></a>
 
@@ -176,7 +176,7 @@ let getAccessTokenResponse = try await carbon.auth.getAccessToken()
 ---
 
 
-### `carbon.auth.getWhiteLabeling`<a id="carbonauthgetwhitelabeling"></a>
+### `carbonai.auth.getWhiteLabeling`<a id="carbonaiauthgetwhitelabeling"></a>
 
 Returns whether or not the organization is white labeled and which integrations are white labeled
 
@@ -187,12 +187,12 @@ Returns whether or not the organization is white labeled and which integrations 
 #### 🛠️ Usage<a id="🛠️-usage"></a>
 
 ```swift
-let getWhiteLabelingResponse = try await carbon.auth.getWhiteLabeling()
+let getWhiteLabelingResponse = try await carbonai.auth.getWhiteLabeling()
 ```
 
 #### 🔄 Return<a id="🔄-return"></a>
 
-[WhiteLabelingResponse](./Carbon/Models/WhiteLabelingResponse.swift)
+[WhiteLabelingResponse](./CarbonAI/Models/WhiteLabelingResponse.swift)
 
 #### 🌐 Endpoint<a id="🌐-endpoint"></a>
 
@@ -203,7 +203,7 @@ let getWhiteLabelingResponse = try await carbon.auth.getWhiteLabeling()
 ---
 
 
-### `carbon.dataSources.queryUserDataSources`<a id="carbondatasourcesqueryuserdatasources"></a>
+### `carbonai.dataSources.queryUserDataSources`<a id="carbonaidatasourcesqueryuserdatasources"></a>
 
 User Data Sources
 
@@ -227,7 +227,7 @@ let filters = OrganizationUserDataSourceFilters(
     ],
     revokedAccess: false
 )
-let queryUserDataSourcesResponse = try await carbon.dataSources.queryUserDataSources(
+let queryUserDataSourcesResponse = try await carbonai.dataSources.queryUserDataSources(
     pagination: pagination,
     orderBy: orderBy,
     orderDir: orderDir,
@@ -237,7 +237,7 @@ let queryUserDataSourcesResponse = try await carbon.dataSources.queryUserDataSou
 
 #### ⚙️ Parameters<a id="⚙️-parameters"></a>
 
-##### pagination: [`Pagination`](./Carbon/Models/Pagination.swift)<a id="pagination-paginationcarbonmodelspaginationswift"></a>
+##### pagination: [`Pagination`](./CarbonAI/Models/Pagination.swift)<a id="pagination-paginationcarbonaimodelspaginationswift"></a>
 
 
 ##### order_by: `OrganizationUserDataSourceOrderByColumns`<a id="order_by-organizationuserdatasourceorderbycolumns"></a>
@@ -246,12 +246,12 @@ let queryUserDataSourcesResponse = try await carbon.dataSources.queryUserDataSou
 ##### order_dir: `OrderDir`<a id="order_dir-orderdir"></a>
 
 
-##### filters: [`OrganizationUserDataSourceFilters`](./Carbon/Models/OrganizationUserDataSourceFilters.swift)<a id="filters-organizationuserdatasourcefilterscarbonmodelsorganizationuserdatasourcefiltersswift"></a>
+##### filters: [`OrganizationUserDataSourceFilters`](./CarbonAI/Models/OrganizationUserDataSourceFilters.swift)<a id="filters-organizationuserdatasourcefilterscarbonaimodelsorganizationuserdatasourcefiltersswift"></a>
 
 
 #### 🔄 Return<a id="🔄-return"></a>
 
-[OrganizationUserDataSourceResponse](./Carbon/Models/OrganizationUserDataSourceResponse.swift)
+[OrganizationUserDataSourceResponse](./CarbonAI/Models/OrganizationUserDataSourceResponse.swift)
 
 #### 🌐 Endpoint<a id="🌐-endpoint"></a>
 
@@ -262,7 +262,7 @@ let queryUserDataSourcesResponse = try await carbon.dataSources.queryUserDataSou
 ---
 
 
-### `carbon.dataSources.revokeAccessToken`<a id="carbondatasourcesrevokeaccesstoken"></a>
+### `carbonai.dataSources.revokeAccessToken`<a id="carbonaidatasourcesrevokeaccesstoken"></a>
 
 Revoke Access Token
 
@@ -270,7 +270,7 @@ Revoke Access Token
 
 ```swift
 let dataSourceId = 987
-let revokeAccessTokenResponse = try await carbon.dataSources.revokeAccessToken(
+let revokeAccessTokenResponse = try await carbonai.dataSources.revokeAccessToken(
     dataSourceId: dataSourceId
 )
 ```
@@ -282,7 +282,7 @@ let revokeAccessTokenResponse = try await carbon.dataSources.revokeAccessToken(
 
 #### 🔄 Return<a id="🔄-return"></a>
 
-[GenericSuccessResponse](./Carbon/Models/GenericSuccessResponse.swift)
+[GenericSuccessResponse](./CarbonAI/Models/GenericSuccessResponse.swift)
 
 #### 🌐 Endpoint<a id="🌐-endpoint"></a>
 
@@ -293,7 +293,7 @@ let revokeAccessTokenResponse = try await carbon.dataSources.revokeAccessToken(
 ---
 
 
-### `carbon.embeddings.getDocuments`<a id="carbonembeddingsgetdocuments"></a>
+### `carbonai.embeddings.getDocuments`<a id="carbonaiembeddingsgetdocuments"></a>
 
 For pre-filtering documents, using `tags_v2` is preferred to using `tags` (which is now deprecated). If both `tags_v2`
 and `tags` are specified, `tags` is ignored. `tags_v2` enables
@@ -420,7 +420,7 @@ let mediaType = FileContentTypesNullable(
 let embeddingModel = EmbeddingGeneratorsNullable(
     
 )
-let getDocumentsResponse = try await carbon.embeddings.getDocuments(
+let getDocumentsResponse = try await carbonai.embeddings.getDocuments(
     query: query,
     k: k,
     tags: tags,
@@ -495,7 +495,7 @@ Flag to control whether or not to include a signed URL to the raw file containin
 Flag to control whether or not to perform hybrid search.
 
 
-##### hybrid_search_tuning_parameters: [`HybridSearchTuningParamsNullable`](./Carbon/Models/HybridSearchTuningParamsNullable.swift)<a id="hybrid_search_tuning_parameters-hybridsearchtuningparamsnullablecarbonmodelshybridsearchtuningparamsnullableswift"></a>
+##### hybrid_search_tuning_parameters: [`HybridSearchTuningParamsNullable`](./CarbonAI/Models/HybridSearchTuningParamsNullable.swift)<a id="hybrid_search_tuning_parameters-hybridsearchtuningparamsnullablecarbonaimodelshybridsearchtuningparamsnullableswift"></a>
 
 
 ##### media_type: `FileContentTypesNullable`<a id="media_type-filecontenttypesnullable"></a>
@@ -506,7 +506,7 @@ Flag to control whether or not to perform hybrid search.
 
 #### 🔄 Return<a id="🔄-return"></a>
 
-[DocumentResponseList](./Carbon/Models/DocumentResponseList.swift)
+[DocumentResponseList](./CarbonAI/Models/DocumentResponseList.swift)
 
 #### 🌐 Endpoint<a id="🌐-endpoint"></a>
 
@@ -517,7 +517,7 @@ Flag to control whether or not to perform hybrid search.
 ---
 
 
-### `carbon.embeddings.getEmbeddingsAndChunks`<a id="carbonembeddingsgetembeddingsandchunks"></a>
+### `carbonai.embeddings.getEmbeddingsAndChunks`<a id="carbonaiembeddingsgetembeddingsandchunks"></a>
 
 Retrieve Embeddings And Content
 
@@ -539,7 +539,7 @@ let orderDir = OrderDir(
     
 )
 let includeVectors = true
-let getEmbeddingsAndChunksResponse = try await carbon.embeddings.getEmbeddingsAndChunks(
+let getEmbeddingsAndChunksResponse = try await carbonai.embeddings.getEmbeddingsAndChunks(
     filters: filters,
     pagination: pagination,
     orderBy: orderBy,
@@ -550,10 +550,10 @@ let getEmbeddingsAndChunksResponse = try await carbon.embeddings.getEmbeddingsAn
 
 #### ⚙️ Parameters<a id="⚙️-parameters"></a>
 
-##### filters: [`EmbeddingsAndChunksFilters`](./Carbon/Models/EmbeddingsAndChunksFilters.swift)<a id="filters-embeddingsandchunksfilterscarbonmodelsembeddingsandchunksfiltersswift"></a>
+##### filters: [`EmbeddingsAndChunksFilters`](./CarbonAI/Models/EmbeddingsAndChunksFilters.swift)<a id="filters-embeddingsandchunksfilterscarbonaimodelsembeddingsandchunksfiltersswift"></a>
 
 
-##### pagination: [`Pagination`](./Carbon/Models/Pagination.swift)<a id="pagination-paginationcarbonmodelspaginationswift"></a>
+##### pagination: [`Pagination`](./CarbonAI/Models/Pagination.swift)<a id="pagination-paginationcarbonaimodelspaginationswift"></a>
 
 
 ##### order_by: `EmbeddingsAndChunksOrderByColumns`<a id="order_by-embeddingsandchunksorderbycolumns"></a>
@@ -567,7 +567,7 @@ let getEmbeddingsAndChunksResponse = try await carbon.embeddings.getEmbeddingsAn
 
 #### 🔄 Return<a id="🔄-return"></a>
 
-[EmbeddingsAndChunksResponse](./Carbon/Models/EmbeddingsAndChunksResponse.swift)
+[EmbeddingsAndChunksResponse](./CarbonAI/Models/EmbeddingsAndChunksResponse.swift)
 
 #### 🌐 Endpoint<a id="🌐-endpoint"></a>
 
@@ -578,7 +578,7 @@ let getEmbeddingsAndChunksResponse = try await carbon.embeddings.getEmbeddingsAn
 ---
 
 
-### `carbon.embeddings.uploadChunksAndEmbeddings`<a id="carbonembeddingsuploadchunksandembeddings"></a>
+### `carbonai.embeddings.uploadChunksAndEmbeddings`<a id="carbonaiembeddingsuploadchunksandembeddings"></a>
 
 Upload Chunks And Embeddings
 
@@ -607,7 +607,7 @@ SingleChunksAndEmbeddingsUploadInput(
 let overwriteExisting = true
 let chunksOnly = true
 let customCredentials = "TODO"
-let uploadChunksAndEmbeddingsResponse = try await carbon.embeddings.uploadChunksAndEmbeddings(
+let uploadChunksAndEmbeddingsResponse = try await carbonai.embeddings.uploadChunksAndEmbeddings(
     embeddingModel: embeddingModel,
     chunksAndEmbeddings: chunksAndEmbeddings,
     overwriteExisting: overwriteExisting,
@@ -635,7 +635,7 @@ let uploadChunksAndEmbeddingsResponse = try await carbon.embeddings.uploadChunks
 
 #### 🔄 Return<a id="🔄-return"></a>
 
-[GenericSuccessResponse](./Carbon/Models/GenericSuccessResponse.swift)
+[GenericSuccessResponse](./CarbonAI/Models/GenericSuccessResponse.swift)
 
 #### 🌐 Endpoint<a id="🌐-endpoint"></a>
 
@@ -646,7 +646,7 @@ let uploadChunksAndEmbeddingsResponse = try await carbon.embeddings.uploadChunks
 ---
 
 
-### `carbon.files.createUserFileTags`<a id="carbonfilescreateuserfiletags"></a>
+### `carbonai.files.createUserFileTags`<a id="carbonaifilescreateuserfiletags"></a>
 
 A tag is a key-value pair that can be added to a file. This pair can then be used
 for searches (e.g. embedding searches) in order to narrow down the scope of the search.
@@ -665,7 +665,7 @@ they're automatically converted to strings (e.g. 4 will become "4").
 ```swift
 let tags = "TODO"
 let organizationUserFileId = 987
-let createUserFileTagsResponse = try await carbon.files.createUserFileTags(
+let createUserFileTagsResponse = try await carbonai.files.createUserFileTags(
     tags: tags,
     organizationUserFileId: organizationUserFileId
 )
@@ -681,7 +681,7 @@ let createUserFileTagsResponse = try await carbon.files.createUserFileTags(
 
 #### 🔄 Return<a id="🔄-return"></a>
 
-[UserFile](./Carbon/Models/UserFile.swift)
+[UserFile](./CarbonAI/Models/UserFile.swift)
 
 #### 🌐 Endpoint<a id="🌐-endpoint"></a>
 
@@ -692,7 +692,7 @@ let createUserFileTagsResponse = try await carbon.files.createUserFileTags(
 ---
 
 
-### `carbon.files.delete`<a id="carbonfilesdelete"></a>
+### `carbonai.files.delete`<a id="carbonaifilesdelete"></a>
 
 Delete File Endpoint
 
@@ -700,7 +700,7 @@ Delete File Endpoint
 
 ```swift
 let fileId = 987
-let deleteResponse = try await carbon.files.delete(
+let deleteResponse = try await carbonai.files.delete(
     fileId: fileId
 )
 ```
@@ -712,7 +712,7 @@ let deleteResponse = try await carbon.files.delete(
 
 #### 🔄 Return<a id="🔄-return"></a>
 
-[GenericSuccessResponse](./Carbon/Models/GenericSuccessResponse.swift)
+[GenericSuccessResponse](./CarbonAI/Models/GenericSuccessResponse.swift)
 
 #### 🌐 Endpoint<a id="🌐-endpoint"></a>
 
@@ -723,7 +723,7 @@ let deleteResponse = try await carbon.files.delete(
 ---
 
 
-### `carbon.files.deleteFileTags`<a id="carbonfilesdeletefiletags"></a>
+### `carbonai.files.deleteFileTags`<a id="carbonaifilesdeletefiletags"></a>
 
 Delete File Tags
 
@@ -734,7 +734,7 @@ let tags = [
 "inner_example"
 ]
 let organizationUserFileId = 987
-let deleteFileTagsResponse = try await carbon.files.deleteFileTags(
+let deleteFileTagsResponse = try await carbonai.files.deleteFileTags(
     tags: tags,
     organizationUserFileId: organizationUserFileId
 )
@@ -750,7 +750,7 @@ let deleteFileTagsResponse = try await carbon.files.deleteFileTags(
 
 #### 🔄 Return<a id="🔄-return"></a>
 
-[UserFile](./Carbon/Models/UserFile.swift)
+[UserFile](./CarbonAI/Models/UserFile.swift)
 
 #### 🌐 Endpoint<a id="🌐-endpoint"></a>
 
@@ -761,7 +761,7 @@ let deleteFileTagsResponse = try await carbon.files.deleteFileTags(
 ---
 
 
-### `carbon.files.deleteMany`<a id="carbonfilesdeletemany"></a>
+### `carbonai.files.deleteMany`<a id="carbonaifilesdeletemany"></a>
 
 Delete Files Endpoint
 
@@ -777,7 +777,7 @@ ExternalFileSyncStatuses.delayed
 let deleteNonSyncedOnly = true
 let sendWebhook = true
 let deleteChildFiles = true
-let deleteManyResponse = try await carbon.files.deleteMany(
+let deleteManyResponse = try await carbonai.files.deleteMany(
     fileIds: fileIds,
     syncStatuses: syncStatuses,
     deleteNonSyncedOnly: deleteNonSyncedOnly,
@@ -805,7 +805,7 @@ let deleteManyResponse = try await carbon.files.deleteMany(
 
 #### 🔄 Return<a id="🔄-return"></a>
 
-[GenericSuccessResponse](./Carbon/Models/GenericSuccessResponse.swift)
+[GenericSuccessResponse](./CarbonAI/Models/GenericSuccessResponse.swift)
 
 #### 🌐 Endpoint<a id="🌐-endpoint"></a>
 
@@ -816,7 +816,7 @@ let deleteManyResponse = try await carbon.files.deleteMany(
 ---
 
 
-### `carbon.files.deleteV2`<a id="carbonfilesdeletev2"></a>
+### `carbonai.files.deleteV2`<a id="carbonaifilesdeletev2"></a>
 
 Delete Files V2 Endpoint
 
@@ -856,7 +856,7 @@ let filters = OrganizationUserFilesToSyncFilters(
     ]
 )
 let sendWebhook = true
-let deleteV2Response = try await carbon.files.deleteV2(
+let deleteV2Response = try await carbonai.files.deleteV2(
     filters: filters,
     sendWebhook: sendWebhook
 )
@@ -864,7 +864,7 @@ let deleteV2Response = try await carbon.files.deleteV2(
 
 #### ⚙️ Parameters<a id="⚙️-parameters"></a>
 
-##### filters: [`OrganizationUserFilesToSyncFilters`](./Carbon/Models/OrganizationUserFilesToSyncFilters.swift)<a id="filters-organizationuserfilestosyncfilterscarbonmodelsorganizationuserfilestosyncfiltersswift"></a>
+##### filters: [`OrganizationUserFilesToSyncFilters`](./CarbonAI/Models/OrganizationUserFilesToSyncFilters.swift)<a id="filters-organizationuserfilestosyncfilterscarbonaimodelsorganizationuserfilestosyncfiltersswift"></a>
 
 
 ##### send_webhook: `Bool`<a id="send_webhook-bool"></a>
@@ -872,7 +872,7 @@ let deleteV2Response = try await carbon.files.deleteV2(
 
 #### 🔄 Return<a id="🔄-return"></a>
 
-[GenericSuccessResponse](./Carbon/Models/GenericSuccessResponse.swift)
+[GenericSuccessResponse](./CarbonAI/Models/GenericSuccessResponse.swift)
 
 #### 🌐 Endpoint<a id="🌐-endpoint"></a>
 
@@ -883,7 +883,7 @@ let deleteV2Response = try await carbon.files.deleteV2(
 ---
 
 
-### `carbon.files.getParsedFile`<a id="carbonfilesgetparsedfile"></a>
+### `carbonai.files.getParsedFile`<a id="carbonaifilesgetparsedfile"></a>
 
 This route is deprecated. Use `/user_files_v2` instead.
 
@@ -891,7 +891,7 @@ This route is deprecated. Use `/user_files_v2` instead.
 
 ```swift
 let fileId = 987
-let getParsedFileResponse = try await carbon.files.getParsedFile(
+let getParsedFileResponse = try await carbonai.files.getParsedFile(
     fileId: fileId
 )
 ```
@@ -903,7 +903,7 @@ let getParsedFileResponse = try await carbon.files.getParsedFile(
 
 #### 🔄 Return<a id="🔄-return"></a>
 
-[PresignedURLResponse](./Carbon/Models/PresignedURLResponse.swift)
+[PresignedURLResponse](./CarbonAI/Models/PresignedURLResponse.swift)
 
 #### 🌐 Endpoint<a id="🌐-endpoint"></a>
 
@@ -914,7 +914,7 @@ let getParsedFileResponse = try await carbon.files.getParsedFile(
 ---
 
 
-### `carbon.files.getRawFile`<a id="carbonfilesgetrawfile"></a>
+### `carbonai.files.getRawFile`<a id="carbonaifilesgetrawfile"></a>
 
 This route is deprecated. Use `/user_files_v2` instead.
 
@@ -922,7 +922,7 @@ This route is deprecated. Use `/user_files_v2` instead.
 
 ```swift
 let fileId = 987
-let getRawFileResponse = try await carbon.files.getRawFile(
+let getRawFileResponse = try await carbonai.files.getRawFile(
     fileId: fileId
 )
 ```
@@ -934,7 +934,7 @@ let getRawFileResponse = try await carbon.files.getRawFile(
 
 #### 🔄 Return<a id="🔄-return"></a>
 
-[PresignedURLResponse](./Carbon/Models/PresignedURLResponse.swift)
+[PresignedURLResponse](./CarbonAI/Models/PresignedURLResponse.swift)
 
 #### 🌐 Endpoint<a id="🌐-endpoint"></a>
 
@@ -945,7 +945,7 @@ let getRawFileResponse = try await carbon.files.getRawFile(
 ---
 
 
-### `carbon.files.queryUserFiles`<a id="carbonfilesqueryuserfiles"></a>
+### `carbonai.files.queryUserFiles`<a id="carbonaifilesqueryuserfiles"></a>
 
 For pre-filtering documents, using `tags_v2` is preferred to using `tags` (which is now deprecated). If both `tags_v2`
 and `tags` are specified, `tags` is ignored. `tags_v2` enables
@@ -1046,7 +1046,7 @@ let filters = OrganizationUserFilesToSyncFilters(
 let includeRawFile = true
 let includeParsedTextFile = true
 let includeAdditionalFiles = true
-let queryUserFilesResponse = try await carbon.files.queryUserFiles(
+let queryUserFilesResponse = try await carbonai.files.queryUserFiles(
     pagination: pagination,
     orderBy: orderBy,
     orderDir: orderDir,
@@ -1059,7 +1059,7 @@ let queryUserFilesResponse = try await carbon.files.queryUserFiles(
 
 #### ⚙️ Parameters<a id="⚙️-parameters"></a>
 
-##### pagination: [`Pagination`](./Carbon/Models/Pagination.swift)<a id="pagination-paginationcarbonmodelspaginationswift"></a>
+##### pagination: [`Pagination`](./CarbonAI/Models/Pagination.swift)<a id="pagination-paginationcarbonaimodelspaginationswift"></a>
 
 
 ##### order_by: `OrganizationUserFilesToSyncOrderByTypes`<a id="order_by-organizationuserfilestosyncorderbytypes"></a>
@@ -1068,7 +1068,7 @@ let queryUserFilesResponse = try await carbon.files.queryUserFiles(
 ##### order_dir: `OrderDir`<a id="order_dir-orderdir"></a>
 
 
-##### filters: [`OrganizationUserFilesToSyncFilters`](./Carbon/Models/OrganizationUserFilesToSyncFilters.swift)<a id="filters-organizationuserfilestosyncfilterscarbonmodelsorganizationuserfilestosyncfiltersswift"></a>
+##### filters: [`OrganizationUserFilesToSyncFilters`](./CarbonAI/Models/OrganizationUserFilesToSyncFilters.swift)<a id="filters-organizationuserfilestosyncfilterscarbonaimodelsorganizationuserfilestosyncfiltersswift"></a>
 
 
 ##### include_raw_file: `Bool`<a id="include_raw_file-bool"></a>
@@ -1082,7 +1082,7 @@ let queryUserFilesResponse = try await carbon.files.queryUserFiles(
 
 #### 🔄 Return<a id="🔄-return"></a>
 
-[UserFilesV2](./Carbon/Models/UserFilesV2.swift)
+[UserFilesV2](./CarbonAI/Models/UserFilesV2.swift)
 
 #### 🌐 Endpoint<a id="🌐-endpoint"></a>
 
@@ -1093,7 +1093,7 @@ let queryUserFilesResponse = try await carbon.files.queryUserFiles(
 ---
 
 
-### `carbon.files.queryUserFilesDeprecated`<a id="carbonfilesqueryuserfilesdeprecated"></a>
+### `carbonai.files.queryUserFilesDeprecated`<a id="carbonaifilesqueryuserfilesdeprecated"></a>
 
 This route is deprecated. Use `/user_files_v2` instead.
 
@@ -1145,7 +1145,7 @@ let filters = OrganizationUserFilesToSyncFilters(
 let includeRawFile = true
 let includeParsedTextFile = true
 let includeAdditionalFiles = true
-let queryUserFilesDeprecatedResponse = try await carbon.files.queryUserFilesDeprecated(
+let queryUserFilesDeprecatedResponse = try await carbonai.files.queryUserFilesDeprecated(
     pagination: pagination,
     orderBy: orderBy,
     orderDir: orderDir,
@@ -1158,7 +1158,7 @@ let queryUserFilesDeprecatedResponse = try await carbon.files.queryUserFilesDepr
 
 #### ⚙️ Parameters<a id="⚙️-parameters"></a>
 
-##### pagination: [`Pagination`](./Carbon/Models/Pagination.swift)<a id="pagination-paginationcarbonmodelspaginationswift"></a>
+##### pagination: [`Pagination`](./CarbonAI/Models/Pagination.swift)<a id="pagination-paginationcarbonaimodelspaginationswift"></a>
 
 
 ##### order_by: `OrganizationUserFilesToSyncOrderByTypes`<a id="order_by-organizationuserfilestosyncorderbytypes"></a>
@@ -1167,7 +1167,7 @@ let queryUserFilesDeprecatedResponse = try await carbon.files.queryUserFilesDepr
 ##### order_dir: `OrderDir`<a id="order_dir-orderdir"></a>
 
 
-##### filters: [`OrganizationUserFilesToSyncFilters`](./Carbon/Models/OrganizationUserFilesToSyncFilters.swift)<a id="filters-organizationuserfilestosyncfilterscarbonmodelsorganizationuserfilestosyncfiltersswift"></a>
+##### filters: [`OrganizationUserFilesToSyncFilters`](./CarbonAI/Models/OrganizationUserFilesToSyncFilters.swift)<a id="filters-organizationuserfilestosyncfilterscarbonaimodelsorganizationuserfilestosyncfiltersswift"></a>
 
 
 ##### include_raw_file: `Bool`<a id="include_raw_file-bool"></a>
@@ -1181,7 +1181,7 @@ let queryUserFilesDeprecatedResponse = try await carbon.files.queryUserFilesDepr
 
 #### 🔄 Return<a id="🔄-return"></a>
 
-[UserFile](./Carbon/Models/UserFile.swift)
+[UserFile](./CarbonAI/Models/UserFile.swift)
 
 #### 🌐 Endpoint<a id="🌐-endpoint"></a>
 
@@ -1192,7 +1192,7 @@ let queryUserFilesDeprecatedResponse = try await carbon.files.queryUserFilesDepr
 ---
 
 
-### `carbon.files.resync`<a id="carbonfilesresync"></a>
+### `carbonai.files.resync`<a id="carbonaifilesresync"></a>
 
 Resync File
 
@@ -1203,7 +1203,7 @@ let fileId = 987
 let chunkSize = 987
 let chunkOverlap = 987
 let forceEmbeddingGeneration = true
-let resyncResponse = try await carbon.files.resync(
+let resyncResponse = try await carbonai.files.resync(
     fileId: fileId,
     chunkSize: chunkSize,
     chunkOverlap: chunkOverlap,
@@ -1227,7 +1227,7 @@ let resyncResponse = try await carbon.files.resync(
 
 #### 🔄 Return<a id="🔄-return"></a>
 
-[UserFile](./Carbon/Models/UserFile.swift)
+[UserFile](./CarbonAI/Models/UserFile.swift)
 
 #### 🌐 Endpoint<a id="🌐-endpoint"></a>
 
@@ -1238,7 +1238,7 @@ let resyncResponse = try await carbon.files.resync(
 ---
 
 
-### `carbon.files.upload`<a id="carbonfilesupload"></a>
+### `carbonai.files.upload`<a id="carbonaifilesupload"></a>
 
 This endpoint is used to directly upload local files to Carbon. The `POST` request should be a multipart form request.
 Note that the `set_page_as_boundary` query parameter is applicable only to PDFs for now. When this value is set,
@@ -1282,7 +1282,7 @@ let generateSparseVectors = false
 let prependFilenameToChunks = false
 let maxItemsPerChunk = 987
 let parsePdfTablesWithOcr = false
-let uploadResponse = try await carbon.files.upload(
+let uploadResponse = try await carbonai.files.upload(
     file: file,
     chunkSize: chunkSize,
     chunkOverlap: chunkOverlap,
@@ -1354,7 +1354,7 @@ Whether to use rich table parsing when `use_ocr` is enabled.
 
 #### 🔄 Return<a id="🔄-return"></a>
 
-[UserFile](./Carbon/Models/UserFile.swift)
+[UserFile](./CarbonAI/Models/UserFile.swift)
 
 #### 🌐 Endpoint<a id="🌐-endpoint"></a>
 
@@ -1365,7 +1365,7 @@ Whether to use rich table parsing when `use_ocr` is enabled.
 ---
 
 
-### `carbon.files.uploadFromUrl`<a id="carbonfilesuploadfromurl"></a>
+### `carbonai.files.uploadFromUrl`<a id="carbonaifilesuploadfromurl"></a>
 
 Create Upload File From Url
 
@@ -1386,7 +1386,7 @@ let useTextract = true
 let prependFilenameToChunks = true
 let maxItemsPerChunk = 987
 let parsePdfTablesWithOcr = true
-let uploadFromUrlResponse = try await carbon.files.uploadFromUrl(
+let uploadFromUrlResponse = try await carbonai.files.uploadFromUrl(
     url: url,
     fileName: fileName,
     chunkSize: chunkSize,
@@ -1444,7 +1444,7 @@ Number of objects per chunk. For csv, tsv, xlsx, and json files only.
 
 #### 🔄 Return<a id="🔄-return"></a>
 
-[UserFile](./Carbon/Models/UserFile.swift)
+[UserFile](./CarbonAI/Models/UserFile.swift)
 
 #### 🌐 Endpoint<a id="🌐-endpoint"></a>
 
@@ -1455,7 +1455,7 @@ Number of objects per chunk. For csv, tsv, xlsx, and json files only.
 ---
 
 
-### `carbon.files.uploadText`<a id="carbonfilesuploadtext"></a>
+### `carbonai.files.uploadText`<a id="carbonaifilesuploadtext"></a>
 
 Carbon supports multiple models for use in generating embeddings for files. For images, we support Vertex AI's
 multimodal model; for text, we support OpenAI's `text-embedding-ada-002` and Cohere's embed-multilingual-v3.0.
@@ -1481,7 +1481,7 @@ let embeddingModel = EmbeddingGeneratorsNullable(
     
 )
 let generateSparseVectors = true
-let uploadTextResponse = try await carbon.files.uploadText(
+let uploadTextResponse = try await carbonai.files.uploadText(
     contents: contents,
     name: name,
     chunkSize: chunkSize,
@@ -1521,7 +1521,7 @@ let uploadTextResponse = try await carbon.files.uploadText(
 
 #### 🔄 Return<a id="🔄-return"></a>
 
-[UserFile](./Carbon/Models/UserFile.swift)
+[UserFile](./CarbonAI/Models/UserFile.swift)
 
 #### 🌐 Endpoint<a id="🌐-endpoint"></a>
 
@@ -1532,14 +1532,14 @@ let uploadTextResponse = try await carbon.files.uploadText(
 ---
 
 
-### `carbon.health.check`<a id="carbonhealthcheck"></a>
+### `carbonai.health.check`<a id="carbonaihealthcheck"></a>
 
 Health
 
 #### 🛠️ Usage<a id="🛠️-usage"></a>
 
 ```swift
-let checkResponse = try await carbon.health.check()
+let checkResponse = try await carbonai.health.check()
 ```
 
 #### 🌐 Endpoint<a id="🌐-endpoint"></a>
@@ -1551,7 +1551,7 @@ let checkResponse = try await carbon.health.check()
 ---
 
 
-### `carbon.integrations.connectDataSource`<a id="carbonintegrationsconnectdatasource"></a>
+### `carbonai.integrations.connectDataSource`<a id="carbonaiintegrationsconnectdatasource"></a>
 
 Connect Data Source
 
@@ -1587,7 +1587,7 @@ let syncOptions = SyncOptions(
     syncFilesOnConnection: true,
     setPageAsBoundary: false
 )
-let connectDataSourceResponse = try await carbon.integrations.connectDataSource(
+let connectDataSourceResponse = try await carbonai.integrations.connectDataSource(
     authentication: authentication,
     syncOptions: syncOptions
 )
@@ -1595,15 +1595,15 @@ let connectDataSourceResponse = try await carbon.integrations.connectDataSource(
 
 #### ⚙️ Parameters<a id="⚙️-parameters"></a>
 
-##### authentication: [`AuthenticationProperty`](./Carbon/Models/AuthenticationProperty.swift)<a id="authentication-authenticationpropertycarbonmodelsauthenticationpropertyswift"></a>
+##### authentication: [`AuthenticationProperty`](./CarbonAI/Models/AuthenticationProperty.swift)<a id="authentication-authenticationpropertycarbonaimodelsauthenticationpropertyswift"></a>
 
 
-##### sync_options: [`SyncOptions`](./Carbon/Models/SyncOptions.swift)<a id="sync_options-syncoptionscarbonmodelssyncoptionsswift"></a>
+##### sync_options: [`SyncOptions`](./CarbonAI/Models/SyncOptions.swift)<a id="sync_options-syncoptionscarbonaimodelssyncoptionsswift"></a>
 
 
 #### 🔄 Return<a id="🔄-return"></a>
 
-[ConnectDataSourceResponse](./Carbon/Models/ConnectDataSourceResponse.swift)
+[ConnectDataSourceResponse](./CarbonAI/Models/ConnectDataSourceResponse.swift)
 
 #### 🌐 Endpoint<a id="🌐-endpoint"></a>
 
@@ -1614,7 +1614,7 @@ let connectDataSourceResponse = try await carbon.integrations.connectDataSource(
 ---
 
 
-### `carbon.integrations.connectFreshdesk`<a id="carbonintegrationsconnectfreshdesk"></a>
+### `carbonai.integrations.connectFreshdesk`<a id="carbonaiintegrationsconnectfreshdesk"></a>
 
 Refer this article to obtain an API key https://support.freshdesk.com/en/support/solutions/articles/215517.
 Make sure that your API key has the permission to read solutions from your account and you are on a <b>paid</b> plan.
@@ -1638,7 +1638,7 @@ let generateSparseVectors = true
 let prependFilenameToChunks = true
 let syncFilesOnConnection = true
 let requestId = "requestId_example"
-let connectFreshdeskResponse = try await carbon.integrations.connectFreshdesk(
+let connectFreshdeskResponse = try await carbonai.integrations.connectFreshdesk(
     domain: domain,
     apiKey: apiKey,
     tags: tags,
@@ -1690,7 +1690,7 @@ let connectFreshdeskResponse = try await carbon.integrations.connectFreshdesk(
 
 #### 🔄 Return<a id="🔄-return"></a>
 
-[GenericSuccessResponse](./Carbon/Models/GenericSuccessResponse.swift)
+[GenericSuccessResponse](./CarbonAI/Models/GenericSuccessResponse.swift)
 
 #### 🌐 Endpoint<a id="🌐-endpoint"></a>
 
@@ -1701,7 +1701,7 @@ let connectFreshdeskResponse = try await carbon.integrations.connectFreshdesk(
 ---
 
 
-### `carbon.integrations.connectGitbook`<a id="carbonintegrationsconnectgitbook"></a>
+### `carbonai.integrations.connectGitbook`<a id="carbonaiintegrationsconnectgitbook"></a>
 
 You will need an access token to connect your Gitbook account. Note that the permissions will be defined by the user 
 generating access token so make sure you have the permission to access spaces you will be syncing. 
@@ -1724,7 +1724,7 @@ let generateSparseVectors = true
 let prependFilenameToChunks = true
 let syncFilesOnConnection = true
 let requestId = "requestId_example"
-let connectGitbookResponse = try await carbon.integrations.connectGitbook(
+let connectGitbookResponse = try await carbonai.integrations.connectGitbook(
     organization: organization,
     accessToken: accessToken,
     tags: tags,
@@ -1776,7 +1776,7 @@ let connectGitbookResponse = try await carbon.integrations.connectGitbook(
 
 #### 🔄 Return<a id="🔄-return"></a>
 
-[GenericSuccessResponse](./Carbon/Models/GenericSuccessResponse.swift)
+[GenericSuccessResponse](./CarbonAI/Models/GenericSuccessResponse.swift)
 
 #### 🌐 Endpoint<a id="🌐-endpoint"></a>
 
@@ -1787,7 +1787,7 @@ let connectGitbookResponse = try await carbon.integrations.connectGitbook(
 ---
 
 
-### `carbon.integrations.createAwsIamUser`<a id="carbonintegrationscreateawsiamuser"></a>
+### `carbonai.integrations.createAwsIamUser`<a id="carbonaiintegrationscreateawsiamuser"></a>
 
 Create a new IAM user with permissions to:
 <ol>
@@ -1802,7 +1802,7 @@ Once created, generate an access key for this user and share the credentials wit
 ```swift
 let accessKey = "accessKey_example"
 let accessKeySecret = "accessKeySecret_example"
-let createAwsIamUserResponse = try await carbon.integrations.createAwsIamUser(
+let createAwsIamUserResponse = try await carbonai.integrations.createAwsIamUser(
     accessKey: accessKey,
     accessKeySecret: accessKeySecret
 )
@@ -1818,7 +1818,7 @@ let createAwsIamUserResponse = try await carbon.integrations.createAwsIamUser(
 
 #### 🔄 Return<a id="🔄-return"></a>
 
-[OrganizationUserDataSourceAPI](./Carbon/Models/OrganizationUserDataSourceAPI.swift)
+[OrganizationUserDataSourceAPI](./CarbonAI/Models/OrganizationUserDataSourceAPI.swift)
 
 #### 🌐 Endpoint<a id="🌐-endpoint"></a>
 
@@ -1829,7 +1829,7 @@ let createAwsIamUserResponse = try await carbon.integrations.createAwsIamUser(
 ---
 
 
-### `carbon.integrations.getOauthUrl`<a id="carbonintegrationsgetoauthurl"></a>
+### `carbonai.integrations.getOauthUrl`<a id="carbonaiintegrationsgetoauthurl"></a>
 
 This endpoint can be used to generate the following URLs
 - An OAuth URL for OAuth based connectors
@@ -1863,7 +1863,7 @@ let setPageAsBoundary = true
 let dataSourceId = 987
 let connectingNewAccount = true
 let requestId = "requestId_example"
-let getOauthUrlResponse = try await carbon.integrations.getOauthUrl(
+let getOauthUrlResponse = try await carbonai.integrations.getOauthUrl(
     service: service,
     tags: tags,
     scope: scope,
@@ -1961,7 +1961,7 @@ This request id will be added to all files that get synced using the generated O
 
 #### 🔄 Return<a id="🔄-return"></a>
 
-[OuthURLResponse](./Carbon/Models/OuthURLResponse.swift)
+[OuthURLResponse](./CarbonAI/Models/OuthURLResponse.swift)
 
 #### 🌐 Endpoint<a id="🌐-endpoint"></a>
 
@@ -1972,7 +1972,7 @@ This request id will be added to all files that get synced using the generated O
 ---
 
 
-### `carbon.integrations.listConfluencePages`<a id="carbonintegrationslistconfluencepages"></a>
+### `carbonai.integrations.listConfluencePages`<a id="carbonaiintegrationslistconfluencepages"></a>
 
 To begin listing a user's Confluence pages, at least a `data_source_id` of a connected
 Confluence account must be specified. This base request returns a list of root pages for
@@ -1987,7 +1987,7 @@ flag which pages will return non-empty lists of pages when set as the `parent_id
 ```swift
 let dataSourceId = 987
 let parentId = "parentId_example"
-let listConfluencePagesResponse = try await carbon.integrations.listConfluencePages(
+let listConfluencePagesResponse = try await carbonai.integrations.listConfluencePages(
     dataSourceId: dataSourceId,
     parentId: parentId
 )
@@ -2003,7 +2003,7 @@ let listConfluencePagesResponse = try await carbon.integrations.listConfluencePa
 
 #### 🔄 Return<a id="🔄-return"></a>
 
-[ListResponse](./Carbon/Models/ListResponse.swift)
+[ListResponse](./CarbonAI/Models/ListResponse.swift)
 
 #### 🌐 Endpoint<a id="🌐-endpoint"></a>
 
@@ -2014,7 +2014,7 @@ let listConfluencePagesResponse = try await carbon.integrations.listConfluencePa
 ---
 
 
-### `carbon.integrations.listDataSourceItems`<a id="carbonintegrationslistdatasourceitems"></a>
+### `carbonai.integrations.listDataSourceItems`<a id="carbonaiintegrationslistdatasourceitems"></a>
 
 List Data Source Items
 
@@ -2037,7 +2037,7 @@ let pagination = Pagination(
     limit: 123,
     offset: 123
 )
-let listDataSourceItemsResponse = try await carbon.integrations.listDataSourceItems(
+let listDataSourceItemsResponse = try await carbonai.integrations.listDataSourceItems(
     dataSourceId: dataSourceId,
     parentId: parentId,
     filters: filters,
@@ -2053,15 +2053,15 @@ let listDataSourceItemsResponse = try await carbon.integrations.listDataSourceIt
 ##### parent_id: `String`<a id="parent_id-string"></a>
 
 
-##### filters: [`ListItemsFiltersNullable`](./Carbon/Models/ListItemsFiltersNullable.swift)<a id="filters-listitemsfiltersnullablecarbonmodelslistitemsfiltersnullableswift"></a>
+##### filters: [`ListItemsFiltersNullable`](./CarbonAI/Models/ListItemsFiltersNullable.swift)<a id="filters-listitemsfiltersnullablecarbonaimodelslistitemsfiltersnullableswift"></a>
 
 
-##### pagination: [`Pagination`](./Carbon/Models/Pagination.swift)<a id="pagination-paginationcarbonmodelspaginationswift"></a>
+##### pagination: [`Pagination`](./CarbonAI/Models/Pagination.swift)<a id="pagination-paginationcarbonaimodelspaginationswift"></a>
 
 
 #### 🔄 Return<a id="🔄-return"></a>
 
-[ListDataSourceItemsResponse](./Carbon/Models/ListDataSourceItemsResponse.swift)
+[ListDataSourceItemsResponse](./CarbonAI/Models/ListDataSourceItemsResponse.swift)
 
 #### 🌐 Endpoint<a id="🌐-endpoint"></a>
 
@@ -2072,7 +2072,7 @@ let listDataSourceItemsResponse = try await carbon.integrations.listDataSourceIt
 ---
 
 
-### `carbon.integrations.listFolders`<a id="carbonintegrationslistfolders"></a>
+### `carbonai.integrations.listFolders`<a id="carbonaiintegrationslistfolders"></a>
 
 After connecting your Outlook account, you can use this endpoint to list all of your folders on outlook. This includes 
 both system folders like "inbox" and user created folders.
@@ -2081,7 +2081,7 @@ both system folders like "inbox" and user created folders.
 
 ```swift
 let dataSourceId = 987
-let listFoldersResponse = try await carbon.integrations.listFolders(
+let listFoldersResponse = try await carbonai.integrations.listFolders(
     dataSourceId: dataSourceId
 )
 ```
@@ -2100,7 +2100,7 @@ let listFoldersResponse = try await carbon.integrations.listFolders(
 ---
 
 
-### `carbon.integrations.listGitbookSpaces`<a id="carbonintegrationslistgitbookspaces"></a>
+### `carbonai.integrations.listGitbookSpaces`<a id="carbonaiintegrationslistgitbookspaces"></a>
 
 After connecting your Gitbook account, you can use this endpoint to list all of your spaces under current organization.
 
@@ -2108,7 +2108,7 @@ After connecting your Gitbook account, you can use this endpoint to list all of 
 
 ```swift
 let dataSourceId = 987
-let listGitbookSpacesResponse = try await carbon.integrations.listGitbookSpaces(
+let listGitbookSpacesResponse = try await carbonai.integrations.listGitbookSpaces(
     dataSourceId: dataSourceId
 )
 ```
@@ -2127,7 +2127,7 @@ let listGitbookSpacesResponse = try await carbon.integrations.listGitbookSpaces(
 ---
 
 
-### `carbon.integrations.listLabels`<a id="carbonintegrationslistlabels"></a>
+### `carbonai.integrations.listLabels`<a id="carbonaiintegrationslistlabels"></a>
 
 After connecting your Gmail account, you can use this endpoint to list all of your labels. User created labels
 will have the type "user" and Gmail's default labels will have the type "system"
@@ -2136,7 +2136,7 @@ will have the type "user" and Gmail's default labels will have the type "system"
 
 ```swift
 let dataSourceId = 987
-let listLabelsResponse = try await carbon.integrations.listLabels(
+let listLabelsResponse = try await carbonai.integrations.listLabels(
     dataSourceId: dataSourceId
 )
 ```
@@ -2155,7 +2155,7 @@ let listLabelsResponse = try await carbon.integrations.listLabels(
 ---
 
 
-### `carbon.integrations.listOutlookCategories`<a id="carbonintegrationslistoutlookcategories"></a>
+### `carbonai.integrations.listOutlookCategories`<a id="carbonaiintegrationslistoutlookcategories"></a>
 
 After connecting your Outlook account, you can use this endpoint to list all of your categories on outlook. We currently
 support listing up to 250 categories.
@@ -2164,7 +2164,7 @@ support listing up to 250 categories.
 
 ```swift
 let dataSourceId = 987
-let listOutlookCategoriesResponse = try await carbon.integrations.listOutlookCategories(
+let listOutlookCategoriesResponse = try await carbonai.integrations.listOutlookCategories(
     dataSourceId: dataSourceId
 )
 ```
@@ -2183,7 +2183,7 @@ let listOutlookCategoriesResponse = try await carbon.integrations.listOutlookCat
 ---
 
 
-### `carbon.integrations.syncConfluence`<a id="carbonintegrationssyncconfluence"></a>
+### `carbonai.integrations.syncConfluence`<a id="carbonaiintegrationssyncconfluence"></a>
 
 After listing pages in a user's Confluence account, the set of selected page `ids` and the
 connected account's `data_source_id` can be passed into this endpoint to sync them into
@@ -2209,7 +2209,7 @@ let prependFilenameToChunks = true
 let maxItemsPerChunk = 987
 let setPageAsBoundary = true
 let requestId = "requestId_example"
-let syncConfluenceResponse = try await carbon.integrations.syncConfluence(
+let syncConfluenceResponse = try await carbonai.integrations.syncConfluence(
     dataSourceId: dataSourceId,
     ids: ids,
     tags: tags,
@@ -2230,7 +2230,7 @@ let syncConfluenceResponse = try await carbon.integrations.syncConfluence(
 ##### data_source_id: `Int`<a id="data_source_id-int"></a>
 
 
-##### ids: [`IdsProperty`](./Carbon/Models/IdsProperty.swift)<a id="ids-idspropertycarbonmodelsidspropertyswift"></a>
+##### ids: [`IdsProperty`](./CarbonAI/Models/IdsProperty.swift)<a id="ids-idspropertycarbonaimodelsidspropertyswift"></a>
 
 
 ##### tags: `AnyCodable`<a id="tags-anycodable"></a>
@@ -2267,7 +2267,7 @@ Number of objects per chunk. For csv, tsv, xlsx, and json files only.
 
 #### 🔄 Return<a id="🔄-return"></a>
 
-[GenericSuccessResponse](./Carbon/Models/GenericSuccessResponse.swift)
+[GenericSuccessResponse](./CarbonAI/Models/GenericSuccessResponse.swift)
 
 #### 🌐 Endpoint<a id="🌐-endpoint"></a>
 
@@ -2278,7 +2278,7 @@ Number of objects per chunk. For csv, tsv, xlsx, and json files only.
 ---
 
 
-### `carbon.integrations.syncDataSourceItems`<a id="carbonintegrationssyncdatasourceitems"></a>
+### `carbonai.integrations.syncDataSourceItems`<a id="carbonaiintegrationssyncdatasourceitems"></a>
 
 Sync Data Source Items
 
@@ -2286,7 +2286,7 @@ Sync Data Source Items
 
 ```swift
 let dataSourceId = 987
-let syncDataSourceItemsResponse = try await carbon.integrations.syncDataSourceItems(
+let syncDataSourceItemsResponse = try await carbonai.integrations.syncDataSourceItems(
     dataSourceId: dataSourceId
 )
 ```
@@ -2298,7 +2298,7 @@ let syncDataSourceItemsResponse = try await carbon.integrations.syncDataSourceIt
 
 #### 🔄 Return<a id="🔄-return"></a>
 
-[OrganizationUserDataSourceAPI](./Carbon/Models/OrganizationUserDataSourceAPI.swift)
+[OrganizationUserDataSourceAPI](./CarbonAI/Models/OrganizationUserDataSourceAPI.swift)
 
 #### 🌐 Endpoint<a id="🌐-endpoint"></a>
 
@@ -2309,7 +2309,7 @@ let syncDataSourceItemsResponse = try await carbon.integrations.syncDataSourceIt
 ---
 
 
-### `carbon.integrations.syncFiles`<a id="carbonintegrationssyncfiles"></a>
+### `carbonai.integrations.syncFiles`<a id="carbonaiintegrationssyncfiles"></a>
 
 After listing files and folders via /integrations/items/sync and integrations/items/list, use the selected items' external ids 
 as the ids in this endpoint to sync them into Carbon. Sharepoint items take an additional parameter root_id, which identifies
@@ -2335,7 +2335,7 @@ let prependFilenameToChunks = true
 let maxItemsPerChunk = 987
 let setPageAsBoundary = true
 let requestId = "requestId_example"
-let syncFilesResponse = try await carbon.integrations.syncFiles(
+let syncFilesResponse = try await carbonai.integrations.syncFiles(
     dataSourceId: dataSourceId,
     ids: ids,
     tags: tags,
@@ -2356,7 +2356,7 @@ let syncFilesResponse = try await carbon.integrations.syncFiles(
 ##### data_source_id: `Int`<a id="data_source_id-int"></a>
 
 
-##### ids: [`IdsProperty`](./Carbon/Models/IdsProperty.swift)<a id="ids-idspropertycarbonmodelsidspropertyswift"></a>
+##### ids: [`IdsProperty`](./CarbonAI/Models/IdsProperty.swift)<a id="ids-idspropertycarbonaimodelsidspropertyswift"></a>
 
 
 ##### tags: `AnyCodable`<a id="tags-anycodable"></a>
@@ -2393,7 +2393,7 @@ Number of objects per chunk. For csv, tsv, xlsx, and json files only.
 
 #### 🔄 Return<a id="🔄-return"></a>
 
-[GenericSuccessResponse](./Carbon/Models/GenericSuccessResponse.swift)
+[GenericSuccessResponse](./CarbonAI/Models/GenericSuccessResponse.swift)
 
 #### 🌐 Endpoint<a id="🌐-endpoint"></a>
 
@@ -2404,7 +2404,7 @@ Number of objects per chunk. For csv, tsv, xlsx, and json files only.
 ---
 
 
-### `carbon.integrations.syncGitbook`<a id="carbonintegrationssyncgitbook"></a>
+### `carbonai.integrations.syncGitbook`<a id="carbonaiintegrationssyncgitbook"></a>
 
 You can sync upto 20 Gitbook spaces at a time using this endpoint. Additional parameters below can be used to associate 
 data with the synced pages or modify the sync behavior.
@@ -2426,7 +2426,7 @@ let embeddingModel = EmbeddingGenerators(
 let generateSparseVectors = true
 let prependFilenameToChunks = true
 let requestId = "requestId_example"
-let syncGitbookResponse = try await carbon.integrations.syncGitbook(
+let syncGitbookResponse = try await carbonai.integrations.syncGitbook(
     spaceIds: spaceIds,
     dataSourceId: dataSourceId,
     tags: tags,
@@ -2481,7 +2481,7 @@ let syncGitbookResponse = try await carbon.integrations.syncGitbook(
 ---
 
 
-### `carbon.integrations.syncGmail`<a id="carbonintegrationssyncgmail"></a>
+### `carbonai.integrations.syncGmail`<a id="carbonaiintegrationssyncgmail"></a>
 
 Once you have successfully connected your gmail account, you can choose which emails to sync with us
 using the filters parameter. Filters is a JSON object with key value pairs. It also supports AND and OR operations.
@@ -2549,7 +2549,7 @@ let generateSparseVectors = true
 let prependFilenameToChunks = true
 let dataSourceId = 987
 let requestId = "requestId_example"
-let syncGmailResponse = try await carbon.integrations.syncGmail(
+let syncGmailResponse = try await carbonai.integrations.syncGmail(
     filters: filters,
     tags: tags,
     chunkSize: chunkSize,
@@ -2597,7 +2597,7 @@ let syncGmailResponse = try await carbon.integrations.syncGmail(
 
 #### 🔄 Return<a id="🔄-return"></a>
 
-[GenericSuccessResponse](./Carbon/Models/GenericSuccessResponse.swift)
+[GenericSuccessResponse](./CarbonAI/Models/GenericSuccessResponse.swift)
 
 #### 🌐 Endpoint<a id="🌐-endpoint"></a>
 
@@ -2608,7 +2608,7 @@ let syncGmailResponse = try await carbon.integrations.syncGmail(
 ---
 
 
-### `carbon.integrations.syncOutlook`<a id="carbonintegrationssyncoutlook"></a>
+### `carbonai.integrations.syncOutlook`<a id="carbonaiintegrationssyncoutlook"></a>
 
 Once you have successfully connected your Outlook account, you can choose which emails to sync with us
 using the filters and folder parameter. "folder" should be the folder you want to sync from Outlook. By default
@@ -2687,7 +2687,7 @@ let generateSparseVectors = true
 let prependFilenameToChunks = true
 let dataSourceId = 987
 let requestId = "requestId_example"
-let syncOutlookResponse = try await carbon.integrations.syncOutlook(
+let syncOutlookResponse = try await carbonai.integrations.syncOutlook(
     filters: filters,
     tags: tags,
     folder: folder,
@@ -2739,7 +2739,7 @@ let syncOutlookResponse = try await carbon.integrations.syncOutlook(
 
 #### 🔄 Return<a id="🔄-return"></a>
 
-[GenericSuccessResponse](./Carbon/Models/GenericSuccessResponse.swift)
+[GenericSuccessResponse](./CarbonAI/Models/GenericSuccessResponse.swift)
 
 #### 🌐 Endpoint<a id="🌐-endpoint"></a>
 
@@ -2750,7 +2750,7 @@ let syncOutlookResponse = try await carbon.integrations.syncOutlook(
 ---
 
 
-### `carbon.integrations.syncRssFeed`<a id="carbonintegrationssyncrssfeed"></a>
+### `carbonai.integrations.syncRssFeed`<a id="carbonaiintegrationssyncrssfeed"></a>
 
 Rss Feed
 
@@ -2768,7 +2768,7 @@ let embeddingModel = EmbeddingGenerators(
 let generateSparseVectors = true
 let prependFilenameToChunks = true
 let requestId = "requestId_example"
-let syncRssFeedResponse = try await carbon.integrations.syncRssFeed(
+let syncRssFeedResponse = try await carbonai.integrations.syncRssFeed(
     url: url,
     tags: tags,
     chunkSize: chunkSize,
@@ -2812,7 +2812,7 @@ let syncRssFeedResponse = try await carbon.integrations.syncRssFeed(
 
 #### 🔄 Return<a id="🔄-return"></a>
 
-[GenericSuccessResponse](./Carbon/Models/GenericSuccessResponse.swift)
+[GenericSuccessResponse](./CarbonAI/Models/GenericSuccessResponse.swift)
 
 #### 🌐 Endpoint<a id="🌐-endpoint"></a>
 
@@ -2823,7 +2823,7 @@ let syncRssFeedResponse = try await carbon.integrations.syncRssFeed(
 ---
 
 
-### `carbon.integrations.syncS3Files`<a id="carbonintegrationssyncs3files"></a>
+### `carbonai.integrations.syncS3Files`<a id="carbonaiintegrationssyncs3files"></a>
 
 After optionally loading the items via /integrations/items/sync and integrations/items/list, use the bucket name 
 and object key as the ID in this endpoint to sync them into Carbon. Additional parameters below can associate 
@@ -2851,7 +2851,7 @@ let maxItemsPerChunk = 987
 let setPageAsBoundary = true
 let dataSourceId = 987
 let requestId = "requestId_example"
-let syncS3FilesResponse = try await carbon.integrations.syncS3Files(
+let syncS3FilesResponse = try await carbonai.integrations.syncS3Files(
     ids: ids,
     tags: tags,
     chunkSize: chunkSize,
@@ -2909,7 +2909,7 @@ Number of objects per chunk. For csv, tsv, xlsx, and json files only.
 
 #### 🔄 Return<a id="🔄-return"></a>
 
-[GenericSuccessResponse](./Carbon/Models/GenericSuccessResponse.swift)
+[GenericSuccessResponse](./CarbonAI/Models/GenericSuccessResponse.swift)
 
 #### 🌐 Endpoint<a id="🌐-endpoint"></a>
 
@@ -2920,19 +2920,19 @@ Number of objects per chunk. For csv, tsv, xlsx, and json files only.
 ---
 
 
-### `carbon.organizations.callGet`<a id="carbonorganizationscallget"></a>
+### `carbonai.organizations.callGet`<a id="carbonaiorganizationscallget"></a>
 
 Get Organization
 
 #### 🛠️ Usage<a id="🛠️-usage"></a>
 
 ```swift
-let callGetResponse = try await carbon.organizations.callGet()
+let callGetResponse = try await carbonai.organizations.callGet()
 ```
 
 #### 🔄 Return<a id="🔄-return"></a>
 
-[OrganizationResponse](./Carbon/Models/OrganizationResponse.swift)
+[OrganizationResponse](./CarbonAI/Models/OrganizationResponse.swift)
 
 #### 🌐 Endpoint<a id="🌐-endpoint"></a>
 
@@ -2943,7 +2943,7 @@ let callGetResponse = try await carbon.organizations.callGet()
 ---
 
 
-### `carbon.users.callGet`<a id="carbonuserscallget"></a>
+### `carbonai.users.callGet`<a id="carbonaiuserscallget"></a>
 
 User Endpoint
 
@@ -2951,7 +2951,7 @@ User Endpoint
 
 ```swift
 let customerId = "customerId_example"
-let callGetResponse = try await carbon.users.callGet(
+let callGetResponse = try await carbonai.users.callGet(
     customerId: customerId
 )
 ```
@@ -2963,7 +2963,7 @@ let callGetResponse = try await carbon.users.callGet(
 
 #### 🔄 Return<a id="🔄-return"></a>
 
-[UserResponse](./Carbon/Models/UserResponse.swift)
+[UserResponse](./CarbonAI/Models/UserResponse.swift)
 
 #### 🌐 Endpoint<a id="🌐-endpoint"></a>
 
@@ -2974,7 +2974,7 @@ let callGetResponse = try await carbon.users.callGet(
 ---
 
 
-### `carbon.users.delete`<a id="carbonusersdelete"></a>
+### `carbonai.users.delete`<a id="carbonaiusersdelete"></a>
 
 Delete Users
 
@@ -2984,7 +2984,7 @@ Delete Users
 let customerIds = [
 "inner_example"
 ]
-let deleteResponse = try await carbon.users.delete(
+let deleteResponse = try await carbonai.users.delete(
     customerIds: customerIds
 )
 ```
@@ -2996,7 +2996,7 @@ let deleteResponse = try await carbon.users.delete(
 
 #### 🔄 Return<a id="🔄-return"></a>
 
-[GenericSuccessResponse](./Carbon/Models/GenericSuccessResponse.swift)
+[GenericSuccessResponse](./CarbonAI/Models/GenericSuccessResponse.swift)
 
 #### 🌐 Endpoint<a id="🌐-endpoint"></a>
 
@@ -3007,7 +3007,7 @@ let deleteResponse = try await carbon.users.delete(
 ---
 
 
-### `carbon.users.toggleUserFeatures`<a id="carbonuserstoggleuserfeatures"></a>
+### `carbonai.users.toggleUserFeatures`<a id="carbonaiuserstoggleuserfeatures"></a>
 
 Toggle User Features
 
@@ -3016,7 +3016,7 @@ Toggle User Features
 ```swift
 let configurationKeyName = "configurationKeyName_example"
 let value = "TODO"
-let toggleUserFeaturesResponse = try await carbon.users.toggleUserFeatures(
+let toggleUserFeaturesResponse = try await carbonai.users.toggleUserFeatures(
     configurationKeyName: configurationKeyName,
     value: value
 )
@@ -3032,7 +3032,7 @@ let toggleUserFeaturesResponse = try await carbon.users.toggleUserFeatures(
 
 #### 🔄 Return<a id="🔄-return"></a>
 
-[GenericSuccessResponse](./Carbon/Models/GenericSuccessResponse.swift)
+[GenericSuccessResponse](./CarbonAI/Models/GenericSuccessResponse.swift)
 
 #### 🌐 Endpoint<a id="🌐-endpoint"></a>
 
@@ -3043,7 +3043,7 @@ let toggleUserFeaturesResponse = try await carbon.users.toggleUserFeatures(
 ---
 
 
-### `carbon.users.updateUsers`<a id="carbonusersupdateusers"></a>
+### `carbonai.users.updateUsers`<a id="carbonaiusersupdateusers"></a>
 
 Update Users
 
@@ -3056,7 +3056,7 @@ let customerIds = [
 let autoSyncEnabledSources = AutoSyncEnabledSourcesProperty(
     
 )
-let updateUsersResponse = try await carbon.users.updateUsers(
+let updateUsersResponse = try await carbonai.users.updateUsers(
     customerIds: customerIds,
     autoSyncEnabledSources: autoSyncEnabledSources
 )
@@ -3069,12 +3069,12 @@ let updateUsersResponse = try await carbon.users.updateUsers(
 List of organization supplied user IDs
 
 
-##### auto_sync_enabled_sources: [`AutoSyncEnabledSourcesProperty`](./Carbon/Models/AutoSyncEnabledSourcesProperty.swift)<a id="auto_sync_enabled_sources-autosyncenabledsourcespropertycarbonmodelsautosyncenabledsourcespropertyswift"></a>
+##### auto_sync_enabled_sources: [`AutoSyncEnabledSourcesProperty`](./CarbonAI/Models/AutoSyncEnabledSourcesProperty.swift)<a id="auto_sync_enabled_sources-autosyncenabledsourcespropertycarbonaimodelsautosyncenabledsourcespropertyswift"></a>
 
 
 #### 🔄 Return<a id="🔄-return"></a>
 
-[GenericSuccessResponse](./Carbon/Models/GenericSuccessResponse.swift)
+[GenericSuccessResponse](./CarbonAI/Models/GenericSuccessResponse.swift)
 
 #### 🌐 Endpoint<a id="🌐-endpoint"></a>
 
@@ -3085,7 +3085,7 @@ List of organization supplied user IDs
 ---
 
 
-### `carbon.utilities.fetchUrls`<a id="carbonutilitiesfetchurls"></a>
+### `carbonai.utilities.fetchUrls`<a id="carbonaiutilitiesfetchurls"></a>
 
 Extracts all URLs from a webpage. 
 
@@ -3099,7 +3099,7 @@ Returns:
 
 ```swift
 let url = "url_example"
-let fetchUrlsResponse = try await carbon.utilities.fetchUrls(
+let fetchUrlsResponse = try await carbonai.utilities.fetchUrls(
     url: url
 )
 ```
@@ -3111,7 +3111,7 @@ let fetchUrlsResponse = try await carbon.utilities.fetchUrls(
 
 #### 🔄 Return<a id="🔄-return"></a>
 
-[FetchURLsResponse](./Carbon/Models/FetchURLsResponse.swift)
+[FetchURLsResponse](./CarbonAI/Models/FetchURLsResponse.swift)
 
 #### 🌐 Endpoint<a id="🌐-endpoint"></a>
 
@@ -3122,7 +3122,7 @@ let fetchUrlsResponse = try await carbon.utilities.fetchUrls(
 ---
 
 
-### `carbon.utilities.fetchYoutubeTranscripts`<a id="carbonutilitiesfetchyoutubetranscripts"></a>
+### `carbonai.utilities.fetchYoutubeTranscripts`<a id="carbonaiutilitiesfetchyoutubetranscripts"></a>
 
 Fetches english transcripts from YouTube videos.
 
@@ -3138,7 +3138,7 @@ Returns:
 ```swift
 let id = "id_example"
 let raw = false
-let fetchYoutubeTranscriptsResponse = try await carbon.utilities.fetchYoutubeTranscripts(
+let fetchYoutubeTranscriptsResponse = try await carbonai.utilities.fetchYoutubeTranscripts(
     id: id,
     raw: raw
 )
@@ -3154,7 +3154,7 @@ let fetchYoutubeTranscriptsResponse = try await carbon.utilities.fetchYoutubeTra
 
 #### 🔄 Return<a id="🔄-return"></a>
 
-[YoutubeTranscriptResponse](./Carbon/Models/YoutubeTranscriptResponse.swift)
+[YoutubeTranscriptResponse](./CarbonAI/Models/YoutubeTranscriptResponse.swift)
 
 #### 🌐 Endpoint<a id="🌐-endpoint"></a>
 
@@ -3165,7 +3165,7 @@ let fetchYoutubeTranscriptsResponse = try await carbon.utilities.fetchYoutubeTra
 ---
 
 
-### `carbon.utilities.processSitemap`<a id="carbonutilitiesprocesssitemap"></a>
+### `carbonai.utilities.processSitemap`<a id="carbonaiutilitiesprocesssitemap"></a>
 
 Retrieves all URLs from a sitemap, which can subsequently be utilized with our `web_scrape` endpoint.
 
@@ -3179,7 +3179,7 @@ Returns:
 
 ```swift
 let url = "url_example"
-let processSitemapResponse = try await carbon.utilities.processSitemap(
+let processSitemapResponse = try await carbonai.utilities.processSitemap(
     url: url
 )
 ```
@@ -3198,7 +3198,7 @@ let processSitemapResponse = try await carbon.utilities.processSitemap(
 ---
 
 
-### `carbon.utilities.scrapeSitemap`<a id="carbonutilitiesscrapesitemap"></a>
+### `carbonai.utilities.scrapeSitemap`<a id="carbonaiutilitiesscrapesitemap"></a>
 
 Extracts all URLs from a sitemap and performs a web scrape on each of them.
 
@@ -3232,7 +3232,7 @@ let cssSelectorsToSkip = [
 let embeddingModel = EmbeddingGenerators(
     
 )
-let scrapeSitemapResponse = try await carbon.utilities.scrapeSitemap(
+let scrapeSitemapResponse = try await carbonai.utilities.scrapeSitemap(
     url: url,
     tags: tags,
     maxPagesToScrape: maxPagesToScrape,
@@ -3299,7 +3299,7 @@ let scrapeSitemapResponse = try await carbon.utilities.scrapeSitemap(
 ---
 
 
-### `carbon.utilities.scrapeWeb`<a id="carbonutilitiesscrapeweb"></a>
+### `carbonai.utilities.scrapeWeb`<a id="carbonaiutilitiesscrapeweb"></a>
 
 Conduct a web scrape on a given webpage URL. Our web scraper is fully compatible with JavaScript and supports recursion depth, enabling you to efficiently extract all content from the target website.
 
@@ -3313,7 +3313,7 @@ Returns:
 #### 🛠️ Usage<a id="🛠️-usage"></a>
 
 ```swift
-let scrapeWebResponse = try await carbon.utilities.scrapeWeb(
+let scrapeWebResponse = try await carbonai.utilities.scrapeWeb(
 )
 ```
 
@@ -3331,7 +3331,7 @@ let scrapeWebResponse = try await carbon.utilities.scrapeWeb(
 ---
 
 
-### `carbon.utilities.searchUrls`<a id="carbonutilitiessearchurls"></a>
+### `carbonai.utilities.searchUrls`<a id="carbonaiutilitiessearchurls"></a>
 
 Perform a web search and obtain a list of relevant URLs.
 
@@ -3357,7 +3357,7 @@ Returns:
 
 ```swift
 let query = "query_example"
-let searchUrlsResponse = try await carbon.utilities.searchUrls(
+let searchUrlsResponse = try await carbonai.utilities.searchUrls(
     query: query
 )
 ```
@@ -3369,7 +3369,7 @@ let searchUrlsResponse = try await carbon.utilities.searchUrls(
 
 #### 🔄 Return<a id="🔄-return"></a>
 
-[FetchURLsResponse](./Carbon/Models/FetchURLsResponse.swift)
+[FetchURLsResponse](./CarbonAI/Models/FetchURLsResponse.swift)
 
 #### 🌐 Endpoint<a id="🌐-endpoint"></a>
 
@@ -3380,7 +3380,7 @@ let searchUrlsResponse = try await carbon.utilities.searchUrls(
 ---
 
 
-### `carbon.webhooks.addUrl`<a id="carbonwebhooksaddurl"></a>
+### `carbonai.webhooks.addUrl`<a id="carbonaiwebhooksaddurl"></a>
 
 Add Webhook Url
 
@@ -3388,7 +3388,7 @@ Add Webhook Url
 
 ```swift
 let url = "url_example"
-let addUrlResponse = try await carbon.webhooks.addUrl(
+let addUrlResponse = try await carbonai.webhooks.addUrl(
     url: url
 )
 ```
@@ -3400,7 +3400,7 @@ let addUrlResponse = try await carbon.webhooks.addUrl(
 
 #### 🔄 Return<a id="🔄-return"></a>
 
-[Webhook](./Carbon/Models/Webhook.swift)
+[Webhook](./CarbonAI/Models/Webhook.swift)
 
 #### 🌐 Endpoint<a id="🌐-endpoint"></a>
 
@@ -3411,7 +3411,7 @@ let addUrlResponse = try await carbon.webhooks.addUrl(
 ---
 
 
-### `carbon.webhooks.deleteUrl`<a id="carbonwebhooksdeleteurl"></a>
+### `carbonai.webhooks.deleteUrl`<a id="carbonaiwebhooksdeleteurl"></a>
 
 Delete Webhook Url
 
@@ -3419,7 +3419,7 @@ Delete Webhook Url
 
 ```swift
 let webhookId = 987
-let deleteUrlResponse = try await carbon.webhooks.deleteUrl(
+let deleteUrlResponse = try await carbonai.webhooks.deleteUrl(
     webhookId: webhookId
 )
 ```
@@ -3431,7 +3431,7 @@ let deleteUrlResponse = try await carbon.webhooks.deleteUrl(
 
 #### 🔄 Return<a id="🔄-return"></a>
 
-[GenericSuccessResponse](./Carbon/Models/GenericSuccessResponse.swift)
+[GenericSuccessResponse](./CarbonAI/Models/GenericSuccessResponse.swift)
 
 #### 🌐 Endpoint<a id="🌐-endpoint"></a>
 
@@ -3442,7 +3442,7 @@ let deleteUrlResponse = try await carbon.webhooks.deleteUrl(
 ---
 
 
-### `carbon.webhooks.urls`<a id="carbonwebhooksurls"></a>
+### `carbonai.webhooks.urls`<a id="carbonaiwebhooksurls"></a>
 
 Webhook Urls
 
@@ -3464,7 +3464,7 @@ let filters = WebhookFilters(
     123
     ]
 )
-let urlsResponse = try await carbon.webhooks.urls(
+let urlsResponse = try await carbonai.webhooks.urls(
     pagination: pagination,
     orderBy: orderBy,
     orderDir: orderDir,
@@ -3474,7 +3474,7 @@ let urlsResponse = try await carbon.webhooks.urls(
 
 #### ⚙️ Parameters<a id="⚙️-parameters"></a>
 
-##### pagination: [`Pagination`](./Carbon/Models/Pagination.swift)<a id="pagination-paginationcarbonmodelspaginationswift"></a>
+##### pagination: [`Pagination`](./CarbonAI/Models/Pagination.swift)<a id="pagination-paginationcarbonaimodelspaginationswift"></a>
 
 
 ##### order_by: `WebhookOrderByColumns`<a id="order_by-webhookorderbycolumns"></a>
@@ -3483,12 +3483,12 @@ let urlsResponse = try await carbon.webhooks.urls(
 ##### order_dir: `OrderDir`<a id="order_dir-orderdir"></a>
 
 
-##### filters: [`WebhookFilters`](./Carbon/Models/WebhookFilters.swift)<a id="filters-webhookfilterscarbonmodelswebhookfiltersswift"></a>
+##### filters: [`WebhookFilters`](./CarbonAI/Models/WebhookFilters.swift)<a id="filters-webhookfilterscarbonaimodelswebhookfiltersswift"></a>
 
 
 #### 🔄 Return<a id="🔄-return"></a>
 
-[WebhookQueryResponse](./Carbon/Models/WebhookQueryResponse.swift)
+[WebhookQueryResponse](./CarbonAI/Models/WebhookQueryResponse.swift)
 
 #### 🌐 Endpoint<a id="🌐-endpoint"></a>
 

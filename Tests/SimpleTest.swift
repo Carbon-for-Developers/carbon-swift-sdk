@@ -1,13 +1,13 @@
-@testable import Carbon
+@testable import CarbonAI
 
 import XCTest
 
 class SimpleTest: XCTestCase {
-    var carbon: CarbonClient!
-    var carbonWithToken: CarbonClient!
+    var carbon: CarbonAIClient!
+    var carbonWithToken: CarbonAIClient!
 
     override func setUpWithError() throws {
-        self.carbon = CarbonClient(
+        self.carbon = CarbonAIClient(
             accessToken: nil,
             apiKey: "API_KEY",
             customerId: "CUSTOMER_ID",
@@ -31,7 +31,7 @@ class SimpleTest: XCTestCase {
         
         await fulfillment(of: [expectation], timeout: 10.0)
 
-        self.carbonWithToken = CarbonClient(
+        self.carbonWithToken = CarbonAIClient(
             accessToken: token!.accessToken,
             apiKey: nil,
             customerId: nil,
