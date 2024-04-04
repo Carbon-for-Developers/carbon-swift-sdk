@@ -1863,6 +1863,8 @@ let setPageAsBoundary = true
 let dataSourceId = 987
 let connectingNewAccount = true
 let requestId = "requestId_example"
+let useOcr = true
+let parsePdfTablesWithOcr = true
 let getOauthUrlResponse = try await carbonai.integrations.getOauthUrl(
     service: service,
     tags: tags,
@@ -1883,7 +1885,9 @@ let getOauthUrlResponse = try await carbonai.integrations.getOauthUrl(
     setPageAsBoundary: setPageAsBoundary,
     dataSourceId: dataSourceId,
     connectingNewAccount: connectingNewAccount,
-    requestId: requestId
+    requestId: requestId,
+    useOcr: useOcr,
+    parsePdfTablesWithOcr: parsePdfTablesWithOcr
 )
 ```
 
@@ -1957,6 +1961,14 @@ Used to connect a new data source. If not specified, we will attempt to create a
 ##### request_id: `String`<a id="request_id-string"></a>
 
 This request id will be added to all files that get synced using the generated OAuth URL
+
+
+##### use_ocr: `Bool`<a id="use_ocr-bool"></a>
+
+Enable OCR for files that support it. Supported formats: pdf
+
+
+##### parse_pdf_tables_with_ocr: `Bool`<a id="parse_pdf_tables_with_ocr-bool"></a>
 
 
 #### 🔄 Return<a id="🔄-return"></a>
@@ -2209,6 +2221,8 @@ let prependFilenameToChunks = true
 let maxItemsPerChunk = 987
 let setPageAsBoundary = true
 let requestId = "requestId_example"
+let useOcr = true
+let parsePdfTablesWithOcr = true
 let syncConfluenceResponse = try await carbonai.integrations.syncConfluence(
     dataSourceId: dataSourceId,
     ids: ids,
@@ -2221,7 +2235,9 @@ let syncConfluenceResponse = try await carbonai.integrations.syncConfluence(
     prependFilenameToChunks: prependFilenameToChunks,
     maxItemsPerChunk: maxItemsPerChunk,
     setPageAsBoundary: setPageAsBoundary,
-    requestId: requestId
+    requestId: requestId,
+    useOcr: useOcr,
+    parsePdfTablesWithOcr: parsePdfTablesWithOcr
 )
 ```
 
@@ -2263,6 +2279,12 @@ Number of objects per chunk. For csv, tsv, xlsx, and json files only.
 
 
 ##### request_id: `String`<a id="request_id-string"></a>
+
+
+##### use_ocr: `Bool`<a id="use_ocr-bool"></a>
+
+
+##### parse_pdf_tables_with_ocr: `Bool`<a id="parse_pdf_tables_with_ocr-bool"></a>
 
 
 #### 🔄 Return<a id="🔄-return"></a>
@@ -2335,6 +2357,8 @@ let prependFilenameToChunks = true
 let maxItemsPerChunk = 987
 let setPageAsBoundary = true
 let requestId = "requestId_example"
+let useOcr = true
+let parsePdfTablesWithOcr = true
 let syncFilesResponse = try await carbonai.integrations.syncFiles(
     dataSourceId: dataSourceId,
     ids: ids,
@@ -2347,7 +2371,9 @@ let syncFilesResponse = try await carbonai.integrations.syncFiles(
     prependFilenameToChunks: prependFilenameToChunks,
     maxItemsPerChunk: maxItemsPerChunk,
     setPageAsBoundary: setPageAsBoundary,
-    requestId: requestId
+    requestId: requestId,
+    useOcr: useOcr,
+    parsePdfTablesWithOcr: parsePdfTablesWithOcr
 )
 ```
 
@@ -2389,6 +2415,12 @@ Number of objects per chunk. For csv, tsv, xlsx, and json files only.
 
 
 ##### request_id: `String`<a id="request_id-string"></a>
+
+
+##### use_ocr: `Bool`<a id="use_ocr-bool"></a>
+
+
+##### parse_pdf_tables_with_ocr: `Bool`<a id="parse_pdf_tables_with_ocr-bool"></a>
 
 
 #### 🔄 Return<a id="🔄-return"></a>
@@ -2851,6 +2883,8 @@ let maxItemsPerChunk = 987
 let setPageAsBoundary = true
 let dataSourceId = 987
 let requestId = "requestId_example"
+let useOcr = true
+let parsePdfTablesWithOcr = true
 let syncS3FilesResponse = try await carbonai.integrations.syncS3Files(
     ids: ids,
     tags: tags,
@@ -2863,7 +2897,9 @@ let syncS3FilesResponse = try await carbonai.integrations.syncS3Files(
     maxItemsPerChunk: maxItemsPerChunk,
     setPageAsBoundary: setPageAsBoundary,
     dataSourceId: dataSourceId,
-    requestId: requestId
+    requestId: requestId,
+    useOcr: useOcr,
+    parsePdfTablesWithOcr: parsePdfTablesWithOcr
 )
 ```
 
@@ -2905,6 +2941,12 @@ Number of objects per chunk. For csv, tsv, xlsx, and json files only.
 
 
 ##### request_id: `String`<a id="request_id-string"></a>
+
+
+##### use_ocr: `Bool`<a id="use_ocr-bool"></a>
+
+
+##### parse_pdf_tables_with_ocr: `Bool`<a id="parse_pdf_tables_with_ocr-bool"></a>
 
 
 #### 🔄 Return<a id="🔄-return"></a>

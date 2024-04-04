@@ -23,8 +23,9 @@ public struct DocumentResponse: Codable, JSONEncodable, Hashable {
     public var score: Double?
     public var rank: RankProperty?
     public var contentMetadata: AnyCodable?
+    public var chunkIndex: Int?
 
-    public init(tags: [String: Tags]?, content: String, fileId: Int, source: String?, sourceUrl: String?, sourceType: DataSourceTypeNullable?, presignedUrl: String?, vector: [Double]?, score: Double?, rank: RankProperty?, contentMetadata: AnyCodable?) {
+    public init(tags: [String: Tags]?, content: String, fileId: Int, source: String?, sourceUrl: String?, sourceType: DataSourceTypeNullable?, presignedUrl: String?, vector: [Double]?, score: Double?, rank: RankProperty?, contentMetadata: AnyCodable?, chunkIndex: Int?) {
         self.tags = tags
         self.content = content
         self.fileId = fileId
@@ -36,6 +37,7 @@ public struct DocumentResponse: Codable, JSONEncodable, Hashable {
         self.score = score
         self.rank = rank
         self.contentMetadata = contentMetadata
+        self.chunkIndex = chunkIndex
     }
 
     public enum CodingKeys: String, CodingKey, CaseIterable {
@@ -50,6 +52,7 @@ public struct DocumentResponse: Codable, JSONEncodable, Hashable {
         case score
         case rank
         case contentMetadata = "content_metadata"
+        case chunkIndex = "chunk_index"
     }
 
     // Encodable protocol methods
@@ -67,6 +70,7 @@ public struct DocumentResponse: Codable, JSONEncodable, Hashable {
         try container.encode(score, forKey: .score)
         try container.encode(rank, forKey: .rank)
         try container.encode(contentMetadata, forKey: .contentMetadata)
+        try container.encode(chunkIndex, forKey: .chunkIndex)
     }
 }
 

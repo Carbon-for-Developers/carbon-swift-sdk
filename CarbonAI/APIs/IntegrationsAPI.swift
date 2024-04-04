@@ -916,7 +916,9 @@ open class IntegrationsAPI {
         setPageAsBoundary: Bool? = nil, 
         dataSourceId: Int? = nil, 
         connectingNewAccount: Bool? = nil, 
-        requestId: String? = nil
+        requestId: String? = nil, 
+        useOcr: Bool? = nil, 
+        parsePdfTablesWithOcr: Bool? = nil
     ) async throws -> OuthURLResponse {
         let oAuthURLRequest = OAuthURLRequest(
             tags: tags,
@@ -938,7 +940,9 @@ open class IntegrationsAPI {
             setPageAsBoundary: setPageAsBoundary,
             dataSourceId: dataSourceId,
             connectingNewAccount: connectingNewAccount,
-            requestId: requestId
+            requestId: requestId,
+            useOcr: useOcr,
+            parsePdfTablesWithOcr: parsePdfTablesWithOcr
         )
         return try await withCheckedThrowingContinuation { continuation in
             getOauthUrlWithRequestBuilder(oAuthURLRequest: oAuthURLRequest).execute { result in
@@ -981,7 +985,9 @@ open class IntegrationsAPI {
         setPageAsBoundary: Bool? = nil, 
         dataSourceId: Int? = nil, 
         connectingNewAccount: Bool? = nil, 
-        requestId: String? = nil
+        requestId: String? = nil, 
+        useOcr: Bool? = nil, 
+        parsePdfTablesWithOcr: Bool? = nil
     ) async throws -> OuthURLResponse {
         let oAuthURLRequest = OAuthURLRequest(
             tags: tags,
@@ -1003,7 +1009,9 @@ open class IntegrationsAPI {
             setPageAsBoundary: setPageAsBoundary,
             dataSourceId: dataSourceId,
             connectingNewAccount: connectingNewAccount,
-            requestId: requestId
+            requestId: requestId,
+            useOcr: useOcr,
+            parsePdfTablesWithOcr: parsePdfTablesWithOcr
         )
         return try await withCheckedThrowingContinuation { continuation in
             getOauthUrlWithRequestBuilder(oAuthURLRequest: oAuthURLRequest).execute { result in
@@ -2292,7 +2300,9 @@ open class IntegrationsAPI {
         prependFilenameToChunks: Bool? = nil, 
         maxItemsPerChunk: Int? = nil, 
         setPageAsBoundary: Bool? = nil, 
-        requestId: String? = nil
+        requestId: String? = nil, 
+        useOcr: Bool? = nil, 
+        parsePdfTablesWithOcr: Bool? = nil
     ) async throws -> GenericSuccessResponse {
         let syncFilesRequest = SyncFilesRequest(
             tags: tags,
@@ -2306,7 +2316,9 @@ open class IntegrationsAPI {
             prependFilenameToChunks: prependFilenameToChunks,
             maxItemsPerChunk: maxItemsPerChunk,
             setPageAsBoundary: setPageAsBoundary,
-            requestId: requestId
+            requestId: requestId,
+            useOcr: useOcr,
+            parsePdfTablesWithOcr: parsePdfTablesWithOcr
         )
         return try await withCheckedThrowingContinuation { continuation in
             syncConfluenceWithRequestBuilder(syncFilesRequest: syncFilesRequest).execute { result in
@@ -2341,7 +2353,9 @@ open class IntegrationsAPI {
         prependFilenameToChunks: Bool? = nil, 
         maxItemsPerChunk: Int? = nil, 
         setPageAsBoundary: Bool? = nil, 
-        requestId: String? = nil
+        requestId: String? = nil, 
+        useOcr: Bool? = nil, 
+        parsePdfTablesWithOcr: Bool? = nil
     ) async throws -> GenericSuccessResponse {
         let syncFilesRequest = SyncFilesRequest(
             tags: tags,
@@ -2355,7 +2369,9 @@ open class IntegrationsAPI {
             prependFilenameToChunks: prependFilenameToChunks,
             maxItemsPerChunk: maxItemsPerChunk,
             setPageAsBoundary: setPageAsBoundary,
-            requestId: requestId
+            requestId: requestId,
+            useOcr: useOcr,
+            parsePdfTablesWithOcr: parsePdfTablesWithOcr
         )
         return try await withCheckedThrowingContinuation { continuation in
             syncConfluenceWithRequestBuilder(syncFilesRequest: syncFilesRequest).execute { result in
@@ -2706,7 +2722,9 @@ open class IntegrationsAPI {
         prependFilenameToChunks: Bool? = nil, 
         maxItemsPerChunk: Int? = nil, 
         setPageAsBoundary: Bool? = nil, 
-        requestId: String? = nil
+        requestId: String? = nil, 
+        useOcr: Bool? = nil, 
+        parsePdfTablesWithOcr: Bool? = nil
     ) async throws -> GenericSuccessResponse {
         let syncFilesRequest = SyncFilesRequest(
             tags: tags,
@@ -2720,7 +2738,9 @@ open class IntegrationsAPI {
             prependFilenameToChunks: prependFilenameToChunks,
             maxItemsPerChunk: maxItemsPerChunk,
             setPageAsBoundary: setPageAsBoundary,
-            requestId: requestId
+            requestId: requestId,
+            useOcr: useOcr,
+            parsePdfTablesWithOcr: parsePdfTablesWithOcr
         )
         return try await withCheckedThrowingContinuation { continuation in
             syncFilesWithRequestBuilder(syncFilesRequest: syncFilesRequest).execute { result in
@@ -2755,7 +2775,9 @@ open class IntegrationsAPI {
         prependFilenameToChunks: Bool? = nil, 
         maxItemsPerChunk: Int? = nil, 
         setPageAsBoundary: Bool? = nil, 
-        requestId: String? = nil
+        requestId: String? = nil, 
+        useOcr: Bool? = nil, 
+        parsePdfTablesWithOcr: Bool? = nil
     ) async throws -> GenericSuccessResponse {
         let syncFilesRequest = SyncFilesRequest(
             tags: tags,
@@ -2769,7 +2791,9 @@ open class IntegrationsAPI {
             prependFilenameToChunks: prependFilenameToChunks,
             maxItemsPerChunk: maxItemsPerChunk,
             setPageAsBoundary: setPageAsBoundary,
-            requestId: requestId
+            requestId: requestId,
+            useOcr: useOcr,
+            parsePdfTablesWithOcr: parsePdfTablesWithOcr
         )
         return try await withCheckedThrowingContinuation { continuation in
             syncFilesWithRequestBuilder(syncFilesRequest: syncFilesRequest).execute { result in
@@ -3822,7 +3846,9 @@ open class IntegrationsAPI {
         maxItemsPerChunk: Int? = nil, 
         setPageAsBoundary: Bool? = nil, 
         dataSourceId: Int? = nil, 
-        requestId: String? = nil
+        requestId: String? = nil, 
+        useOcr: Bool? = nil, 
+        parsePdfTablesWithOcr: Bool? = nil
     ) async throws -> GenericSuccessResponse {
         let s3FileSyncInput = S3FileSyncInput(
             tags: tags,
@@ -3836,7 +3862,9 @@ open class IntegrationsAPI {
             maxItemsPerChunk: maxItemsPerChunk,
             setPageAsBoundary: setPageAsBoundary,
             dataSourceId: dataSourceId,
-            requestId: requestId
+            requestId: requestId,
+            useOcr: useOcr,
+            parsePdfTablesWithOcr: parsePdfTablesWithOcr
         )
         return try await withCheckedThrowingContinuation { continuation in
             syncS3FilesWithRequestBuilder(s3FileSyncInput: s3FileSyncInput).execute { result in
@@ -3871,7 +3899,9 @@ open class IntegrationsAPI {
         maxItemsPerChunk: Int? = nil, 
         setPageAsBoundary: Bool? = nil, 
         dataSourceId: Int? = nil, 
-        requestId: String? = nil
+        requestId: String? = nil, 
+        useOcr: Bool? = nil, 
+        parsePdfTablesWithOcr: Bool? = nil
     ) async throws -> GenericSuccessResponse {
         let s3FileSyncInput = S3FileSyncInput(
             tags: tags,
@@ -3885,7 +3915,9 @@ open class IntegrationsAPI {
             maxItemsPerChunk: maxItemsPerChunk,
             setPageAsBoundary: setPageAsBoundary,
             dataSourceId: dataSourceId,
-            requestId: requestId
+            requestId: requestId,
+            useOcr: useOcr,
+            parsePdfTablesWithOcr: parsePdfTablesWithOcr
         )
         return try await withCheckedThrowingContinuation { continuation in
             syncS3FilesWithRequestBuilder(s3FileSyncInput: s3FileSyncInput).execute { result in

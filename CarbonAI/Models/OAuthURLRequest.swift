@@ -37,8 +37,11 @@ public struct OAuthURLRequest: Codable, JSONEncodable, Hashable {
     public var connectingNewAccount: Bool? = false
     /** This request id will be added to all files that get synced using the generated OAuth URL */
     public var requestId: String?
+    /** Enable OCR for files that support it. Supported formats: pdf */
+    public var useOcr: Bool? = false
+    public var parsePdfTablesWithOcr: Bool? = false
 
-    public init(tags: AnyCodable? = nil, scope: String? = nil, service: DataSourceType, chunkSize: Int? = 1500, chunkOverlap: Int? = 20, skipEmbeddingGeneration: Bool? = false, embeddingModel: EmbeddingGeneratorsNullable? = nil, zendeskSubdomain: String? = nil, microsoftTenant: String? = nil, sharepointSiteName: String? = nil, confluenceSubdomain: String? = nil, generateSparseVectors: Bool? = false, prependFilenameToChunks: Bool? = false, maxItemsPerChunk: Int? = nil, salesforceDomain: String? = nil, syncFilesOnConnection: Bool? = true, setPageAsBoundary: Bool? = false, dataSourceId: Int? = nil, connectingNewAccount: Bool? = false, requestId: String? = nil) {
+    public init(tags: AnyCodable? = nil, scope: String? = nil, service: DataSourceType, chunkSize: Int? = 1500, chunkOverlap: Int? = 20, skipEmbeddingGeneration: Bool? = false, embeddingModel: EmbeddingGeneratorsNullable? = nil, zendeskSubdomain: String? = nil, microsoftTenant: String? = nil, sharepointSiteName: String? = nil, confluenceSubdomain: String? = nil, generateSparseVectors: Bool? = false, prependFilenameToChunks: Bool? = false, maxItemsPerChunk: Int? = nil, salesforceDomain: String? = nil, syncFilesOnConnection: Bool? = true, setPageAsBoundary: Bool? = false, dataSourceId: Int? = nil, connectingNewAccount: Bool? = false, requestId: String? = nil, useOcr: Bool? = false, parsePdfTablesWithOcr: Bool? = false) {
         self.tags = tags
         self.scope = scope
         self.service = service
@@ -59,6 +62,8 @@ public struct OAuthURLRequest: Codable, JSONEncodable, Hashable {
         self.dataSourceId = dataSourceId
         self.connectingNewAccount = connectingNewAccount
         self.requestId = requestId
+        self.useOcr = useOcr
+        self.parsePdfTablesWithOcr = parsePdfTablesWithOcr
     }
 
     public enum CodingKeys: String, CodingKey, CaseIterable {
@@ -82,6 +87,8 @@ public struct OAuthURLRequest: Codable, JSONEncodable, Hashable {
         case dataSourceId = "data_source_id"
         case connectingNewAccount = "connecting_new_account"
         case requestId = "request_id"
+        case useOcr = "use_ocr"
+        case parsePdfTablesWithOcr = "parse_pdf_tables_with_ocr"
     }
 
     // Encodable protocol methods
@@ -108,6 +115,8 @@ public struct OAuthURLRequest: Codable, JSONEncodable, Hashable {
         try container.encodeIfPresent(dataSourceId, forKey: .dataSourceId)
         try container.encodeIfPresent(connectingNewAccount, forKey: .connectingNewAccount)
         try container.encodeIfPresent(requestId, forKey: .requestId)
+        try container.encodeIfPresent(useOcr, forKey: .useOcr)
+        try container.encodeIfPresent(parsePdfTablesWithOcr, forKey: .parsePdfTablesWithOcr)
     }
 }
 

@@ -24,10 +24,11 @@ public struct OrganizationUserDataSourceAPI: Codable, JSONEncodable, Hashable {
     public var revokedAccess: Bool
     public var lastSyncedAt: Date
     public var lastSyncAction: DataSourceLastSyncActions
+    public var enableAutoSync: Bool?
     public var createdAt: Date
     public var updatedAt: Date
 
-    public init(id: Int, dataSourceExternalId: String?, dataSourceType: DataSourceType, token: AnyCodable?, syncStatus: DataSourceSyncStatuses, sourceItemsSyncedAt: Date?, organizationUserId: Int, organizationId: Int, organizationSuppliedUserId: String, revokedAccess: Bool, lastSyncedAt: Date, lastSyncAction: DataSourceLastSyncActions, createdAt: Date, updatedAt: Date) {
+    public init(id: Int, dataSourceExternalId: String?, dataSourceType: DataSourceType, token: AnyCodable?, syncStatus: DataSourceSyncStatuses, sourceItemsSyncedAt: Date?, organizationUserId: Int, organizationId: Int, organizationSuppliedUserId: String, revokedAccess: Bool, lastSyncedAt: Date, lastSyncAction: DataSourceLastSyncActions, enableAutoSync: Bool?, createdAt: Date, updatedAt: Date) {
         self.id = id
         self.dataSourceExternalId = dataSourceExternalId
         self.dataSourceType = dataSourceType
@@ -40,6 +41,7 @@ public struct OrganizationUserDataSourceAPI: Codable, JSONEncodable, Hashable {
         self.revokedAccess = revokedAccess
         self.lastSyncedAt = lastSyncedAt
         self.lastSyncAction = lastSyncAction
+        self.enableAutoSync = enableAutoSync
         self.createdAt = createdAt
         self.updatedAt = updatedAt
     }
@@ -57,6 +59,7 @@ public struct OrganizationUserDataSourceAPI: Codable, JSONEncodable, Hashable {
         case revokedAccess = "revoked_access"
         case lastSyncedAt = "last_synced_at"
         case lastSyncAction = "last_sync_action"
+        case enableAutoSync = "enable_auto_sync"
         case createdAt = "created_at"
         case updatedAt = "updated_at"
     }
@@ -77,6 +80,7 @@ public struct OrganizationUserDataSourceAPI: Codable, JSONEncodable, Hashable {
         try container.encode(revokedAccess, forKey: .revokedAccess)
         try container.encode(lastSyncedAt, forKey: .lastSyncedAt)
         try container.encode(lastSyncAction, forKey: .lastSyncAction)
+        try container.encode(enableAutoSync, forKey: .enableAutoSync)
         try container.encode(createdAt, forKey: .createdAt)
         try container.encode(updatedAt, forKey: .updatedAt)
     }

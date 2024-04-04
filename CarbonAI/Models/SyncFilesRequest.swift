@@ -25,8 +25,10 @@ public struct SyncFilesRequest: Codable, JSONEncodable, Hashable {
     public var maxItemsPerChunk: Int?
     public var setPageAsBoundary: Bool? = false
     public var requestId: String?
+    public var useOcr: Bool? = false
+    public var parsePdfTablesWithOcr: Bool? = false
 
-    public init(tags: AnyCodable? = nil, dataSourceId: Int, ids: IdsProperty, chunkSize: Int? = 1500, chunkOverlap: Int? = 20, skipEmbeddingGeneration: Bool? = false, embeddingModel: EmbeddingGeneratorsNullable? = nil, generateSparseVectors: Bool? = false, prependFilenameToChunks: Bool? = false, maxItemsPerChunk: Int? = nil, setPageAsBoundary: Bool? = false, requestId: String? = nil) {
+    public init(tags: AnyCodable? = nil, dataSourceId: Int, ids: IdsProperty, chunkSize: Int? = 1500, chunkOverlap: Int? = 20, skipEmbeddingGeneration: Bool? = false, embeddingModel: EmbeddingGeneratorsNullable? = nil, generateSparseVectors: Bool? = false, prependFilenameToChunks: Bool? = false, maxItemsPerChunk: Int? = nil, setPageAsBoundary: Bool? = false, requestId: String? = nil, useOcr: Bool? = false, parsePdfTablesWithOcr: Bool? = false) {
         self.tags = tags
         self.dataSourceId = dataSourceId
         self.ids = ids
@@ -39,6 +41,8 @@ public struct SyncFilesRequest: Codable, JSONEncodable, Hashable {
         self.maxItemsPerChunk = maxItemsPerChunk
         self.setPageAsBoundary = setPageAsBoundary
         self.requestId = requestId
+        self.useOcr = useOcr
+        self.parsePdfTablesWithOcr = parsePdfTablesWithOcr
     }
 
     public enum CodingKeys: String, CodingKey, CaseIterable {
@@ -54,6 +58,8 @@ public struct SyncFilesRequest: Codable, JSONEncodable, Hashable {
         case maxItemsPerChunk = "max_items_per_chunk"
         case setPageAsBoundary = "set_page_as_boundary"
         case requestId = "request_id"
+        case useOcr = "use_ocr"
+        case parsePdfTablesWithOcr = "parse_pdf_tables_with_ocr"
     }
 
     // Encodable protocol methods
@@ -72,6 +78,8 @@ public struct SyncFilesRequest: Codable, JSONEncodable, Hashable {
         try container.encodeIfPresent(maxItemsPerChunk, forKey: .maxItemsPerChunk)
         try container.encodeIfPresent(setPageAsBoundary, forKey: .setPageAsBoundary)
         try container.encodeIfPresent(requestId, forKey: .requestId)
+        try container.encodeIfPresent(useOcr, forKey: .useOcr)
+        try container.encodeIfPresent(parsePdfTablesWithOcr, forKey: .parsePdfTablesWithOcr)
     }
 }
 
