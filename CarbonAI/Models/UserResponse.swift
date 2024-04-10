@@ -23,8 +23,9 @@ public struct UserResponse: Codable, JSONEncodable, Hashable {
     public var numTokensSynced: Int
     public var uniqueFileTags: [AnyCodable]
     public var enabledFeatures: AnyCodable?
+    public var customLimits: AnyCodable
 
-    public init(id: Int, organizationId: Int, organizationSuppliedUserId: String, createdAt: Date, updatedAt: Date, deletedAt: Date?, numFilesSynced: Int, numCharactersSynced: Int, numTokensSynced: Int, uniqueFileTags: [AnyCodable], enabledFeatures: AnyCodable?) {
+    public init(id: Int, organizationId: Int, organizationSuppliedUserId: String, createdAt: Date, updatedAt: Date, deletedAt: Date?, numFilesSynced: Int, numCharactersSynced: Int, numTokensSynced: Int, uniqueFileTags: [AnyCodable], enabledFeatures: AnyCodable?, customLimits: AnyCodable) {
         self.id = id
         self.organizationId = organizationId
         self.organizationSuppliedUserId = organizationSuppliedUserId
@@ -36,6 +37,7 @@ public struct UserResponse: Codable, JSONEncodable, Hashable {
         self.numTokensSynced = numTokensSynced
         self.uniqueFileTags = uniqueFileTags
         self.enabledFeatures = enabledFeatures
+        self.customLimits = customLimits
     }
 
     public enum CodingKeys: String, CodingKey, CaseIterable {
@@ -50,6 +52,7 @@ public struct UserResponse: Codable, JSONEncodable, Hashable {
         case numTokensSynced = "num_tokens_synced"
         case uniqueFileTags = "unique_file_tags"
         case enabledFeatures = "enabled_features"
+        case customLimits = "custom_limits"
     }
 
     // Encodable protocol methods
@@ -67,6 +70,7 @@ public struct UserResponse: Codable, JSONEncodable, Hashable {
         try container.encode(numTokensSynced, forKey: .numTokensSynced)
         try container.encode(uniqueFileTags, forKey: .uniqueFileTags)
         try container.encode(enabledFeatures, forKey: .enabledFeatures)
+        try container.encode(customLimits, forKey: .customLimits)
     }
 }
 

@@ -2581,6 +2581,7 @@ let generateSparseVectors = true
 let prependFilenameToChunks = true
 let dataSourceId = 987
 let requestId = "requestId_example"
+let syncAttachments = true
 let syncGmailResponse = try await carbonai.integrations.syncGmail(
     filters: filters,
     tags: tags,
@@ -2591,7 +2592,8 @@ let syncGmailResponse = try await carbonai.integrations.syncGmail(
     generateSparseVectors: generateSparseVectors,
     prependFilenameToChunks: prependFilenameToChunks,
     dataSourceId: dataSourceId,
-    requestId: requestId
+    requestId: requestId,
+    syncAttachments: syncAttachments
 )
 ```
 
@@ -2625,6 +2627,9 @@ let syncGmailResponse = try await carbonai.integrations.syncGmail(
 
 
 ##### request_id: `String`<a id="request_id-string"></a>
+
+
+##### sync_attachments: `Bool`<a id="sync_attachments-bool"></a>
 
 
 #### 🔄 Return<a id="🔄-return"></a>
@@ -2719,6 +2724,7 @@ let generateSparseVectors = true
 let prependFilenameToChunks = true
 let dataSourceId = 987
 let requestId = "requestId_example"
+let syncAttachments = true
 let syncOutlookResponse = try await carbonai.integrations.syncOutlook(
     filters: filters,
     tags: tags,
@@ -2730,7 +2736,8 @@ let syncOutlookResponse = try await carbonai.integrations.syncOutlook(
     generateSparseVectors: generateSparseVectors,
     prependFilenameToChunks: prependFilenameToChunks,
     dataSourceId: dataSourceId,
-    requestId: requestId
+    requestId: requestId,
+    syncAttachments: syncAttachments
 )
 ```
 
@@ -2767,6 +2774,9 @@ let syncOutlookResponse = try await carbonai.integrations.syncOutlook(
 
 
 ##### request_id: `String`<a id="request_id-string"></a>
+
+
+##### sync_attachments: `Bool`<a id="sync_attachments-bool"></a>
 
 
 #### 🔄 Return<a id="🔄-return"></a>
@@ -3098,9 +3108,11 @@ let customerIds = [
 let autoSyncEnabledSources = AutoSyncEnabledSourcesProperty(
     
 )
+let fileUploadLimit = 987
 let updateUsersResponse = try await carbonai.users.updateUsers(
     customerIds: customerIds,
-    autoSyncEnabledSources: autoSyncEnabledSources
+    autoSyncEnabledSources: autoSyncEnabledSources,
+    fileUploadLimit: fileUploadLimit
 )
 ```
 
@@ -3112,6 +3124,11 @@ List of organization supplied user IDs
 
 
 ##### auto_sync_enabled_sources: [`AutoSyncEnabledSourcesProperty`](./CarbonAI/Models/AutoSyncEnabledSourcesProperty.swift)<a id="auto_sync_enabled_sources-autosyncenabledsourcespropertycarbonaimodelsautosyncenabledsourcespropertyswift"></a>
+
+
+##### file_upload_limit: `Int`<a id="file_upload_limit-int"></a>
+
+Custom file upload limit for the user. If set, then the user will not be allowed to          upload more files than this limit
 
 
 #### 🔄 Return<a id="🔄-return"></a>

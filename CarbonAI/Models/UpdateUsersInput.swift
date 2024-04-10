@@ -15,15 +15,19 @@ public struct UpdateUsersInput: Codable, JSONEncodable, Hashable {
     /** List of organization supplied user IDs */
     public var customerIds: [String]
     public var autoSyncEnabledSources: AutoSyncEnabledSourcesProperty?
+    /** Custom file upload limit for the user. If set, then the user will not be allowed to          upload more files than this limit */
+    public var fileUploadLimit: Int?
 
-    public init(customerIds: [String], autoSyncEnabledSources: AutoSyncEnabledSourcesProperty? = nil) {
+    public init(customerIds: [String], autoSyncEnabledSources: AutoSyncEnabledSourcesProperty? = nil, fileUploadLimit: Int? = nil) {
         self.customerIds = customerIds
         self.autoSyncEnabledSources = autoSyncEnabledSources
+        self.fileUploadLimit = fileUploadLimit
     }
 
     public enum CodingKeys: String, CodingKey, CaseIterable {
         case customerIds = "customer_ids"
         case autoSyncEnabledSources = "auto_sync_enabled_sources"
+        case fileUploadLimit = "file_upload_limit"
     }
 
     // Encodable protocol methods
@@ -32,6 +36,7 @@ public struct UpdateUsersInput: Codable, JSONEncodable, Hashable {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encode(customerIds, forKey: .customerIds)
         try container.encodeIfPresent(autoSyncEnabledSources, forKey: .autoSyncEnabledSources)
+        try container.encodeIfPresent(fileUploadLimit, forKey: .fileUploadLimit)
     }
 }
 

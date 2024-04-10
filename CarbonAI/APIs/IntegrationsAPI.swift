@@ -3180,7 +3180,8 @@ open class IntegrationsAPI {
         generateSparseVectors: Bool? = nil, 
         prependFilenameToChunks: Bool? = nil, 
         dataSourceId: Int? = nil, 
-        requestId: String? = nil
+        requestId: String? = nil, 
+        syncAttachments: Bool? = nil
     ) async throws -> GenericSuccessResponse {
         let gmailSyncInput = GmailSyncInput(
             tags: tags,
@@ -3192,7 +3193,8 @@ open class IntegrationsAPI {
             generateSparseVectors: generateSparseVectors,
             prependFilenameToChunks: prependFilenameToChunks,
             dataSourceId: dataSourceId,
-            requestId: requestId
+            requestId: requestId,
+            syncAttachments: syncAttachments
         )
         return try await withCheckedThrowingContinuation { continuation in
             syncGmailWithRequestBuilder(gmailSyncInput: gmailSyncInput).execute { result in
@@ -3225,7 +3227,8 @@ open class IntegrationsAPI {
         generateSparseVectors: Bool? = nil, 
         prependFilenameToChunks: Bool? = nil, 
         dataSourceId: Int? = nil, 
-        requestId: String? = nil
+        requestId: String? = nil, 
+        syncAttachments: Bool? = nil
     ) async throws -> GenericSuccessResponse {
         let gmailSyncInput = GmailSyncInput(
             tags: tags,
@@ -3237,7 +3240,8 @@ open class IntegrationsAPI {
             generateSparseVectors: generateSparseVectors,
             prependFilenameToChunks: prependFilenameToChunks,
             dataSourceId: dataSourceId,
-            requestId: requestId
+            requestId: requestId,
+            syncAttachments: syncAttachments
         )
         return try await withCheckedThrowingContinuation { continuation in
             syncGmailWithRequestBuilder(gmailSyncInput: gmailSyncInput).execute { result in
@@ -3403,7 +3407,8 @@ open class IntegrationsAPI {
         generateSparseVectors: Bool? = nil, 
         prependFilenameToChunks: Bool? = nil, 
         dataSourceId: Int? = nil, 
-        requestId: String? = nil
+        requestId: String? = nil, 
+        syncAttachments: Bool? = nil
     ) async throws -> GenericSuccessResponse {
         let outlookSyncInput = OutlookSyncInput(
             tags: tags,
@@ -3416,7 +3421,8 @@ open class IntegrationsAPI {
             generateSparseVectors: generateSparseVectors,
             prependFilenameToChunks: prependFilenameToChunks,
             dataSourceId: dataSourceId,
-            requestId: requestId
+            requestId: requestId,
+            syncAttachments: syncAttachments
         )
         return try await withCheckedThrowingContinuation { continuation in
             syncOutlookWithRequestBuilder(outlookSyncInput: outlookSyncInput).execute { result in
@@ -3450,7 +3456,8 @@ open class IntegrationsAPI {
         generateSparseVectors: Bool? = nil, 
         prependFilenameToChunks: Bool? = nil, 
         dataSourceId: Int? = nil, 
-        requestId: String? = nil
+        requestId: String? = nil, 
+        syncAttachments: Bool? = nil
     ) async throws -> GenericSuccessResponse {
         let outlookSyncInput = OutlookSyncInput(
             tags: tags,
@@ -3463,7 +3470,8 @@ open class IntegrationsAPI {
             generateSparseVectors: generateSparseVectors,
             prependFilenameToChunks: prependFilenameToChunks,
             dataSourceId: dataSourceId,
-            requestId: requestId
+            requestId: requestId,
+            syncAttachments: syncAttachments
         )
         return try await withCheckedThrowingContinuation { continuation in
             syncOutlookWithRequestBuilder(outlookSyncInput: outlookSyncInput).execute { result in

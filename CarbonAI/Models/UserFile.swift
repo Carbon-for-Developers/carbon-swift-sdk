@@ -30,6 +30,7 @@ public struct UserFile: Codable, JSONEncodable, Hashable {
     public var chunkOverlap: Int?
     public var chunkProperties: ChunkPropertiesNullable?
     public var ocrProperties: AnyCodable
+    public var ocrJobStartedAt: Date?
     public var name: String?
     public var parentId: Int?
     public var enableAutoSync: Bool?
@@ -43,7 +44,7 @@ public struct UserFile: Codable, JSONEncodable, Hashable {
     public var createdAt: Date
     public var updatedAt: Date
 
-    public init(tags: AnyCodable?, id: Int, source: DataSourceType, organizationId: Int, organizationSuppliedUserId: String, organizationUserDataSourceId: Int?, externalFileId: String, externalUrl: String?, syncStatus: ExternalFileSyncStatuses, syncErrorMessage: String?, lastSync: Date?, fileStatistics: FileStatisticsNullable?, fileMetadata: AnyCodable?, embeddingProperties: [String: EmbeddingProperties]?, chunkSize: Int?, chunkOverlap: Int?, chunkProperties: ChunkPropertiesNullable?, ocrProperties: AnyCodable, name: String?, parentId: Int?, enableAutoSync: Bool?, presignedUrl: String?, parsedTextUrl: String?, additionalPresignedUrls: AnyCodable?, skipEmbeddingGeneration: Bool, sourceCreatedAt: Date?, generateSparseVectors: Bool?, requestId: String?, createdAt: Date, updatedAt: Date) {
+    public init(tags: AnyCodable?, id: Int, source: DataSourceType, organizationId: Int, organizationSuppliedUserId: String, organizationUserDataSourceId: Int?, externalFileId: String, externalUrl: String?, syncStatus: ExternalFileSyncStatuses, syncErrorMessage: String?, lastSync: Date?, fileStatistics: FileStatisticsNullable?, fileMetadata: AnyCodable?, embeddingProperties: [String: EmbeddingProperties]?, chunkSize: Int?, chunkOverlap: Int?, chunkProperties: ChunkPropertiesNullable?, ocrProperties: AnyCodable, ocrJobStartedAt: Date?, name: String?, parentId: Int?, enableAutoSync: Bool?, presignedUrl: String?, parsedTextUrl: String?, additionalPresignedUrls: AnyCodable?, skipEmbeddingGeneration: Bool, sourceCreatedAt: Date?, generateSparseVectors: Bool?, requestId: String?, createdAt: Date, updatedAt: Date) {
         self.tags = tags
         self.id = id
         self.source = source
@@ -62,6 +63,7 @@ public struct UserFile: Codable, JSONEncodable, Hashable {
         self.chunkOverlap = chunkOverlap
         self.chunkProperties = chunkProperties
         self.ocrProperties = ocrProperties
+        self.ocrJobStartedAt = ocrJobStartedAt
         self.name = name
         self.parentId = parentId
         self.enableAutoSync = enableAutoSync
@@ -95,6 +97,7 @@ public struct UserFile: Codable, JSONEncodable, Hashable {
         case chunkOverlap = "chunk_overlap"
         case chunkProperties = "chunk_properties"
         case ocrProperties = "ocr_properties"
+        case ocrJobStartedAt = "ocr_job_started_at"
         case name
         case parentId = "parent_id"
         case enableAutoSync = "enable_auto_sync"
@@ -131,6 +134,7 @@ public struct UserFile: Codable, JSONEncodable, Hashable {
         try container.encode(chunkOverlap, forKey: .chunkOverlap)
         try container.encode(chunkProperties, forKey: .chunkProperties)
         try container.encode(ocrProperties, forKey: .ocrProperties)
+        try container.encode(ocrJobStartedAt, forKey: .ocrJobStartedAt)
         try container.encode(name, forKey: .name)
         try container.encode(parentId, forKey: .parentId)
         try container.encode(enableAutoSync, forKey: .enableAutoSync)

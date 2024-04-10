@@ -361,6 +361,7 @@ open class UsersAPI {
      - parameter apiResponseQueue: The queue on which api response is dispatched.
      - parameter completion: completion handler to receive the data and the error objects
      */
+    @available(*, deprecated, message: "This operation is deprecated.")
     @discardableResult
     open class func toggleUserFeaturesSync(modifyUserConfigurationInput: ModifyUserConfigurationInput, apiResponseQueue: DispatchQueue = CarbonAIAPI.apiResponseQueue, completion: @escaping ((_ data: GenericSuccessResponse?, _ error: Error?) -> Void)) -> RequestTask {
         return toggleUserFeaturesWithRequestBuilder(modifyUserConfigurationInput: modifyUserConfigurationInput).execute(apiResponseQueue) { result in
@@ -380,6 +381,7 @@ open class UsersAPI {
      - parameter apiResponseQueue: The queue on which api response is dispatched.
      - parameter completion: completion handler to receive the data and the error objects
      */
+    @available(*, deprecated, message: "This operation is deprecated.")
     @available(iOS 13.0, macOS 10.15, tvOS 13.0, watchOS 6.0, *)
     private class func toggleUserFeaturesAsyncMappedParams(modifyUserConfigurationInput: ModifyUserConfigurationInput) async throws -> GenericSuccessResponse {
         return try await withCheckedThrowingContinuation { continuation in
@@ -401,6 +403,7 @@ open class UsersAPI {
      - parameter apiResponseQueue: The queue on which api response is dispatched.
      - parameter completion: completion handler to receive the data and the error objects
      */
+    @available(*, deprecated, message: "This operation is deprecated.")
     @available(iOS 13.0, macOS 10.15, tvOS 13.0, watchOS 6.0, *)
     open class func toggleUserFeatures(
         configurationKeyName: String,
@@ -430,6 +433,7 @@ open class UsersAPI {
      - parameter apiResponseQueue: The queue on which api response is dispatched.
      - parameter completion: completion handler to receive the data and the error objects
      */
+    @available(*, deprecated, message: "This operation is deprecated.")
     @available(iOS 13.0, macOS 10.15, tvOS 13.0, watchOS 6.0, *)
     open func toggleUserFeatures(
         configurationKeyName: String,
@@ -468,6 +472,7 @@ open class UsersAPI {
      - parameter modifyUserConfigurationInput: (body)  
      - returns: RequestBuilder<GenericSuccessResponse> 
      */
+    @available(*, deprecated, message: "This operation is deprecated.")
     open class func toggleUserFeaturesWithRequestBuilder(
             modifyUserConfigurationInput: ModifyUserConfigurationInput
     ) -> RequestBuilder<GenericSuccessResponse> {
@@ -512,6 +517,7 @@ open class UsersAPI {
      - parameter modifyUserConfigurationInput: (body)  
      - returns: RequestBuilder<GenericSuccessResponse> 
      */
+    @available(*, deprecated, message: "This operation is deprecated.")
     open func toggleUserFeaturesWithRequestBuilder(
             modifyUserConfigurationInput: ModifyUserConfigurationInput
     ) -> RequestBuilder<GenericSuccessResponse> {
@@ -592,11 +598,13 @@ open class UsersAPI {
     @available(iOS 13.0, macOS 10.15, tvOS 13.0, watchOS 6.0, *)
     open class func updateUsers(
         customerIds: [String],
-        autoSyncEnabledSources: AutoSyncEnabledSourcesProperty? = nil
+        autoSyncEnabledSources: AutoSyncEnabledSourcesProperty? = nil, 
+        fileUploadLimit: Int? = nil
     ) async throws -> GenericSuccessResponse {
         let updateUsersInput = UpdateUsersInput(
             customerIds: customerIds,
-            autoSyncEnabledSources: autoSyncEnabledSources
+            autoSyncEnabledSources: autoSyncEnabledSources,
+            fileUploadLimit: fileUploadLimit
         )
         return try await withCheckedThrowingContinuation { continuation in
             updateUsersWithRequestBuilder(updateUsersInput: updateUsersInput).execute { result in
@@ -621,11 +629,13 @@ open class UsersAPI {
     @available(iOS 13.0, macOS 10.15, tvOS 13.0, watchOS 6.0, *)
     open func updateUsers(
         customerIds: [String],
-        autoSyncEnabledSources: AutoSyncEnabledSourcesProperty? = nil
+        autoSyncEnabledSources: AutoSyncEnabledSourcesProperty? = nil, 
+        fileUploadLimit: Int? = nil
     ) async throws -> GenericSuccessResponse {
         let updateUsersInput = UpdateUsersInput(
             customerIds: customerIds,
-            autoSyncEnabledSources: autoSyncEnabledSources
+            autoSyncEnabledSources: autoSyncEnabledSources,
+            fileUploadLimit: fileUploadLimit
         )
         return try await withCheckedThrowingContinuation { continuation in
             updateUsersWithRequestBuilder(updateUsersInput: updateUsersInput).execute { result in
