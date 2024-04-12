@@ -918,7 +918,8 @@ open class IntegrationsAPI {
         connectingNewAccount: Bool? = nil, 
         requestId: String? = nil, 
         useOcr: Bool? = nil, 
-        parsePdfTablesWithOcr: Bool? = nil
+        parsePdfTablesWithOcr: Bool? = nil, 
+        enableFilePicker: Bool? = nil
     ) async throws -> OuthURLResponse {
         let oAuthURLRequest = OAuthURLRequest(
             tags: tags,
@@ -942,7 +943,8 @@ open class IntegrationsAPI {
             connectingNewAccount: connectingNewAccount,
             requestId: requestId,
             useOcr: useOcr,
-            parsePdfTablesWithOcr: parsePdfTablesWithOcr
+            parsePdfTablesWithOcr: parsePdfTablesWithOcr,
+            enableFilePicker: enableFilePicker
         )
         return try await withCheckedThrowingContinuation { continuation in
             getOauthUrlWithRequestBuilder(oAuthURLRequest: oAuthURLRequest).execute { result in
@@ -987,7 +989,8 @@ open class IntegrationsAPI {
         connectingNewAccount: Bool? = nil, 
         requestId: String? = nil, 
         useOcr: Bool? = nil, 
-        parsePdfTablesWithOcr: Bool? = nil
+        parsePdfTablesWithOcr: Bool? = nil, 
+        enableFilePicker: Bool? = nil
     ) async throws -> OuthURLResponse {
         let oAuthURLRequest = OAuthURLRequest(
             tags: tags,
@@ -1011,7 +1014,8 @@ open class IntegrationsAPI {
             connectingNewAccount: connectingNewAccount,
             requestId: requestId,
             useOcr: useOcr,
-            parsePdfTablesWithOcr: parsePdfTablesWithOcr
+            parsePdfTablesWithOcr: parsePdfTablesWithOcr,
+            enableFilePicker: enableFilePicker
         )
         return try await withCheckedThrowingContinuation { continuation in
             getOauthUrlWithRequestBuilder(oAuthURLRequest: oAuthURLRequest).execute { result in

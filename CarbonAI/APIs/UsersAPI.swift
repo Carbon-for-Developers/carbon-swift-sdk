@@ -599,12 +599,14 @@ open class UsersAPI {
     open class func updateUsers(
         customerIds: [String],
         autoSyncEnabledSources: AutoSyncEnabledSourcesProperty? = nil, 
-        fileUploadLimit: Int? = nil
+        maxFiles: Int? = nil, 
+        maxFilesPerUpload: Int? = nil
     ) async throws -> GenericSuccessResponse {
         let updateUsersInput = UpdateUsersInput(
             customerIds: customerIds,
             autoSyncEnabledSources: autoSyncEnabledSources,
-            fileUploadLimit: fileUploadLimit
+            maxFiles: maxFiles,
+            maxFilesPerUpload: maxFilesPerUpload
         )
         return try await withCheckedThrowingContinuation { continuation in
             updateUsersWithRequestBuilder(updateUsersInput: updateUsersInput).execute { result in
@@ -630,12 +632,14 @@ open class UsersAPI {
     open func updateUsers(
         customerIds: [String],
         autoSyncEnabledSources: AutoSyncEnabledSourcesProperty? = nil, 
-        fileUploadLimit: Int? = nil
+        maxFiles: Int? = nil, 
+        maxFilesPerUpload: Int? = nil
     ) async throws -> GenericSuccessResponse {
         let updateUsersInput = UpdateUsersInput(
             customerIds: customerIds,
             autoSyncEnabledSources: autoSyncEnabledSources,
-            fileUploadLimit: fileUploadLimit
+            maxFiles: maxFiles,
+            maxFilesPerUpload: maxFilesPerUpload
         )
         return try await withCheckedThrowingContinuation { continuation in
             updateUsersWithRequestBuilder(updateUsersInput: updateUsersInput).execute { result in

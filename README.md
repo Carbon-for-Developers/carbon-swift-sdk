@@ -1585,7 +1585,8 @@ let syncOptions = SyncOptions(
     prependFilenameToChunks: false,
     maxItemsPerChunk: 123,
     syncFilesOnConnection: true,
-    setPageAsBoundary: false
+    setPageAsBoundary: false,
+    enableFilePicker: true
 )
 let connectDataSourceResponse = try await carbonai.integrations.connectDataSource(
     authentication: authentication,
@@ -1865,6 +1866,7 @@ let connectingNewAccount = true
 let requestId = "requestId_example"
 let useOcr = true
 let parsePdfTablesWithOcr = true
+let enableFilePicker = true
 let getOauthUrlResponse = try await carbonai.integrations.getOauthUrl(
     service: service,
     tags: tags,
@@ -1887,7 +1889,8 @@ let getOauthUrlResponse = try await carbonai.integrations.getOauthUrl(
     connectingNewAccount: connectingNewAccount,
     requestId: requestId,
     useOcr: useOcr,
-    parsePdfTablesWithOcr: parsePdfTablesWithOcr
+    parsePdfTablesWithOcr: parsePdfTablesWithOcr,
+    enableFilePicker: enableFilePicker
 )
 ```
 
@@ -1969,6 +1972,11 @@ Enable OCR for files that support it. Supported formats: pdf
 
 
 ##### parse_pdf_tables_with_ocr: `Bool`<a id="parse_pdf_tables_with_ocr-bool"></a>
+
+
+##### enable_file_picker: `Bool`<a id="enable_file_picker-bool"></a>
+
+Enable integration's file picker for sources that support it. Supported sources: DROPBOX, BOX, GOOGLE_DRIVE, SHAREPOINT, ONEDRIVE
 
 
 #### 🔄 Return<a id="🔄-return"></a>
@@ -3108,11 +3116,13 @@ let customerIds = [
 let autoSyncEnabledSources = AutoSyncEnabledSourcesProperty(
     
 )
-let fileUploadLimit = 987
+let maxFiles = 987
+let maxFilesPerUpload = 987
 let updateUsersResponse = try await carbonai.users.updateUsers(
     customerIds: customerIds,
     autoSyncEnabledSources: autoSyncEnabledSources,
-    fileUploadLimit: fileUploadLimit
+    maxFiles: maxFiles,
+    maxFilesPerUpload: maxFilesPerUpload
 )
 ```
 
@@ -3126,9 +3136,14 @@ List of organization supplied user IDs
 ##### auto_sync_enabled_sources: [`AutoSyncEnabledSourcesProperty`](./CarbonAI/Models/AutoSyncEnabledSourcesProperty.swift)<a id="auto_sync_enabled_sources-autosyncenabledsourcespropertycarbonaimodelsautosyncenabledsourcespropertyswift"></a>
 
 
-##### file_upload_limit: `Int`<a id="file_upload_limit-int"></a>
+##### max_files: `Int`<a id="max_files-int"></a>
 
-Custom file upload limit for the user. If set, then the user will not be allowed to          upload more files than this limit
+Custom file upload limit for the user over *all* user's files across all uploads.          If set, then the user will not be allowed to upload more files than this limit. If not set, or if set to -1,         then the user will have no limit.
+
+
+##### max_files_per_upload: `Int`<a id="max_files_per_upload-int"></a>
+
+Custom file upload limit for the user across a single upload.         If set, then the user will not be allowed to upload more files than this limit in a single upload. If not set,         or if set to -1, then the user will have no limit.
 
 
 #### 🔄 Return<a id="🔄-return"></a>

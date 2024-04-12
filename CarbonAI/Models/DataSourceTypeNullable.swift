@@ -43,6 +43,7 @@ public enum DataSourceTypeNullable: String, Codable, CaseIterable {
     case salesforce = "SALESFORCE"
     case jpg = "JPG"
     case png = "PNG"
+    case jpeg = "JPEG"
     case mp3 = "MP3"
     case mp4 = "MP4"
     case mp2 = "MP2"
