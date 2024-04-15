@@ -6,7 +6,7 @@
 
 Connect external data to LLMs, no matter the source.
 
-[![CocoaPods](https://img.shields.io/badge/pod-v0.2.5-blue)](https://cocoapods.org/pods/CarbonAI)
+[![CocoaPods](https://img.shields.io/badge/pod-v0.2.6-blue)](https://cocoapods.org/pods/CarbonAI)
 
 </div>
 
@@ -98,7 +98,7 @@ github "Carbon-for-Developers/carbon-swift-sdk"
 ### CocoaPods<a id="cocoapods"></a>
 
 1. Add `source 'https://github.com/CocoaPods/Specs.git'` to your `Podfile`
-2. Add `pod 'CarbonAI', '~> 0.2.5'` to your `Podfile`
+2. Add `pod 'CarbonAI', '~> 0.2.6'` to your `Podfile`
 
 Your `Podfile` should look like:
 ```ruby
@@ -106,7 +106,7 @@ Your `Podfile` should look like:
 source 'https://github.com/CocoaPods/Specs.git'
 
 target 'Example' do
-  pod 'CarbonAI', '~> 0.2.5'
+  pod 'CarbonAI', '~> 0.2.6'
 end
 ```
 3. Run `pod install`
@@ -115,7 +115,7 @@ end
 ❯ pod install
 Analyzing dependencies
 Downloading dependencies
-Installing CarbonAI 0.2.5
+Installing CarbonAI 0.2.6
 Generating Pods project
 Integrating client project
 Pod installation complete! There is 1 dependency from the Podfile and 2 total pods installed.
@@ -405,6 +405,7 @@ let fileIds = [
 let parentFileIds = [
 123
 ]
+let includeAllChildren = true
 let tagsV2 = "TODO"
 let includeTags = true
 let includeVectors = true
@@ -427,6 +428,7 @@ let getDocumentsResponse = try await carbonai.embeddings.getDocuments(
     queryVector: queryVector,
     fileIds: fileIds,
     parentFileIds: parentFileIds,
+    includeAllChildren: includeAllChildren,
     tagsV2: tagsV2,
     includeTags: includeTags,
     includeVectors: includeVectors,
@@ -468,6 +470,11 @@ Optional list of file IDs to limit the search to
 ##### parent_file_ids: `[Int]`<a id="parent_file_ids-int"></a>
 
 Optional list of parent file IDs to limit the search to. A parent file describes a file to which         another file belongs (e.g. a folder)
+
+
+##### include_all_children: `Bool`<a id="include_all_children-bool"></a>
+
+Flag to control whether or not to include all children of filtered files in the embedding search.
 
 
 ##### tags_v2: `AnyCodable`<a id="tags_v2-anycodable"></a>
@@ -1976,7 +1983,7 @@ Enable OCR for files that support it. Supported formats: pdf
 
 ##### enable_file_picker: `Bool`<a id="enable_file_picker-bool"></a>
 
-Enable integration's file picker for sources that support it. Supported sources: DROPBOX, BOX, GOOGLE_DRIVE, SHAREPOINT, ONEDRIVE
+Enable integration's file picker for sources that support it. Supported sources: GOOGLE_DRIVE, ONEDRIVE, BOX, SHAREPOINT, DROPBOX
 
 
 #### 🔄 Return<a id="🔄-return"></a>

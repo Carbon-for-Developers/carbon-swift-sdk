@@ -23,7 +23,10 @@ public struct GetEmbeddingDocumentsBody: Codable, JSONEncodable, Hashable {
     /** Optional list of file IDs to limit the search to */
     public var fileIds: [Int]?
     /** Optional list of parent file IDs to limit the search to. A parent file describes a file to which         another file belongs (e.g. a folder) */
+    @available(*, deprecated, message: "This property is deprecated.")
     public var parentFileIds: [Int]?
+    /** Flag to control whether or not to include all children of filtered files in the embedding search. */
+    public var includeAllChildren: Bool? = false
     /** A set of tags to limit the search to. Use this instead of `tags`, which is deprecated. */
     public var tagsV2: AnyCodable?
     /** Flag to control whether or not to include tags for each chunk in the response. */
@@ -38,13 +41,14 @@ public struct GetEmbeddingDocumentsBody: Codable, JSONEncodable, Hashable {
     public var mediaType: FileContentTypesNullable?
     public var embeddingModel: EmbeddingGeneratorsNullable?
 
-    public init(tags: [String: Tags1]? = nil, query: String, queryVector: [Double]? = nil, k: Int, fileIds: [Int]? = nil, parentFileIds: [Int]? = nil, tagsV2: AnyCodable? = nil, includeTags: Bool? = nil, includeVectors: Bool? = nil, includeRawFile: Bool? = nil, hybridSearch: Bool? = nil, hybridSearchTuningParameters: HybridSearchTuningParamsNullable? = nil, mediaType: FileContentTypesNullable? = nil, embeddingModel: EmbeddingGeneratorsNullable? = nil) {
+    public init(tags: [String: Tags1]? = nil, query: String, queryVector: [Double]? = nil, k: Int, fileIds: [Int]? = nil, parentFileIds: [Int]? = nil, includeAllChildren: Bool? = false, tagsV2: AnyCodable? = nil, includeTags: Bool? = nil, includeVectors: Bool? = nil, includeRawFile: Bool? = nil, hybridSearch: Bool? = nil, hybridSearchTuningParameters: HybridSearchTuningParamsNullable? = nil, mediaType: FileContentTypesNullable? = nil, embeddingModel: EmbeddingGeneratorsNullable? = nil) {
         self.tags = tags
         self.query = query
         self.queryVector = queryVector
         self.k = k
         self.fileIds = fileIds
         self.parentFileIds = parentFileIds
+        self.includeAllChildren = includeAllChildren
         self.tagsV2 = tagsV2
         self.includeTags = includeTags
         self.includeVectors = includeVectors
@@ -62,6 +66,7 @@ public struct GetEmbeddingDocumentsBody: Codable, JSONEncodable, Hashable {
         case k
         case fileIds = "file_ids"
         case parentFileIds = "parent_file_ids"
+        case includeAllChildren = "include_all_children"
         case tagsV2 = "tags_v2"
         case includeTags = "include_tags"
         case includeVectors = "include_vectors"
@@ -82,6 +87,7 @@ public struct GetEmbeddingDocumentsBody: Codable, JSONEncodable, Hashable {
         try container.encode(k, forKey: .k)
         try container.encodeIfPresent(fileIds, forKey: .fileIds)
         try container.encodeIfPresent(parentFileIds, forKey: .parentFileIds)
+        try container.encodeIfPresent(includeAllChildren, forKey: .includeAllChildren)
         try container.encodeIfPresent(tagsV2, forKey: .tagsV2)
         try container.encodeIfPresent(includeTags, forKey: .includeTags)
         try container.encodeIfPresent(includeVectors, forKey: .includeVectors)
