@@ -6,7 +6,7 @@
 
 Connect external data to LLMs, no matter the source.
 
-[![CocoaPods](https://img.shields.io/badge/pod-v0.2.6-blue)](https://cocoapods.org/pods/CarbonAI)
+[![CocoaPods](https://img.shields.io/badge/pod-v0.2.7-blue)](https://cocoapods.org/pods/CarbonAI)
 
 </div>
 
@@ -98,7 +98,7 @@ github "Carbon-for-Developers/carbon-swift-sdk"
 ### CocoaPods<a id="cocoapods"></a>
 
 1. Add `source 'https://github.com/CocoaPods/Specs.git'` to your `Podfile`
-2. Add `pod 'CarbonAI', '~> 0.2.6'` to your `Podfile`
+2. Add `pod 'CarbonAI', '~> 0.2.7'` to your `Podfile`
 
 Your `Podfile` should look like:
 ```ruby
@@ -106,7 +106,7 @@ Your `Podfile` should look like:
 source 'https://github.com/CocoaPods/Specs.git'
 
 target 'Example' do
-  pod 'CarbonAI', '~> 0.2.6'
+  pod 'CarbonAI', '~> 0.2.7'
 end
 ```
 3. Run `pod install`
@@ -115,7 +115,7 @@ end
 ❯ pod install
 Analyzing dependencies
 Downloading dependencies
-Installing CarbonAI 0.2.6
+Installing CarbonAI 0.2.7
 Generating Pods project
 Integrating client project
 Pod installation complete! There is 1 dependency from the Podfile and 2 total pods installed.
@@ -1593,6 +1593,7 @@ let syncOptions = SyncOptions(
     maxItemsPerChunk: 123,
     syncFilesOnConnection: true,
     setPageAsBoundary: false,
+    requestId: "requestId_example",
     enableFilePicker: true
 )
 let connectDataSourceResponse = try await carbonai.integrations.connectDataSource(
@@ -1983,7 +1984,7 @@ Enable OCR for files that support it. Supported formats: pdf
 
 ##### enable_file_picker: `Bool`<a id="enable_file_picker-bool"></a>
 
-Enable integration's file picker for sources that support it. Supported sources: GOOGLE_DRIVE, ONEDRIVE, BOX, SHAREPOINT, DROPBOX
+Enable integration's file picker for sources that support it. Supported sources: BOX, DROPBOX, SHAREPOINT, GOOGLE_DRIVE, ONEDRIVE
 
 
 #### 🔄 Return<a id="🔄-return"></a>

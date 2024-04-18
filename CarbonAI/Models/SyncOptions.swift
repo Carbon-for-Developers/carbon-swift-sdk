@@ -24,9 +24,10 @@ public struct SyncOptions: Codable, JSONEncodable, Hashable {
     /** Used to specify whether Carbon should attempt to sync all your files automatically when authorization         is complete. This is only supported for a subset of connectors and will be ignored for the rest. Supported         connectors: Intercom, Zendesk, Gitbook, Confluence, Salesforce, Freshdesk */
     public var syncFilesOnConnection: Bool? = true
     public var setPageAsBoundary: Bool? = false
+    public var requestId: String?
     public var enableFilePicker: Bool? = true
 
-    public init(tags: AnyCodable? = nil, chunkSize: Int? = 1500, chunkOverlap: Int? = 20, skipEmbeddingGeneration: Bool? = false, embeddingModel: EmbeddingGeneratorsNullable? = nil, generateSparseVectors: Bool? = false, prependFilenameToChunks: Bool? = false, maxItemsPerChunk: Int? = nil, syncFilesOnConnection: Bool? = true, setPageAsBoundary: Bool? = false, enableFilePicker: Bool? = true) {
+    public init(tags: AnyCodable? = nil, chunkSize: Int? = 1500, chunkOverlap: Int? = 20, skipEmbeddingGeneration: Bool? = false, embeddingModel: EmbeddingGeneratorsNullable? = nil, generateSparseVectors: Bool? = false, prependFilenameToChunks: Bool? = false, maxItemsPerChunk: Int? = nil, syncFilesOnConnection: Bool? = true, setPageAsBoundary: Bool? = false, requestId: String? = nil, enableFilePicker: Bool? = true) {
         self.tags = tags
         self.chunkSize = chunkSize
         self.chunkOverlap = chunkOverlap
@@ -37,6 +38,7 @@ public struct SyncOptions: Codable, JSONEncodable, Hashable {
         self.maxItemsPerChunk = maxItemsPerChunk
         self.syncFilesOnConnection = syncFilesOnConnection
         self.setPageAsBoundary = setPageAsBoundary
+        self.requestId = requestId
         self.enableFilePicker = enableFilePicker
     }
 
@@ -51,6 +53,7 @@ public struct SyncOptions: Codable, JSONEncodable, Hashable {
         case maxItemsPerChunk = "max_items_per_chunk"
         case syncFilesOnConnection = "sync_files_on_connection"
         case setPageAsBoundary = "set_page_as_boundary"
+        case requestId = "request_id"
         case enableFilePicker = "enable_file_picker"
     }
 
@@ -68,6 +71,7 @@ public struct SyncOptions: Codable, JSONEncodable, Hashable {
         try container.encodeIfPresent(maxItemsPerChunk, forKey: .maxItemsPerChunk)
         try container.encodeIfPresent(syncFilesOnConnection, forKey: .syncFilesOnConnection)
         try container.encodeIfPresent(setPageAsBoundary, forKey: .setPageAsBoundary)
+        try container.encodeIfPresent(requestId, forKey: .requestId)
         try container.encodeIfPresent(enableFilePicker, forKey: .enableFilePicker)
     }
 }
