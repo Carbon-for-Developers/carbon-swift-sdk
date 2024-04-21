@@ -6,7 +6,7 @@
 
 Connect external data to LLMs, no matter the source.
 
-[![CocoaPods](https://img.shields.io/badge/pod-v0.2.8-blue)](https://cocoapods.org/pods/CarbonAI)
+[![CocoaPods](https://img.shields.io/badge/pod-v0.2.9-blue)](https://cocoapods.org/pods/CarbonAI)
 
 </div>
 
@@ -55,6 +55,7 @@ Connect external data to LLMs, no matter the source.
   * [`carbonai.integrations.syncConfluence`](#carbonaiintegrationssyncconfluence)
   * [`carbonai.integrations.syncDataSourceItems`](#carbonaiintegrationssyncdatasourceitems)
   * [`carbonai.integrations.syncFiles`](#carbonaiintegrationssyncfiles)
+  * [`carbonai.integrations.syncGitHub`](#carbonaiintegrationssyncgithub)
   * [`carbonai.integrations.syncGitbook`](#carbonaiintegrationssyncgitbook)
   * [`carbonai.integrations.syncGmail`](#carbonaiintegrationssyncgmail)
   * [`carbonai.integrations.syncOutlook`](#carbonaiintegrationssyncoutlook)
@@ -98,7 +99,7 @@ github "Carbon-for-Developers/carbon-swift-sdk"
 ### CocoaPods<a id="cocoapods"></a>
 
 1. Add `source 'https://github.com/CocoaPods/Specs.git'` to your `Podfile`
-2. Add `pod 'CarbonAI', '~> 0.2.8'` to your `Podfile`
+2. Add `pod 'CarbonAI', '~> 0.2.9'` to your `Podfile`
 
 Your `Podfile` should look like:
 ```ruby
@@ -106,7 +107,7 @@ Your `Podfile` should look like:
 source 'https://github.com/CocoaPods/Specs.git'
 
 target 'Example' do
-  pod 'CarbonAI', '~> 0.2.8'
+  pod 'CarbonAI', '~> 0.2.9'
 end
 ```
 3. Run `pod install`
@@ -115,7 +116,7 @@ end
 ❯ pod install
 Analyzing dependencies
 Downloading dependencies
-Installing CarbonAI 0.2.8
+Installing CarbonAI 0.2.9
 Generating Pods project
 Integrating client project
 Pod installation complete! There is 1 dependency from the Podfile and 2 total pods installed.
@@ -1984,7 +1985,7 @@ Enable OCR for files that support it. Supported formats: pdf
 
 ##### enable_file_picker: `Bool`<a id="enable_file_picker-bool"></a>
 
-Enable integration's file picker for sources that support it. Supported sources: DROPBOX, GOOGLE_DRIVE, BOX, ONEDRIVE, SHAREPOINT
+Enable integration's file picker for sources that support it. Supported sources: SHAREPOINT, BOX, GOOGLE_DRIVE, ONEDRIVE, DROPBOX
 
 
 #### 🔄 Return<a id="🔄-return"></a>
@@ -2446,6 +2447,44 @@ Number of objects per chunk. For csv, tsv, xlsx, and json files only.
 #### 🌐 Endpoint<a id="🌐-endpoint"></a>
 
 `/integrations/files/sync` `POST`
+
+[🔙 **Back to Table of Contents**](#table-of-contents)
+
+---
+
+
+### `carbonai.integrations.syncGitHub`<a id="carbonaiintegrationssyncgithub"></a>
+
+Refer this article to obtain an access token https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/managing-your-personal-access-tokens.
+Make sure that your access token has the permission to read content from your desired repos. Note that if your access token
+expires you will need to manually update it through this endpoint.
+
+#### 🛠️ Usage<a id="🛠️-usage"></a>
+
+```swift
+let username = "username_example"
+let accessToken = "accessToken_example"
+let syncGitHubResponse = try await carbonai.integrations.syncGitHub(
+    username: username,
+    accessToken: accessToken
+)
+```
+
+#### ⚙️ Parameters<a id="⚙️-parameters"></a>
+
+##### username: `String`<a id="username-string"></a>
+
+
+##### access_token: `String`<a id="access_token-string"></a>
+
+
+#### 🔄 Return<a id="🔄-return"></a>
+
+[GenericSuccessResponse](./CarbonAI/Models/GenericSuccessResponse.swift)
+
+#### 🌐 Endpoint<a id="🌐-endpoint"></a>
+
+`/integrations/github` `POST`
 
 [🔙 **Back to Table of Contents**](#table-of-contents)
 

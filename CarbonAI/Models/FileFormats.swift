@@ -35,6 +35,7 @@ public enum FileFormats: String, Codable, CaseIterable {
     case webScrape = "WEB_SCRAPE"
     case gitbook = "GITBOOK"
     case salesforce = "SALESFORCE"
+    case github = "GITHUB"
     case jpg = "JPG"
     case png = "PNG"
     case mp3 = "MP3"
