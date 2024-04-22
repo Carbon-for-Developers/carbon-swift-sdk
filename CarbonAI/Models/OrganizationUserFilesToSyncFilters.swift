@@ -39,8 +39,10 @@ public struct OrganizationUserFilesToSyncFilters: Codable, JSONEncodable, Hashab
     public var nonSyncedOnly: Bool? = false
     /** Filter by request ID(s) which were used to sync the files */
     public var requestIds: [String]?
+    /** The error message of the file. The query will return files with error messages that contain this string. To search for files with no error message, use an empty string. */
+    public var syncErrorMessage: String?
 
-    public init(tags: [String: Tags1]? = nil, source: SourceProperty? = nil, name: String? = nil, tagsV2: AnyCodable? = nil, ids: [Int]? = nil, externalFileIds: [String]? = nil, syncStatuses: [ExternalFileSyncStatuses]? = nil, parentFileIds: [Int]? = nil, organizationUserDataSourceId: [Int]? = nil, embeddingGenerators: [EmbeddingGenerators]? = nil, rootFilesOnly: Bool? = nil, includeAllChildren: Bool? = false, nonSyncedOnly: Bool? = false, requestIds: [String]? = nil) {
+    public init(tags: [String: Tags1]? = nil, source: SourceProperty? = nil, name: String? = nil, tagsV2: AnyCodable? = nil, ids: [Int]? = nil, externalFileIds: [String]? = nil, syncStatuses: [ExternalFileSyncStatuses]? = nil, parentFileIds: [Int]? = nil, organizationUserDataSourceId: [Int]? = nil, embeddingGenerators: [EmbeddingGenerators]? = nil, rootFilesOnly: Bool? = nil, includeAllChildren: Bool? = false, nonSyncedOnly: Bool? = false, requestIds: [String]? = nil, syncErrorMessage: String? = nil) {
         self.tags = tags
         self.source = source
         self.name = name
@@ -55,6 +57,7 @@ public struct OrganizationUserFilesToSyncFilters: Codable, JSONEncodable, Hashab
         self.includeAllChildren = includeAllChildren
         self.nonSyncedOnly = nonSyncedOnly
         self.requestIds = requestIds
+        self.syncErrorMessage = syncErrorMessage
     }
 
     public enum CodingKeys: String, CodingKey, CaseIterable {
@@ -72,6 +75,7 @@ public struct OrganizationUserFilesToSyncFilters: Codable, JSONEncodable, Hashab
         case includeAllChildren = "include_all_children"
         case nonSyncedOnly = "non_synced_only"
         case requestIds = "request_ids"
+        case syncErrorMessage = "sync_error_message"
     }
 
     // Encodable protocol methods
@@ -92,6 +96,7 @@ public struct OrganizationUserFilesToSyncFilters: Codable, JSONEncodable, Hashab
         try container.encodeIfPresent(includeAllChildren, forKey: .includeAllChildren)
         try container.encodeIfPresent(nonSyncedOnly, forKey: .nonSyncedOnly)
         try container.encodeIfPresent(requestIds, forKey: .requestIds)
+        try container.encodeIfPresent(syncErrorMessage, forKey: .syncErrorMessage)
     }
 }
 
