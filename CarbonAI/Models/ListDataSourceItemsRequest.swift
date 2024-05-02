@@ -16,12 +16,16 @@ public struct ListDataSourceItemsRequest: Codable, JSONEncodable, Hashable {
     public var parentId: String?
     public var filters: ListItemsFiltersNullable?
     public var pagination: Pagination?
+    public var orderBy: ExternalSourceItemsOrderBy?
+    public var orderDir: OrderDirV2?
 
-    public init(dataSourceId: Int, parentId: String? = nil, filters: ListItemsFiltersNullable? = nil, pagination: Pagination? = nil) {
+    public init(dataSourceId: Int, parentId: String? = nil, filters: ListItemsFiltersNullable? = nil, pagination: Pagination? = nil, orderBy: ExternalSourceItemsOrderBy? = nil, orderDir: OrderDirV2? = nil) {
         self.dataSourceId = dataSourceId
         self.parentId = parentId
         self.filters = filters
         self.pagination = pagination
+        self.orderBy = orderBy
+        self.orderDir = orderDir
     }
 
     public enum CodingKeys: String, CodingKey, CaseIterable {
@@ -29,6 +33,8 @@ public struct ListDataSourceItemsRequest: Codable, JSONEncodable, Hashable {
         case parentId = "parent_id"
         case filters
         case pagination
+        case orderBy = "order_by"
+        case orderDir = "order_dir"
     }
 
     // Encodable protocol methods
@@ -39,6 +45,8 @@ public struct ListDataSourceItemsRequest: Codable, JSONEncodable, Hashable {
         try container.encodeIfPresent(parentId, forKey: .parentId)
         try container.encodeIfPresent(filters, forKey: .filters)
         try container.encodeIfPresent(pagination, forKey: .pagination)
+        try container.encodeIfPresent(orderBy, forKey: .orderBy)
+        try container.encodeIfPresent(orderDir, forKey: .orderDir)
     }
 }
 

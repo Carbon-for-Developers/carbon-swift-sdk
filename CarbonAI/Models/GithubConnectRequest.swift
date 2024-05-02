@@ -14,15 +14,19 @@ public struct GithubConnectRequest: Codable, JSONEncodable, Hashable {
 
     public var username: String
     public var accessToken: String
+    /** Enabling this flag will fetch all available content from the source to be listed via list items endpoint */
+    public var syncSourceItems: Bool? = false
 
-    public init(username: String, accessToken: String) {
+    public init(username: String, accessToken: String, syncSourceItems: Bool? = false) {
         self.username = username
         self.accessToken = accessToken
+        self.syncSourceItems = syncSourceItems
     }
 
     public enum CodingKeys: String, CodingKey, CaseIterable {
         case username
         case accessToken = "access_token"
+        case syncSourceItems = "sync_source_items"
     }
 
     // Encodable protocol methods
@@ -31,6 +35,7 @@ public struct GithubConnectRequest: Codable, JSONEncodable, Hashable {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encode(username, forKey: .username)
         try container.encode(accessToken, forKey: .accessToken)
+        try container.encodeIfPresent(syncSourceItems, forKey: .syncSourceItems)
     }
 }
 

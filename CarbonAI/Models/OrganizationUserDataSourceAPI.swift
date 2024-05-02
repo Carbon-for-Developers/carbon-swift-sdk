@@ -28,8 +28,9 @@ public struct OrganizationUserDataSourceAPI: Codable, JSONEncodable, Hashable {
     public var createdAt: Date
     public var updatedAt: Date
     public var filesSyncedAt: Date?
+    public var dataSourceMetadata: AnyCodable
 
-    public init(id: Int, dataSourceExternalId: String?, dataSourceType: DataSourceType, token: AnyCodable?, syncStatus: DataSourceSyncStatuses, sourceItemsSyncedAt: Date?, organizationUserId: Int, organizationId: Int, organizationSuppliedUserId: String, revokedAccess: Bool, lastSyncedAt: Date, lastSyncAction: DataSourceLastSyncActions, enableAutoSync: Bool?, createdAt: Date, updatedAt: Date, filesSyncedAt: Date?) {
+    public init(id: Int, dataSourceExternalId: String?, dataSourceType: DataSourceType, token: AnyCodable?, syncStatus: DataSourceSyncStatuses, sourceItemsSyncedAt: Date?, organizationUserId: Int, organizationId: Int, organizationSuppliedUserId: String, revokedAccess: Bool, lastSyncedAt: Date, lastSyncAction: DataSourceLastSyncActions, enableAutoSync: Bool?, createdAt: Date, updatedAt: Date, filesSyncedAt: Date?, dataSourceMetadata: AnyCodable) {
         self.id = id
         self.dataSourceExternalId = dataSourceExternalId
         self.dataSourceType = dataSourceType
@@ -46,6 +47,7 @@ public struct OrganizationUserDataSourceAPI: Codable, JSONEncodable, Hashable {
         self.createdAt = createdAt
         self.updatedAt = updatedAt
         self.filesSyncedAt = filesSyncedAt
+        self.dataSourceMetadata = dataSourceMetadata
     }
 
     public enum CodingKeys: String, CodingKey, CaseIterable {
@@ -65,6 +67,7 @@ public struct OrganizationUserDataSourceAPI: Codable, JSONEncodable, Hashable {
         case createdAt = "created_at"
         case updatedAt = "updated_at"
         case filesSyncedAt = "files_synced_at"
+        case dataSourceMetadata = "data_source_metadata"
     }
 
     // Encodable protocol methods
@@ -87,6 +90,7 @@ public struct OrganizationUserDataSourceAPI: Codable, JSONEncodable, Hashable {
         try container.encode(createdAt, forKey: .createdAt)
         try container.encode(updatedAt, forKey: .updatedAt)
         try container.encode(filesSyncedAt, forKey: .filesSyncedAt)
+        try container.encode(dataSourceMetadata, forKey: .dataSourceMetadata)
     }
 }
 

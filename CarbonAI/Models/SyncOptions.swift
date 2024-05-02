@@ -24,10 +24,12 @@ public struct SyncOptions: Codable, JSONEncodable, Hashable {
     /** Used to specify whether Carbon should attempt to sync all your files automatically when authorization         is complete. This is only supported for a subset of connectors and will be ignored for the rest. Supported         connectors: Intercom, Zendesk, Gitbook, Confluence, Salesforce, Freshdesk */
     public var syncFilesOnConnection: Bool? = true
     public var setPageAsBoundary: Bool? = false
-    public var requestId: String? = "e8fddc9a-4810-48b2-b1b5-b1ec0159625a"
+    public var requestId: String? = "7f46547c-7585-4463-bdd5-a1f8cde14b89"
     public var enableFilePicker: Bool? = true
+    /** Enabling this flag will fetch all available content from the source to be listed via list items endpoint */
+    public var syncSourceItems: Bool? = true
 
-    public init(tags: AnyCodable? = nil, chunkSize: Int? = 1500, chunkOverlap: Int? = 20, skipEmbeddingGeneration: Bool? = false, embeddingModel: EmbeddingGeneratorsNullable? = nil, generateSparseVectors: Bool? = false, prependFilenameToChunks: Bool? = false, maxItemsPerChunk: Int? = nil, syncFilesOnConnection: Bool? = true, setPageAsBoundary: Bool? = false, requestId: String? = "e8fddc9a-4810-48b2-b1b5-b1ec0159625a", enableFilePicker: Bool? = true) {
+    public init(tags: AnyCodable? = nil, chunkSize: Int? = 1500, chunkOverlap: Int? = 20, skipEmbeddingGeneration: Bool? = false, embeddingModel: EmbeddingGeneratorsNullable? = nil, generateSparseVectors: Bool? = false, prependFilenameToChunks: Bool? = false, maxItemsPerChunk: Int? = nil, syncFilesOnConnection: Bool? = true, setPageAsBoundary: Bool? = false, requestId: String? = "7f46547c-7585-4463-bdd5-a1f8cde14b89", enableFilePicker: Bool? = true, syncSourceItems: Bool? = true) {
         self.tags = tags
         self.chunkSize = chunkSize
         self.chunkOverlap = chunkOverlap
@@ -40,6 +42,7 @@ public struct SyncOptions: Codable, JSONEncodable, Hashable {
         self.setPageAsBoundary = setPageAsBoundary
         self.requestId = requestId
         self.enableFilePicker = enableFilePicker
+        self.syncSourceItems = syncSourceItems
     }
 
     public enum CodingKeys: String, CodingKey, CaseIterable {
@@ -55,6 +58,7 @@ public struct SyncOptions: Codable, JSONEncodable, Hashable {
         case setPageAsBoundary = "set_page_as_boundary"
         case requestId = "request_id"
         case enableFilePicker = "enable_file_picker"
+        case syncSourceItems = "sync_source_items"
     }
 
     // Encodable protocol methods
@@ -73,6 +77,7 @@ public struct SyncOptions: Codable, JSONEncodable, Hashable {
         try container.encodeIfPresent(setPageAsBoundary, forKey: .setPageAsBoundary)
         try container.encodeIfPresent(requestId, forKey: .requestId)
         try container.encodeIfPresent(enableFilePicker, forKey: .enableFilePicker)
+        try container.encodeIfPresent(syncSourceItems, forKey: .syncSourceItems)
     }
 }
 

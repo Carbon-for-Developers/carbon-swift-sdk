@@ -513,7 +513,7 @@ open class EmbeddingsAPI {
         chunksAndEmbeddings: [SingleChunksAndEmbeddingsUploadInput],
         overwriteExisting: Bool? = nil, 
         chunksOnly: Bool? = nil, 
-        customCredentials: AnyCodable? = nil
+        customCredentials: [String: AnyCodable]? = nil
     ) async throws -> GenericSuccessResponse {
         let chunksAndEmbeddingsUploadInput = ChunksAndEmbeddingsUploadInput(
             embeddingModel: embeddingModel,
@@ -548,7 +548,7 @@ open class EmbeddingsAPI {
         chunksAndEmbeddings: [SingleChunksAndEmbeddingsUploadInput],
         overwriteExisting: Bool? = nil, 
         chunksOnly: Bool? = nil, 
-        customCredentials: AnyCodable? = nil
+        customCredentials: [String: AnyCodable]? = nil
     ) async throws -> GenericSuccessResponse {
         let chunksAndEmbeddingsUploadInput = ChunksAndEmbeddingsUploadInput(
             embeddingModel: embeddingModel,

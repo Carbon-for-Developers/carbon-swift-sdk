@@ -23,8 +23,10 @@ public struct GitbookConnectRequest: Codable, JSONEncodable, Hashable {
     public var prependFilenameToChunks: Bool? = false
     public var syncFilesOnConnection: Bool? = true
     public var requestId: String?
+    /** Enabling this flag will fetch all available content from the source to be listed via list items endpoint */
+    public var syncSourceItems: Bool? = true
 
-    public init(tags: AnyCodable? = nil, organization: String, accessToken: String, chunkSize: Int? = 1500, chunkOverlap: Int? = 20, skipEmbeddingGeneration: Bool? = false, embeddingModel: EmbeddingGenerators? = nil, generateSparseVectors: Bool? = false, prependFilenameToChunks: Bool? = false, syncFilesOnConnection: Bool? = true, requestId: String? = nil) {
+    public init(tags: AnyCodable? = nil, organization: String, accessToken: String, chunkSize: Int? = 1500, chunkOverlap: Int? = 20, skipEmbeddingGeneration: Bool? = false, embeddingModel: EmbeddingGenerators? = nil, generateSparseVectors: Bool? = false, prependFilenameToChunks: Bool? = false, syncFilesOnConnection: Bool? = true, requestId: String? = nil, syncSourceItems: Bool? = true) {
         self.tags = tags
         self.organization = organization
         self.accessToken = accessToken
@@ -36,6 +38,7 @@ public struct GitbookConnectRequest: Codable, JSONEncodable, Hashable {
         self.prependFilenameToChunks = prependFilenameToChunks
         self.syncFilesOnConnection = syncFilesOnConnection
         self.requestId = requestId
+        self.syncSourceItems = syncSourceItems
     }
 
     public enum CodingKeys: String, CodingKey, CaseIterable {
@@ -50,6 +53,7 @@ public struct GitbookConnectRequest: Codable, JSONEncodable, Hashable {
         case prependFilenameToChunks = "prepend_filename_to_chunks"
         case syncFilesOnConnection = "sync_files_on_connection"
         case requestId = "request_id"
+        case syncSourceItems = "sync_source_items"
     }
 
     // Encodable protocol methods
@@ -67,6 +71,7 @@ public struct GitbookConnectRequest: Codable, JSONEncodable, Hashable {
         try container.encodeIfPresent(prependFilenameToChunks, forKey: .prependFilenameToChunks)
         try container.encodeIfPresent(syncFilesOnConnection, forKey: .syncFilesOnConnection)
         try container.encodeIfPresent(requestId, forKey: .requestId)
+        try container.encodeIfPresent(syncSourceItems, forKey: .syncSourceItems)
     }
 }
 

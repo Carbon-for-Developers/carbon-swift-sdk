@@ -19,4 +19,10 @@ public enum TextEmbeddingGenerators: String, Codable, CaseIterable {
     case openaiAdaLarge3072 = "OPENAI_ADA_LARGE_3072"
     case openaiAdaSmall512 = "OPENAI_ADA_SMALL_512"
     case openaiAdaSmall1536 = "OPENAI_ADA_SMALL_1536"
+    case azureAdaLarge256 = "AZURE_ADA_LARGE_256"
+    case azureAdaLarge1024 = "AZURE_ADA_LARGE_1024"
+    case azureAdaLarge3072 = "AZURE_ADA_LARGE_3072"
+    case azureAdaSmall512 = "AZURE_ADA_SMALL_512"
+    case azureAdaSmall1536 = "AZURE_ADA_SMALL_1536"
+    case solar1Mini = "SOLAR_1_MINI"
 }

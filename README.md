@@ -52,6 +52,7 @@ Connect external data to LLMs, no matter the source.
   * [`carbonai.integrations.listGitbookSpaces`](#carbonaiintegrationslistgitbookspaces)
   * [`carbonai.integrations.listLabels`](#carbonaiintegrationslistlabels)
   * [`carbonai.integrations.listOutlookCategories`](#carbonaiintegrationslistoutlookcategories)
+  * [`carbonai.integrations.listRepos`](#carbonaiintegrationslistrepos)
   * [`carbonai.integrations.syncConfluence`](#carbonaiintegrationssyncconfluence)
   * [`carbonai.integrations.syncDataSourceItems`](#carbonaiintegrationssyncdatasourceitems)
   * [`carbonai.integrations.syncFiles`](#carbonaiintegrationssyncfiles)
@@ -59,6 +60,7 @@ Connect external data to LLMs, no matter the source.
   * [`carbonai.integrations.syncGitbook`](#carbonaiintegrationssyncgitbook)
   * [`carbonai.integrations.syncGmail`](#carbonaiintegrationssyncgmail)
   * [`carbonai.integrations.syncOutlook`](#carbonaiintegrationssyncoutlook)
+  * [`carbonai.integrations.syncRepos`](#carbonaiintegrationssyncrepos)
   * [`carbonai.integrations.syncRssFeed`](#carbonaiintegrationssyncrssfeed)
   * [`carbonai.integrations.syncS3Files`](#carbonaiintegrationssyncs3files)
   * [`carbonai.organizations.callGet`](#carbonaiorganizationscallget)
@@ -638,7 +640,7 @@ let uploadChunksAndEmbeddingsResponse = try await carbonai.embeddings.uploadChun
 ##### chunks_only: `Bool`<a id="chunks_only-bool"></a>
 
 
-##### custom_credentials: `AnyCodable`<a id="custom_credentials-anycodable"></a>
+##### custom_credentials: `[String: AnyCodable]`<a id="custom_credentials-string-anycodable"></a>
 
 
 #### 🔄 Return<a id="🔄-return"></a>
@@ -1598,7 +1600,8 @@ let syncOptions = SyncOptions(
     syncFilesOnConnection: true,
     setPageAsBoundary: false,
     requestId: "requestId_example",
-    enableFilePicker: true
+    enableFilePicker: true,
+    syncSourceItems: true
 )
 let connectDataSourceResponse = try await carbonai.integrations.connectDataSource(
     authentication: authentication,
@@ -1651,6 +1654,7 @@ let generateSparseVectors = true
 let prependFilenameToChunks = true
 let syncFilesOnConnection = true
 let requestId = "requestId_example"
+let syncSourceItems = true
 let connectFreshdeskResponse = try await carbonai.integrations.connectFreshdesk(
     domain: domain,
     apiKey: apiKey,
@@ -1662,7 +1666,8 @@ let connectFreshdeskResponse = try await carbonai.integrations.connectFreshdesk(
     generateSparseVectors: generateSparseVectors,
     prependFilenameToChunks: prependFilenameToChunks,
     syncFilesOnConnection: syncFilesOnConnection,
-    requestId: requestId
+    requestId: requestId,
+    syncSourceItems: syncSourceItems
 )
 ```
 
@@ -1701,6 +1706,11 @@ let connectFreshdeskResponse = try await carbonai.integrations.connectFreshdesk(
 ##### request_id: `String`<a id="request_id-string"></a>
 
 
+##### sync_source_items: `Bool`<a id="sync_source_items-bool"></a>
+
+Enabling this flag will fetch all available content from the source to be listed via list items endpoint
+
+
 #### 🔄 Return<a id="🔄-return"></a>
 
 [GenericSuccessResponse](./CarbonAI/Models/GenericSuccessResponse.swift)
@@ -1737,6 +1747,7 @@ let generateSparseVectors = true
 let prependFilenameToChunks = true
 let syncFilesOnConnection = true
 let requestId = "requestId_example"
+let syncSourceItems = true
 let connectGitbookResponse = try await carbonai.integrations.connectGitbook(
     organization: organization,
     accessToken: accessToken,
@@ -1748,7 +1759,8 @@ let connectGitbookResponse = try await carbonai.integrations.connectGitbook(
     generateSparseVectors: generateSparseVectors,
     prependFilenameToChunks: prependFilenameToChunks,
     syncFilesOnConnection: syncFilesOnConnection,
-    requestId: requestId
+    requestId: requestId,
+    syncSourceItems: syncSourceItems
 )
 ```
 
@@ -1787,6 +1799,11 @@ let connectGitbookResponse = try await carbonai.integrations.connectGitbook(
 ##### request_id: `String`<a id="request_id-string"></a>
 
 
+##### sync_source_items: `Bool`<a id="sync_source_items-bool"></a>
+
+Enabling this flag will fetch all available content from the source to be listed via list items endpoint
+
+
 #### 🔄 Return<a id="🔄-return"></a>
 
 [GenericSuccessResponse](./CarbonAI/Models/GenericSuccessResponse.swift)
@@ -1815,9 +1832,11 @@ Once created, generate an access key for this user and share the credentials wit
 ```swift
 let accessKey = "accessKey_example"
 let accessKeySecret = "accessKeySecret_example"
+let syncSourceItems = true
 let createAwsIamUserResponse = try await carbonai.integrations.createAwsIamUser(
     accessKey: accessKey,
-    accessKeySecret: accessKeySecret
+    accessKeySecret: accessKeySecret,
+    syncSourceItems: syncSourceItems
 )
 ```
 
@@ -1827,6 +1846,11 @@ let createAwsIamUserResponse = try await carbonai.integrations.createAwsIamUser(
 
 
 ##### access_key_secret: `String`<a id="access_key_secret-string"></a>
+
+
+##### sync_source_items: `Bool`<a id="sync_source_items-bool"></a>
+
+Enabling this flag will fetch all available content from the source to be listed via list items endpoint
 
 
 #### 🔄 Return<a id="🔄-return"></a>
@@ -1879,6 +1903,7 @@ let requestId = "requestId_example"
 let useOcr = true
 let parsePdfTablesWithOcr = true
 let enableFilePicker = true
+let syncSourceItems = true
 let getOauthUrlResponse = try await carbonai.integrations.getOauthUrl(
     service: service,
     tags: tags,
@@ -1902,7 +1927,8 @@ let getOauthUrlResponse = try await carbonai.integrations.getOauthUrl(
     requestId: requestId,
     useOcr: useOcr,
     parsePdfTablesWithOcr: parsePdfTablesWithOcr,
-    enableFilePicker: enableFilePicker
+    enableFilePicker: enableFilePicker,
+    syncSourceItems: syncSourceItems
 )
 ```
 
@@ -1988,7 +2014,12 @@ Enable OCR for files that support it. Supported formats: pdf
 
 ##### enable_file_picker: `Bool`<a id="enable_file_picker-bool"></a>
 
-Enable integration's file picker for sources that support it. Supported sources: DROPBOX, BOX, ONEDRIVE, GOOGLE_DRIVE, SHAREPOINT
+Enable integration's file picker for sources that support it. Supported sources: GOOGLE_DRIVE, BOX, ONEDRIVE, DROPBOX, SHAREPOINT
+
+
+##### sync_source_items: `Bool`<a id="sync_source_items-bool"></a>
+
+Enabling this flag will fetch all available content from the source to be listed via list items endpoint
 
 
 #### 🔄 Return<a id="🔄-return"></a>
@@ -2069,11 +2100,19 @@ let pagination = Pagination(
     limit: 123,
     offset: 123
 )
+let orderBy = ExternalSourceItemsOrderBy(
+    
+)
+let orderDir = OrderDirV2(
+    
+)
 let listDataSourceItemsResponse = try await carbonai.integrations.listDataSourceItems(
     dataSourceId: dataSourceId,
     parentId: parentId,
     filters: filters,
-    pagination: pagination
+    pagination: pagination,
+    orderBy: orderBy,
+    orderDir: orderDir
 )
 ```
 
@@ -2089,6 +2128,12 @@ let listDataSourceItemsResponse = try await carbonai.integrations.listDataSource
 
 
 ##### pagination: [`Pagination`](./CarbonAI/Models/Pagination.swift)<a id="pagination-paginationcarbonaimodelspaginationswift"></a>
+
+
+##### order_by: `ExternalSourceItemsOrderBy`<a id="order_by-externalsourceitemsorderby"></a>
+
+
+##### order_dir: `OrderDirV2`<a id="order_dir-orderdirv2"></a>
 
 
 #### 🔄 Return<a id="🔄-return"></a>
@@ -2209,6 +2254,44 @@ let listOutlookCategoriesResponse = try await carbonai.integrations.listOutlookC
 #### 🌐 Endpoint<a id="🌐-endpoint"></a>
 
 `/integrations/outlook/user_categories` `GET`
+
+[🔙 **Back to Table of Contents**](#table-of-contents)
+
+---
+
+
+### `carbonai.integrations.listRepos`<a id="carbonaiintegrationslistrepos"></a>
+
+Once you have connected your GitHub account, you can use this endpoint to list the 
+    repositories your account has access to. You can use a data source ID or username to fetch from a specific account.
+
+#### 🛠️ Usage<a id="🛠️-usage"></a>
+
+```swift
+let perPage = 987
+let page = 987
+let dataSourceId = 987
+let listReposResponse = try await carbonai.integrations.listRepos(
+    perPage: perPage,
+    page: page,
+    dataSourceId: dataSourceId
+)
+```
+
+#### ⚙️ Parameters<a id="⚙️-parameters"></a>
+
+##### perPage: `Int`<a id="perpage-int"></a>
+
+
+##### page: `Int`<a id="page-int"></a>
+
+
+##### dataSourceId: `Int`<a id="datasourceid-int"></a>
+
+
+#### 🌐 Endpoint<a id="🌐-endpoint"></a>
+
+`/integrations/github/repos` `GET`
 
 [🔙 **Back to Table of Contents**](#table-of-contents)
 
@@ -2467,9 +2550,11 @@ expires you will need to manually update it through this endpoint.
 ```swift
 let username = "username_example"
 let accessToken = "accessToken_example"
+let syncSourceItems = true
 let syncGitHubResponse = try await carbonai.integrations.syncGitHub(
     username: username,
-    accessToken: accessToken
+    accessToken: accessToken,
+    syncSourceItems: syncSourceItems
 )
 ```
 
@@ -2479,6 +2564,11 @@ let syncGitHubResponse = try await carbonai.integrations.syncGitHub(
 
 
 ##### access_token: `String`<a id="access_token-string"></a>
+
+
+##### sync_source_items: `Bool`<a id="sync_source_items-bool"></a>
+
+Enabling this flag will fetch all available content from the source to be listed via list items endpoint
 
 
 #### 🔄 Return<a id="🔄-return"></a>
@@ -2844,6 +2934,42 @@ let syncOutlookResponse = try await carbonai.integrations.syncOutlook(
 #### 🌐 Endpoint<a id="🌐-endpoint"></a>
 
 `/integrations/outlook/sync` `POST`
+
+[🔙 **Back to Table of Contents**](#table-of-contents)
+
+---
+
+
+### `carbonai.integrations.syncRepos`<a id="carbonaiintegrationssyncrepos"></a>
+
+You can retreive repos your token has access to using /integrations/github/repos and sync their content. 
+You can also pass full name of any public repository (username/repo-name). This will store the repo content with 
+carbon which can be accessed through /integrations/items/list endpoint. Maximum of 25 repositories are accepted per request.
+
+#### 🛠️ Usage<a id="🛠️-usage"></a>
+
+```swift
+let repos = [
+"inner_example"
+]
+let dataSourceId = 987
+let syncReposResponse = try await carbonai.integrations.syncRepos(
+    repos: repos,
+    dataSourceId: dataSourceId
+)
+```
+
+#### ⚙️ Parameters<a id="⚙️-parameters"></a>
+
+##### repos: `[String]`<a id="repos-string"></a>
+
+
+##### data_source_id: `Int`<a id="data_source_id-int"></a>
+
+
+#### 🌐 Endpoint<a id="🌐-endpoint"></a>
+
+`/integrations/github/sync_repos` `POST`
 
 [🔙 **Back to Table of Contents**](#table-of-contents)
 

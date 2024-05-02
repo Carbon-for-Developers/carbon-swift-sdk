@@ -265,7 +265,8 @@ open class IntegrationsAPI {
         generateSparseVectors: Bool? = nil, 
         prependFilenameToChunks: Bool? = nil, 
         syncFilesOnConnection: Bool? = nil, 
-        requestId: String? = nil
+        requestId: String? = nil, 
+        syncSourceItems: Bool? = nil
     ) async throws -> GenericSuccessResponse {
         let freshDeskConnectRequest = FreshDeskConnectRequest(
             tags: tags,
@@ -278,7 +279,8 @@ open class IntegrationsAPI {
             generateSparseVectors: generateSparseVectors,
             prependFilenameToChunks: prependFilenameToChunks,
             syncFilesOnConnection: syncFilesOnConnection,
-            requestId: requestId
+            requestId: requestId,
+            syncSourceItems: syncSourceItems
         )
         return try await withCheckedThrowingContinuation { continuation in
             connectFreshdeskWithRequestBuilder(freshDeskConnectRequest: freshDeskConnectRequest).execute { result in
@@ -312,7 +314,8 @@ open class IntegrationsAPI {
         generateSparseVectors: Bool? = nil, 
         prependFilenameToChunks: Bool? = nil, 
         syncFilesOnConnection: Bool? = nil, 
-        requestId: String? = nil
+        requestId: String? = nil, 
+        syncSourceItems: Bool? = nil
     ) async throws -> GenericSuccessResponse {
         let freshDeskConnectRequest = FreshDeskConnectRequest(
             tags: tags,
@@ -325,7 +328,8 @@ open class IntegrationsAPI {
             generateSparseVectors: generateSparseVectors,
             prependFilenameToChunks: prependFilenameToChunks,
             syncFilesOnConnection: syncFilesOnConnection,
-            requestId: requestId
+            requestId: requestId,
+            syncSourceItems: syncSourceItems
         )
         return try await withCheckedThrowingContinuation { continuation in
             connectFreshdeskWithRequestBuilder(freshDeskConnectRequest: freshDeskConnectRequest).execute { result in
@@ -491,7 +495,8 @@ open class IntegrationsAPI {
         generateSparseVectors: Bool? = nil, 
         prependFilenameToChunks: Bool? = nil, 
         syncFilesOnConnection: Bool? = nil, 
-        requestId: String? = nil
+        requestId: String? = nil, 
+        syncSourceItems: Bool? = nil
     ) async throws -> GenericSuccessResponse {
         let gitbookConnectRequest = GitbookConnectRequest(
             tags: tags,
@@ -504,7 +509,8 @@ open class IntegrationsAPI {
             generateSparseVectors: generateSparseVectors,
             prependFilenameToChunks: prependFilenameToChunks,
             syncFilesOnConnection: syncFilesOnConnection,
-            requestId: requestId
+            requestId: requestId,
+            syncSourceItems: syncSourceItems
         )
         return try await withCheckedThrowingContinuation { continuation in
             connectGitbookWithRequestBuilder(gitbookConnectRequest: gitbookConnectRequest).execute { result in
@@ -538,7 +544,8 @@ open class IntegrationsAPI {
         generateSparseVectors: Bool? = nil, 
         prependFilenameToChunks: Bool? = nil, 
         syncFilesOnConnection: Bool? = nil, 
-        requestId: String? = nil
+        requestId: String? = nil, 
+        syncSourceItems: Bool? = nil
     ) async throws -> GenericSuccessResponse {
         let gitbookConnectRequest = GitbookConnectRequest(
             tags: tags,
@@ -551,7 +558,8 @@ open class IntegrationsAPI {
             generateSparseVectors: generateSparseVectors,
             prependFilenameToChunks: prependFilenameToChunks,
             syncFilesOnConnection: syncFilesOnConnection,
-            requestId: requestId
+            requestId: requestId,
+            syncSourceItems: syncSourceItems
         )
         return try await withCheckedThrowingContinuation { continuation in
             connectGitbookWithRequestBuilder(gitbookConnectRequest: gitbookConnectRequest).execute { result in
@@ -708,11 +716,13 @@ open class IntegrationsAPI {
     @available(iOS 13.0, macOS 10.15, tvOS 13.0, watchOS 6.0, *)
     open class func createAwsIamUser(
         accessKey: String,
-        accessKeySecret: String
+        accessKeySecret: String,
+        syncSourceItems: Bool? = nil
     ) async throws -> OrganizationUserDataSourceAPI {
         let s3AuthRequest = S3AuthRequest(
             accessKey: accessKey,
-            accessKeySecret: accessKeySecret
+            accessKeySecret: accessKeySecret,
+            syncSourceItems: syncSourceItems
         )
         return try await withCheckedThrowingContinuation { continuation in
             createAwsIamUserWithRequestBuilder(s3AuthRequest: s3AuthRequest).execute { result in
@@ -737,11 +747,13 @@ open class IntegrationsAPI {
     @available(iOS 13.0, macOS 10.15, tvOS 13.0, watchOS 6.0, *)
     open func createAwsIamUser(
         accessKey: String,
-        accessKeySecret: String
+        accessKeySecret: String,
+        syncSourceItems: Bool? = nil
     ) async throws -> OrganizationUserDataSourceAPI {
         let s3AuthRequest = S3AuthRequest(
             accessKey: accessKey,
-            accessKeySecret: accessKeySecret
+            accessKeySecret: accessKeySecret,
+            syncSourceItems: syncSourceItems
         )
         return try await withCheckedThrowingContinuation { continuation in
             createAwsIamUserWithRequestBuilder(s3AuthRequest: s3AuthRequest).execute { result in
@@ -919,7 +931,8 @@ open class IntegrationsAPI {
         requestId: String? = nil, 
         useOcr: Bool? = nil, 
         parsePdfTablesWithOcr: Bool? = nil, 
-        enableFilePicker: Bool? = nil
+        enableFilePicker: Bool? = nil, 
+        syncSourceItems: Bool? = nil
     ) async throws -> OuthURLResponse {
         let oAuthURLRequest = OAuthURLRequest(
             tags: tags,
@@ -944,7 +957,8 @@ open class IntegrationsAPI {
             requestId: requestId,
             useOcr: useOcr,
             parsePdfTablesWithOcr: parsePdfTablesWithOcr,
-            enableFilePicker: enableFilePicker
+            enableFilePicker: enableFilePicker,
+            syncSourceItems: syncSourceItems
         )
         return try await withCheckedThrowingContinuation { continuation in
             getOauthUrlWithRequestBuilder(oAuthURLRequest: oAuthURLRequest).execute { result in
@@ -990,7 +1004,8 @@ open class IntegrationsAPI {
         requestId: String? = nil, 
         useOcr: Bool? = nil, 
         parsePdfTablesWithOcr: Bool? = nil, 
-        enableFilePicker: Bool? = nil
+        enableFilePicker: Bool? = nil, 
+        syncSourceItems: Bool? = nil
     ) async throws -> OuthURLResponse {
         let oAuthURLRequest = OAuthURLRequest(
             tags: tags,
@@ -1015,7 +1030,8 @@ open class IntegrationsAPI {
             requestId: requestId,
             useOcr: useOcr,
             parsePdfTablesWithOcr: parsePdfTablesWithOcr,
-            enableFilePicker: enableFilePicker
+            enableFilePicker: enableFilePicker,
+            syncSourceItems: syncSourceItems
         )
         return try await withCheckedThrowingContinuation { continuation in
             getOauthUrlWithRequestBuilder(oAuthURLRequest: oAuthURLRequest).execute { result in
@@ -1364,13 +1380,17 @@ open class IntegrationsAPI {
         dataSourceId: Int,
         parentId: String? = nil, 
         filters: ListItemsFiltersNullable? = nil, 
-        pagination: Pagination? = nil
+        pagination: Pagination? = nil, 
+        orderBy: ExternalSourceItemsOrderBy? = nil, 
+        orderDir: OrderDirV2? = nil
     ) async throws -> ListDataSourceItemsResponse {
         let listDataSourceItemsRequest = ListDataSourceItemsRequest(
             dataSourceId: dataSourceId,
             parentId: parentId,
             filters: filters,
-            pagination: pagination
+            pagination: pagination,
+            orderBy: orderBy,
+            orderDir: orderDir
         )
         return try await withCheckedThrowingContinuation { continuation in
             listDataSourceItemsWithRequestBuilder(listDataSourceItemsRequest: listDataSourceItemsRequest).execute { result in
@@ -1397,13 +1417,17 @@ open class IntegrationsAPI {
         dataSourceId: Int,
         parentId: String? = nil, 
         filters: ListItemsFiltersNullable? = nil, 
-        pagination: Pagination? = nil
+        pagination: Pagination? = nil, 
+        orderBy: ExternalSourceItemsOrderBy? = nil, 
+        orderDir: OrderDirV2? = nil
     ) async throws -> ListDataSourceItemsResponse {
         let listDataSourceItemsRequest = ListDataSourceItemsRequest(
             dataSourceId: dataSourceId,
             parentId: parentId,
             filters: filters,
-            pagination: pagination
+            pagination: pagination,
+            orderBy: orderBy,
+            orderDir: orderDir
         )
         return try await withCheckedThrowingContinuation { continuation in
             listDataSourceItemsWithRequestBuilder(listDataSourceItemsRequest: listDataSourceItemsRequest).execute { result in
@@ -2245,6 +2269,214 @@ open class IntegrationsAPI {
 
 
     /**
+     Github List Repos
+     
+     - parameter perPage: (query)  (optional, default to 30)
+     - parameter page: (query)  (optional, default to 1)
+     - parameter dataSourceId: (query)  (optional)
+     - parameter apiResponseQueue: The queue on which api response is dispatched.
+     - parameter completion: completion handler to receive the data and the error objects
+     */
+    @discardableResult
+    open class func listReposSync(perPage: Int? = nil, page: Int? = nil, dataSourceId: Int? = nil, apiResponseQueue: DispatchQueue = CarbonAIAPI.apiResponseQueue, completion: @escaping ((_ data: AnyCodable?, _ error: Error?) -> Void)) -> RequestTask {
+        return listReposWithRequestBuilder(perPage: perPage, page: page, dataSourceId: dataSourceId).execute(apiResponseQueue) { result in
+            switch result {
+            case let .success(response):
+                completion(response.body, nil)
+            case let .failure(error):
+                completion(nil, error)
+            }
+        }
+    }
+
+    /**
+     Github List Repos
+     
+     - parameter perPage: (query)  (optional, default to 30)
+     - parameter page: (query)  (optional, default to 1)
+     - parameter dataSourceId: (query)  (optional)
+     - parameter apiResponseQueue: The queue on which api response is dispatched.
+     - parameter completion: completion handler to receive the data and the error objects
+     */
+    @available(iOS 13.0, macOS 10.15, tvOS 13.0, watchOS 6.0, *)
+    private class func listReposAsyncMappedParams(perPage: Int? = nil, page: Int? = nil, dataSourceId: Int? = nil) async throws -> AnyCodable {
+        return try await withCheckedThrowingContinuation { continuation in
+            listReposWithRequestBuilder(perPage: perPage, page: page, dataSourceId: dataSourceId).execute { result in
+                switch result {
+                case let .success(response):
+                    continuation.resume(returning: response.body)
+                case let .failure(error):
+                    continuation.resume(throwing: error)
+                }
+            }
+        }
+    }
+
+    /**
+     Github List Repos
+     
+     - parameter perPage: (query)  (optional, default to 30)
+     - parameter page: (query)  (optional, default to 1)
+     - parameter dataSourceId: (query)  (optional)
+     - parameter apiResponseQueue: The queue on which api response is dispatched.
+     - parameter completion: completion handler to receive the data and the error objects
+     */
+    @available(iOS 13.0, macOS 10.15, tvOS 13.0, watchOS 6.0, *)
+    open class func listRepos(
+        perPage: Int? = nil, 
+        page: Int? = nil, 
+        dataSourceId: Int? = nil
+    ) async throws -> AnyCodable {
+        return try await withCheckedThrowingContinuation { continuation in
+            listReposWithRequestBuilder(perPage: perPage, page: page, dataSourceId: dataSourceId).execute { result in
+                switch result {
+                case let .success(response):
+                    continuation.resume(returning: response.body)
+                case let .failure(error):
+                    continuation.resume(throwing: error)
+                }
+            }
+        }
+    }
+
+
+    /**
+     Github List Repos
+     
+     - parameter perPage: (query)  (optional, default to 30)
+     - parameter page: (query)  (optional, default to 1)
+     - parameter dataSourceId: (query)  (optional)
+     - parameter apiResponseQueue: The queue on which api response is dispatched.
+     - parameter completion: completion handler to receive the data and the error objects
+     */
+    @available(iOS 13.0, macOS 10.15, tvOS 13.0, watchOS 6.0, *)
+    open func listRepos(
+        perPage: Int? = nil, 
+        page: Int? = nil, 
+        dataSourceId: Int? = nil
+    ) async throws -> AnyCodable {
+        return try await withCheckedThrowingContinuation { continuation in
+            listReposWithRequestBuilder(perPage: perPage, page: page, dataSourceId: dataSourceId).execute { result in
+                switch result {
+                case let .success(response):
+                    continuation.resume(returning: response.body)
+                case let .failure(error):
+                    continuation.resume(throwing: error)
+                }
+            }
+        }
+    }
+
+
+
+    /**
+     Github List Repos
+     - GET /integrations/github/repos
+     - Once you have connected your GitHub account, you can use this endpoint to list the      repositories your account has access to. You can use a data source ID or username to fetch from a specific account.
+     - API Key:
+       - type: apiKey authorization 
+       - name: accessToken
+     - API Key:
+       - type: apiKey authorization 
+       - name: apiKey
+     - API Key:
+       - type: apiKey customer-id 
+       - name: customerId
+     - parameter perPage: (query)  (optional, default to 30)
+     - parameter page: (query)  (optional, default to 1)
+     - parameter dataSourceId: (query)  (optional)
+     - returns: RequestBuilder<AnyCodable> 
+     */
+    open class func listReposWithRequestBuilder(
+            perPage: Int? = nil,
+            page: Int? = nil,
+            dataSourceId: Int? = nil
+    ) -> RequestBuilder<AnyCodable> {
+        let basePath = CarbonAIAPI.basePath;
+        let localVariablePath = "/integrations/github/repos"
+        let localVariableURLString = basePath + localVariablePath
+        let localVariableParameters: [String: Any]? = nil
+        var localVariableUrlComponents = URLComponents(string: localVariableURLString)
+        localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems([
+            "per_page": (wrappedValue: perPage?.encodeToJSON(), isExplode: true),
+            "page": (wrappedValue: page?.encodeToJSON(), isExplode: true),
+            "data_source_id": (wrappedValue: dataSourceId?.encodeToJSON(), isExplode: true),
+        ])
+
+        let localVariableNillableHeaders: [String: Any?] = [
+            :
+        ]
+
+        var localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
+
+        do {
+            try Authentication.setAuthenticationParameters(headers: &localVariableHeaderParameters, url: &localVariableUrlComponents, in: "header", name: "authorization", value: CarbonAIAPI.accessToken, prefix: "Token ")
+            try Authentication.setAuthenticationParameters(headers: &localVariableHeaderParameters, url: &localVariableUrlComponents, in: "header", name: "authorization", value: CarbonAIAPI.apiKey, prefix: "Bearer ")
+            try Authentication.setAuthenticationParameters(headers: &localVariableHeaderParameters, url: &localVariableUrlComponents, in: "header", name: "customer-id", value: CarbonAIAPI.customerId, prefix: nil)
+            let localVariableRequestBuilder: RequestBuilder<AnyCodable>.Type = CarbonAIAPI.requestBuilderFactory.getBuilder()
+            let URLString = localVariableUrlComponents?.string ?? localVariableURLString
+            return localVariableRequestBuilder.init(method: "GET", URLString: URLString, parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        } catch {
+            print("Error: \(error)")
+        }
+        fatalError("Error: Unable to send request to GET /integrations/github/repos")
+    }
+
+    /**
+     Github List Repos
+     - GET /integrations/github/repos
+     - Once you have connected your GitHub account, you can use this endpoint to list the      repositories your account has access to. You can use a data source ID or username to fetch from a specific account.
+     - API Key:
+       - type: apiKey authorization 
+       - name: accessToken
+     - API Key:
+       - type: apiKey authorization 
+       - name: apiKey
+     - API Key:
+       - type: apiKey customer-id 
+       - name: customerId
+     - parameter perPage: (query)  (optional, default to 30)
+     - parameter page: (query)  (optional, default to 1)
+     - parameter dataSourceId: (query)  (optional)
+     - returns: RequestBuilder<AnyCodable> 
+     */
+    open func listReposWithRequestBuilder(
+            perPage: Int? = nil,
+            page: Int? = nil,
+            dataSourceId: Int? = nil
+    ) -> RequestBuilder<AnyCodable> {
+        let basePath = self.client.basePath;
+        let localVariablePath = "/integrations/github/repos"
+        let localVariableURLString = basePath + localVariablePath
+        let localVariableParameters: [String: Any]? = nil
+        var localVariableUrlComponents = URLComponents(string: localVariableURLString)
+        localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems([
+            "per_page": (wrappedValue: perPage?.encodeToJSON(), isExplode: true),
+            "page": (wrappedValue: page?.encodeToJSON(), isExplode: true),
+            "data_source_id": (wrappedValue: dataSourceId?.encodeToJSON(), isExplode: true),
+        ])
+
+        let localVariableNillableHeaders: [String: Any?] = [
+            :
+        ]
+
+        var localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
+
+        do {
+            try Authentication.setAuthenticationParameters(headers: &localVariableHeaderParameters, url: &localVariableUrlComponents, in: "header", name: "authorization", value: self.client.accessToken, prefix: "Token ")
+            try Authentication.setAuthenticationParameters(headers: &localVariableHeaderParameters, url: &localVariableUrlComponents, in: "header", name: "authorization", value: self.client.apiKey, prefix: "Bearer ")
+            try Authentication.setAuthenticationParameters(headers: &localVariableHeaderParameters, url: &localVariableUrlComponents, in: "header", name: "customer-id", value: self.client.customerId, prefix: nil)
+            let localVariableRequestBuilder: RequestBuilder<AnyCodable>.Type = CarbonAIAPI.requestBuilderFactory.getBuilder()
+            let URLString = localVariableUrlComponents?.string ?? localVariableURLString
+            return localVariableRequestBuilder.init(method: "GET", URLString: URLString, parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        } catch {
+            print("Error: \(error)")
+        }
+        fatalError("Error: Unable to send request to GET /integrations/github/repos")
+    }
+
+
+    /**
      Confluence Sync
      
      - parameter syncFilesRequest: (body)  
@@ -2954,11 +3186,13 @@ open class IntegrationsAPI {
     @available(iOS 13.0, macOS 10.15, tvOS 13.0, watchOS 6.0, *)
     open class func syncGitHub(
         username: String,
-        accessToken: String
+        accessToken: String,
+        syncSourceItems: Bool? = nil
     ) async throws -> GenericSuccessResponse {
         let githubConnectRequest = GithubConnectRequest(
             username: username,
-            accessToken: accessToken
+            accessToken: accessToken,
+            syncSourceItems: syncSourceItems
         )
         return try await withCheckedThrowingContinuation { continuation in
             syncGitHubWithRequestBuilder(githubConnectRequest: githubConnectRequest).execute { result in
@@ -2983,11 +3217,13 @@ open class IntegrationsAPI {
     @available(iOS 13.0, macOS 10.15, tvOS 13.0, watchOS 6.0, *)
     open func syncGitHub(
         username: String,
-        accessToken: String
+        accessToken: String,
+        syncSourceItems: Bool? = nil
     ) async throws -> GenericSuccessResponse {
         let githubConnectRequest = GithubConnectRequest(
             username: username,
-            accessToken: accessToken
+            accessToken: accessToken,
+            syncSourceItems: syncSourceItems
         )
         return try await withCheckedThrowingContinuation { continuation in
             syncGitHubWithRequestBuilder(githubConnectRequest: githubConnectRequest).execute { result in
@@ -3769,6 +4005,196 @@ open class IntegrationsAPI {
             print("Error: \(error)")
         }
         fatalError("Error: Unable to send request to POST /integrations/outlook/sync")
+    }
+
+
+    /**
+     Github Sync Repos
+     
+     - parameter githubFetchReposRequest: (body)  
+     - parameter apiResponseQueue: The queue on which api response is dispatched.
+     - parameter completion: completion handler to receive the data and the error objects
+     */
+    @discardableResult
+    open class func syncReposSync(githubFetchReposRequest: GithubFetchReposRequest, apiResponseQueue: DispatchQueue = CarbonAIAPI.apiResponseQueue, completion: @escaping ((_ data: AnyCodable?, _ error: Error?) -> Void)) -> RequestTask {
+        return syncReposWithRequestBuilder(githubFetchReposRequest: githubFetchReposRequest).execute(apiResponseQueue) { result in
+            switch result {
+            case let .success(response):
+                completion(response.body, nil)
+            case let .failure(error):
+                completion(nil, error)
+            }
+        }
+    }
+
+    /**
+     Github Sync Repos
+     
+     - parameter githubFetchReposRequest: (body)  
+     - parameter apiResponseQueue: The queue on which api response is dispatched.
+     - parameter completion: completion handler to receive the data and the error objects
+     */
+    @available(iOS 13.0, macOS 10.15, tvOS 13.0, watchOS 6.0, *)
+    private class func syncReposAsyncMappedParams(githubFetchReposRequest: GithubFetchReposRequest) async throws -> AnyCodable {
+        return try await withCheckedThrowingContinuation { continuation in
+            syncReposWithRequestBuilder(githubFetchReposRequest: githubFetchReposRequest).execute { result in
+                switch result {
+                case let .success(response):
+                    continuation.resume(returning: response.body)
+                case let .failure(error):
+                    continuation.resume(throwing: error)
+                }
+            }
+        }
+    }
+
+    /**
+     Github Sync Repos
+     
+     - parameter githubFetchReposRequest: (body)  
+     - parameter apiResponseQueue: The queue on which api response is dispatched.
+     - parameter completion: completion handler to receive the data and the error objects
+     */
+    @available(iOS 13.0, macOS 10.15, tvOS 13.0, watchOS 6.0, *)
+    open class func syncRepos(
+        repos: [String],
+        dataSourceId: Int? = nil
+    ) async throws -> AnyCodable {
+        let githubFetchReposRequest = GithubFetchReposRequest(
+            repos: repos,
+            dataSourceId: dataSourceId
+        )
+        return try await withCheckedThrowingContinuation { continuation in
+            syncReposWithRequestBuilder(githubFetchReposRequest: githubFetchReposRequest).execute { result in
+                switch result {
+                case let .success(response):
+                    continuation.resume(returning: response.body)
+                case let .failure(error):
+                    continuation.resume(throwing: error)
+                }
+            }
+        }
+    }
+
+
+    /**
+     Github Sync Repos
+     
+     - parameter githubFetchReposRequest: (body)  
+     - parameter apiResponseQueue: The queue on which api response is dispatched.
+     - parameter completion: completion handler to receive the data and the error objects
+     */
+    @available(iOS 13.0, macOS 10.15, tvOS 13.0, watchOS 6.0, *)
+    open func syncRepos(
+        repos: [String],
+        dataSourceId: Int? = nil
+    ) async throws -> AnyCodable {
+        let githubFetchReposRequest = GithubFetchReposRequest(
+            repos: repos,
+            dataSourceId: dataSourceId
+        )
+        return try await withCheckedThrowingContinuation { continuation in
+            syncReposWithRequestBuilder(githubFetchReposRequest: githubFetchReposRequest).execute { result in
+                switch result {
+                case let .success(response):
+                    continuation.resume(returning: response.body)
+                case let .failure(error):
+                    continuation.resume(throwing: error)
+                }
+            }
+        }
+    }
+
+
+
+    /**
+     Github Sync Repos
+     - POST /integrations/github/sync_repos
+     - You can retreive repos your token has access to using /integrations/github/repos and sync their content.  You can also pass full name of any public repository (username/repo-name). This will store the repo content with  carbon which can be accessed through /integrations/items/list endpoint. Maximum of 25 repositories are accepted per request.
+     - API Key:
+       - type: apiKey authorization 
+       - name: accessToken
+     - API Key:
+       - type: apiKey authorization 
+       - name: apiKey
+     - API Key:
+       - type: apiKey customer-id 
+       - name: customerId
+     - parameter githubFetchReposRequest: (body)  
+     - returns: RequestBuilder<AnyCodable> 
+     */
+    open class func syncReposWithRequestBuilder(
+            githubFetchReposRequest: GithubFetchReposRequest
+    ) -> RequestBuilder<AnyCodable> {
+        let basePath = CarbonAIAPI.basePath;
+        let localVariablePath = "/integrations/github/sync_repos"
+        let localVariableURLString = basePath + localVariablePath
+        let localVariableParameters = JSONEncodingHelper.encodingParameters(forEncodableObject: githubFetchReposRequest)
+
+        var localVariableUrlComponents = URLComponents(string: localVariableURLString)
+
+        let localVariableNillableHeaders: [String: Any?] = [
+            :
+        ]
+
+        var localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
+
+        do {
+            try Authentication.setAuthenticationParameters(headers: &localVariableHeaderParameters, url: &localVariableUrlComponents, in: "header", name: "authorization", value: CarbonAIAPI.accessToken, prefix: "Token ")
+            try Authentication.setAuthenticationParameters(headers: &localVariableHeaderParameters, url: &localVariableUrlComponents, in: "header", name: "authorization", value: CarbonAIAPI.apiKey, prefix: "Bearer ")
+            try Authentication.setAuthenticationParameters(headers: &localVariableHeaderParameters, url: &localVariableUrlComponents, in: "header", name: "customer-id", value: CarbonAIAPI.customerId, prefix: nil)
+            let localVariableRequestBuilder: RequestBuilder<AnyCodable>.Type = CarbonAIAPI.requestBuilderFactory.getBuilder()
+            let URLString = localVariableUrlComponents?.string ?? localVariableURLString
+            return localVariableRequestBuilder.init(method: "POST", URLString: URLString, parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        } catch {
+            print("Error: \(error)")
+        }
+        fatalError("Error: Unable to send request to POST /integrations/github/sync_repos")
+    }
+
+    /**
+     Github Sync Repos
+     - POST /integrations/github/sync_repos
+     - You can retreive repos your token has access to using /integrations/github/repos and sync their content.  You can also pass full name of any public repository (username/repo-name). This will store the repo content with  carbon which can be accessed through /integrations/items/list endpoint. Maximum of 25 repositories are accepted per request.
+     - API Key:
+       - type: apiKey authorization 
+       - name: accessToken
+     - API Key:
+       - type: apiKey authorization 
+       - name: apiKey
+     - API Key:
+       - type: apiKey customer-id 
+       - name: customerId
+     - parameter githubFetchReposRequest: (body)  
+     - returns: RequestBuilder<AnyCodable> 
+     */
+    open func syncReposWithRequestBuilder(
+            githubFetchReposRequest: GithubFetchReposRequest
+    ) -> RequestBuilder<AnyCodable> {
+        let basePath = self.client.basePath;
+        let localVariablePath = "/integrations/github/sync_repos"
+        let localVariableURLString = basePath + localVariablePath
+        let localVariableParameters = JSONEncodingHelper.encodingParameters(forEncodableObject: githubFetchReposRequest)
+
+        var localVariableUrlComponents = URLComponents(string: localVariableURLString)
+
+        let localVariableNillableHeaders: [String: Any?] = [
+            :
+        ]
+
+        var localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
+
+        do {
+            try Authentication.setAuthenticationParameters(headers: &localVariableHeaderParameters, url: &localVariableUrlComponents, in: "header", name: "authorization", value: self.client.accessToken, prefix: "Token ")
+            try Authentication.setAuthenticationParameters(headers: &localVariableHeaderParameters, url: &localVariableUrlComponents, in: "header", name: "authorization", value: self.client.apiKey, prefix: "Bearer ")
+            try Authentication.setAuthenticationParameters(headers: &localVariableHeaderParameters, url: &localVariableUrlComponents, in: "header", name: "customer-id", value: self.client.customerId, prefix: nil)
+            let localVariableRequestBuilder: RequestBuilder<AnyCodable>.Type = CarbonAIAPI.requestBuilderFactory.getBuilder()
+            let URLString = localVariableUrlComponents?.string ?? localVariableURLString
+            return localVariableRequestBuilder.init(method: "POST", URLString: URLString, parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        } catch {
+            print("Error: \(error)")
+        }
+        fatalError("Error: Unable to send request to POST /integrations/github/sync_repos")
     }
 
 

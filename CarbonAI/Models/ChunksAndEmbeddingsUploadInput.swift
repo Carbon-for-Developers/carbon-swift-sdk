@@ -16,9 +16,9 @@ public struct ChunksAndEmbeddingsUploadInput: Codable, JSONEncodable, Hashable {
     public var chunksAndEmbeddings: [SingleChunksAndEmbeddingsUploadInput]
     public var overwriteExisting: Bool? = false
     public var chunksOnly: Bool? = false
-    public var customCredentials: AnyCodable?
+    public var customCredentials: [String: AnyCodable]?
 
-    public init(embeddingModel: EmbeddingGenerators, chunksAndEmbeddings: [SingleChunksAndEmbeddingsUploadInput], overwriteExisting: Bool? = false, chunksOnly: Bool? = false, customCredentials: AnyCodable? = nil) {
+    public init(embeddingModel: EmbeddingGenerators, chunksAndEmbeddings: [SingleChunksAndEmbeddingsUploadInput], overwriteExisting: Bool? = false, chunksOnly: Bool? = false, customCredentials: [String: AnyCodable]? = nil) {
         self.embeddingModel = embeddingModel
         self.chunksAndEmbeddings = chunksAndEmbeddings
         self.overwriteExisting = overwriteExisting

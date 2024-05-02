@@ -14,15 +14,19 @@ public struct S3AuthRequest: Codable, JSONEncodable, Hashable {
 
     public var accessKey: String
     public var accessKeySecret: String
+    /** Enabling this flag will fetch all available content from the source to be listed via list items endpoint */
+    public var syncSourceItems: Bool? = true
 
-    public init(accessKey: String, accessKeySecret: String) {
+    public init(accessKey: String, accessKeySecret: String, syncSourceItems: Bool? = true) {
         self.accessKey = accessKey
         self.accessKeySecret = accessKeySecret
+        self.syncSourceItems = syncSourceItems
     }
 
     public enum CodingKeys: String, CodingKey, CaseIterable {
         case accessKey = "access_key"
         case accessKeySecret = "access_key_secret"
+        case syncSourceItems = "sync_source_items"
     }
 
     // Encodable protocol methods
@@ -31,6 +35,7 @@ public struct S3AuthRequest: Codable, JSONEncodable, Hashable {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encode(accessKey, forKey: .accessKey)
         try container.encode(accessKeySecret, forKey: .accessKeySecret)
+        try container.encodeIfPresent(syncSourceItems, forKey: .syncSourceItems)
     }
 }
 
