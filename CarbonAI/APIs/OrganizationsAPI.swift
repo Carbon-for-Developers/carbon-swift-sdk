@@ -169,4 +169,172 @@ open class OrganizationsAPI {
         fatalError("Error: Unable to send request to GET /organization")
     }
 
+
+    /**
+     Update Organization
+     
+     - parameter updateOrganizationInput: (body)  
+     - parameter apiResponseQueue: The queue on which api response is dispatched.
+     - parameter completion: completion handler to receive the data and the error objects
+     */
+    @discardableResult
+    open class func updateSync(updateOrganizationInput: UpdateOrganizationInput, apiResponseQueue: DispatchQueue = CarbonAIAPI.apiResponseQueue, completion: @escaping ((_ data: GenericSuccessResponse?, _ error: Error?) -> Void)) -> RequestTask {
+        return updateWithRequestBuilder(updateOrganizationInput: updateOrganizationInput).execute(apiResponseQueue) { result in
+            switch result {
+            case let .success(response):
+                completion(response.body, nil)
+            case let .failure(error):
+                completion(nil, error)
+            }
+        }
+    }
+
+    /**
+     Update Organization
+     
+     - parameter updateOrganizationInput: (body)  
+     - parameter apiResponseQueue: The queue on which api response is dispatched.
+     - parameter completion: completion handler to receive the data and the error objects
+     */
+    @available(iOS 13.0, macOS 10.15, tvOS 13.0, watchOS 6.0, *)
+    private class func updateAsyncMappedParams(updateOrganizationInput: UpdateOrganizationInput) async throws -> GenericSuccessResponse {
+        return try await withCheckedThrowingContinuation { continuation in
+            updateWithRequestBuilder(updateOrganizationInput: updateOrganizationInput).execute { result in
+                switch result {
+                case let .success(response):
+                    continuation.resume(returning: response.body)
+                case let .failure(error):
+                    continuation.resume(throwing: error)
+                }
+            }
+        }
+    }
+
+    /**
+     Update Organization
+     
+     - parameter updateOrganizationInput: (body)  
+     - parameter apiResponseQueue: The queue on which api response is dispatched.
+     - parameter completion: completion handler to receive the data and the error objects
+     */
+    @available(iOS 13.0, macOS 10.15, tvOS 13.0, watchOS 6.0, *)
+    open class func update(
+        globalUserConfig: UserConfigurationNullable? = nil
+    ) async throws -> GenericSuccessResponse {
+        let updateOrganizationInput = UpdateOrganizationInput(
+            globalUserConfig: globalUserConfig
+        )
+        return try await withCheckedThrowingContinuation { continuation in
+            updateWithRequestBuilder(updateOrganizationInput: updateOrganizationInput).execute { result in
+                switch result {
+                case let .success(response):
+                    continuation.resume(returning: response.body)
+                case let .failure(error):
+                    continuation.resume(throwing: error)
+                }
+            }
+        }
+    }
+
+
+    /**
+     Update Organization
+     
+     - parameter updateOrganizationInput: (body)  
+     - parameter apiResponseQueue: The queue on which api response is dispatched.
+     - parameter completion: completion handler to receive the data and the error objects
+     */
+    @available(iOS 13.0, macOS 10.15, tvOS 13.0, watchOS 6.0, *)
+    open func update(
+        globalUserConfig: UserConfigurationNullable? = nil
+    ) async throws -> GenericSuccessResponse {
+        let updateOrganizationInput = UpdateOrganizationInput(
+            globalUserConfig: globalUserConfig
+        )
+        return try await withCheckedThrowingContinuation { continuation in
+            updateWithRequestBuilder(updateOrganizationInput: updateOrganizationInput).execute { result in
+                switch result {
+                case let .success(response):
+                    continuation.resume(returning: response.body)
+                case let .failure(error):
+                    continuation.resume(throwing: error)
+                }
+            }
+        }
+    }
+
+
+
+    /**
+     Update Organization
+     - POST /organization/update
+     - API Key:
+       - type: apiKey authorization 
+       - name: apiKey
+     - parameter updateOrganizationInput: (body)  
+     - returns: RequestBuilder<GenericSuccessResponse> 
+     */
+    open class func updateWithRequestBuilder(
+            updateOrganizationInput: UpdateOrganizationInput
+    ) -> RequestBuilder<GenericSuccessResponse> {
+        let basePath = CarbonAIAPI.basePath;
+        let localVariablePath = "/organization/update"
+        let localVariableURLString = basePath + localVariablePath
+        let localVariableParameters = JSONEncodingHelper.encodingParameters(forEncodableObject: updateOrganizationInput)
+
+        var localVariableUrlComponents = URLComponents(string: localVariableURLString)
+
+        let localVariableNillableHeaders: [String: Any?] = [
+            :
+        ]
+
+        var localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
+
+        do {
+            try Authentication.setAuthenticationParameters(headers: &localVariableHeaderParameters, url: &localVariableUrlComponents, in: "header", name: "authorization", value: CarbonAIAPI.apiKey, prefix: "Bearer ")
+            let localVariableRequestBuilder: RequestBuilder<GenericSuccessResponse>.Type = CarbonAIAPI.requestBuilderFactory.getBuilder()
+            let URLString = localVariableUrlComponents?.string ?? localVariableURLString
+            return localVariableRequestBuilder.init(method: "POST", URLString: URLString, parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        } catch {
+            print("Error: \(error)")
+        }
+        fatalError("Error: Unable to send request to POST /organization/update")
+    }
+
+    /**
+     Update Organization
+     - POST /organization/update
+     - API Key:
+       - type: apiKey authorization 
+       - name: apiKey
+     - parameter updateOrganizationInput: (body)  
+     - returns: RequestBuilder<GenericSuccessResponse> 
+     */
+    open func updateWithRequestBuilder(
+            updateOrganizationInput: UpdateOrganizationInput
+    ) -> RequestBuilder<GenericSuccessResponse> {
+        let basePath = self.client.basePath;
+        let localVariablePath = "/organization/update"
+        let localVariableURLString = basePath + localVariablePath
+        let localVariableParameters = JSONEncodingHelper.encodingParameters(forEncodableObject: updateOrganizationInput)
+
+        var localVariableUrlComponents = URLComponents(string: localVariableURLString)
+
+        let localVariableNillableHeaders: [String: Any?] = [
+            :
+        ]
+
+        var localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
+
+        do {
+            try Authentication.setAuthenticationParameters(headers: &localVariableHeaderParameters, url: &localVariableUrlComponents, in: "header", name: "authorization", value: self.client.apiKey, prefix: "Bearer ")
+            let localVariableRequestBuilder: RequestBuilder<GenericSuccessResponse>.Type = CarbonAIAPI.requestBuilderFactory.getBuilder()
+            let URLString = localVariableUrlComponents?.string ?? localVariableURLString
+            return localVariableRequestBuilder.init(method: "POST", URLString: URLString, parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        } catch {
+            print("Error: \(error)")
+        }
+        fatalError("Error: Unable to send request to POST /organization/update")
+    }
+
 }

@@ -64,6 +64,7 @@ Connect external data to LLMs, no matter the source.
   * [`carbonai.integrations.syncRssFeed`](#carbonaiintegrationssyncrssfeed)
   * [`carbonai.integrations.syncS3Files`](#carbonaiintegrationssyncs3files)
   * [`carbonai.organizations.callGet`](#carbonaiorganizationscallget)
+  * [`carbonai.organizations.update`](#carbonaiorganizationsupdate)
   * [`carbonai.users.callGet`](#carbonaiuserscallget)
   * [`carbonai.users.delete`](#carbonaiusersdelete)
   * [`carbonai.users.toggleUserFeatures`](#carbonaiuserstoggleuserfeatures)
@@ -2014,7 +2015,7 @@ Enable OCR for files that support it. Supported formats: pdf
 
 ##### enable_file_picker: `Bool`<a id="enable_file_picker-bool"></a>
 
-Enable integration's file picker for sources that support it. Supported sources: GOOGLE_DRIVE, BOX, ONEDRIVE, DROPBOX, SHAREPOINT
+Enable integration's file picker for sources that support it. Supported sources: BOX, SHAREPOINT, ONEDRIVE, DROPBOX, GOOGLE_DRIVE
 
 
 ##### sync_source_items: `Bool`<a id="sync_source_items-bool"></a>
@@ -3173,6 +3174,43 @@ let callGetResponse = try await carbonai.organizations.callGet()
 #### 🌐 Endpoint<a id="🌐-endpoint"></a>
 
 `/organization` `GET`
+
+[🔙 **Back to Table of Contents**](#table-of-contents)
+
+---
+
+
+### `carbonai.organizations.update`<a id="carbonaiorganizationsupdate"></a>
+
+Update Organization
+
+#### 🛠️ Usage<a id="🛠️-usage"></a>
+
+```swift
+let globalUserConfig = UserConfigurationNullable(
+    autoSyncEnabledSources: AutoSyncEnabledSourcesProperty(
+        
+    ),
+    maxFiles: 123,
+    maxFilesPerUpload: 123
+)
+let updateResponse = try await carbonai.organizations.update(
+    globalUserConfig: globalUserConfig
+)
+```
+
+#### ⚙️ Parameters<a id="⚙️-parameters"></a>
+
+##### global_user_config: [`UserConfigurationNullable`](./CarbonAI/Models/UserConfigurationNullable.swift)<a id="global_user_config-userconfigurationnullablecarbonaimodelsuserconfigurationnullableswift"></a>
+
+
+#### 🔄 Return<a id="🔄-return"></a>
+
+[GenericSuccessResponse](./CarbonAI/Models/GenericSuccessResponse.swift)
+
+#### 🌐 Endpoint<a id="🌐-endpoint"></a>
+
+`/organization/update` `POST`
 
 [🔙 **Back to Table of Contents**](#table-of-contents)
 

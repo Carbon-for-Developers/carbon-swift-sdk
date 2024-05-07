@@ -603,10 +603,10 @@ open class UsersAPI {
         maxFilesPerUpload: Int? = nil
     ) async throws -> GenericSuccessResponse {
         let updateUsersInput = UpdateUsersInput(
-            customerIds: customerIds,
             autoSyncEnabledSources: autoSyncEnabledSources,
             maxFiles: maxFiles,
-            maxFilesPerUpload: maxFilesPerUpload
+            maxFilesPerUpload: maxFilesPerUpload,
+            customerIds: customerIds
         )
         return try await withCheckedThrowingContinuation { continuation in
             updateUsersWithRequestBuilder(updateUsersInput: updateUsersInput).execute { result in
@@ -636,10 +636,10 @@ open class UsersAPI {
         maxFilesPerUpload: Int? = nil
     ) async throws -> GenericSuccessResponse {
         let updateUsersInput = UpdateUsersInput(
-            customerIds: customerIds,
             autoSyncEnabledSources: autoSyncEnabledSources,
             maxFiles: maxFiles,
-            maxFilesPerUpload: maxFilesPerUpload
+            maxFilesPerUpload: maxFilesPerUpload,
+            customerIds: customerIds
         )
         return try await withCheckedThrowingContinuation { continuation in
             updateUsersWithRequestBuilder(updateUsersInput: updateUsersInput).execute { result in

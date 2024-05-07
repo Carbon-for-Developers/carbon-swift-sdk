@@ -17,13 +17,15 @@ public struct FileStatisticsNullable: Codable, JSONEncodable, Hashable {
     public var numCharacters: Int?
     public var numTokens: Int?
     public var numEmbeddings: Int?
+    public var mimeType: String?
 
-    public init(fileFormat: FileFormatsNullable?, fileSize: Int?, numCharacters: Int?, numTokens: Int?, numEmbeddings: Int?) {
+    public init(fileFormat: FileFormatsNullable?, fileSize: Int?, numCharacters: Int?, numTokens: Int?, numEmbeddings: Int?, mimeType: String?) {
         self.fileFormat = fileFormat
         self.fileSize = fileSize
         self.numCharacters = numCharacters
         self.numTokens = numTokens
         self.numEmbeddings = numEmbeddings
+        self.mimeType = mimeType
     }
 
     public enum CodingKeys: String, CodingKey, CaseIterable {
@@ -32,6 +34,7 @@ public struct FileStatisticsNullable: Codable, JSONEncodable, Hashable {
         case numCharacters = "num_characters"
         case numTokens = "num_tokens"
         case numEmbeddings = "num_embeddings"
+        case mimeType = "mime_type"
     }
 
     // Encodable protocol methods
@@ -43,6 +46,7 @@ public struct FileStatisticsNullable: Codable, JSONEncodable, Hashable {
         try container.encode(numCharacters, forKey: .numCharacters)
         try container.encode(numTokens, forKey: .numTokens)
         try container.encode(numEmbeddings, forKey: .numEmbeddings)
+        try container.encode(mimeType, forKey: .mimeType)
     }
 }
 
