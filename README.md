@@ -865,7 +865,8 @@ let filters = OrganizationUserFilesToSyncFilters(
     requestIds: [
     "requestIds_example"
     ],
-    syncErrorMessage: "syncErrorMessage_example"
+    syncErrorMessage: "syncErrorMessage_example",
+    includeContainers: false
 )
 let sendWebhook = true
 let deleteV2Response = try await carbonai.files.deleteV2(
@@ -1054,7 +1055,8 @@ let filters = OrganizationUserFilesToSyncFilters(
     requestIds: [
     "requestIds_example"
     ],
-    syncErrorMessage: "syncErrorMessage_example"
+    syncErrorMessage: "syncErrorMessage_example",
+    includeContainers: false
 )
 let includeRawFile = true
 let includeParsedTextFile = true
@@ -1154,7 +1156,8 @@ let filters = OrganizationUserFilesToSyncFilters(
     requestIds: [
     "requestIds_example"
     ],
-    syncErrorMessage: "syncErrorMessage_example"
+    syncErrorMessage: "syncErrorMessage_example",
+    includeContainers: false
 )
 let includeRawFile = true
 let includeParsedTextFile = true
@@ -2015,7 +2018,7 @@ Enable OCR for files that support it. Supported formats: pdf
 
 ##### enable_file_picker: `Bool`<a id="enable_file_picker-bool"></a>
 
-Enable integration's file picker for sources that support it. Supported sources: BOX, SHAREPOINT, ONEDRIVE, DROPBOX, GOOGLE_DRIVE
+Enable integration's file picker for sources that support it. Supported sources: GOOGLE_DRIVE, ONEDRIVE, SHAREPOINT, DROPBOX, BOX
 
 
 ##### sync_source_items: `Bool`<a id="sync_source_items-bool"></a>

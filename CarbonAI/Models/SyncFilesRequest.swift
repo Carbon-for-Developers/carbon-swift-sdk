@@ -24,11 +24,11 @@ public struct SyncFilesRequest: Codable, JSONEncodable, Hashable {
     /** Number of objects per chunk. For csv, tsv, xlsx, and json files only. */
     public var maxItemsPerChunk: Int?
     public var setPageAsBoundary: Bool? = false
-    public var requestId: String? = "a7c990f4-5923-47b5-a9f8-6ef5416fe5c3"
+    public var requestId: String? = "2446df66-66dd-4ea3-b248-a416d886e087"
     public var useOcr: Bool? = false
     public var parsePdfTablesWithOcr: Bool? = false
 
-    public init(tags: AnyCodable? = nil, dataSourceId: Int, ids: IdsProperty, chunkSize: Int? = 1500, chunkOverlap: Int? = 20, skipEmbeddingGeneration: Bool? = false, embeddingModel: EmbeddingGeneratorsNullable? = nil, generateSparseVectors: Bool? = false, prependFilenameToChunks: Bool? = false, maxItemsPerChunk: Int? = nil, setPageAsBoundary: Bool? = false, requestId: String? = "a7c990f4-5923-47b5-a9f8-6ef5416fe5c3", useOcr: Bool? = false, parsePdfTablesWithOcr: Bool? = false) {
+    public init(tags: AnyCodable? = nil, dataSourceId: Int, ids: IdsProperty, chunkSize: Int? = 1500, chunkOverlap: Int? = 20, skipEmbeddingGeneration: Bool? = false, embeddingModel: EmbeddingGeneratorsNullable? = nil, generateSparseVectors: Bool? = false, prependFilenameToChunks: Bool? = false, maxItemsPerChunk: Int? = nil, setPageAsBoundary: Bool? = false, requestId: String? = "2446df66-66dd-4ea3-b248-a416d886e087", useOcr: Bool? = false, parsePdfTablesWithOcr: Bool? = false) {
         self.tags = tags
         self.dataSourceId = dataSourceId
         self.ids = ids
