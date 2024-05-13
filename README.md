@@ -704,6 +704,7 @@ let createUserFileTagsResponse = try await carbonai.files.createUserFileTags(
 
 
 ### `carbonai.files.delete`<a id="carbonaifilesdelete"></a>
+![Deprecated](https://img.shields.io/badge/deprecated-yellow)
 
 Delete File Endpoint
 
@@ -773,6 +774,7 @@ let deleteFileTagsResponse = try await carbonai.files.deleteFileTags(
 
 
 ### `carbonai.files.deleteMany`<a id="carbonaifilesdeletemany"></a>
+![Deprecated](https://img.shields.io/badge/deprecated-yellow)
 
 Delete Files Endpoint
 
@@ -897,6 +899,7 @@ let deleteV2Response = try await carbonai.files.deleteV2(
 
 
 ### `carbonai.files.getParsedFile`<a id="carbonaifilesgetparsedfile"></a>
+![Deprecated](https://img.shields.io/badge/deprecated-yellow)
 
 This route is deprecated. Use `/user_files_v2` instead.
 
@@ -928,6 +931,7 @@ let getParsedFileResponse = try await carbonai.files.getParsedFile(
 
 
 ### `carbonai.files.getRawFile`<a id="carbonaifilesgetrawfile"></a>
+![Deprecated](https://img.shields.io/badge/deprecated-yellow)
 
 This route is deprecated. Use `/user_files_v2` instead.
 
@@ -1109,6 +1113,7 @@ let queryUserFilesResponse = try await carbonai.files.queryUserFiles(
 
 
 ### `carbonai.files.queryUserFilesDeprecated`<a id="carbonaifilesqueryuserfilesdeprecated"></a>
+![Deprecated](https://img.shields.io/badge/deprecated-yellow)
 
 This route is deprecated. Use `/user_files_v2` instead.
 
@@ -3323,6 +3328,7 @@ let deleteResponse = try await carbonai.users.delete(
 
 
 ### `carbonai.users.toggleUserFeatures`<a id="carbonaiuserstoggleuserfeatures"></a>
+![Deprecated](https://img.shields.io/badge/deprecated-yellow)
 
 Toggle User Features
 
