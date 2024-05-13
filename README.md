@@ -1605,7 +1605,14 @@ let syncOptions = SyncOptions(
     setPageAsBoundary: false,
     requestId: "requestId_example",
     enableFilePicker: true,
-    syncSourceItems: true
+    syncSourceItems: true,
+    incrementalSync: false,
+    fileSyncConfig: HelpdeskFileSyncConfigNullable(
+        fileTypes: [
+        HelpdeskFileTypes.ticket
+        ],
+        syncAttachments: false
+    )
 )
 let connectDataSourceResponse = try await carbonai.integrations.connectDataSource(
     authentication: authentication,
@@ -1908,6 +1915,13 @@ let useOcr = true
 let parsePdfTablesWithOcr = true
 let enableFilePicker = true
 let syncSourceItems = true
+let incrementalSync = true
+let fileSyncConfig = HelpdeskFileSyncConfigNullable(
+    fileTypes: [
+    HelpdeskFileTypes.ticket
+    ],
+    syncAttachments: false
+)
 let getOauthUrlResponse = try await carbonai.integrations.getOauthUrl(
     service: service,
     tags: tags,
@@ -1932,7 +1946,9 @@ let getOauthUrlResponse = try await carbonai.integrations.getOauthUrl(
     useOcr: useOcr,
     parsePdfTablesWithOcr: parsePdfTablesWithOcr,
     enableFilePicker: enableFilePicker,
-    syncSourceItems: syncSourceItems
+    syncSourceItems: syncSourceItems,
+    incrementalSync: incrementalSync,
+    fileSyncConfig: fileSyncConfig
 )
 ```
 
@@ -2018,12 +2034,20 @@ Enable OCR for files that support it. Supported formats: pdf
 
 ##### enable_file_picker: `Bool`<a id="enable_file_picker-bool"></a>
 
-Enable integration's file picker for sources that support it. Supported sources: GOOGLE_DRIVE, ONEDRIVE, SHAREPOINT, DROPBOX, BOX
+Enable integration's file picker for sources that support it. Supported sources: BOX, SHAREPOINT, GOOGLE_DRIVE, DROPBOX, ONEDRIVE
 
 
 ##### sync_source_items: `Bool`<a id="sync_source_items-bool"></a>
 
 Enabling this flag will fetch all available content from the source to be listed via list items endpoint
+
+
+##### incremental_sync: `Bool`<a id="incremental_sync-bool"></a>
+
+Only sync files if they have not already been synced or if the embedding properties have changed.         This flag is currently supported by ONEDRIVE, GOOGLE_DRIVE, BOX, DROPBOX. It will be ignored for other data sources.
+
+
+##### file_sync_config: [`HelpdeskFileSyncConfigNullable`](./CarbonAI/Models/HelpdeskFileSyncConfigNullable.swift)<a id="file_sync_config-helpdeskfilesyncconfignullablecarbonaimodelshelpdeskfilesyncconfignullableswift"></a>
 
 
 #### 🔄 Return<a id="🔄-return"></a>
@@ -2330,6 +2354,7 @@ let setPageAsBoundary = true
 let requestId = "requestId_example"
 let useOcr = true
 let parsePdfTablesWithOcr = true
+let incrementalSync = true
 let syncConfluenceResponse = try await carbonai.integrations.syncConfluence(
     dataSourceId: dataSourceId,
     ids: ids,
@@ -2344,7 +2369,8 @@ let syncConfluenceResponse = try await carbonai.integrations.syncConfluence(
     setPageAsBoundary: setPageAsBoundary,
     requestId: requestId,
     useOcr: useOcr,
-    parsePdfTablesWithOcr: parsePdfTablesWithOcr
+    parsePdfTablesWithOcr: parsePdfTablesWithOcr,
+    incrementalSync: incrementalSync
 )
 ```
 
@@ -2392,6 +2418,11 @@ Number of objects per chunk. For csv, tsv, xlsx, and json files only.
 
 
 ##### parse_pdf_tables_with_ocr: `Bool`<a id="parse_pdf_tables_with_ocr-bool"></a>
+
+
+##### incremental_sync: `Bool`<a id="incremental_sync-bool"></a>
+
+Only sync files if they have not already been synced or if the embedding properties have changed.         This flag is currently supported by ONEDRIVE, GOOGLE_DRIVE, BOX, DROPBOX. It will be ignored for other data sources.
 
 
 #### 🔄 Return<a id="🔄-return"></a>
@@ -2466,6 +2497,7 @@ let setPageAsBoundary = true
 let requestId = "requestId_example"
 let useOcr = true
 let parsePdfTablesWithOcr = true
+let incrementalSync = true
 let syncFilesResponse = try await carbonai.integrations.syncFiles(
     dataSourceId: dataSourceId,
     ids: ids,
@@ -2480,7 +2512,8 @@ let syncFilesResponse = try await carbonai.integrations.syncFiles(
     setPageAsBoundary: setPageAsBoundary,
     requestId: requestId,
     useOcr: useOcr,
-    parsePdfTablesWithOcr: parsePdfTablesWithOcr
+    parsePdfTablesWithOcr: parsePdfTablesWithOcr,
+    incrementalSync: incrementalSync
 )
 ```
 
@@ -2528,6 +2561,11 @@ Number of objects per chunk. For csv, tsv, xlsx, and json files only.
 
 
 ##### parse_pdf_tables_with_ocr: `Bool`<a id="parse_pdf_tables_with_ocr-bool"></a>
+
+
+##### incremental_sync: `Bool`<a id="incremental_sync-bool"></a>
+
+Only sync files if they have not already been synced or if the embedding properties have changed.         This flag is currently supported by ONEDRIVE, GOOGLE_DRIVE, BOX, DROPBOX. It will be ignored for other data sources.
 
 
 #### 🔄 Return<a id="🔄-return"></a>

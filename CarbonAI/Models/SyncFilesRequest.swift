@@ -24,11 +24,13 @@ public struct SyncFilesRequest: Codable, JSONEncodable, Hashable {
     /** Number of objects per chunk. For csv, tsv, xlsx, and json files only. */
     public var maxItemsPerChunk: Int?
     public var setPageAsBoundary: Bool? = false
-    public var requestId: String? = "2446df66-66dd-4ea3-b248-a416d886e087"
+    public var requestId: String? = "a5c6b913-12ce-4ae5-af61-694dd5c400fc"
     public var useOcr: Bool? = false
     public var parsePdfTablesWithOcr: Bool? = false
+    /** Only sync files if they have not already been synced or if the embedding properties have changed.         This flag is currently supported by ONEDRIVE, GOOGLE_DRIVE, BOX, DROPBOX. It will be ignored for other data sources. */
+    public var incrementalSync: Bool? = false
 
-    public init(tags: AnyCodable? = nil, dataSourceId: Int, ids: IdsProperty, chunkSize: Int? = 1500, chunkOverlap: Int? = 20, skipEmbeddingGeneration: Bool? = false, embeddingModel: EmbeddingGeneratorsNullable? = nil, generateSparseVectors: Bool? = false, prependFilenameToChunks: Bool? = false, maxItemsPerChunk: Int? = nil, setPageAsBoundary: Bool? = false, requestId: String? = "2446df66-66dd-4ea3-b248-a416d886e087", useOcr: Bool? = false, parsePdfTablesWithOcr: Bool? = false) {
+    public init(tags: AnyCodable? = nil, dataSourceId: Int, ids: IdsProperty, chunkSize: Int? = 1500, chunkOverlap: Int? = 20, skipEmbeddingGeneration: Bool? = false, embeddingModel: EmbeddingGeneratorsNullable? = nil, generateSparseVectors: Bool? = false, prependFilenameToChunks: Bool? = false, maxItemsPerChunk: Int? = nil, setPageAsBoundary: Bool? = false, requestId: String? = "a5c6b913-12ce-4ae5-af61-694dd5c400fc", useOcr: Bool? = false, parsePdfTablesWithOcr: Bool? = false, incrementalSync: Bool? = false) {
         self.tags = tags
         self.dataSourceId = dataSourceId
         self.ids = ids
@@ -43,6 +45,7 @@ public struct SyncFilesRequest: Codable, JSONEncodable, Hashable {
         self.requestId = requestId
         self.useOcr = useOcr
         self.parsePdfTablesWithOcr = parsePdfTablesWithOcr
+        self.incrementalSync = incrementalSync
     }
 
     public enum CodingKeys: String, CodingKey, CaseIterable {
@@ -60,6 +63,7 @@ public struct SyncFilesRequest: Codable, JSONEncodable, Hashable {
         case requestId = "request_id"
         case useOcr = "use_ocr"
         case parsePdfTablesWithOcr = "parse_pdf_tables_with_ocr"
+        case incrementalSync = "incremental_sync"
     }
 
     // Encodable protocol methods
@@ -80,6 +84,7 @@ public struct SyncFilesRequest: Codable, JSONEncodable, Hashable {
         try container.encodeIfPresent(requestId, forKey: .requestId)
         try container.encodeIfPresent(useOcr, forKey: .useOcr)
         try container.encodeIfPresent(parsePdfTablesWithOcr, forKey: .parsePdfTablesWithOcr)
+        try container.encodeIfPresent(incrementalSync, forKey: .incrementalSync)
     }
 }
 

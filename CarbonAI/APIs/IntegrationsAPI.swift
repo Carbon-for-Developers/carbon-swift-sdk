@@ -932,7 +932,9 @@ open class IntegrationsAPI {
         useOcr: Bool? = nil, 
         parsePdfTablesWithOcr: Bool? = nil, 
         enableFilePicker: Bool? = nil, 
-        syncSourceItems: Bool? = nil
+        syncSourceItems: Bool? = nil, 
+        incrementalSync: Bool? = nil, 
+        fileSyncConfig: HelpdeskFileSyncConfigNullable? = nil
     ) async throws -> OuthURLResponse {
         let oAuthURLRequest = OAuthURLRequest(
             tags: tags,
@@ -958,7 +960,9 @@ open class IntegrationsAPI {
             useOcr: useOcr,
             parsePdfTablesWithOcr: parsePdfTablesWithOcr,
             enableFilePicker: enableFilePicker,
-            syncSourceItems: syncSourceItems
+            syncSourceItems: syncSourceItems,
+            incrementalSync: incrementalSync,
+            fileSyncConfig: fileSyncConfig
         )
         return try await withCheckedThrowingContinuation { continuation in
             getOauthUrlWithRequestBuilder(oAuthURLRequest: oAuthURLRequest).execute { result in
@@ -1005,7 +1009,9 @@ open class IntegrationsAPI {
         useOcr: Bool? = nil, 
         parsePdfTablesWithOcr: Bool? = nil, 
         enableFilePicker: Bool? = nil, 
-        syncSourceItems: Bool? = nil
+        syncSourceItems: Bool? = nil, 
+        incrementalSync: Bool? = nil, 
+        fileSyncConfig: HelpdeskFileSyncConfigNullable? = nil
     ) async throws -> OuthURLResponse {
         let oAuthURLRequest = OAuthURLRequest(
             tags: tags,
@@ -1031,7 +1037,9 @@ open class IntegrationsAPI {
             useOcr: useOcr,
             parsePdfTablesWithOcr: parsePdfTablesWithOcr,
             enableFilePicker: enableFilePicker,
-            syncSourceItems: syncSourceItems
+            syncSourceItems: syncSourceItems,
+            incrementalSync: incrementalSync,
+            fileSyncConfig: fileSyncConfig
         )
         return try await withCheckedThrowingContinuation { continuation in
             getOauthUrlWithRequestBuilder(oAuthURLRequest: oAuthURLRequest).execute { result in
@@ -2538,7 +2546,8 @@ open class IntegrationsAPI {
         setPageAsBoundary: Bool? = nil, 
         requestId: String? = nil, 
         useOcr: Bool? = nil, 
-        parsePdfTablesWithOcr: Bool? = nil
+        parsePdfTablesWithOcr: Bool? = nil, 
+        incrementalSync: Bool? = nil
     ) async throws -> GenericSuccessResponse {
         let syncFilesRequest = SyncFilesRequest(
             tags: tags,
@@ -2554,7 +2563,8 @@ open class IntegrationsAPI {
             setPageAsBoundary: setPageAsBoundary,
             requestId: requestId,
             useOcr: useOcr,
-            parsePdfTablesWithOcr: parsePdfTablesWithOcr
+            parsePdfTablesWithOcr: parsePdfTablesWithOcr,
+            incrementalSync: incrementalSync
         )
         return try await withCheckedThrowingContinuation { continuation in
             syncConfluenceWithRequestBuilder(syncFilesRequest: syncFilesRequest).execute { result in
@@ -2591,7 +2601,8 @@ open class IntegrationsAPI {
         setPageAsBoundary: Bool? = nil, 
         requestId: String? = nil, 
         useOcr: Bool? = nil, 
-        parsePdfTablesWithOcr: Bool? = nil
+        parsePdfTablesWithOcr: Bool? = nil, 
+        incrementalSync: Bool? = nil
     ) async throws -> GenericSuccessResponse {
         let syncFilesRequest = SyncFilesRequest(
             tags: tags,
@@ -2607,7 +2618,8 @@ open class IntegrationsAPI {
             setPageAsBoundary: setPageAsBoundary,
             requestId: requestId,
             useOcr: useOcr,
-            parsePdfTablesWithOcr: parsePdfTablesWithOcr
+            parsePdfTablesWithOcr: parsePdfTablesWithOcr,
+            incrementalSync: incrementalSync
         )
         return try await withCheckedThrowingContinuation { continuation in
             syncConfluenceWithRequestBuilder(syncFilesRequest: syncFilesRequest).execute { result in
@@ -2960,7 +2972,8 @@ open class IntegrationsAPI {
         setPageAsBoundary: Bool? = nil, 
         requestId: String? = nil, 
         useOcr: Bool? = nil, 
-        parsePdfTablesWithOcr: Bool? = nil
+        parsePdfTablesWithOcr: Bool? = nil, 
+        incrementalSync: Bool? = nil
     ) async throws -> GenericSuccessResponse {
         let syncFilesRequest = SyncFilesRequest(
             tags: tags,
@@ -2976,7 +2989,8 @@ open class IntegrationsAPI {
             setPageAsBoundary: setPageAsBoundary,
             requestId: requestId,
             useOcr: useOcr,
-            parsePdfTablesWithOcr: parsePdfTablesWithOcr
+            parsePdfTablesWithOcr: parsePdfTablesWithOcr,
+            incrementalSync: incrementalSync
         )
         return try await withCheckedThrowingContinuation { continuation in
             syncFilesWithRequestBuilder(syncFilesRequest: syncFilesRequest).execute { result in
@@ -3013,7 +3027,8 @@ open class IntegrationsAPI {
         setPageAsBoundary: Bool? = nil, 
         requestId: String? = nil, 
         useOcr: Bool? = nil, 
-        parsePdfTablesWithOcr: Bool? = nil
+        parsePdfTablesWithOcr: Bool? = nil, 
+        incrementalSync: Bool? = nil
     ) async throws -> GenericSuccessResponse {
         let syncFilesRequest = SyncFilesRequest(
             tags: tags,
@@ -3029,7 +3044,8 @@ open class IntegrationsAPI {
             setPageAsBoundary: setPageAsBoundary,
             requestId: requestId,
             useOcr: useOcr,
-            parsePdfTablesWithOcr: parsePdfTablesWithOcr
+            parsePdfTablesWithOcr: parsePdfTablesWithOcr,
+            incrementalSync: incrementalSync
         )
         return try await withCheckedThrowingContinuation { continuation in
             syncFilesWithRequestBuilder(syncFilesRequest: syncFilesRequest).execute { result in

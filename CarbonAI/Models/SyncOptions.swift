@@ -24,12 +24,15 @@ public struct SyncOptions: Codable, JSONEncodable, Hashable {
     /** Used to specify whether Carbon should attempt to sync all your files automatically when authorization         is complete. This is only supported for a subset of connectors and will be ignored for the rest. Supported         connectors: Intercom, Zendesk, Gitbook, Confluence, Salesforce, Freshdesk */
     public var syncFilesOnConnection: Bool? = true
     public var setPageAsBoundary: Bool? = false
-    public var requestId: String? = "875454df-996d-4d26-83e0-756af9628ed0"
+    public var requestId: String? = "b9a72b38-115a-4dd6-bad9-00185ae2333b"
     public var enableFilePicker: Bool? = true
     /** Enabling this flag will fetch all available content from the source to be listed via list items endpoint */
     public var syncSourceItems: Bool? = true
+    /** Only sync files if they have not already been synced or if the embedding properties have changed.         This flag is currently supported by ONEDRIVE, GOOGLE_DRIVE, BOX, DROPBOX. It will be ignored for other data sources. */
+    public var incrementalSync: Bool? = false
+    public var fileSyncConfig: HelpdeskFileSyncConfigNullable?
 
-    public init(tags: AnyCodable? = nil, chunkSize: Int? = 1500, chunkOverlap: Int? = 20, skipEmbeddingGeneration: Bool? = false, embeddingModel: EmbeddingGeneratorsNullable? = nil, generateSparseVectors: Bool? = false, prependFilenameToChunks: Bool? = false, maxItemsPerChunk: Int? = nil, syncFilesOnConnection: Bool? = true, setPageAsBoundary: Bool? = false, requestId: String? = "875454df-996d-4d26-83e0-756af9628ed0", enableFilePicker: Bool? = true, syncSourceItems: Bool? = true) {
+    public init(tags: AnyCodable? = nil, chunkSize: Int? = 1500, chunkOverlap: Int? = 20, skipEmbeddingGeneration: Bool? = false, embeddingModel: EmbeddingGeneratorsNullable? = nil, generateSparseVectors: Bool? = false, prependFilenameToChunks: Bool? = false, maxItemsPerChunk: Int? = nil, syncFilesOnConnection: Bool? = true, setPageAsBoundary: Bool? = false, requestId: String? = "b9a72b38-115a-4dd6-bad9-00185ae2333b", enableFilePicker: Bool? = true, syncSourceItems: Bool? = true, incrementalSync: Bool? = false, fileSyncConfig: HelpdeskFileSyncConfigNullable? = nil) {
         self.tags = tags
         self.chunkSize = chunkSize
         self.chunkOverlap = chunkOverlap
@@ -43,6 +46,8 @@ public struct SyncOptions: Codable, JSONEncodable, Hashable {
         self.requestId = requestId
         self.enableFilePicker = enableFilePicker
         self.syncSourceItems = syncSourceItems
+        self.incrementalSync = incrementalSync
+        self.fileSyncConfig = fileSyncConfig
     }
 
     public enum CodingKeys: String, CodingKey, CaseIterable {
@@ -59,6 +64,8 @@ public struct SyncOptions: Codable, JSONEncodable, Hashable {
         case requestId = "request_id"
         case enableFilePicker = "enable_file_picker"
         case syncSourceItems = "sync_source_items"
+        case incrementalSync = "incremental_sync"
+        case fileSyncConfig = "file_sync_config"
     }
 
     // Encodable protocol methods
@@ -78,6 +85,8 @@ public struct SyncOptions: Codable, JSONEncodable, Hashable {
         try container.encodeIfPresent(requestId, forKey: .requestId)
         try container.encodeIfPresent(enableFilePicker, forKey: .enableFilePicker)
         try container.encodeIfPresent(syncSourceItems, forKey: .syncSourceItems)
+        try container.encodeIfPresent(incrementalSync, forKey: .incrementalSync)
+        try container.encodeIfPresent(fileSyncConfig, forKey: .fileSyncConfig)
     }
 }
 
