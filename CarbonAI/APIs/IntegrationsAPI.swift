@@ -2547,7 +2547,8 @@ open class IntegrationsAPI {
         requestId: String? = nil, 
         useOcr: Bool? = nil, 
         parsePdfTablesWithOcr: Bool? = nil, 
-        incrementalSync: Bool? = nil
+        incrementalSync: Bool? = nil, 
+        fileSyncConfig: HelpdeskGlobalFileSyncConfigNullable? = nil
     ) async throws -> GenericSuccessResponse {
         let syncFilesRequest = SyncFilesRequest(
             tags: tags,
@@ -2564,7 +2565,8 @@ open class IntegrationsAPI {
             requestId: requestId,
             useOcr: useOcr,
             parsePdfTablesWithOcr: parsePdfTablesWithOcr,
-            incrementalSync: incrementalSync
+            incrementalSync: incrementalSync,
+            fileSyncConfig: fileSyncConfig
         )
         return try await withCheckedThrowingContinuation { continuation in
             syncConfluenceWithRequestBuilder(syncFilesRequest: syncFilesRequest).execute { result in
@@ -2602,7 +2604,8 @@ open class IntegrationsAPI {
         requestId: String? = nil, 
         useOcr: Bool? = nil, 
         parsePdfTablesWithOcr: Bool? = nil, 
-        incrementalSync: Bool? = nil
+        incrementalSync: Bool? = nil, 
+        fileSyncConfig: HelpdeskGlobalFileSyncConfigNullable? = nil
     ) async throws -> GenericSuccessResponse {
         let syncFilesRequest = SyncFilesRequest(
             tags: tags,
@@ -2619,7 +2622,8 @@ open class IntegrationsAPI {
             requestId: requestId,
             useOcr: useOcr,
             parsePdfTablesWithOcr: parsePdfTablesWithOcr,
-            incrementalSync: incrementalSync
+            incrementalSync: incrementalSync,
+            fileSyncConfig: fileSyncConfig
         )
         return try await withCheckedThrowingContinuation { continuation in
             syncConfluenceWithRequestBuilder(syncFilesRequest: syncFilesRequest).execute { result in
@@ -2973,7 +2977,8 @@ open class IntegrationsAPI {
         requestId: String? = nil, 
         useOcr: Bool? = nil, 
         parsePdfTablesWithOcr: Bool? = nil, 
-        incrementalSync: Bool? = nil
+        incrementalSync: Bool? = nil, 
+        fileSyncConfig: HelpdeskGlobalFileSyncConfigNullable? = nil
     ) async throws -> GenericSuccessResponse {
         let syncFilesRequest = SyncFilesRequest(
             tags: tags,
@@ -2990,7 +2995,8 @@ open class IntegrationsAPI {
             requestId: requestId,
             useOcr: useOcr,
             parsePdfTablesWithOcr: parsePdfTablesWithOcr,
-            incrementalSync: incrementalSync
+            incrementalSync: incrementalSync,
+            fileSyncConfig: fileSyncConfig
         )
         return try await withCheckedThrowingContinuation { continuation in
             syncFilesWithRequestBuilder(syncFilesRequest: syncFilesRequest).execute { result in
@@ -3028,7 +3034,8 @@ open class IntegrationsAPI {
         requestId: String? = nil, 
         useOcr: Bool? = nil, 
         parsePdfTablesWithOcr: Bool? = nil, 
-        incrementalSync: Bool? = nil
+        incrementalSync: Bool? = nil, 
+        fileSyncConfig: HelpdeskGlobalFileSyncConfigNullable? = nil
     ) async throws -> GenericSuccessResponse {
         let syncFilesRequest = SyncFilesRequest(
             tags: tags,
@@ -3045,7 +3052,8 @@ open class IntegrationsAPI {
             requestId: requestId,
             useOcr: useOcr,
             parsePdfTablesWithOcr: parsePdfTablesWithOcr,
-            incrementalSync: incrementalSync
+            incrementalSync: incrementalSync,
+            fileSyncConfig: fileSyncConfig
         )
         return try await withCheckedThrowingContinuation { continuation in
             syncFilesWithRequestBuilder(syncFilesRequest: syncFilesRequest).execute { result in

@@ -2039,7 +2039,7 @@ Enable OCR for files that support it. Supported formats: pdf
 
 ##### enable_file_picker: `Bool`<a id="enable_file_picker-bool"></a>
 
-Enable integration's file picker for sources that support it. Supported sources: BOX, SHAREPOINT, GOOGLE_DRIVE, DROPBOX, ONEDRIVE
+Enable integration's file picker for sources that support it. Supported sources: DROPBOX, ONEDRIVE, SHAREPOINT, BOX, GOOGLE_DRIVE
 
 
 ##### sync_source_items: `Bool`<a id="sync_source_items-bool"></a>
@@ -2360,6 +2360,9 @@ let requestId = "requestId_example"
 let useOcr = true
 let parsePdfTablesWithOcr = true
 let incrementalSync = true
+let fileSyncConfig = HelpdeskGlobalFileSyncConfigNullable(
+    syncAttachments: false
+)
 let syncConfluenceResponse = try await carbonai.integrations.syncConfluence(
     dataSourceId: dataSourceId,
     ids: ids,
@@ -2375,7 +2378,8 @@ let syncConfluenceResponse = try await carbonai.integrations.syncConfluence(
     requestId: requestId,
     useOcr: useOcr,
     parsePdfTablesWithOcr: parsePdfTablesWithOcr,
-    incrementalSync: incrementalSync
+    incrementalSync: incrementalSync,
+    fileSyncConfig: fileSyncConfig
 )
 ```
 
@@ -2428,6 +2432,9 @@ Number of objects per chunk. For csv, tsv, xlsx, and json files only.
 ##### incremental_sync: `Bool`<a id="incremental_sync-bool"></a>
 
 Only sync files if they have not already been synced or if the embedding properties have changed.         This flag is currently supported by ONEDRIVE, GOOGLE_DRIVE, BOX, DROPBOX. It will be ignored for other data sources.
+
+
+##### file_sync_config: [`HelpdeskGlobalFileSyncConfigNullable`](./CarbonAI/Models/HelpdeskGlobalFileSyncConfigNullable.swift)<a id="file_sync_config-helpdeskglobalfilesyncconfignullablecarbonaimodelshelpdeskglobalfilesyncconfignullableswift"></a>
 
 
 #### 🔄 Return<a id="🔄-return"></a>
@@ -2503,6 +2510,9 @@ let requestId = "requestId_example"
 let useOcr = true
 let parsePdfTablesWithOcr = true
 let incrementalSync = true
+let fileSyncConfig = HelpdeskGlobalFileSyncConfigNullable(
+    syncAttachments: false
+)
 let syncFilesResponse = try await carbonai.integrations.syncFiles(
     dataSourceId: dataSourceId,
     ids: ids,
@@ -2518,7 +2528,8 @@ let syncFilesResponse = try await carbonai.integrations.syncFiles(
     requestId: requestId,
     useOcr: useOcr,
     parsePdfTablesWithOcr: parsePdfTablesWithOcr,
-    incrementalSync: incrementalSync
+    incrementalSync: incrementalSync,
+    fileSyncConfig: fileSyncConfig
 )
 ```
 
@@ -2571,6 +2582,9 @@ Number of objects per chunk. For csv, tsv, xlsx, and json files only.
 ##### incremental_sync: `Bool`<a id="incremental_sync-bool"></a>
 
 Only sync files if they have not already been synced or if the embedding properties have changed.         This flag is currently supported by ONEDRIVE, GOOGLE_DRIVE, BOX, DROPBOX. It will be ignored for other data sources.
+
+
+##### file_sync_config: [`HelpdeskGlobalFileSyncConfigNullable`](./CarbonAI/Models/HelpdeskGlobalFileSyncConfigNullable.swift)<a id="file_sync_config-helpdeskglobalfilesyncconfignullablecarbonaimodelshelpdeskglobalfilesyncconfignullableswift"></a>
 
 
 #### 🔄 Return<a id="🔄-return"></a>

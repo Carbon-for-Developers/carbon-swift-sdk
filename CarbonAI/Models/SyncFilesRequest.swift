@@ -24,13 +24,14 @@ public struct SyncFilesRequest: Codable, JSONEncodable, Hashable {
     /** Number of objects per chunk. For csv, tsv, xlsx, and json files only. */
     public var maxItemsPerChunk: Int?
     public var setPageAsBoundary: Bool? = false
-    public var requestId: String? = "a5c6b913-12ce-4ae5-af61-694dd5c400fc"
+    public var requestId: String? = "952c7efa-d4fe-43bf-a86c-4f5dad9fc003"
     public var useOcr: Bool? = false
     public var parsePdfTablesWithOcr: Bool? = false
     /** Only sync files if they have not already been synced or if the embedding properties have changed.         This flag is currently supported by ONEDRIVE, GOOGLE_DRIVE, BOX, DROPBOX. It will be ignored for other data sources. */
     public var incrementalSync: Bool? = false
+    public var fileSyncConfig: HelpdeskGlobalFileSyncConfigNullable?
 
-    public init(tags: AnyCodable? = nil, dataSourceId: Int, ids: IdsProperty, chunkSize: Int? = 1500, chunkOverlap: Int? = 20, skipEmbeddingGeneration: Bool? = false, embeddingModel: EmbeddingGeneratorsNullable? = nil, generateSparseVectors: Bool? = false, prependFilenameToChunks: Bool? = false, maxItemsPerChunk: Int? = nil, setPageAsBoundary: Bool? = false, requestId: String? = "a5c6b913-12ce-4ae5-af61-694dd5c400fc", useOcr: Bool? = false, parsePdfTablesWithOcr: Bool? = false, incrementalSync: Bool? = false) {
+    public init(tags: AnyCodable? = nil, dataSourceId: Int, ids: IdsProperty, chunkSize: Int? = 1500, chunkOverlap: Int? = 20, skipEmbeddingGeneration: Bool? = false, embeddingModel: EmbeddingGeneratorsNullable? = nil, generateSparseVectors: Bool? = false, prependFilenameToChunks: Bool? = false, maxItemsPerChunk: Int? = nil, setPageAsBoundary: Bool? = false, requestId: String? = "952c7efa-d4fe-43bf-a86c-4f5dad9fc003", useOcr: Bool? = false, parsePdfTablesWithOcr: Bool? = false, incrementalSync: Bool? = false, fileSyncConfig: HelpdeskGlobalFileSyncConfigNullable? = nil) {
         self.tags = tags
         self.dataSourceId = dataSourceId
         self.ids = ids
@@ -46,6 +47,7 @@ public struct SyncFilesRequest: Codable, JSONEncodable, Hashable {
         self.useOcr = useOcr
         self.parsePdfTablesWithOcr = parsePdfTablesWithOcr
         self.incrementalSync = incrementalSync
+        self.fileSyncConfig = fileSyncConfig
     }
 
     public enum CodingKeys: String, CodingKey, CaseIterable {
@@ -64,6 +66,7 @@ public struct SyncFilesRequest: Codable, JSONEncodable, Hashable {
         case useOcr = "use_ocr"
         case parsePdfTablesWithOcr = "parse_pdf_tables_with_ocr"
         case incrementalSync = "incremental_sync"
+        case fileSyncConfig = "file_sync_config"
     }
 
     // Encodable protocol methods
@@ -85,6 +88,7 @@ public struct SyncFilesRequest: Codable, JSONEncodable, Hashable {
         try container.encodeIfPresent(useOcr, forKey: .useOcr)
         try container.encodeIfPresent(parsePdfTablesWithOcr, forKey: .parsePdfTablesWithOcr)
         try container.encodeIfPresent(incrementalSync, forKey: .incrementalSync)
+        try container.encodeIfPresent(fileSyncConfig, forKey: .fileSyncConfig)
     }
 }
 
