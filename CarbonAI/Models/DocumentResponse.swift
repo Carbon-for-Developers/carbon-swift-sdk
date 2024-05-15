@@ -15,6 +15,7 @@ public struct DocumentResponse: Codable, JSONEncodable, Hashable {
     public var tags: [String: Tags]?
     public var content: String
     public var fileId: Int
+    public var parentFileId: Int?
     public var source: String?
     public var sourceUrl: String?
     public var sourceType: DataSourceTypeNullable?
@@ -25,10 +26,11 @@ public struct DocumentResponse: Codable, JSONEncodable, Hashable {
     public var contentMetadata: AnyCodable?
     public var chunkIndex: Int?
 
-    public init(tags: [String: Tags]?, content: String, fileId: Int, source: String?, sourceUrl: String?, sourceType: DataSourceTypeNullable?, presignedUrl: String?, vector: [Double]?, score: Double?, rank: RankProperty?, contentMetadata: AnyCodable?, chunkIndex: Int?) {
+    public init(tags: [String: Tags]?, content: String, fileId: Int, parentFileId: Int?, source: String?, sourceUrl: String?, sourceType: DataSourceTypeNullable?, presignedUrl: String?, vector: [Double]?, score: Double?, rank: RankProperty?, contentMetadata: AnyCodable?, chunkIndex: Int?) {
         self.tags = tags
         self.content = content
         self.fileId = fileId
+        self.parentFileId = parentFileId
         self.source = source
         self.sourceUrl = sourceUrl
         self.sourceType = sourceType
@@ -44,6 +46,7 @@ public struct DocumentResponse: Codable, JSONEncodable, Hashable {
         case tags
         case content
         case fileId = "file_id"
+        case parentFileId = "parent_file_id"
         case source
         case sourceUrl = "source_url"
         case sourceType = "source_type"
@@ -62,6 +65,7 @@ public struct DocumentResponse: Codable, JSONEncodable, Hashable {
         try container.encode(tags, forKey: .tags)
         try container.encode(content, forKey: .content)
         try container.encode(fileId, forKey: .fileId)
+        try container.encode(parentFileId, forKey: .parentFileId)
         try container.encode(source, forKey: .source)
         try container.encode(sourceUrl, forKey: .sourceUrl)
         try container.encode(sourceType, forKey: .sourceType)
