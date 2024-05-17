@@ -35,6 +35,7 @@ public enum DataSourceType: String, Codable, CaseIterable {
     case md = "MD"
     case rtf = "RTF"
     case json = "JSON"
+    case html = "HTML"
     case rawText = "RAW_TEXT"
     case webScrape = "WEB_SCRAPE"
     case rssFeed = "RSS_FEED"

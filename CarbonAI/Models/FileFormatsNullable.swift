@@ -21,6 +21,7 @@ public enum FileFormatsNullable: String, Codable, CaseIterable {
     case md = "MD"
     case rtf = "RTF"
     case json = "JSON"
+    case html = "HTML"
     case notion = "NOTION"
     case googleDocs = "GOOGLE_DOCS"
     case googleSheets = "GOOGLE_SHEETS"

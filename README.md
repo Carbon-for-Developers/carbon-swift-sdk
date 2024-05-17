@@ -1671,6 +1671,12 @@ let prependFilenameToChunks = true
 let syncFilesOnConnection = true
 let requestId = "requestId_example"
 let syncSourceItems = true
+let fileSyncConfig = HelpdeskFileSyncConfigNullable(
+    fileTypes: [
+    HelpdeskFileTypes.ticket
+    ],
+    syncAttachments: false
+)
 let connectFreshdeskResponse = try await carbonai.integrations.connectFreshdesk(
     domain: domain,
     apiKey: apiKey,
@@ -1683,7 +1689,8 @@ let connectFreshdeskResponse = try await carbonai.integrations.connectFreshdesk(
     prependFilenameToChunks: prependFilenameToChunks,
     syncFilesOnConnection: syncFilesOnConnection,
     requestId: requestId,
-    syncSourceItems: syncSourceItems
+    syncSourceItems: syncSourceItems,
+    fileSyncConfig: fileSyncConfig
 )
 ```
 
@@ -1725,6 +1732,9 @@ let connectFreshdeskResponse = try await carbonai.integrations.connectFreshdesk(
 ##### sync_source_items: `Bool`<a id="sync_source_items-bool"></a>
 
 Enabling this flag will fetch all available content from the source to be listed via list items endpoint
+
+
+##### file_sync_config: [`HelpdeskFileSyncConfigNullable`](./CarbonAI/Models/HelpdeskFileSyncConfigNullable.swift)<a id="file_sync_config-helpdeskfilesyncconfignullablecarbonaimodelshelpdeskfilesyncconfignullableswift"></a>
 
 
 #### 🔄 Return<a id="🔄-return"></a>
@@ -2039,7 +2049,7 @@ Enable OCR for files that support it. Supported formats: pdf
 
 ##### enable_file_picker: `Bool`<a id="enable_file_picker-bool"></a>
 
-Enable integration's file picker for sources that support it. Supported sources: GOOGLE_DRIVE, ONEDRIVE, BOX, SHAREPOINT, DROPBOX
+Enable integration's file picker for sources that support it. Supported sources: ONEDRIVE, SHAREPOINT, DROPBOX, BOX, GOOGLE_DRIVE
 
 
 ##### sync_source_items: `Bool`<a id="sync_source_items-bool"></a>
