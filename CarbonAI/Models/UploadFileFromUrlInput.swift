@@ -25,8 +25,9 @@ public struct UploadFileFromUrlInput: Codable, JSONEncodable, Hashable {
     /** Number of objects per chunk. For csv, tsv, xlsx, and json files only. */
     public var maxItemsPerChunk: Int?
     public var parsePdfTablesWithOcr: Bool? = false
+    public var detectAudioLanguage: Bool? = false
 
-    public init(url: String, fileName: String? = nil, chunkSize: Int? = nil, chunkOverlap: Int? = nil, skipEmbeddingGeneration: Bool? = false, setPageAsBoundary: Bool? = false, embeddingModel: EmbeddingGenerators? = nil, generateSparseVectors: Bool? = false, useTextract: Bool? = false, prependFilenameToChunks: Bool? = false, maxItemsPerChunk: Int? = nil, parsePdfTablesWithOcr: Bool? = false) {
+    public init(url: String, fileName: String? = nil, chunkSize: Int? = nil, chunkOverlap: Int? = nil, skipEmbeddingGeneration: Bool? = false, setPageAsBoundary: Bool? = false, embeddingModel: EmbeddingGenerators? = nil, generateSparseVectors: Bool? = false, useTextract: Bool? = false, prependFilenameToChunks: Bool? = false, maxItemsPerChunk: Int? = nil, parsePdfTablesWithOcr: Bool? = false, detectAudioLanguage: Bool? = false) {
         self.url = url
         self.fileName = fileName
         self.chunkSize = chunkSize
@@ -39,6 +40,7 @@ public struct UploadFileFromUrlInput: Codable, JSONEncodable, Hashable {
         self.prependFilenameToChunks = prependFilenameToChunks
         self.maxItemsPerChunk = maxItemsPerChunk
         self.parsePdfTablesWithOcr = parsePdfTablesWithOcr
+        self.detectAudioLanguage = detectAudioLanguage
     }
 
     public enum CodingKeys: String, CodingKey, CaseIterable {
@@ -54,6 +56,7 @@ public struct UploadFileFromUrlInput: Codable, JSONEncodable, Hashable {
         case prependFilenameToChunks = "prepend_filename_to_chunks"
         case maxItemsPerChunk = "max_items_per_chunk"
         case parsePdfTablesWithOcr = "parse_pdf_tables_with_ocr"
+        case detectAudioLanguage = "detect_audio_language"
     }
 
     // Encodable protocol methods
@@ -72,6 +75,7 @@ public struct UploadFileFromUrlInput: Codable, JSONEncodable, Hashable {
         try container.encodeIfPresent(prependFilenameToChunks, forKey: .prependFilenameToChunks)
         try container.encodeIfPresent(maxItemsPerChunk, forKey: .maxItemsPerChunk)
         try container.encodeIfPresent(parsePdfTablesWithOcr, forKey: .parsePdfTablesWithOcr)
+        try container.encodeIfPresent(detectAudioLanguage, forKey: .detectAudioLanguage)
     }
 }
 

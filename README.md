@@ -6,7 +6,7 @@
 
 Connect external data to LLMs, no matter the source.
 
-[![CocoaPods](https://img.shields.io/badge/pod-v0.2.19-blue)](https://cocoapods.org/pods/CarbonAI)
+[![CocoaPods](https://img.shields.io/badge/pod-v0.2.20-blue)](https://cocoapods.org/pods/CarbonAI)
 
 </div>
 
@@ -102,7 +102,7 @@ github "Carbon-for-Developers/carbon-swift-sdk"
 ### CocoaPods<a id="cocoapods"></a>
 
 1. Add `source 'https://github.com/CocoaPods/Specs.git'` to your `Podfile`
-2. Add `pod 'CarbonAI', '~> 0.2.19'` to your `Podfile`
+2. Add `pod 'CarbonAI', '~> 0.2.20'` to your `Podfile`
 
 Your `Podfile` should look like:
 ```ruby
@@ -110,7 +110,7 @@ Your `Podfile` should look like:
 source 'https://github.com/CocoaPods/Specs.git'
 
 target 'Example' do
-  pod 'CarbonAI', '~> 0.2.19'
+  pod 'CarbonAI', '~> 0.2.20'
 end
 ```
 3. Run `pod install`
@@ -119,7 +119,7 @@ end
 ❯ pod install
 Analyzing dependencies
 Downloading dependencies
-Installing CarbonAI 0.2.19
+Installing CarbonAI 0.2.20
 Generating Pods project
 Integrating client project
 Pod installation complete! There is 1 dependency from the Podfile and 2 total pods installed.
@@ -1304,6 +1304,7 @@ let generateSparseVectors = false
 let prependFilenameToChunks = false
 let maxItemsPerChunk = 987
 let parsePdfTablesWithOcr = false
+let detectAudioLanguage = false
 let uploadResponse = try await carbonai.files.upload(
     file: file,
     chunkSize: chunkSize,
@@ -1315,7 +1316,8 @@ let uploadResponse = try await carbonai.files.upload(
     generateSparseVectors: generateSparseVectors,
     prependFilenameToChunks: prependFilenameToChunks,
     maxItemsPerChunk: maxItemsPerChunk,
-    parsePdfTablesWithOcr: parsePdfTablesWithOcr
+    parsePdfTablesWithOcr: parsePdfTablesWithOcr,
+    detectAudioLanguage: detectAudioLanguage
 )
 ```
 
@@ -1374,6 +1376,11 @@ Number of objects per chunk. For csv, tsv, xlsx, and json files only.
 Whether to use rich table parsing when `use_ocr` is enabled.
 
 
+##### detectAudioLanguage: `Bool`<a id="detectaudiolanguage-bool"></a>
+
+Whether to automatically detect the language of the uploaded audio file.
+
+
 #### 🔄 Return<a id="🔄-return"></a>
 
 [UserFile](./CarbonAI/Models/UserFile.swift)
@@ -1408,6 +1415,7 @@ let useTextract = true
 let prependFilenameToChunks = true
 let maxItemsPerChunk = 987
 let parsePdfTablesWithOcr = true
+let detectAudioLanguage = true
 let uploadFromUrlResponse = try await carbonai.files.uploadFromUrl(
     url: url,
     fileName: fileName,
@@ -1420,7 +1428,8 @@ let uploadFromUrlResponse = try await carbonai.files.uploadFromUrl(
     useTextract: useTextract,
     prependFilenameToChunks: prependFilenameToChunks,
     maxItemsPerChunk: maxItemsPerChunk,
-    parsePdfTablesWithOcr: parsePdfTablesWithOcr
+    parsePdfTablesWithOcr: parsePdfTablesWithOcr,
+    detectAudioLanguage: detectAudioLanguage
 )
 ```
 
@@ -1462,6 +1471,9 @@ Number of objects per chunk. For csv, tsv, xlsx, and json files only.
 
 
 ##### parse_pdf_tables_with_ocr: `Bool`<a id="parse_pdf_tables_with_ocr-bool"></a>
+
+
+##### detect_audio_language: `Bool`<a id="detect_audio_language-bool"></a>
 
 
 #### 🔄 Return<a id="🔄-return"></a>
@@ -2049,7 +2061,7 @@ Enable OCR for files that support it. Supported formats: pdf
 
 ##### enable_file_picker: `Bool`<a id="enable_file_picker-bool"></a>
 
-Enable integration's file picker for sources that support it. Supported sources: ONEDRIVE, SHAREPOINT, DROPBOX, BOX, GOOGLE_DRIVE
+Enable integration's file picker for sources that support it. Supported sources: SHAREPOINT, DROPBOX, BOX, ONEDRIVE, GOOGLE_DRIVE
 
 
 ##### sync_source_items: `Bool`<a id="sync_source_items-bool"></a>
