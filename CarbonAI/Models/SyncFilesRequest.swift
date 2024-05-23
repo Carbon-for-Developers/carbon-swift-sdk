@@ -24,14 +24,14 @@ public struct SyncFilesRequest: Codable, JSONEncodable, Hashable {
     /** Number of objects per chunk. For csv, tsv, xlsx, and json files only. */
     public var maxItemsPerChunk: Int?
     public var setPageAsBoundary: Bool? = false
-    public var requestId: String? = "3d0330f2-f2e4-482b-9ca7-91d3a1bbbd18"
+    public var requestId: String? = "5cb51bcc-08e9-4e31-9784-0005b5390cb6"
     public var useOcr: Bool? = false
     public var parsePdfTablesWithOcr: Bool? = false
     /** Only sync files if they have not already been synced or if the embedding properties have changed.         This flag is currently supported by ONEDRIVE, GOOGLE_DRIVE, BOX, DROPBOX. It will be ignored for other data sources. */
     public var incrementalSync: Bool? = false
     public var fileSyncConfig: HelpdeskGlobalFileSyncConfigNullable?
 
-    public init(tags: AnyCodable? = nil, dataSourceId: Int, ids: IdsProperty, chunkSize: Int? = 1500, chunkOverlap: Int? = 20, skipEmbeddingGeneration: Bool? = false, embeddingModel: EmbeddingGeneratorsNullable? = nil, generateSparseVectors: Bool? = false, prependFilenameToChunks: Bool? = false, maxItemsPerChunk: Int? = nil, setPageAsBoundary: Bool? = false, requestId: String? = "3d0330f2-f2e4-482b-9ca7-91d3a1bbbd18", useOcr: Bool? = false, parsePdfTablesWithOcr: Bool? = false, incrementalSync: Bool? = false, fileSyncConfig: HelpdeskGlobalFileSyncConfigNullable? = nil) {
+    public init(tags: AnyCodable? = nil, dataSourceId: Int, ids: IdsProperty, chunkSize: Int? = 1500, chunkOverlap: Int? = 20, skipEmbeddingGeneration: Bool? = false, embeddingModel: EmbeddingGeneratorsNullable? = nil, generateSparseVectors: Bool? = false, prependFilenameToChunks: Bool? = false, maxItemsPerChunk: Int? = nil, setPageAsBoundary: Bool? = false, requestId: String? = "5cb51bcc-08e9-4e31-9784-0005b5390cb6", useOcr: Bool? = false, parsePdfTablesWithOcr: Bool? = false, incrementalSync: Bool? = false, fileSyncConfig: HelpdeskGlobalFileSyncConfigNullable? = nil) {
         self.tags = tags
         self.dataSourceId = dataSourceId
         self.ids = ids

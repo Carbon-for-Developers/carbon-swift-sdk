@@ -23,8 +23,9 @@ public struct GmailSyncInput: Codable, JSONEncodable, Hashable {
     public var dataSourceId: Int?
     public var requestId: String?
     public var syncAttachments: Bool? = false
+    public var incrementalSync: Bool? = false
 
-    public init(tags: AnyCodable? = nil, filters: AnyCodable, chunkSize: Int? = 1500, chunkOverlap: Int? = 20, skipEmbeddingGeneration: Bool? = false, embeddingModel: EmbeddingGenerators? = nil, generateSparseVectors: Bool? = false, prependFilenameToChunks: Bool? = false, dataSourceId: Int? = nil, requestId: String? = nil, syncAttachments: Bool? = false) {
+    public init(tags: AnyCodable? = nil, filters: AnyCodable, chunkSize: Int? = 1500, chunkOverlap: Int? = 20, skipEmbeddingGeneration: Bool? = false, embeddingModel: EmbeddingGenerators? = nil, generateSparseVectors: Bool? = false, prependFilenameToChunks: Bool? = false, dataSourceId: Int? = nil, requestId: String? = nil, syncAttachments: Bool? = false, incrementalSync: Bool? = false) {
         self.tags = tags
         self.filters = filters
         self.chunkSize = chunkSize
@@ -36,6 +37,7 @@ public struct GmailSyncInput: Codable, JSONEncodable, Hashable {
         self.dataSourceId = dataSourceId
         self.requestId = requestId
         self.syncAttachments = syncAttachments
+        self.incrementalSync = incrementalSync
     }
 
     public enum CodingKeys: String, CodingKey, CaseIterable {
@@ -50,6 +52,7 @@ public struct GmailSyncInput: Codable, JSONEncodable, Hashable {
         case dataSourceId = "data_source_id"
         case requestId = "request_id"
         case syncAttachments = "sync_attachments"
+        case incrementalSync = "incremental_sync"
     }
 
     // Encodable protocol methods
@@ -67,6 +70,7 @@ public struct GmailSyncInput: Codable, JSONEncodable, Hashable {
         try container.encodeIfPresent(dataSourceId, forKey: .dataSourceId)
         try container.encodeIfPresent(requestId, forKey: .requestId)
         try container.encodeIfPresent(syncAttachments, forKey: .syncAttachments)
+        try container.encodeIfPresent(incrementalSync, forKey: .incrementalSync)
     }
 }
 

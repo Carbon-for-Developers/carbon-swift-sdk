@@ -6,7 +6,7 @@
 
 Connect external data to LLMs, no matter the source.
 
-[![CocoaPods](https://img.shields.io/badge/pod-v0.2.20-blue)](https://cocoapods.org/pods/CarbonAI)
+[![CocoaPods](https://img.shields.io/badge/pod-v0.2.21-blue)](https://cocoapods.org/pods/CarbonAI)
 
 </div>
 
@@ -102,7 +102,7 @@ github "Carbon-for-Developers/carbon-swift-sdk"
 ### CocoaPods<a id="cocoapods"></a>
 
 1. Add `source 'https://github.com/CocoaPods/Specs.git'` to your `Podfile`
-2. Add `pod 'CarbonAI', '~> 0.2.20'` to your `Podfile`
+2. Add `pod 'CarbonAI', '~> 0.2.21'` to your `Podfile`
 
 Your `Podfile` should look like:
 ```ruby
@@ -110,7 +110,7 @@ Your `Podfile` should look like:
 source 'https://github.com/CocoaPods/Specs.git'
 
 target 'Example' do
-  pod 'CarbonAI', '~> 0.2.20'
+  pod 'CarbonAI', '~> 0.2.21'
 end
 ```
 3. Run `pod install`
@@ -119,7 +119,7 @@ end
 ❯ pod install
 Analyzing dependencies
 Downloading dependencies
-Installing CarbonAI 0.2.20
+Installing CarbonAI 0.2.21
 Generating Pods project
 Integrating client project
 Pod installation complete! There is 1 dependency from the Podfile and 2 total pods installed.
@@ -2061,7 +2061,7 @@ Enable OCR for files that support it. Supported formats: pdf
 
 ##### enable_file_picker: `Bool`<a id="enable_file_picker-bool"></a>
 
-Enable integration's file picker for sources that support it. Supported sources: SHAREPOINT, DROPBOX, BOX, ONEDRIVE, GOOGLE_DRIVE
+Enable integration's file picker for sources that support it. Supported sources: SHAREPOINT, DROPBOX, BOX, GOOGLE_DRIVE, ONEDRIVE
 
 
 ##### sync_source_items: `Bool`<a id="sync_source_items-bool"></a>
@@ -2813,6 +2813,7 @@ let prependFilenameToChunks = true
 let dataSourceId = 987
 let requestId = "requestId_example"
 let syncAttachments = true
+let incrementalSync = true
 let syncGmailResponse = try await carbonai.integrations.syncGmail(
     filters: filters,
     tags: tags,
@@ -2824,7 +2825,8 @@ let syncGmailResponse = try await carbonai.integrations.syncGmail(
     prependFilenameToChunks: prependFilenameToChunks,
     dataSourceId: dataSourceId,
     requestId: requestId,
-    syncAttachments: syncAttachments
+    syncAttachments: syncAttachments,
+    incrementalSync: incrementalSync
 )
 ```
 
@@ -2861,6 +2863,9 @@ let syncGmailResponse = try await carbonai.integrations.syncGmail(
 
 
 ##### sync_attachments: `Bool`<a id="sync_attachments-bool"></a>
+
+
+##### incremental_sync: `Bool`<a id="incremental_sync-bool"></a>
 
 
 #### 🔄 Return<a id="🔄-return"></a>
@@ -2956,6 +2961,7 @@ let prependFilenameToChunks = true
 let dataSourceId = 987
 let requestId = "requestId_example"
 let syncAttachments = true
+let incrementalSync = true
 let syncOutlookResponse = try await carbonai.integrations.syncOutlook(
     filters: filters,
     tags: tags,
@@ -2968,7 +2974,8 @@ let syncOutlookResponse = try await carbonai.integrations.syncOutlook(
     prependFilenameToChunks: prependFilenameToChunks,
     dataSourceId: dataSourceId,
     requestId: requestId,
-    syncAttachments: syncAttachments
+    syncAttachments: syncAttachments,
+    incrementalSync: incrementalSync
 )
 ```
 
@@ -3008,6 +3015,9 @@ let syncOutlookResponse = try await carbonai.integrations.syncOutlook(
 
 
 ##### sync_attachments: `Bool`<a id="sync_attachments-bool"></a>
+
+
+##### incremental_sync: `Bool`<a id="incremental_sync-bool"></a>
 
 
 #### 🔄 Return<a id="🔄-return"></a>

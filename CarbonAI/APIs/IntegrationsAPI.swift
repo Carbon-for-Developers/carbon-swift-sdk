@@ -3639,7 +3639,8 @@ open class IntegrationsAPI {
         prependFilenameToChunks: Bool? = nil, 
         dataSourceId: Int? = nil, 
         requestId: String? = nil, 
-        syncAttachments: Bool? = nil
+        syncAttachments: Bool? = nil, 
+        incrementalSync: Bool? = nil
     ) async throws -> GenericSuccessResponse {
         let gmailSyncInput = GmailSyncInput(
             tags: tags,
@@ -3652,7 +3653,8 @@ open class IntegrationsAPI {
             prependFilenameToChunks: prependFilenameToChunks,
             dataSourceId: dataSourceId,
             requestId: requestId,
-            syncAttachments: syncAttachments
+            syncAttachments: syncAttachments,
+            incrementalSync: incrementalSync
         )
         return try await withCheckedThrowingContinuation { continuation in
             syncGmailWithRequestBuilder(gmailSyncInput: gmailSyncInput).execute { result in
@@ -3686,7 +3688,8 @@ open class IntegrationsAPI {
         prependFilenameToChunks: Bool? = nil, 
         dataSourceId: Int? = nil, 
         requestId: String? = nil, 
-        syncAttachments: Bool? = nil
+        syncAttachments: Bool? = nil, 
+        incrementalSync: Bool? = nil
     ) async throws -> GenericSuccessResponse {
         let gmailSyncInput = GmailSyncInput(
             tags: tags,
@@ -3699,7 +3702,8 @@ open class IntegrationsAPI {
             prependFilenameToChunks: prependFilenameToChunks,
             dataSourceId: dataSourceId,
             requestId: requestId,
-            syncAttachments: syncAttachments
+            syncAttachments: syncAttachments,
+            incrementalSync: incrementalSync
         )
         return try await withCheckedThrowingContinuation { continuation in
             syncGmailWithRequestBuilder(gmailSyncInput: gmailSyncInput).execute { result in
@@ -3866,7 +3870,8 @@ open class IntegrationsAPI {
         prependFilenameToChunks: Bool? = nil, 
         dataSourceId: Int? = nil, 
         requestId: String? = nil, 
-        syncAttachments: Bool? = nil
+        syncAttachments: Bool? = nil, 
+        incrementalSync: Bool? = nil
     ) async throws -> GenericSuccessResponse {
         let outlookSyncInput = OutlookSyncInput(
             tags: tags,
@@ -3880,7 +3885,8 @@ open class IntegrationsAPI {
             prependFilenameToChunks: prependFilenameToChunks,
             dataSourceId: dataSourceId,
             requestId: requestId,
-            syncAttachments: syncAttachments
+            syncAttachments: syncAttachments,
+            incrementalSync: incrementalSync
         )
         return try await withCheckedThrowingContinuation { continuation in
             syncOutlookWithRequestBuilder(outlookSyncInput: outlookSyncInput).execute { result in
@@ -3915,7 +3921,8 @@ open class IntegrationsAPI {
         prependFilenameToChunks: Bool? = nil, 
         dataSourceId: Int? = nil, 
         requestId: String? = nil, 
-        syncAttachments: Bool? = nil
+        syncAttachments: Bool? = nil, 
+        incrementalSync: Bool? = nil
     ) async throws -> GenericSuccessResponse {
         let outlookSyncInput = OutlookSyncInput(
             tags: tags,
@@ -3929,7 +3936,8 @@ open class IntegrationsAPI {
             prependFilenameToChunks: prependFilenameToChunks,
             dataSourceId: dataSourceId,
             requestId: requestId,
-            syncAttachments: syncAttachments
+            syncAttachments: syncAttachments,
+            incrementalSync: incrementalSync
         )
         return try await withCheckedThrowingContinuation { continuation in
             syncOutlookWithRequestBuilder(outlookSyncInput: outlookSyncInput).execute { result in
