@@ -57,4 +57,5 @@ public enum DataSourceType: String, Codable, CaseIterable {
     case ogg = "OGG"
     case opus = "OPUS"
     case webm = "WEBM"
+    case mpeg = "MPEG"
 }

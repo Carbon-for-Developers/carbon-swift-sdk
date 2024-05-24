@@ -40,12 +40,12 @@ public struct UserFile: Codable, JSONEncodable, Hashable {
     public var skipEmbeddingGeneration: Bool
     public var sourceCreatedAt: Date?
     public var generateSparseVectors: Bool?
-    public var audioProperties: AnyCodable?
     public var requestId: String?
+    public var syncProperties: AnyCodable
     public var createdAt: Date
     public var updatedAt: Date
 
-    public init(tags: AnyCodable?, id: Int, source: DataSourceType, organizationId: Int, organizationSuppliedUserId: String, organizationUserDataSourceId: Int?, externalFileId: String, externalUrl: String?, syncStatus: ExternalFileSyncStatuses, syncErrorMessage: String?, lastSync: Date?, fileStatistics: FileStatisticsNullable?, fileMetadata: AnyCodable?, embeddingProperties: [String: EmbeddingProperties]?, chunkSize: Int?, chunkOverlap: Int?, chunkProperties: ChunkPropertiesNullable?, ocrProperties: AnyCodable, ocrJobStartedAt: Date?, name: String?, parentId: Int?, enableAutoSync: Bool?, presignedUrl: String?, parsedTextUrl: String?, additionalPresignedUrls: AnyCodable?, skipEmbeddingGeneration: Bool, sourceCreatedAt: Date?, generateSparseVectors: Bool?, audioProperties: AnyCodable?, requestId: String?, createdAt: Date, updatedAt: Date) {
+    public init(tags: AnyCodable?, id: Int, source: DataSourceType, organizationId: Int, organizationSuppliedUserId: String, organizationUserDataSourceId: Int?, externalFileId: String, externalUrl: String?, syncStatus: ExternalFileSyncStatuses, syncErrorMessage: String?, lastSync: Date?, fileStatistics: FileStatisticsNullable?, fileMetadata: AnyCodable?, embeddingProperties: [String: EmbeddingProperties]?, chunkSize: Int?, chunkOverlap: Int?, chunkProperties: ChunkPropertiesNullable?, ocrProperties: AnyCodable, ocrJobStartedAt: Date?, name: String?, parentId: Int?, enableAutoSync: Bool?, presignedUrl: String?, parsedTextUrl: String?, additionalPresignedUrls: AnyCodable?, skipEmbeddingGeneration: Bool, sourceCreatedAt: Date?, generateSparseVectors: Bool?, requestId: String?, syncProperties: AnyCodable, createdAt: Date, updatedAt: Date) {
         self.tags = tags
         self.id = id
         self.source = source
@@ -74,8 +74,8 @@ public struct UserFile: Codable, JSONEncodable, Hashable {
         self.skipEmbeddingGeneration = skipEmbeddingGeneration
         self.sourceCreatedAt = sourceCreatedAt
         self.generateSparseVectors = generateSparseVectors
-        self.audioProperties = audioProperties
         self.requestId = requestId
+        self.syncProperties = syncProperties
         self.createdAt = createdAt
         self.updatedAt = updatedAt
     }
@@ -109,8 +109,8 @@ public struct UserFile: Codable, JSONEncodable, Hashable {
         case skipEmbeddingGeneration = "skip_embedding_generation"
         case sourceCreatedAt = "source_created_at"
         case generateSparseVectors = "generate_sparse_vectors"
-        case audioProperties = "audio_properties"
         case requestId = "request_id"
+        case syncProperties = "sync_properties"
         case createdAt = "created_at"
         case updatedAt = "updated_at"
     }
@@ -147,8 +147,8 @@ public struct UserFile: Codable, JSONEncodable, Hashable {
         try container.encode(skipEmbeddingGeneration, forKey: .skipEmbeddingGeneration)
         try container.encode(sourceCreatedAt, forKey: .sourceCreatedAt)
         try container.encode(generateSparseVectors, forKey: .generateSparseVectors)
-        try container.encode(audioProperties, forKey: .audioProperties)
         try container.encode(requestId, forKey: .requestId)
+        try container.encode(syncProperties, forKey: .syncProperties)
         try container.encode(createdAt, forKey: .createdAt)
         try container.encode(updatedAt, forKey: .updatedAt)
     }

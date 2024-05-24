@@ -36,19 +36,19 @@ public struct OAuthURLRequest: Codable, JSONEncodable, Hashable {
     /** Used to connect a new data source. If not specified, we will attempt to create a sync URL         for an existing data source based on type and ID. */
     public var connectingNewAccount: Bool? = false
     /** This request id will be added to all files that get synced using the generated OAuth URL */
-    public var requestId: String? = "a0b57844-5937-42ef-a161-2515fc4f16df"
+    public var requestId: String? = "eb3e536e-fa3e-4f8e-9a22-25f70393e759"
     /** Enable OCR for files that support it. Supported formats: pdf */
     public var useOcr: Bool? = false
     public var parsePdfTablesWithOcr: Bool? = false
-    /** Enable integration's file picker for sources that support it. Supported sources: SHAREPOINT, DROPBOX, BOX, GOOGLE_DRIVE, ONEDRIVE */
+    /** Enable integration's file picker for sources that support it. Supported sources: ONEDRIVE, GOOGLE_DRIVE, DROPBOX, SHAREPOINT, BOX */
     public var enableFilePicker: Bool? = true
     /** Enabling this flag will fetch all available content from the source to be listed via list items endpoint */
     public var syncSourceItems: Bool? = true
     /** Only sync files if they have not already been synced or if the embedding properties have changed.         This flag is currently supported by ONEDRIVE, GOOGLE_DRIVE, BOX, DROPBOX. It will be ignored for other data sources. */
     public var incrementalSync: Bool? = false
-    public var fileSyncConfig: HelpdeskFileSyncConfigNullable?
+    public var fileSyncConfig: FileSyncConfigNullable?
 
-    public init(tags: AnyCodable? = nil, scope: String? = nil, service: DataSourceType, chunkSize: Int? = 1500, chunkOverlap: Int? = 20, skipEmbeddingGeneration: Bool? = false, embeddingModel: EmbeddingGeneratorsNullable? = nil, zendeskSubdomain: String? = nil, microsoftTenant: String? = nil, sharepointSiteName: String? = nil, confluenceSubdomain: String? = nil, generateSparseVectors: Bool? = false, prependFilenameToChunks: Bool? = false, maxItemsPerChunk: Int? = nil, salesforceDomain: String? = nil, syncFilesOnConnection: Bool? = true, setPageAsBoundary: Bool? = false, dataSourceId: Int? = nil, connectingNewAccount: Bool? = false, requestId: String? = "a0b57844-5937-42ef-a161-2515fc4f16df", useOcr: Bool? = false, parsePdfTablesWithOcr: Bool? = false, enableFilePicker: Bool? = true, syncSourceItems: Bool? = true, incrementalSync: Bool? = false, fileSyncConfig: HelpdeskFileSyncConfigNullable? = nil) {
+    public init(tags: AnyCodable? = nil, scope: String? = nil, service: DataSourceType, chunkSize: Int? = 1500, chunkOverlap: Int? = 20, skipEmbeddingGeneration: Bool? = false, embeddingModel: EmbeddingGeneratorsNullable? = nil, zendeskSubdomain: String? = nil, microsoftTenant: String? = nil, sharepointSiteName: String? = nil, confluenceSubdomain: String? = nil, generateSparseVectors: Bool? = false, prependFilenameToChunks: Bool? = false, maxItemsPerChunk: Int? = nil, salesforceDomain: String? = nil, syncFilesOnConnection: Bool? = true, setPageAsBoundary: Bool? = false, dataSourceId: Int? = nil, connectingNewAccount: Bool? = false, requestId: String? = "eb3e536e-fa3e-4f8e-9a22-25f70393e759", useOcr: Bool? = false, parsePdfTablesWithOcr: Bool? = false, enableFilePicker: Bool? = true, syncSourceItems: Bool? = true, incrementalSync: Bool? = false, fileSyncConfig: FileSyncConfigNullable? = nil) {
         self.tags = tags
         self.scope = scope
         self.service = service

@@ -6,7 +6,7 @@
 
 Connect external data to LLMs, no matter the source.
 
-[![CocoaPods](https://img.shields.io/badge/pod-v0.2.21-blue)](https://cocoapods.org/pods/CarbonAI)
+[![CocoaPods](https://img.shields.io/badge/pod-v0.2.22-blue)](https://cocoapods.org/pods/CarbonAI)
 
 </div>
 
@@ -102,7 +102,7 @@ github "Carbon-for-Developers/carbon-swift-sdk"
 ### CocoaPods<a id="cocoapods"></a>
 
 1. Add `source 'https://github.com/CocoaPods/Specs.git'` to your `Podfile`
-2. Add `pod 'CarbonAI', '~> 0.2.21'` to your `Podfile`
+2. Add `pod 'CarbonAI', '~> 0.2.22'` to your `Podfile`
 
 Your `Podfile` should look like:
 ```ruby
@@ -110,7 +110,7 @@ Your `Podfile` should look like:
 source 'https://github.com/CocoaPods/Specs.git'
 
 target 'Example' do
-  pod 'CarbonAI', '~> 0.2.21'
+  pod 'CarbonAI', '~> 0.2.22'
 end
 ```
 3. Run `pod install`
@@ -119,7 +119,7 @@ end
 ❯ pod install
 Analyzing dependencies
 Downloading dependencies
-Installing CarbonAI 0.2.21
+Installing CarbonAI 0.2.22
 Generating Pods project
 Integrating client project
 Pod installation complete! There is 1 dependency from the Podfile and 2 total pods installed.
@@ -1624,11 +1624,12 @@ let syncOptions = SyncOptions(
     enableFilePicker: true,
     syncSourceItems: true,
     incrementalSync: false,
-    fileSyncConfig: HelpdeskFileSyncConfigNullable(
-        fileTypes: [
+    fileSyncConfig: FileSyncConfigNullable(
+        autoSyncedSourceTypes: [
         HelpdeskFileTypes.ticket
         ],
-        syncAttachments: false
+        syncAttachments: false,
+        detectAudioLanguage: false
     )
 )
 let connectDataSourceResponse = try await carbonai.integrations.connectDataSource(
@@ -1683,11 +1684,12 @@ let prependFilenameToChunks = true
 let syncFilesOnConnection = true
 let requestId = "requestId_example"
 let syncSourceItems = true
-let fileSyncConfig = HelpdeskFileSyncConfigNullable(
-    fileTypes: [
+let fileSyncConfig = FileSyncConfigNullable(
+    autoSyncedSourceTypes: [
     HelpdeskFileTypes.ticket
     ],
-    syncAttachments: false
+    syncAttachments: false,
+    detectAudioLanguage: false
 )
 let connectFreshdeskResponse = try await carbonai.integrations.connectFreshdesk(
     domain: domain,
@@ -1746,7 +1748,7 @@ let connectFreshdeskResponse = try await carbonai.integrations.connectFreshdesk(
 Enabling this flag will fetch all available content from the source to be listed via list items endpoint
 
 
-##### file_sync_config: [`HelpdeskFileSyncConfigNullable`](./CarbonAI/Models/HelpdeskFileSyncConfigNullable.swift)<a id="file_sync_config-helpdeskfilesyncconfignullablecarbonaimodelshelpdeskfilesyncconfignullableswift"></a>
+##### file_sync_config: [`FileSyncConfigNullable`](./CarbonAI/Models/FileSyncConfigNullable.swift)<a id="file_sync_config-filesyncconfignullablecarbonaimodelsfilesyncconfignullableswift"></a>
 
 
 #### 🔄 Return<a id="🔄-return"></a>
@@ -1943,11 +1945,12 @@ let parsePdfTablesWithOcr = true
 let enableFilePicker = true
 let syncSourceItems = true
 let incrementalSync = true
-let fileSyncConfig = HelpdeskFileSyncConfigNullable(
-    fileTypes: [
+let fileSyncConfig = FileSyncConfigNullable(
+    autoSyncedSourceTypes: [
     HelpdeskFileTypes.ticket
     ],
-    syncAttachments: false
+    syncAttachments: false,
+    detectAudioLanguage: false
 )
 let getOauthUrlResponse = try await carbonai.integrations.getOauthUrl(
     service: service,
@@ -2061,7 +2064,7 @@ Enable OCR for files that support it. Supported formats: pdf
 
 ##### enable_file_picker: `Bool`<a id="enable_file_picker-bool"></a>
 
-Enable integration's file picker for sources that support it. Supported sources: SHAREPOINT, DROPBOX, BOX, GOOGLE_DRIVE, ONEDRIVE
+Enable integration's file picker for sources that support it. Supported sources: ONEDRIVE, GOOGLE_DRIVE, DROPBOX, SHAREPOINT, BOX
 
 
 ##### sync_source_items: `Bool`<a id="sync_source_items-bool"></a>
@@ -2074,7 +2077,7 @@ Enabling this flag will fetch all available content from the source to be listed
 Only sync files if they have not already been synced or if the embedding properties have changed.         This flag is currently supported by ONEDRIVE, GOOGLE_DRIVE, BOX, DROPBOX. It will be ignored for other data sources.
 
 
-##### file_sync_config: [`HelpdeskFileSyncConfigNullable`](./CarbonAI/Models/HelpdeskFileSyncConfigNullable.swift)<a id="file_sync_config-helpdeskfilesyncconfignullablecarbonaimodelshelpdeskfilesyncconfignullableswift"></a>
+##### file_sync_config: [`FileSyncConfigNullable`](./CarbonAI/Models/FileSyncConfigNullable.swift)<a id="file_sync_config-filesyncconfignullablecarbonaimodelsfilesyncconfignullableswift"></a>
 
 
 #### 🔄 Return<a id="🔄-return"></a>
@@ -2382,8 +2385,12 @@ let requestId = "requestId_example"
 let useOcr = true
 let parsePdfTablesWithOcr = true
 let incrementalSync = true
-let fileSyncConfig = HelpdeskGlobalFileSyncConfigNullable(
-    syncAttachments: false
+let fileSyncConfig = FileSyncConfigNullable(
+    autoSyncedSourceTypes: [
+    HelpdeskFileTypes.ticket
+    ],
+    syncAttachments: false,
+    detectAudioLanguage: false
 )
 let syncConfluenceResponse = try await carbonai.integrations.syncConfluence(
     dataSourceId: dataSourceId,
@@ -2456,7 +2463,7 @@ Number of objects per chunk. For csv, tsv, xlsx, and json files only.
 Only sync files if they have not already been synced or if the embedding properties have changed.         This flag is currently supported by ONEDRIVE, GOOGLE_DRIVE, BOX, DROPBOX. It will be ignored for other data sources.
 
 
-##### file_sync_config: [`HelpdeskGlobalFileSyncConfigNullable`](./CarbonAI/Models/HelpdeskGlobalFileSyncConfigNullable.swift)<a id="file_sync_config-helpdeskglobalfilesyncconfignullablecarbonaimodelshelpdeskglobalfilesyncconfignullableswift"></a>
+##### file_sync_config: [`FileSyncConfigNullable`](./CarbonAI/Models/FileSyncConfigNullable.swift)<a id="file_sync_config-filesyncconfignullablecarbonaimodelsfilesyncconfignullableswift"></a>
 
 
 #### 🔄 Return<a id="🔄-return"></a>
@@ -2532,8 +2539,12 @@ let requestId = "requestId_example"
 let useOcr = true
 let parsePdfTablesWithOcr = true
 let incrementalSync = true
-let fileSyncConfig = HelpdeskGlobalFileSyncConfigNullable(
-    syncAttachments: false
+let fileSyncConfig = FileSyncConfigNullable(
+    autoSyncedSourceTypes: [
+    HelpdeskFileTypes.ticket
+    ],
+    syncAttachments: false,
+    detectAudioLanguage: false
 )
 let syncFilesResponse = try await carbonai.integrations.syncFiles(
     dataSourceId: dataSourceId,
@@ -2606,7 +2617,7 @@ Number of objects per chunk. For csv, tsv, xlsx, and json files only.
 Only sync files if they have not already been synced or if the embedding properties have changed.         This flag is currently supported by ONEDRIVE, GOOGLE_DRIVE, BOX, DROPBOX. It will be ignored for other data sources.
 
 
-##### file_sync_config: [`HelpdeskGlobalFileSyncConfigNullable`](./CarbonAI/Models/HelpdeskGlobalFileSyncConfigNullable.swift)<a id="file_sync_config-helpdeskglobalfilesyncconfignullablecarbonaimodelshelpdeskglobalfilesyncconfignullableswift"></a>
+##### file_sync_config: [`FileSyncConfigNullable`](./CarbonAI/Models/FileSyncConfigNullable.swift)<a id="file_sync_config-filesyncconfignullablecarbonaimodelsfilesyncconfignullableswift"></a>
 
 
 #### 🔄 Return<a id="🔄-return"></a>
@@ -2813,6 +2824,13 @@ let prependFilenameToChunks = true
 let dataSourceId = 987
 let requestId = "requestId_example"
 let syncAttachments = true
+let fileSyncConfig = FileSyncConfigNullable(
+    autoSyncedSourceTypes: [
+    HelpdeskFileTypes.ticket
+    ],
+    syncAttachments: false,
+    detectAudioLanguage: false
+)
 let incrementalSync = true
 let syncGmailResponse = try await carbonai.integrations.syncGmail(
     filters: filters,
@@ -2826,6 +2844,7 @@ let syncGmailResponse = try await carbonai.integrations.syncGmail(
     dataSourceId: dataSourceId,
     requestId: requestId,
     syncAttachments: syncAttachments,
+    fileSyncConfig: fileSyncConfig,
     incrementalSync: incrementalSync
 )
 ```
@@ -2863,6 +2882,9 @@ let syncGmailResponse = try await carbonai.integrations.syncGmail(
 
 
 ##### sync_attachments: `Bool`<a id="sync_attachments-bool"></a>
+
+
+##### file_sync_config: [`FileSyncConfigNullable`](./CarbonAI/Models/FileSyncConfigNullable.swift)<a id="file_sync_config-filesyncconfignullablecarbonaimodelsfilesyncconfignullableswift"></a>
 
 
 ##### incremental_sync: `Bool`<a id="incremental_sync-bool"></a>
@@ -2961,6 +2983,13 @@ let prependFilenameToChunks = true
 let dataSourceId = 987
 let requestId = "requestId_example"
 let syncAttachments = true
+let fileSyncConfig = FileSyncConfigNullable(
+    autoSyncedSourceTypes: [
+    HelpdeskFileTypes.ticket
+    ],
+    syncAttachments: false,
+    detectAudioLanguage: false
+)
 let incrementalSync = true
 let syncOutlookResponse = try await carbonai.integrations.syncOutlook(
     filters: filters,
@@ -2975,6 +3004,7 @@ let syncOutlookResponse = try await carbonai.integrations.syncOutlook(
     dataSourceId: dataSourceId,
     requestId: requestId,
     syncAttachments: syncAttachments,
+    fileSyncConfig: fileSyncConfig,
     incrementalSync: incrementalSync
 )
 ```
@@ -3015,6 +3045,9 @@ let syncOutlookResponse = try await carbonai.integrations.syncOutlook(
 
 
 ##### sync_attachments: `Bool`<a id="sync_attachments-bool"></a>
+
+
+##### file_sync_config: [`FileSyncConfigNullable`](./CarbonAI/Models/FileSyncConfigNullable.swift)<a id="file_sync_config-filesyncconfignullablecarbonaimodelsfilesyncconfignullableswift"></a>
 
 
 ##### incremental_sync: `Bool`<a id="incremental_sync-bool"></a>
@@ -3172,6 +3205,13 @@ let dataSourceId = 987
 let requestId = "requestId_example"
 let useOcr = true
 let parsePdfTablesWithOcr = true
+let fileSyncConfig = FileSyncConfigNullable(
+    autoSyncedSourceTypes: [
+    HelpdeskFileTypes.ticket
+    ],
+    syncAttachments: false,
+    detectAudioLanguage: false
+)
 let syncS3FilesResponse = try await carbonai.integrations.syncS3Files(
     ids: ids,
     tags: tags,
@@ -3186,7 +3226,8 @@ let syncS3FilesResponse = try await carbonai.integrations.syncS3Files(
     dataSourceId: dataSourceId,
     requestId: requestId,
     useOcr: useOcr,
-    parsePdfTablesWithOcr: parsePdfTablesWithOcr
+    parsePdfTablesWithOcr: parsePdfTablesWithOcr,
+    fileSyncConfig: fileSyncConfig
 )
 ```
 
@@ -3234,6 +3275,9 @@ Number of objects per chunk. For csv, tsv, xlsx, and json files only.
 
 
 ##### parse_pdf_tables_with_ocr: `Bool`<a id="parse_pdf_tables_with_ocr-bool"></a>
+
+
+##### file_sync_config: [`FileSyncConfigNullable`](./CarbonAI/Models/FileSyncConfigNullable.swift)<a id="file_sync_config-filesyncconfignullablecarbonaimodelsfilesyncconfignullableswift"></a>
 
 
 #### 🔄 Return<a id="🔄-return"></a>

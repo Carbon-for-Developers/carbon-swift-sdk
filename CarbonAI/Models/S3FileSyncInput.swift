@@ -27,8 +27,9 @@ public struct S3FileSyncInput: Codable, JSONEncodable, Hashable {
     public var requestId: String?
     public var useOcr: Bool? = false
     public var parsePdfTablesWithOcr: Bool? = false
+    public var fileSyncConfig: FileSyncConfigNullable?
 
-    public init(tags: AnyCodable? = nil, ids: [S3GetFileInput], chunkSize: Int? = 1500, chunkOverlap: Int? = 20, skipEmbeddingGeneration: Bool? = false, embeddingModel: EmbeddingGenerators? = nil, generateSparseVectors: Bool? = false, prependFilenameToChunks: Bool? = false, maxItemsPerChunk: Int? = nil, setPageAsBoundary: Bool? = false, dataSourceId: Int? = nil, requestId: String? = nil, useOcr: Bool? = false, parsePdfTablesWithOcr: Bool? = false) {
+    public init(tags: AnyCodable? = nil, ids: [S3GetFileInput], chunkSize: Int? = 1500, chunkOverlap: Int? = 20, skipEmbeddingGeneration: Bool? = false, embeddingModel: EmbeddingGenerators? = nil, generateSparseVectors: Bool? = false, prependFilenameToChunks: Bool? = false, maxItemsPerChunk: Int? = nil, setPageAsBoundary: Bool? = false, dataSourceId: Int? = nil, requestId: String? = nil, useOcr: Bool? = false, parsePdfTablesWithOcr: Bool? = false, fileSyncConfig: FileSyncConfigNullable? = nil) {
         self.tags = tags
         self.ids = ids
         self.chunkSize = chunkSize
@@ -43,6 +44,7 @@ public struct S3FileSyncInput: Codable, JSONEncodable, Hashable {
         self.requestId = requestId
         self.useOcr = useOcr
         self.parsePdfTablesWithOcr = parsePdfTablesWithOcr
+        self.fileSyncConfig = fileSyncConfig
     }
 
     public enum CodingKeys: String, CodingKey, CaseIterable {
@@ -60,6 +62,7 @@ public struct S3FileSyncInput: Codable, JSONEncodable, Hashable {
         case requestId = "request_id"
         case useOcr = "use_ocr"
         case parsePdfTablesWithOcr = "parse_pdf_tables_with_ocr"
+        case fileSyncConfig = "file_sync_config"
     }
 
     // Encodable protocol methods
@@ -80,6 +83,7 @@ public struct S3FileSyncInput: Codable, JSONEncodable, Hashable {
         try container.encodeIfPresent(requestId, forKey: .requestId)
         try container.encodeIfPresent(useOcr, forKey: .useOcr)
         try container.encodeIfPresent(parsePdfTablesWithOcr, forKey: .parsePdfTablesWithOcr)
+        try container.encodeIfPresent(fileSyncConfig, forKey: .fileSyncConfig)
     }
 }
 

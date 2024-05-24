@@ -25,9 +25,9 @@ public struct FreshDeskConnectRequest: Codable, JSONEncodable, Hashable {
     public var requestId: String?
     /** Enabling this flag will fetch all available content from the source to be listed via list items endpoint */
     public var syncSourceItems: Bool? = true
-    public var fileSyncConfig: HelpdeskFileSyncConfigNullable?
+    public var fileSyncConfig: FileSyncConfigNullable?
 
-    public init(tags: AnyCodable? = nil, domain: String, apiKey: String, chunkSize: Int? = 1500, chunkOverlap: Int? = 20, skipEmbeddingGeneration: Bool? = false, embeddingModel: EmbeddingGeneratorsNullable? = nil, generateSparseVectors: Bool? = false, prependFilenameToChunks: Bool? = false, syncFilesOnConnection: Bool? = true, requestId: String? = nil, syncSourceItems: Bool? = true, fileSyncConfig: HelpdeskFileSyncConfigNullable? = nil) {
+    public init(tags: AnyCodable? = nil, domain: String, apiKey: String, chunkSize: Int? = 1500, chunkOverlap: Int? = 20, skipEmbeddingGeneration: Bool? = false, embeddingModel: EmbeddingGeneratorsNullable? = nil, generateSparseVectors: Bool? = false, prependFilenameToChunks: Bool? = false, syncFilesOnConnection: Bool? = true, requestId: String? = nil, syncSourceItems: Bool? = true, fileSyncConfig: FileSyncConfigNullable? = nil) {
         self.tags = tags
         self.domain = domain
         self.apiKey = apiKey

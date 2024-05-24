@@ -14,15 +14,18 @@ public struct FetchURLsResponse: Codable, JSONEncodable, Hashable {
 
     public var urls: [String]
     public var htmlContent: String
+    public var errorMessage: String?
 
-    public init(urls: [String], htmlContent: String) {
+    public init(urls: [String], htmlContent: String, errorMessage: String?) {
         self.urls = urls
         self.htmlContent = htmlContent
+        self.errorMessage = errorMessage
     }
 
     public enum CodingKeys: String, CodingKey, CaseIterable {
         case urls
         case htmlContent = "html_content"
+        case errorMessage = "error_message"
     }
 
     // Encodable protocol methods
@@ -31,6 +34,7 @@ public struct FetchURLsResponse: Codable, JSONEncodable, Hashable {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encode(urls, forKey: .urls)
         try container.encode(htmlContent, forKey: .htmlContent)
+        try container.encode(errorMessage, forKey: .errorMessage)
     }
 }
 
