@@ -13,4 +13,6 @@ import AnyCodable
 public enum FileContentTypes: String, Codable, CaseIterable {
     case text = "TEXT"
     case image = "IMAGE"
+    case audio = "AUDIO"
+    case video = "VIDEO"
 }

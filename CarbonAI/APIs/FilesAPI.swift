@@ -2002,12 +2002,13 @@ open class FilesAPI {
      - parameter maxItemsPerChunk: (query) Number of objects per chunk. For csv, tsv, xlsx, and json files only. (optional)
      - parameter parsePdfTablesWithOcr: (query) Whether to use rich table parsing when &#x60;use_ocr&#x60; is enabled. (optional, default to false)
      - parameter detectAudioLanguage: (query) Whether to automatically detect the language of the uploaded audio file. (optional, default to false)
+     - parameter mediaType: (query) The media type of the file. If not provided, it will be inferred from the file extension. (optional)
      - parameter apiResponseQueue: The queue on which api response is dispatched.
      - parameter completion: completion handler to receive the data and the error objects
      */
     @discardableResult
-    open class func uploadSync(file: URL, bodyCreateUploadFileUploadfilePost: BodyCreateUploadFileUploadfilePost, chunkSize: Int? = nil, chunkOverlap: Int? = nil, skipEmbeddingGeneration: Bool? = nil, setPageAsBoundary: Bool? = nil, embeddingModel: TextEmbeddingGenerators? = nil, useOcr: Bool? = nil, generateSparseVectors: Bool? = nil, prependFilenameToChunks: Bool? = nil, maxItemsPerChunk: Int? = nil, parsePdfTablesWithOcr: Bool? = nil, detectAudioLanguage: Bool? = nil, apiResponseQueue: DispatchQueue = CarbonAIAPI.apiResponseQueue, completion: @escaping ((_ data: UserFile?, _ error: Error?) -> Void)) -> RequestTask {
-        return uploadWithRequestBuilder(file: file, bodyCreateUploadFileUploadfilePost: bodyCreateUploadFileUploadfilePost, chunkSize: chunkSize, chunkOverlap: chunkOverlap, skipEmbeddingGeneration: skipEmbeddingGeneration, setPageAsBoundary: setPageAsBoundary, embeddingModel: embeddingModel, useOcr: useOcr, generateSparseVectors: generateSparseVectors, prependFilenameToChunks: prependFilenameToChunks, maxItemsPerChunk: maxItemsPerChunk, parsePdfTablesWithOcr: parsePdfTablesWithOcr, detectAudioLanguage: detectAudioLanguage).execute(apiResponseQueue) { result in
+    open class func uploadSync(file: URL, bodyCreateUploadFileUploadfilePost: BodyCreateUploadFileUploadfilePost, chunkSize: Int? = nil, chunkOverlap: Int? = nil, skipEmbeddingGeneration: Bool? = nil, setPageAsBoundary: Bool? = nil, embeddingModel: TextEmbeddingGenerators? = nil, useOcr: Bool? = nil, generateSparseVectors: Bool? = nil, prependFilenameToChunks: Bool? = nil, maxItemsPerChunk: Int? = nil, parsePdfTablesWithOcr: Bool? = nil, detectAudioLanguage: Bool? = nil, mediaType: FileContentTypesNullable? = nil, apiResponseQueue: DispatchQueue = CarbonAIAPI.apiResponseQueue, completion: @escaping ((_ data: UserFile?, _ error: Error?) -> Void)) -> RequestTask {
+        return uploadWithRequestBuilder(file: file, bodyCreateUploadFileUploadfilePost: bodyCreateUploadFileUploadfilePost, chunkSize: chunkSize, chunkOverlap: chunkOverlap, skipEmbeddingGeneration: skipEmbeddingGeneration, setPageAsBoundary: setPageAsBoundary, embeddingModel: embeddingModel, useOcr: useOcr, generateSparseVectors: generateSparseVectors, prependFilenameToChunks: prependFilenameToChunks, maxItemsPerChunk: maxItemsPerChunk, parsePdfTablesWithOcr: parsePdfTablesWithOcr, detectAudioLanguage: detectAudioLanguage, mediaType: mediaType).execute(apiResponseQueue) { result in
             switch result {
             case let .success(response):
                 completion(response.body, nil)
@@ -2033,13 +2034,14 @@ open class FilesAPI {
      - parameter maxItemsPerChunk: (query) Number of objects per chunk. For csv, tsv, xlsx, and json files only. (optional)
      - parameter parsePdfTablesWithOcr: (query) Whether to use rich table parsing when &#x60;use_ocr&#x60; is enabled. (optional, default to false)
      - parameter detectAudioLanguage: (query) Whether to automatically detect the language of the uploaded audio file. (optional, default to false)
+     - parameter mediaType: (query) The media type of the file. If not provided, it will be inferred from the file extension. (optional)
      - parameter apiResponseQueue: The queue on which api response is dispatched.
      - parameter completion: completion handler to receive the data and the error objects
      */
     @available(iOS 13.0, macOS 10.15, tvOS 13.0, watchOS 6.0, *)
-    private class func uploadAsyncMappedParams(file: URL, bodyCreateUploadFileUploadfilePost: BodyCreateUploadFileUploadfilePost, chunkSize: Int? = nil, chunkOverlap: Int? = nil, skipEmbeddingGeneration: Bool? = nil, setPageAsBoundary: Bool? = nil, embeddingModel: TextEmbeddingGenerators? = nil, useOcr: Bool? = nil, generateSparseVectors: Bool? = nil, prependFilenameToChunks: Bool? = nil, maxItemsPerChunk: Int? = nil, parsePdfTablesWithOcr: Bool? = nil, detectAudioLanguage: Bool? = nil) async throws -> UserFile {
+    private class func uploadAsyncMappedParams(file: URL, bodyCreateUploadFileUploadfilePost: BodyCreateUploadFileUploadfilePost, chunkSize: Int? = nil, chunkOverlap: Int? = nil, skipEmbeddingGeneration: Bool? = nil, setPageAsBoundary: Bool? = nil, embeddingModel: TextEmbeddingGenerators? = nil, useOcr: Bool? = nil, generateSparseVectors: Bool? = nil, prependFilenameToChunks: Bool? = nil, maxItemsPerChunk: Int? = nil, parsePdfTablesWithOcr: Bool? = nil, detectAudioLanguage: Bool? = nil, mediaType: FileContentTypesNullable? = nil) async throws -> UserFile {
         return try await withCheckedThrowingContinuation { continuation in
-            uploadWithRequestBuilder(file: file, bodyCreateUploadFileUploadfilePost: bodyCreateUploadFileUploadfilePost, chunkSize: chunkSize, chunkOverlap: chunkOverlap, skipEmbeddingGeneration: skipEmbeddingGeneration, setPageAsBoundary: setPageAsBoundary, embeddingModel: embeddingModel, useOcr: useOcr, generateSparseVectors: generateSparseVectors, prependFilenameToChunks: prependFilenameToChunks, maxItemsPerChunk: maxItemsPerChunk, parsePdfTablesWithOcr: parsePdfTablesWithOcr, detectAudioLanguage: detectAudioLanguage).execute { result in
+            uploadWithRequestBuilder(file: file, bodyCreateUploadFileUploadfilePost: bodyCreateUploadFileUploadfilePost, chunkSize: chunkSize, chunkOverlap: chunkOverlap, skipEmbeddingGeneration: skipEmbeddingGeneration, setPageAsBoundary: setPageAsBoundary, embeddingModel: embeddingModel, useOcr: useOcr, generateSparseVectors: generateSparseVectors, prependFilenameToChunks: prependFilenameToChunks, maxItemsPerChunk: maxItemsPerChunk, parsePdfTablesWithOcr: parsePdfTablesWithOcr, detectAudioLanguage: detectAudioLanguage, mediaType: mediaType).execute { result in
                 switch result {
                 case let .success(response):
                     continuation.resume(returning: response.body)
@@ -2066,6 +2068,7 @@ open class FilesAPI {
      - parameter maxItemsPerChunk: (query) Number of objects per chunk. For csv, tsv, xlsx, and json files only. (optional)
      - parameter parsePdfTablesWithOcr: (query) Whether to use rich table parsing when &#x60;use_ocr&#x60; is enabled. (optional, default to false)
      - parameter detectAudioLanguage: (query) Whether to automatically detect the language of the uploaded audio file. (optional, default to false)
+     - parameter mediaType: (query) The media type of the file. If not provided, it will be inferred from the file extension. (optional)
      - parameter apiResponseQueue: The queue on which api response is dispatched.
      - parameter completion: completion handler to receive the data and the error objects
      */
@@ -2082,13 +2085,14 @@ open class FilesAPI {
         prependFilenameToChunks: Bool? = nil, 
         maxItemsPerChunk: Int? = nil, 
         parsePdfTablesWithOcr: Bool? = nil, 
-        detectAudioLanguage: Bool? = nil
+        detectAudioLanguage: Bool? = nil, 
+        mediaType: FileContentTypesNullable? = nil
     ) async throws -> UserFile {
         let bodyCreateUploadFileUploadfilePost = BodyCreateUploadFileUploadfilePost(
             file: file
         )
         return try await withCheckedThrowingContinuation { continuation in
-            uploadWithRequestBuilder(file: file, bodyCreateUploadFileUploadfilePost: bodyCreateUploadFileUploadfilePost, chunkSize: chunkSize, chunkOverlap: chunkOverlap, skipEmbeddingGeneration: skipEmbeddingGeneration, setPageAsBoundary: setPageAsBoundary, embeddingModel: embeddingModel, useOcr: useOcr, generateSparseVectors: generateSparseVectors, prependFilenameToChunks: prependFilenameToChunks, maxItemsPerChunk: maxItemsPerChunk, parsePdfTablesWithOcr: parsePdfTablesWithOcr, detectAudioLanguage: detectAudioLanguage).execute { result in
+            uploadWithRequestBuilder(file: file, bodyCreateUploadFileUploadfilePost: bodyCreateUploadFileUploadfilePost, chunkSize: chunkSize, chunkOverlap: chunkOverlap, skipEmbeddingGeneration: skipEmbeddingGeneration, setPageAsBoundary: setPageAsBoundary, embeddingModel: embeddingModel, useOcr: useOcr, generateSparseVectors: generateSparseVectors, prependFilenameToChunks: prependFilenameToChunks, maxItemsPerChunk: maxItemsPerChunk, parsePdfTablesWithOcr: parsePdfTablesWithOcr, detectAudioLanguage: detectAudioLanguage, mediaType: mediaType).execute { result in
                 switch result {
                 case let .success(response):
                     continuation.resume(returning: response.body)
@@ -2116,6 +2120,7 @@ open class FilesAPI {
      - parameter maxItemsPerChunk: (query) Number of objects per chunk. For csv, tsv, xlsx, and json files only. (optional)
      - parameter parsePdfTablesWithOcr: (query) Whether to use rich table parsing when &#x60;use_ocr&#x60; is enabled. (optional, default to false)
      - parameter detectAudioLanguage: (query) Whether to automatically detect the language of the uploaded audio file. (optional, default to false)
+     - parameter mediaType: (query) The media type of the file. If not provided, it will be inferred from the file extension. (optional)
      - parameter apiResponseQueue: The queue on which api response is dispatched.
      - parameter completion: completion handler to receive the data and the error objects
      */
@@ -2132,13 +2137,14 @@ open class FilesAPI {
         prependFilenameToChunks: Bool? = nil, 
         maxItemsPerChunk: Int? = nil, 
         parsePdfTablesWithOcr: Bool? = nil, 
-        detectAudioLanguage: Bool? = nil
+        detectAudioLanguage: Bool? = nil, 
+        mediaType: FileContentTypesNullable? = nil
     ) async throws -> UserFile {
         let bodyCreateUploadFileUploadfilePost = BodyCreateUploadFileUploadfilePost(
             file: file
         )
         return try await withCheckedThrowingContinuation { continuation in
-            uploadWithRequestBuilder(file: file, bodyCreateUploadFileUploadfilePost: bodyCreateUploadFileUploadfilePost, chunkSize: chunkSize, chunkOverlap: chunkOverlap, skipEmbeddingGeneration: skipEmbeddingGeneration, setPageAsBoundary: setPageAsBoundary, embeddingModel: embeddingModel, useOcr: useOcr, generateSparseVectors: generateSparseVectors, prependFilenameToChunks: prependFilenameToChunks, maxItemsPerChunk: maxItemsPerChunk, parsePdfTablesWithOcr: parsePdfTablesWithOcr, detectAudioLanguage: detectAudioLanguage).execute { result in
+            uploadWithRequestBuilder(file: file, bodyCreateUploadFileUploadfilePost: bodyCreateUploadFileUploadfilePost, chunkSize: chunkSize, chunkOverlap: chunkOverlap, skipEmbeddingGeneration: skipEmbeddingGeneration, setPageAsBoundary: setPageAsBoundary, embeddingModel: embeddingModel, useOcr: useOcr, generateSparseVectors: generateSparseVectors, prependFilenameToChunks: prependFilenameToChunks, maxItemsPerChunk: maxItemsPerChunk, parsePdfTablesWithOcr: parsePdfTablesWithOcr, detectAudioLanguage: detectAudioLanguage, mediaType: mediaType).execute { result in
                 switch result {
                 case let .success(response):
                     continuation.resume(returning: response.body)
@@ -2177,6 +2183,7 @@ open class FilesAPI {
      - parameter maxItemsPerChunk: (query) Number of objects per chunk. For csv, tsv, xlsx, and json files only. (optional)
      - parameter parsePdfTablesWithOcr: (query) Whether to use rich table parsing when &#x60;use_ocr&#x60; is enabled. (optional, default to false)
      - parameter detectAudioLanguage: (query) Whether to automatically detect the language of the uploaded audio file. (optional, default to false)
+     - parameter mediaType: (query) The media type of the file. If not provided, it will be inferred from the file extension. (optional)
      - returns: RequestBuilder<UserFile> 
      */
     open class func uploadWithRequestBuilder(
@@ -2192,7 +2199,8 @@ open class FilesAPI {
             prependFilenameToChunks: Bool? = nil,
             maxItemsPerChunk: Int? = nil,
             parsePdfTablesWithOcr: Bool? = nil,
-            detectAudioLanguage: Bool? = nil
+            detectAudioLanguage: Bool? = nil,
+            mediaType: FileContentTypesNullable? = nil
     ) -> RequestBuilder<UserFile> {
         let basePath = CarbonAIAPI.basePath;
         let localVariablePath = "/uploadfile"
@@ -2216,6 +2224,7 @@ open class FilesAPI {
             "max_items_per_chunk": (wrappedValue: maxItemsPerChunk?.encodeToJSON(), isExplode: true),
             "parse_pdf_tables_with_ocr": (wrappedValue: parsePdfTablesWithOcr?.encodeToJSON(), isExplode: true),
             "detect_audio_language": (wrappedValue: detectAudioLanguage?.encodeToJSON(), isExplode: true),
+            "media_type": (wrappedValue: mediaType?.encodeToJSON(), isExplode: true),
         ])
 
         let localVariableNillableHeaders: [String: Any?] = [
@@ -2263,6 +2272,7 @@ open class FilesAPI {
      - parameter maxItemsPerChunk: (query) Number of objects per chunk. For csv, tsv, xlsx, and json files only. (optional)
      - parameter parsePdfTablesWithOcr: (query) Whether to use rich table parsing when &#x60;use_ocr&#x60; is enabled. (optional, default to false)
      - parameter detectAudioLanguage: (query) Whether to automatically detect the language of the uploaded audio file. (optional, default to false)
+     - parameter mediaType: (query) The media type of the file. If not provided, it will be inferred from the file extension. (optional)
      - returns: RequestBuilder<UserFile> 
      */
     open func uploadWithRequestBuilder(
@@ -2278,7 +2288,8 @@ open class FilesAPI {
             prependFilenameToChunks: Bool? = nil,
             maxItemsPerChunk: Int? = nil,
             parsePdfTablesWithOcr: Bool? = nil,
-            detectAudioLanguage: Bool? = nil
+            detectAudioLanguage: Bool? = nil,
+            mediaType: FileContentTypesNullable? = nil
     ) -> RequestBuilder<UserFile> {
         let basePath = self.client!.basePath;
         let localVariablePath = "/uploadfile"
@@ -2302,6 +2313,7 @@ open class FilesAPI {
             "max_items_per_chunk": (wrappedValue: maxItemsPerChunk?.encodeToJSON(), isExplode: true),
             "parse_pdf_tables_with_ocr": (wrappedValue: parsePdfTablesWithOcr?.encodeToJSON(), isExplode: true),
             "detect_audio_language": (wrappedValue: detectAudioLanguage?.encodeToJSON(), isExplode: true),
+            "media_type": (wrappedValue: mediaType?.encodeToJSON(), isExplode: true),
         ])
 
         let localVariableNillableHeaders: [String: Any?] = [

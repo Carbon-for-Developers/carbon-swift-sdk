@@ -22,13 +22,16 @@ public struct OrganizationResponse: Codable, JSONEncodable, Hashable {
     public var aggregateNumCharacters: AnyCodable
     public var aggregateNumTokens: AnyCodable
     public var aggregateNumEmbeddings: AnyCodable
+    public var aggregateNumFilesBySource: AnyCodable
+    public var aggregateNumFilesByFileFormat: AnyCodable
+    public var fileStatisticsAggregatedAt: Date?
     public var periodEndsAt: Date?
     public var cancelAtPeriodEnd: Bool?
     public var globalUserConfig: AnyCodable
     public var createdAt: Date
     public var updatedAt: Date
 
-    public init(id: Int, name: String, nickname: String?, removeBranding: Bool, customBranding: AnyCodable?, customLimits: AnyCodable?, aggregateFileSize: AnyCodable, aggregateNumCharacters: AnyCodable, aggregateNumTokens: AnyCodable, aggregateNumEmbeddings: AnyCodable, periodEndsAt: Date?, cancelAtPeriodEnd: Bool?, globalUserConfig: AnyCodable, createdAt: Date, updatedAt: Date) {
+    public init(id: Int, name: String, nickname: String?, removeBranding: Bool, customBranding: AnyCodable?, customLimits: AnyCodable?, aggregateFileSize: AnyCodable, aggregateNumCharacters: AnyCodable, aggregateNumTokens: AnyCodable, aggregateNumEmbeddings: AnyCodable, aggregateNumFilesBySource: AnyCodable, aggregateNumFilesByFileFormat: AnyCodable, fileStatisticsAggregatedAt: Date?, periodEndsAt: Date?, cancelAtPeriodEnd: Bool?, globalUserConfig: AnyCodable, createdAt: Date, updatedAt: Date) {
         self.id = id
         self.name = name
         self.nickname = nickname
@@ -39,6 +42,9 @@ public struct OrganizationResponse: Codable, JSONEncodable, Hashable {
         self.aggregateNumCharacters = aggregateNumCharacters
         self.aggregateNumTokens = aggregateNumTokens
         self.aggregateNumEmbeddings = aggregateNumEmbeddings
+        self.aggregateNumFilesBySource = aggregateNumFilesBySource
+        self.aggregateNumFilesByFileFormat = aggregateNumFilesByFileFormat
+        self.fileStatisticsAggregatedAt = fileStatisticsAggregatedAt
         self.periodEndsAt = periodEndsAt
         self.cancelAtPeriodEnd = cancelAtPeriodEnd
         self.globalUserConfig = globalUserConfig
@@ -57,6 +63,9 @@ public struct OrganizationResponse: Codable, JSONEncodable, Hashable {
         case aggregateNumCharacters = "aggregate_num_characters"
         case aggregateNumTokens = "aggregate_num_tokens"
         case aggregateNumEmbeddings = "aggregate_num_embeddings"
+        case aggregateNumFilesBySource = "aggregate_num_files_by_source"
+        case aggregateNumFilesByFileFormat = "aggregate_num_files_by_file_format"
+        case fileStatisticsAggregatedAt = "file_statistics_aggregated_at"
         case periodEndsAt = "period_ends_at"
         case cancelAtPeriodEnd = "cancel_at_period_end"
         case globalUserConfig = "global_user_config"
@@ -78,6 +87,9 @@ public struct OrganizationResponse: Codable, JSONEncodable, Hashable {
         try container.encode(aggregateNumCharacters, forKey: .aggregateNumCharacters)
         try container.encode(aggregateNumTokens, forKey: .aggregateNumTokens)
         try container.encode(aggregateNumEmbeddings, forKey: .aggregateNumEmbeddings)
+        try container.encode(aggregateNumFilesBySource, forKey: .aggregateNumFilesBySource)
+        try container.encode(aggregateNumFilesByFileFormat, forKey: .aggregateNumFilesByFileFormat)
+        try container.encode(fileStatisticsAggregatedAt, forKey: .fileStatisticsAggregatedAt)
         try container.encode(periodEndsAt, forKey: .periodEndsAt)
         try container.encode(cancelAtPeriodEnd, forKey: .cancelAtPeriodEnd)
         try container.encode(globalUserConfig, forKey: .globalUserConfig)

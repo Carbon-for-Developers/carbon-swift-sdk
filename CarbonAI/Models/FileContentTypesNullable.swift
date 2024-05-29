@@ -14,4 +14,6 @@ import AnyCodable
 public enum FileContentTypesNullable: String, Codable, CaseIterable {
     case text = "TEXT"
     case image = "IMAGE"
+    case audio = "AUDIO"
+    case video = "VIDEO"
 }

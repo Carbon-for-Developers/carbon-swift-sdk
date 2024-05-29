@@ -24,7 +24,7 @@ public struct SyncOptions: Codable, JSONEncodable, Hashable {
     /** Used to specify whether Carbon should attempt to sync all your files automatically when authorization         is complete. This is only supported for a subset of connectors and will be ignored for the rest. Supported         connectors: Intercom, Zendesk, Gitbook, Confluence, Salesforce, Freshdesk */
     public var syncFilesOnConnection: Bool? = true
     public var setPageAsBoundary: Bool? = false
-    public var requestId: String? = "18ef9025-4c76-443c-a115-ba77b17afd8b"
+    public var requestId: String? = "f5552316-5da3-46e6-ad9f-2f94e30d02cd"
     public var enableFilePicker: Bool? = true
     /** Enabling this flag will fetch all available content from the source to be listed via list items endpoint */
     public var syncSourceItems: Bool? = true
@@ -32,7 +32,7 @@ public struct SyncOptions: Codable, JSONEncodable, Hashable {
     public var incrementalSync: Bool? = false
     public var fileSyncConfig: FileSyncConfigNullable?
 
-    public init(tags: AnyCodable? = nil, chunkSize: Int? = 1500, chunkOverlap: Int? = 20, skipEmbeddingGeneration: Bool? = false, embeddingModel: EmbeddingGeneratorsNullable? = nil, generateSparseVectors: Bool? = false, prependFilenameToChunks: Bool? = false, maxItemsPerChunk: Int? = nil, syncFilesOnConnection: Bool? = true, setPageAsBoundary: Bool? = false, requestId: String? = "18ef9025-4c76-443c-a115-ba77b17afd8b", enableFilePicker: Bool? = true, syncSourceItems: Bool? = true, incrementalSync: Bool? = false, fileSyncConfig: FileSyncConfigNullable? = nil) {
+    public init(tags: AnyCodable? = nil, chunkSize: Int? = 1500, chunkOverlap: Int? = 20, skipEmbeddingGeneration: Bool? = false, embeddingModel: EmbeddingGeneratorsNullable? = nil, generateSparseVectors: Bool? = false, prependFilenameToChunks: Bool? = false, maxItemsPerChunk: Int? = nil, syncFilesOnConnection: Bool? = true, setPageAsBoundary: Bool? = false, requestId: String? = "f5552316-5da3-46e6-ad9f-2f94e30d02cd", enableFilePicker: Bool? = true, syncSourceItems: Bool? = true, incrementalSync: Bool? = false, fileSyncConfig: FileSyncConfigNullable? = nil) {
         self.tags = tags
         self.chunkSize = chunkSize
         self.chunkOverlap = chunkOverlap

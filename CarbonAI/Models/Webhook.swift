@@ -16,14 +16,18 @@ public struct Webhook: Codable, JSONEncodable, Hashable {
     public var organizationId: Int
     public var url: String
     public var signingKey: String
+    public var status: WebhookStatus
+    public var statusReason: String?
     public var createdAt: Date
     public var updatedAt: Date
 
-    public init(id: Int, organizationId: Int, url: String, signingKey: String, createdAt: Date, updatedAt: Date) {
+    public init(id: Int, organizationId: Int, url: String, signingKey: String, status: WebhookStatus, statusReason: String?, createdAt: Date, updatedAt: Date) {
         self.id = id
         self.organizationId = organizationId
         self.url = url
         self.signingKey = signingKey
+        self.status = status
+        self.statusReason = statusReason
         self.createdAt = createdAt
         self.updatedAt = updatedAt
     }
@@ -33,6 +37,8 @@ public struct Webhook: Codable, JSONEncodable, Hashable {
         case organizationId = "organization_id"
         case url
         case signingKey = "signing_key"
+        case status
+        case statusReason = "status_reason"
         case createdAt = "created_at"
         case updatedAt = "updated_at"
     }
@@ -45,6 +51,8 @@ public struct Webhook: Codable, JSONEncodable, Hashable {
         try container.encode(organizationId, forKey: .organizationId)
         try container.encode(url, forKey: .url)
         try container.encode(signingKey, forKey: .signingKey)
+        try container.encode(status, forKey: .status)
+        try container.encode(statusReason, forKey: .statusReason)
         try container.encode(createdAt, forKey: .createdAt)
         try container.encode(updatedAt, forKey: .updatedAt)
     }

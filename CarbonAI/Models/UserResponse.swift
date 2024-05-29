@@ -21,12 +21,18 @@ public struct UserResponse: Codable, JSONEncodable, Hashable {
     public var numFilesSynced: Int
     public var numCharactersSynced: Int
     public var numTokensSynced: Int
+    public var aggregateFileSize: AnyCodable
+    public var aggregateNumCharacters: AnyCodable
+    public var aggregateNumTokens: AnyCodable
+    public var aggregateNumEmbeddings: AnyCodable
+    public var aggregateNumFilesBySource: AnyCodable
+    public var aggregateNumFilesByFileFormat: AnyCodable
     public var uniqueFileTags: [AnyCodable]
     public var enabledFeatures: AnyCodable?
     public var customLimits: AnyCodable
     public var autoSyncEnabledSources: [AnyCodable]
 
-    public init(id: Int, organizationId: Int, organizationSuppliedUserId: String, createdAt: Date, updatedAt: Date, deletedAt: Date?, numFilesSynced: Int, numCharactersSynced: Int, numTokensSynced: Int, uniqueFileTags: [AnyCodable], enabledFeatures: AnyCodable?, customLimits: AnyCodable, autoSyncEnabledSources: [AnyCodable]) {
+    public init(id: Int, organizationId: Int, organizationSuppliedUserId: String, createdAt: Date, updatedAt: Date, deletedAt: Date?, numFilesSynced: Int, numCharactersSynced: Int, numTokensSynced: Int, aggregateFileSize: AnyCodable, aggregateNumCharacters: AnyCodable, aggregateNumTokens: AnyCodable, aggregateNumEmbeddings: AnyCodable, aggregateNumFilesBySource: AnyCodable, aggregateNumFilesByFileFormat: AnyCodable, uniqueFileTags: [AnyCodable], enabledFeatures: AnyCodable?, customLimits: AnyCodable, autoSyncEnabledSources: [AnyCodable]) {
         self.id = id
         self.organizationId = organizationId
         self.organizationSuppliedUserId = organizationSuppliedUserId
@@ -36,6 +42,12 @@ public struct UserResponse: Codable, JSONEncodable, Hashable {
         self.numFilesSynced = numFilesSynced
         self.numCharactersSynced = numCharactersSynced
         self.numTokensSynced = numTokensSynced
+        self.aggregateFileSize = aggregateFileSize
+        self.aggregateNumCharacters = aggregateNumCharacters
+        self.aggregateNumTokens = aggregateNumTokens
+        self.aggregateNumEmbeddings = aggregateNumEmbeddings
+        self.aggregateNumFilesBySource = aggregateNumFilesBySource
+        self.aggregateNumFilesByFileFormat = aggregateNumFilesByFileFormat
         self.uniqueFileTags = uniqueFileTags
         self.enabledFeatures = enabledFeatures
         self.customLimits = customLimits
@@ -52,6 +64,12 @@ public struct UserResponse: Codable, JSONEncodable, Hashable {
         case numFilesSynced = "num_files_synced"
         case numCharactersSynced = "num_characters_synced"
         case numTokensSynced = "num_tokens_synced"
+        case aggregateFileSize = "aggregate_file_size"
+        case aggregateNumCharacters = "aggregate_num_characters"
+        case aggregateNumTokens = "aggregate_num_tokens"
+        case aggregateNumEmbeddings = "aggregate_num_embeddings"
+        case aggregateNumFilesBySource = "aggregate_num_files_by_source"
+        case aggregateNumFilesByFileFormat = "aggregate_num_files_by_file_format"
         case uniqueFileTags = "unique_file_tags"
         case enabledFeatures = "enabled_features"
         case customLimits = "custom_limits"
@@ -71,6 +89,12 @@ public struct UserResponse: Codable, JSONEncodable, Hashable {
         try container.encode(numFilesSynced, forKey: .numFilesSynced)
         try container.encode(numCharactersSynced, forKey: .numCharactersSynced)
         try container.encode(numTokensSynced, forKey: .numTokensSynced)
+        try container.encode(aggregateFileSize, forKey: .aggregateFileSize)
+        try container.encode(aggregateNumCharacters, forKey: .aggregateNumCharacters)
+        try container.encode(aggregateNumTokens, forKey: .aggregateNumTokens)
+        try container.encode(aggregateNumEmbeddings, forKey: .aggregateNumEmbeddings)
+        try container.encode(aggregateNumFilesBySource, forKey: .aggregateNumFilesBySource)
+        try container.encode(aggregateNumFilesByFileFormat, forKey: .aggregateNumFilesByFileFormat)
         try container.encode(uniqueFileTags, forKey: .uniqueFileTags)
         try container.encode(enabledFeatures, forKey: .enabledFeatures)
         try container.encode(customLimits, forKey: .customLimits)

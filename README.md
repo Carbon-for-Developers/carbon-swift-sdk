@@ -6,7 +6,7 @@
 
 Connect external data to LLMs, no matter the source.
 
-[![CocoaPods](https://img.shields.io/badge/pod-v0.2.22-blue)](https://cocoapods.org/pods/CarbonAI)
+[![CocoaPods](https://img.shields.io/badge/pod-v0.3.0-blue)](https://cocoapods.org/pods/CarbonAI)
 
 </div>
 
@@ -65,6 +65,7 @@ Connect external data to LLMs, no matter the source.
   * [`carbonai.integrations.syncS3Files`](#carbonaiintegrationssyncs3files)
   * [`carbonai.organizations.callGet`](#carbonaiorganizationscallget)
   * [`carbonai.organizations.update`](#carbonaiorganizationsupdate)
+  * [`carbonai.organizations.updateStats`](#carbonaiorganizationsupdatestats)
   * [`carbonai.users.callGet`](#carbonaiuserscallget)
   * [`carbonai.users.delete`](#carbonaiusersdelete)
   * [`carbonai.users.toggleUserFeatures`](#carbonaiuserstoggleuserfeatures)
@@ -102,7 +103,7 @@ github "Carbon-for-Developers/carbon-swift-sdk"
 ### CocoaPods<a id="cocoapods"></a>
 
 1. Add `source 'https://github.com/CocoaPods/Specs.git'` to your `Podfile`
-2. Add `pod 'CarbonAI', '~> 0.2.22'` to your `Podfile`
+2. Add `pod 'CarbonAI', '~> 0.3.0'` to your `Podfile`
 
 Your `Podfile` should look like:
 ```ruby
@@ -110,7 +111,7 @@ Your `Podfile` should look like:
 source 'https://github.com/CocoaPods/Specs.git'
 
 target 'Example' do
-  pod 'CarbonAI', '~> 0.2.22'
+  pod 'CarbonAI', '~> 0.3.0'
 end
 ```
 3. Run `pod install`
@@ -119,7 +120,7 @@ end
 ❯ pod install
 Analyzing dependencies
 Downloading dependencies
-Installing CarbonAI 0.2.22
+Installing CarbonAI 0.3.0
 Generating Pods project
 Integrating client project
 Pod installation complete! There is 1 dependency from the Podfile and 2 total pods installed.
@@ -1305,6 +1306,9 @@ let prependFilenameToChunks = false
 let maxItemsPerChunk = 987
 let parsePdfTablesWithOcr = false
 let detectAudioLanguage = false
+let mediaType = FileContentTypesNullable(
+    
+)
 let uploadResponse = try await carbonai.files.upload(
     file: file,
     chunkSize: chunkSize,
@@ -1317,7 +1321,8 @@ let uploadResponse = try await carbonai.files.upload(
     prependFilenameToChunks: prependFilenameToChunks,
     maxItemsPerChunk: maxItemsPerChunk,
     parsePdfTablesWithOcr: parsePdfTablesWithOcr,
-    detectAudioLanguage: detectAudioLanguage
+    detectAudioLanguage: detectAudioLanguage,
+    mediaType: mediaType
 )
 ```
 
@@ -1379,6 +1384,11 @@ Whether to use rich table parsing when `use_ocr` is enabled.
 ##### detectAudioLanguage: `Bool`<a id="detectaudiolanguage-bool"></a>
 
 Whether to automatically detect the language of the uploaded audio file.
+
+
+##### mediaType: `FileContentTypesNullable`<a id="mediatype-filecontenttypesnullable"></a>
+
+The media type of the file. If not provided, it will be inferred from the file extension.
 
 
 #### 🔄 Return<a id="🔄-return"></a>
@@ -2064,7 +2074,7 @@ Enable OCR for files that support it. Supported formats: pdf
 
 ##### enable_file_picker: `Bool`<a id="enable_file_picker-bool"></a>
 
-Enable integration's file picker for sources that support it. Supported sources: ONEDRIVE, GOOGLE_DRIVE, DROPBOX, SHAREPOINT, BOX
+Enable integration's file picker for sources that support it. Supported sources: SHAREPOINT, DROPBOX, GOOGLE_DRIVE, BOX, ONEDRIVE
 
 
 ##### sync_source_items: `Bool`<a id="sync_source_items-bool"></a>
@@ -3347,6 +3357,32 @@ let updateResponse = try await carbonai.organizations.update(
 #### 🌐 Endpoint<a id="🌐-endpoint"></a>
 
 `/organization/update` `POST`
+
+[🔙 **Back to Table of Contents**](#table-of-contents)
+
+---
+
+
+### `carbonai.organizations.updateStats`<a id="carbonaiorganizationsupdatestats"></a>
+
+Use this endpoint to reaggregate the statistics for an organization, for example aggregate_file_size. The reaggregation
+process is asyncronous so a webhook will be sent with the event type being FILE_STATISTICS_AGGREGATED to notify when the
+process is complee. After this aggregation is complete, the updated statistics can be retrieved using the /organization
+endpoint. The response of /organization willalso contain a timestamp of the last time the statistics were reaggregated.
+
+#### 🛠️ Usage<a id="🛠️-usage"></a>
+
+```swift
+let updateStatsResponse = try await carbonai.organizations.updateStats()
+```
+
+#### 🔄 Return<a id="🔄-return"></a>
+
+[GenericSuccessResponse](./CarbonAI/Models/GenericSuccessResponse.swift)
+
+#### 🌐 Endpoint<a id="🌐-endpoint"></a>
+
+`/organization/statistics` `POST`
 
 [🔙 **Back to Table of Contents**](#table-of-contents)
 
