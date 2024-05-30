@@ -2007,7 +2007,7 @@ open class FilesAPI {
      - parameter completion: completion handler to receive the data and the error objects
      */
     @discardableResult
-    open class func uploadSync(file: URL, bodyCreateUploadFileUploadfilePost: BodyCreateUploadFileUploadfilePost, chunkSize: Int? = nil, chunkOverlap: Int? = nil, skipEmbeddingGeneration: Bool? = nil, setPageAsBoundary: Bool? = nil, embeddingModel: TextEmbeddingGenerators? = nil, useOcr: Bool? = nil, generateSparseVectors: Bool? = nil, prependFilenameToChunks: Bool? = nil, maxItemsPerChunk: Int? = nil, parsePdfTablesWithOcr: Bool? = nil, detectAudioLanguage: Bool? = nil, mediaType: FileContentTypesNullable? = nil, apiResponseQueue: DispatchQueue = CarbonAIAPI.apiResponseQueue, completion: @escaping ((_ data: UserFile?, _ error: Error?) -> Void)) -> RequestTask {
+    open class func uploadSync(file: URL, bodyCreateUploadFileUploadfilePost: BodyCreateUploadFileUploadfilePost, chunkSize: Int? = nil, chunkOverlap: Int? = nil, skipEmbeddingGeneration: Bool? = nil, setPageAsBoundary: Bool? = nil, embeddingModel: EmbeddingModel? = nil, useOcr: Bool? = nil, generateSparseVectors: Bool? = nil, prependFilenameToChunks: Bool? = nil, maxItemsPerChunk: Int? = nil, parsePdfTablesWithOcr: Bool? = nil, detectAudioLanguage: Bool? = nil, mediaType: FileContentTypesNullable? = nil, apiResponseQueue: DispatchQueue = CarbonAIAPI.apiResponseQueue, completion: @escaping ((_ data: UserFile?, _ error: Error?) -> Void)) -> RequestTask {
         return uploadWithRequestBuilder(file: file, bodyCreateUploadFileUploadfilePost: bodyCreateUploadFileUploadfilePost, chunkSize: chunkSize, chunkOverlap: chunkOverlap, skipEmbeddingGeneration: skipEmbeddingGeneration, setPageAsBoundary: setPageAsBoundary, embeddingModel: embeddingModel, useOcr: useOcr, generateSparseVectors: generateSparseVectors, prependFilenameToChunks: prependFilenameToChunks, maxItemsPerChunk: maxItemsPerChunk, parsePdfTablesWithOcr: parsePdfTablesWithOcr, detectAudioLanguage: detectAudioLanguage, mediaType: mediaType).execute(apiResponseQueue) { result in
             switch result {
             case let .success(response):
@@ -2039,7 +2039,7 @@ open class FilesAPI {
      - parameter completion: completion handler to receive the data and the error objects
      */
     @available(iOS 13.0, macOS 10.15, tvOS 13.0, watchOS 6.0, *)
-    private class func uploadAsyncMappedParams(file: URL, bodyCreateUploadFileUploadfilePost: BodyCreateUploadFileUploadfilePost, chunkSize: Int? = nil, chunkOverlap: Int? = nil, skipEmbeddingGeneration: Bool? = nil, setPageAsBoundary: Bool? = nil, embeddingModel: TextEmbeddingGenerators? = nil, useOcr: Bool? = nil, generateSparseVectors: Bool? = nil, prependFilenameToChunks: Bool? = nil, maxItemsPerChunk: Int? = nil, parsePdfTablesWithOcr: Bool? = nil, detectAudioLanguage: Bool? = nil, mediaType: FileContentTypesNullable? = nil) async throws -> UserFile {
+    private class func uploadAsyncMappedParams(file: URL, bodyCreateUploadFileUploadfilePost: BodyCreateUploadFileUploadfilePost, chunkSize: Int? = nil, chunkOverlap: Int? = nil, skipEmbeddingGeneration: Bool? = nil, setPageAsBoundary: Bool? = nil, embeddingModel: EmbeddingModel? = nil, useOcr: Bool? = nil, generateSparseVectors: Bool? = nil, prependFilenameToChunks: Bool? = nil, maxItemsPerChunk: Int? = nil, parsePdfTablesWithOcr: Bool? = nil, detectAudioLanguage: Bool? = nil, mediaType: FileContentTypesNullable? = nil) async throws -> UserFile {
         return try await withCheckedThrowingContinuation { continuation in
             uploadWithRequestBuilder(file: file, bodyCreateUploadFileUploadfilePost: bodyCreateUploadFileUploadfilePost, chunkSize: chunkSize, chunkOverlap: chunkOverlap, skipEmbeddingGeneration: skipEmbeddingGeneration, setPageAsBoundary: setPageAsBoundary, embeddingModel: embeddingModel, useOcr: useOcr, generateSparseVectors: generateSparseVectors, prependFilenameToChunks: prependFilenameToChunks, maxItemsPerChunk: maxItemsPerChunk, parsePdfTablesWithOcr: parsePdfTablesWithOcr, detectAudioLanguage: detectAudioLanguage, mediaType: mediaType).execute { result in
                 switch result {
@@ -2079,7 +2079,7 @@ open class FilesAPI {
         chunkOverlap: Int? = nil, 
         skipEmbeddingGeneration: Bool? = nil, 
         setPageAsBoundary: Bool? = nil, 
-        embeddingModel: TextEmbeddingGenerators? = nil, 
+        embeddingModel: EmbeddingModel? = nil, 
         useOcr: Bool? = nil, 
         generateSparseVectors: Bool? = nil, 
         prependFilenameToChunks: Bool? = nil, 
@@ -2131,7 +2131,7 @@ open class FilesAPI {
         chunkOverlap: Int? = nil, 
         skipEmbeddingGeneration: Bool? = nil, 
         setPageAsBoundary: Bool? = nil, 
-        embeddingModel: TextEmbeddingGenerators? = nil, 
+        embeddingModel: EmbeddingModel? = nil, 
         useOcr: Bool? = nil, 
         generateSparseVectors: Bool? = nil, 
         prependFilenameToChunks: Bool? = nil, 
@@ -2193,7 +2193,7 @@ open class FilesAPI {
             chunkOverlap: Int? = nil,
             skipEmbeddingGeneration: Bool? = nil,
             setPageAsBoundary: Bool? = nil,
-            embeddingModel: TextEmbeddingGenerators? = nil,
+            embeddingModel: EmbeddingModel? = nil,
             useOcr: Bool? = nil,
             generateSparseVectors: Bool? = nil,
             prependFilenameToChunks: Bool? = nil,
@@ -2282,7 +2282,7 @@ open class FilesAPI {
             chunkOverlap: Int? = nil,
             skipEmbeddingGeneration: Bool? = nil,
             setPageAsBoundary: Bool? = nil,
-            embeddingModel: TextEmbeddingGenerators? = nil,
+            embeddingModel: EmbeddingModel? = nil,
             useOcr: Bool? = nil,
             generateSparseVectors: Bool? = nil,
             prependFilenameToChunks: Bool? = nil,

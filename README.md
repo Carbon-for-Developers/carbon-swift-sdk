@@ -6,7 +6,7 @@
 
 Connect external data to LLMs, no matter the source.
 
-[![CocoaPods](https://img.shields.io/badge/pod-v0.3.0-blue)](https://cocoapods.org/pods/CarbonAI)
+[![CocoaPods](https://img.shields.io/badge/pod-v0.3.1-blue)](https://cocoapods.org/pods/CarbonAI)
 
 </div>
 
@@ -103,7 +103,7 @@ github "Carbon-for-Developers/carbon-swift-sdk"
 ### CocoaPods<a id="cocoapods"></a>
 
 1. Add `source 'https://github.com/CocoaPods/Specs.git'` to your `Podfile`
-2. Add `pod 'CarbonAI', '~> 0.3.0'` to your `Podfile`
+2. Add `pod 'CarbonAI', '~> 0.3.1'` to your `Podfile`
 
 Your `Podfile` should look like:
 ```ruby
@@ -111,7 +111,7 @@ Your `Podfile` should look like:
 source 'https://github.com/CocoaPods/Specs.git'
 
 target 'Example' do
-  pod 'CarbonAI', '~> 0.3.0'
+  pod 'CarbonAI', '~> 0.3.1'
 end
 ```
 3. Run `pod install`
@@ -120,7 +120,7 @@ end
 ❯ pod install
 Analyzing dependencies
 Downloading dependencies
-Installing CarbonAI 0.3.0
+Installing CarbonAI 0.3.1
 Generating Pods project
 Integrating client project
 Pod installation complete! There is 1 dependency from the Podfile and 2 total pods installed.
@@ -1297,7 +1297,7 @@ let chunkSize = 987
 let chunkOverlap = 987
 let skipEmbeddingGeneration = false
 let setPageAsBoundary = false
-let embeddingModel = TextEmbeddingGenerators(
+let embeddingModel = EmbeddingModel(
     
 )
 let useOcr = false
@@ -1351,7 +1351,7 @@ Flag to control whether or not embeddings should be generated and stored        
 Flag to control whether or not to set the a page's worth of content as the maximum             amount of content that can appear in a chunk. Only valid for PDFs. See description route description for             more information.
 
 
-##### embeddingModel: `TextEmbeddingGenerators`<a id="embeddingmodel-textembeddinggenerators"></a>
+##### embeddingModel: [`EmbeddingModel`](./CarbonAI/Models/EmbeddingModel.swift)<a id="embeddingmodel-embeddingmodelcarbonaimodelsembeddingmodelswift"></a>
 
 Embedding model that will be used to embed file chunks.
 
@@ -2074,7 +2074,7 @@ Enable OCR for files that support it. Supported formats: pdf
 
 ##### enable_file_picker: `Bool`<a id="enable_file_picker-bool"></a>
 
-Enable integration's file picker for sources that support it. Supported sources: SHAREPOINT, DROPBOX, GOOGLE_DRIVE, BOX, ONEDRIVE
+Enable integration's file picker for sources that support it. Supported sources: DROPBOX, SHAREPOINT, ONEDRIVE, BOX, GOOGLE_DRIVE
 
 
 ##### sync_source_items: `Bool`<a id="sync_source_items-bool"></a>
