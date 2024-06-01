@@ -19,6 +19,190 @@ open class IntegrationsAPI {
     }
 
     /**
+     Cancel Data Source Items Sync
+     
+     - parameter syncDirectoryRequest: (body)  
+     - parameter apiResponseQueue: The queue on which api response is dispatched.
+     - parameter completion: completion handler to receive the data and the error objects
+     */
+    @discardableResult
+    open class func cancelSync(syncDirectoryRequest: SyncDirectoryRequest, apiResponseQueue: DispatchQueue = CarbonAIAPI.apiResponseQueue, completion: @escaping ((_ data: OrganizationUserDataSourceAPI?, _ error: Error?) -> Void)) -> RequestTask {
+        return cancelWithRequestBuilder(syncDirectoryRequest: syncDirectoryRequest).execute(apiResponseQueue) { result in
+            switch result {
+            case let .success(response):
+                completion(response.body, nil)
+            case let .failure(error):
+                completion(nil, error)
+            }
+        }
+    }
+
+    /**
+     Cancel Data Source Items Sync
+     
+     - parameter syncDirectoryRequest: (body)  
+     - parameter apiResponseQueue: The queue on which api response is dispatched.
+     - parameter completion: completion handler to receive the data and the error objects
+     */
+    @available(iOS 13.0, macOS 10.15, tvOS 13.0, watchOS 6.0, *)
+    private class func cancelAsyncMappedParams(syncDirectoryRequest: SyncDirectoryRequest) async throws -> OrganizationUserDataSourceAPI {
+        return try await withCheckedThrowingContinuation { continuation in
+            cancelWithRequestBuilder(syncDirectoryRequest: syncDirectoryRequest).execute { result in
+                switch result {
+                case let .success(response):
+                    continuation.resume(returning: response.body)
+                case let .failure(error):
+                    continuation.resume(throwing: error)
+                }
+            }
+        }
+    }
+
+    /**
+     Cancel Data Source Items Sync
+     
+     - parameter syncDirectoryRequest: (body)  
+     - parameter apiResponseQueue: The queue on which api response is dispatched.
+     - parameter completion: completion handler to receive the data and the error objects
+     */
+    @available(iOS 13.0, macOS 10.15, tvOS 13.0, watchOS 6.0, *)
+    open class func cancel(
+        dataSourceId: Int
+    ) async throws -> OrganizationUserDataSourceAPI {
+        let syncDirectoryRequest = SyncDirectoryRequest(
+            dataSourceId: dataSourceId
+        )
+        return try await withCheckedThrowingContinuation { continuation in
+            cancelWithRequestBuilder(syncDirectoryRequest: syncDirectoryRequest).execute { result in
+                switch result {
+                case let .success(response):
+                    continuation.resume(returning: response.body)
+                case let .failure(error):
+                    continuation.resume(throwing: error)
+                }
+            }
+        }
+    }
+
+
+    /**
+     Cancel Data Source Items Sync
+     
+     - parameter syncDirectoryRequest: (body)  
+     - parameter apiResponseQueue: The queue on which api response is dispatched.
+     - parameter completion: completion handler to receive the data and the error objects
+     */
+    @available(iOS 13.0, macOS 10.15, tvOS 13.0, watchOS 6.0, *)
+    open func cancel(
+        dataSourceId: Int
+    ) async throws -> OrganizationUserDataSourceAPI {
+        let syncDirectoryRequest = SyncDirectoryRequest(
+            dataSourceId: dataSourceId
+        )
+        return try await withCheckedThrowingContinuation { continuation in
+            cancelWithRequestBuilder(syncDirectoryRequest: syncDirectoryRequest).execute { result in
+                switch result {
+                case let .success(response):
+                    continuation.resume(returning: response.body)
+                case let .failure(error):
+                    continuation.resume(throwing: error)
+                }
+            }
+        }
+    }
+
+
+
+    /**
+     Cancel Data Source Items Sync
+     - POST /integrations/items/sync/cancel
+     - API Key:
+       - type: apiKey authorization 
+       - name: accessToken
+     - API Key:
+       - type: apiKey authorization 
+       - name: apiKey
+     - API Key:
+       - type: apiKey customer-id 
+       - name: customerId
+     - parameter syncDirectoryRequest: (body)  
+     - returns: RequestBuilder<OrganizationUserDataSourceAPI> 
+     */
+    open class func cancelWithRequestBuilder(
+            syncDirectoryRequest: SyncDirectoryRequest
+    ) -> RequestBuilder<OrganizationUserDataSourceAPI> {
+        let basePath = CarbonAIAPI.basePath;
+        let localVariablePath = "/integrations/items/sync/cancel"
+        let localVariableURLString = basePath + localVariablePath
+        let localVariableParameters = JSONEncodingHelper.encodingParameters(forEncodableObject: syncDirectoryRequest)
+
+        var localVariableUrlComponents = URLComponents(string: localVariableURLString)
+
+        let localVariableNillableHeaders: [String: Any?] = [
+            :
+        ]
+
+        var localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
+
+        do {
+            try Authentication.setAuthenticationParameters(headers: &localVariableHeaderParameters, url: &localVariableUrlComponents, in: "header", name: "authorization", value: CarbonAIAPI.accessToken, prefix: "Token ")
+            try Authentication.setAuthenticationParameters(headers: &localVariableHeaderParameters, url: &localVariableUrlComponents, in: "header", name: "authorization", value: CarbonAIAPI.apiKey, prefix: "Bearer ")
+            try Authentication.setAuthenticationParameters(headers: &localVariableHeaderParameters, url: &localVariableUrlComponents, in: "header", name: "customer-id", value: CarbonAIAPI.customerId, prefix: nil)
+            let localVariableRequestBuilder: RequestBuilder<OrganizationUserDataSourceAPI>.Type = CarbonAIAPI.requestBuilderFactory.getBuilder()
+            let URLString = localVariableUrlComponents?.string ?? localVariableURLString
+            return localVariableRequestBuilder.init(method: "POST", URLString: URLString, parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        } catch {
+            print("Error: \(error)")
+        }
+        fatalError("Error: Unable to send request to POST /integrations/items/sync/cancel")
+    }
+
+    /**
+     Cancel Data Source Items Sync
+     - POST /integrations/items/sync/cancel
+     - API Key:
+       - type: apiKey authorization 
+       - name: accessToken
+     - API Key:
+       - type: apiKey authorization 
+       - name: apiKey
+     - API Key:
+       - type: apiKey customer-id 
+       - name: customerId
+     - parameter syncDirectoryRequest: (body)  
+     - returns: RequestBuilder<OrganizationUserDataSourceAPI> 
+     */
+    open func cancelWithRequestBuilder(
+            syncDirectoryRequest: SyncDirectoryRequest
+    ) -> RequestBuilder<OrganizationUserDataSourceAPI> {
+        let basePath = self.client!.basePath;
+        let localVariablePath = "/integrations/items/sync/cancel"
+        let localVariableURLString = basePath + localVariablePath
+        let localVariableParameters = JSONEncodingHelper.encodingParameters(forEncodableObject: syncDirectoryRequest)
+
+        var localVariableUrlComponents = URLComponents(string: localVariableURLString)
+
+        let localVariableNillableHeaders: [String: Any?] = [
+            :
+        ]
+
+        var localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
+
+        do {
+            try Authentication.setAuthenticationParameters(headers: &localVariableHeaderParameters, url: &localVariableUrlComponents, in: "header", name: "authorization", value: self.client!.accessToken, prefix: "Token ")
+            try Authentication.setAuthenticationParameters(headers: &localVariableHeaderParameters, url: &localVariableUrlComponents, in: "header", name: "authorization", value: self.client!.apiKey, prefix: "Bearer ")
+            try Authentication.setAuthenticationParameters(headers: &localVariableHeaderParameters, url: &localVariableUrlComponents, in: "header", name: "customer-id", value: self.client!.customerId, prefix: nil)
+            let localVariableRequestBuilder: RequestBuilder<OrganizationUserDataSourceAPI>.Type = CarbonAIAPI.requestBuilderFactory.getBuilder()
+            let URLString = localVariableUrlComponents?.string ?? localVariableURLString
+            return localVariableRequestBuilder.init(method: "POST", URLString: URLString, parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        } catch {
+            print("Error: \(error)")
+        }
+        fatalError("Error: Unable to send request to POST /integrations/items/sync/cancel")
+    }
+
+
+    /**
      Connect Data Source
      
      - parameter connectDataSourceInput: (body)  

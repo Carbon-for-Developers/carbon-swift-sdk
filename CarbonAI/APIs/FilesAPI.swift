@@ -2397,7 +2397,8 @@ open class FilesAPI {
         prependFilenameToChunks: Bool? = nil, 
         maxItemsPerChunk: Int? = nil, 
         parsePdfTablesWithOcr: Bool? = nil, 
-        detectAudioLanguage: Bool? = nil
+        detectAudioLanguage: Bool? = nil, 
+        mediaType: FileContentTypesNullable? = nil
     ) async throws -> UserFile {
         let uploadFileFromUrlInput = UploadFileFromUrlInput(
             url: url,
@@ -2412,7 +2413,8 @@ open class FilesAPI {
             prependFilenameToChunks: prependFilenameToChunks,
             maxItemsPerChunk: maxItemsPerChunk,
             parsePdfTablesWithOcr: parsePdfTablesWithOcr,
-            detectAudioLanguage: detectAudioLanguage
+            detectAudioLanguage: detectAudioLanguage,
+            mediaType: mediaType
         )
         return try await withCheckedThrowingContinuation { continuation in
             uploadFromUrlWithRequestBuilder(uploadFileFromUrlInput: uploadFileFromUrlInput).execute { result in
@@ -2448,7 +2450,8 @@ open class FilesAPI {
         prependFilenameToChunks: Bool? = nil, 
         maxItemsPerChunk: Int? = nil, 
         parsePdfTablesWithOcr: Bool? = nil, 
-        detectAudioLanguage: Bool? = nil
+        detectAudioLanguage: Bool? = nil, 
+        mediaType: FileContentTypesNullable? = nil
     ) async throws -> UserFile {
         let uploadFileFromUrlInput = UploadFileFromUrlInput(
             url: url,
@@ -2463,7 +2466,8 @@ open class FilesAPI {
             prependFilenameToChunks: prependFilenameToChunks,
             maxItemsPerChunk: maxItemsPerChunk,
             parsePdfTablesWithOcr: parsePdfTablesWithOcr,
-            detectAudioLanguage: detectAudioLanguage
+            detectAudioLanguage: detectAudioLanguage,
+            mediaType: mediaType
         )
         return try await withCheckedThrowingContinuation { continuation in
             uploadFromUrlWithRequestBuilder(uploadFileFromUrlInput: uploadFileFromUrlInput).execute { result in

@@ -6,7 +6,7 @@
 
 Connect external data to LLMs, no matter the source.
 
-[![CocoaPods](https://img.shields.io/badge/pod-v0.3.1-blue)](https://cocoapods.org/pods/CarbonAI)
+[![CocoaPods](https://img.shields.io/badge/pod-v0.3.2-blue)](https://cocoapods.org/pods/CarbonAI)
 
 </div>
 
@@ -41,6 +41,7 @@ Connect external data to LLMs, no matter the source.
   * [`carbonai.files.uploadFromUrl`](#carbonaifilesuploadfromurl)
   * [`carbonai.files.uploadText`](#carbonaifilesuploadtext)
   * [`carbonai.health.check`](#carbonaihealthcheck)
+  * [`carbonai.integrations.cancel`](#carbonaiintegrationscancel)
   * [`carbonai.integrations.connectDataSource`](#carbonaiintegrationsconnectdatasource)
   * [`carbonai.integrations.connectFreshdesk`](#carbonaiintegrationsconnectfreshdesk)
   * [`carbonai.integrations.connectGitbook`](#carbonaiintegrationsconnectgitbook)
@@ -103,7 +104,7 @@ github "Carbon-for-Developers/carbon-swift-sdk"
 ### CocoaPods<a id="cocoapods"></a>
 
 1. Add `source 'https://github.com/CocoaPods/Specs.git'` to your `Podfile`
-2. Add `pod 'CarbonAI', '~> 0.3.1'` to your `Podfile`
+2. Add `pod 'CarbonAI', '~> 0.3.2'` to your `Podfile`
 
 Your `Podfile` should look like:
 ```ruby
@@ -111,7 +112,7 @@ Your `Podfile` should look like:
 source 'https://github.com/CocoaPods/Specs.git'
 
 target 'Example' do
-  pod 'CarbonAI', '~> 0.3.1'
+  pod 'CarbonAI', '~> 0.3.2'
 end
 ```
 3. Run `pod install`
@@ -120,7 +121,7 @@ end
 ❯ pod install
 Analyzing dependencies
 Downloading dependencies
-Installing CarbonAI 0.3.1
+Installing CarbonAI 0.3.2
 Generating Pods project
 Integrating client project
 Pod installation complete! There is 1 dependency from the Podfile and 2 total pods installed.
@@ -1426,6 +1427,9 @@ let prependFilenameToChunks = true
 let maxItemsPerChunk = 987
 let parsePdfTablesWithOcr = true
 let detectAudioLanguage = true
+let mediaType = FileContentTypesNullable(
+    
+)
 let uploadFromUrlResponse = try await carbonai.files.uploadFromUrl(
     url: url,
     fileName: fileName,
@@ -1439,7 +1443,8 @@ let uploadFromUrlResponse = try await carbonai.files.uploadFromUrl(
     prependFilenameToChunks: prependFilenameToChunks,
     maxItemsPerChunk: maxItemsPerChunk,
     parsePdfTablesWithOcr: parsePdfTablesWithOcr,
-    detectAudioLanguage: detectAudioLanguage
+    detectAudioLanguage: detectAudioLanguage,
+    mediaType: mediaType
 )
 ```
 
@@ -1484,6 +1489,9 @@ Number of objects per chunk. For csv, tsv, xlsx, and json files only.
 
 
 ##### detect_audio_language: `Bool`<a id="detect_audio_language-bool"></a>
+
+
+##### media_type: `FileContentTypesNullable`<a id="media_type-filecontenttypesnullable"></a>
 
 
 #### 🔄 Return<a id="🔄-return"></a>
@@ -1589,6 +1597,37 @@ let checkResponse = try await carbonai.health.check()
 #### 🌐 Endpoint<a id="🌐-endpoint"></a>
 
 `/health` `GET`
+
+[🔙 **Back to Table of Contents**](#table-of-contents)
+
+---
+
+
+### `carbonai.integrations.cancel`<a id="carbonaiintegrationscancel"></a>
+
+Cancel Data Source Items Sync
+
+#### 🛠️ Usage<a id="🛠️-usage"></a>
+
+```swift
+let dataSourceId = 987
+let cancelResponse = try await carbonai.integrations.cancel(
+    dataSourceId: dataSourceId
+)
+```
+
+#### ⚙️ Parameters<a id="⚙️-parameters"></a>
+
+##### data_source_id: `Int`<a id="data_source_id-int"></a>
+
+
+#### 🔄 Return<a id="🔄-return"></a>
+
+[OrganizationUserDataSourceAPI](./CarbonAI/Models/OrganizationUserDataSourceAPI.swift)
+
+#### 🌐 Endpoint<a id="🌐-endpoint"></a>
+
+`/integrations/items/sync/cancel` `POST`
 
 [🔙 **Back to Table of Contents**](#table-of-contents)
 
@@ -2074,7 +2113,7 @@ Enable OCR for files that support it. Supported formats: pdf
 
 ##### enable_file_picker: `Bool`<a id="enable_file_picker-bool"></a>
 
-Enable integration's file picker for sources that support it. Supported sources: DROPBOX, SHAREPOINT, ONEDRIVE, BOX, GOOGLE_DRIVE
+Enable integration's file picker for sources that support it. Supported sources: SHAREPOINT, BOX, ONEDRIVE, GOOGLE_DRIVE, DROPBOX
 
 
 ##### sync_source_items: `Bool`<a id="sync_source_items-bool"></a>
