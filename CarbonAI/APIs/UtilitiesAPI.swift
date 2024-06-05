@@ -643,7 +643,9 @@ open class UtilitiesAPI {
         htmlTagsToSkip: [String]? = nil, 
         cssClassesToSkip: [String]? = nil, 
         cssSelectorsToSkip: [String]? = nil, 
-        embeddingModel: EmbeddingGenerators? = nil
+        embeddingModel: EmbeddingGenerators? = nil, 
+        urlPathsToInclude: [String]? = nil, 
+        urlPathsToExclude: [String]? = nil
     ) async throws -> AnyCodable {
         let sitemapScrapeRequest = SitemapScrapeRequest(
             tags: tags,
@@ -658,7 +660,9 @@ open class UtilitiesAPI {
             htmlTagsToSkip: htmlTagsToSkip,
             cssClassesToSkip: cssClassesToSkip,
             cssSelectorsToSkip: cssSelectorsToSkip,
-            embeddingModel: embeddingModel
+            embeddingModel: embeddingModel,
+            urlPathsToInclude: urlPathsToInclude,
+            urlPathsToExclude: urlPathsToExclude
         )
         return try await withCheckedThrowingContinuation { continuation in
             scrapeSitemapWithRequestBuilder(sitemapScrapeRequest: sitemapScrapeRequest).execute { result in
@@ -694,7 +698,9 @@ open class UtilitiesAPI {
         htmlTagsToSkip: [String]? = nil, 
         cssClassesToSkip: [String]? = nil, 
         cssSelectorsToSkip: [String]? = nil, 
-        embeddingModel: EmbeddingGenerators? = nil
+        embeddingModel: EmbeddingGenerators? = nil, 
+        urlPathsToInclude: [String]? = nil, 
+        urlPathsToExclude: [String]? = nil
     ) async throws -> AnyCodable {
         let sitemapScrapeRequest = SitemapScrapeRequest(
             tags: tags,
@@ -709,7 +715,9 @@ open class UtilitiesAPI {
             htmlTagsToSkip: htmlTagsToSkip,
             cssClassesToSkip: cssClassesToSkip,
             cssSelectorsToSkip: cssSelectorsToSkip,
-            embeddingModel: embeddingModel
+            embeddingModel: embeddingModel,
+            urlPathsToInclude: urlPathsToInclude,
+            urlPathsToExclude: urlPathsToExclude
         )
         return try await withCheckedThrowingContinuation { continuation in
             scrapeSitemapWithRequestBuilder(sitemapScrapeRequest: sitemapScrapeRequest).execute { result in

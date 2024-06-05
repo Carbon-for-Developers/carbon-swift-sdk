@@ -6,7 +6,7 @@
 
 Connect external data to LLMs, no matter the source.
 
-[![CocoaPods](https://img.shields.io/badge/pod-v0.3.2-blue)](https://cocoapods.org/pods/CarbonAI)
+[![CocoaPods](https://img.shields.io/badge/pod-v0.3.3-blue)](https://cocoapods.org/pods/CarbonAI)
 
 </div>
 
@@ -104,7 +104,7 @@ github "Carbon-for-Developers/carbon-swift-sdk"
 ### CocoaPods<a id="cocoapods"></a>
 
 1. Add `source 'https://github.com/CocoaPods/Specs.git'` to your `Podfile`
-2. Add `pod 'CarbonAI', '~> 0.3.2'` to your `Podfile`
+2. Add `pod 'CarbonAI', '~> 0.3.3'` to your `Podfile`
 
 Your `Podfile` should look like:
 ```ruby
@@ -112,7 +112,7 @@ Your `Podfile` should look like:
 source 'https://github.com/CocoaPods/Specs.git'
 
 target 'Example' do
-  pod 'CarbonAI', '~> 0.3.2'
+  pod 'CarbonAI', '~> 0.3.3'
 end
 ```
 3. Run `pod install`
@@ -121,7 +121,7 @@ end
 ❯ pod install
 Analyzing dependencies
 Downloading dependencies
-Installing CarbonAI 0.3.2
+Installing CarbonAI 0.3.3
 Generating Pods project
 Integrating client project
 Pod installation complete! There is 1 dependency from the Podfile and 2 total pods installed.
@@ -2113,7 +2113,7 @@ Enable OCR for files that support it. Supported formats: pdf
 
 ##### enable_file_picker: `Bool`<a id="enable_file_picker-bool"></a>
 
-Enable integration's file picker for sources that support it. Supported sources: SHAREPOINT, BOX, ONEDRIVE, GOOGLE_DRIVE, DROPBOX
+Enable integration's file picker for sources that support it. Supported sources: DROPBOX, GOOGLE_DRIVE, SHAREPOINT, ONEDRIVE, BOX
 
 
 ##### sync_source_items: `Bool`<a id="sync_source_items-bool"></a>
@@ -3732,6 +3732,12 @@ let cssSelectorsToSkip = [
 let embeddingModel = EmbeddingGenerators(
     
 )
+let urlPathsToInclude = [
+"inner_example"
+]
+let urlPathsToExclude = [
+"inner_example"
+]
 let scrapeSitemapResponse = try await carbonai.utilities.scrapeSitemap(
     url: url,
     tags: tags,
@@ -3745,7 +3751,9 @@ let scrapeSitemapResponse = try await carbonai.utilities.scrapeSitemap(
     htmlTagsToSkip: htmlTagsToSkip,
     cssClassesToSkip: cssClassesToSkip,
     cssSelectorsToSkip: cssSelectorsToSkip,
-    embeddingModel: embeddingModel
+    embeddingModel: embeddingModel,
+    urlPathsToInclude: urlPathsToInclude,
+    urlPathsToExclude: urlPathsToExclude
 )
 ```
 
@@ -3788,6 +3796,16 @@ let scrapeSitemapResponse = try await carbonai.utilities.scrapeSitemap(
 
 
 ##### embedding_model: `EmbeddingGenerators`<a id="embedding_model-embeddinggenerators"></a>
+
+
+##### url_paths_to_include: `[String]`<a id="url_paths_to_include-string"></a>
+
+URL subpaths or directories that you want to include. For example if you want to only include         URLs that start with /questions in stackoverflow.com, you will add /questions/ in this input
+
+
+##### url_paths_to_exclude: `[String]`<a id="url_paths_to_exclude-string"></a>
+
+URL subpaths or directories that you want to exclude. For example if you want to exclude         URLs that start with /questions in stackoverflow.com, you will add /questions/ in this input
 
 
 #### 🌐 Endpoint<a id="🌐-endpoint"></a>

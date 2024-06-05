@@ -26,8 +26,10 @@ public struct WebscrapeRequest: Codable, JSONEncodable, Hashable {
     public var cssClassesToSkip: [String]?
     public var cssSelectorsToSkip: [String]?
     public var embeddingModel: EmbeddingGenerators?
+    /** URL subpaths or directories that you want to include. For example if you want to only include         URLs that start with /questions in stackoverflow.com, you will add /questions/ in this input */
+    public var urlPathsToInclude: [String]?
 
-    public init(tags: [String: Tags1]? = nil, url: String, recursionDepth: Int? = 3, maxPagesToScrape: Int? = 100, chunkSize: Int? = 1500, chunkOverlap: Int? = 20, skipEmbeddingGeneration: Bool? = false, enableAutoSync: Bool? = false, generateSparseVectors: Bool? = false, prependFilenameToChunks: Bool? = false, htmlTagsToSkip: [String]? = nil, cssClassesToSkip: [String]? = nil, cssSelectorsToSkip: [String]? = nil, embeddingModel: EmbeddingGenerators? = nil) {
+    public init(tags: [String: Tags1]? = nil, url: String, recursionDepth: Int? = 3, maxPagesToScrape: Int? = 100, chunkSize: Int? = 1500, chunkOverlap: Int? = 20, skipEmbeddingGeneration: Bool? = false, enableAutoSync: Bool? = false, generateSparseVectors: Bool? = false, prependFilenameToChunks: Bool? = false, htmlTagsToSkip: [String]? = nil, cssClassesToSkip: [String]? = nil, cssSelectorsToSkip: [String]? = nil, embeddingModel: EmbeddingGenerators? = nil, urlPathsToInclude: [String]? = nil) {
         self.tags = tags
         self.url = url
         self.recursionDepth = recursionDepth
@@ -42,6 +44,7 @@ public struct WebscrapeRequest: Codable, JSONEncodable, Hashable {
         self.cssClassesToSkip = cssClassesToSkip
         self.cssSelectorsToSkip = cssSelectorsToSkip
         self.embeddingModel = embeddingModel
+        self.urlPathsToInclude = urlPathsToInclude
     }
 
     public enum CodingKeys: String, CodingKey, CaseIterable {
@@ -59,6 +62,7 @@ public struct WebscrapeRequest: Codable, JSONEncodable, Hashable {
         case cssClassesToSkip = "css_classes_to_skip"
         case cssSelectorsToSkip = "css_selectors_to_skip"
         case embeddingModel = "embedding_model"
+        case urlPathsToInclude = "url_paths_to_include"
     }
 
     // Encodable protocol methods
@@ -79,6 +83,7 @@ public struct WebscrapeRequest: Codable, JSONEncodable, Hashable {
         try container.encodeIfPresent(cssClassesToSkip, forKey: .cssClassesToSkip)
         try container.encodeIfPresent(cssSelectorsToSkip, forKey: .cssSelectorsToSkip)
         try container.encodeIfPresent(embeddingModel, forKey: .embeddingModel)
+        try container.encodeIfPresent(urlPathsToInclude, forKey: .urlPathsToInclude)
     }
 }
 
