@@ -6,7 +6,7 @@
 
 Connect external data to LLMs, no matter the source.
 
-[![CocoaPods](https://img.shields.io/badge/pod-v0.3.3-blue)](https://cocoapods.org/pods/CarbonAI)
+[![CocoaPods](https://img.shields.io/badge/pod-v0.3.4-blue)](https://cocoapods.org/pods/CarbonAI)
 
 </div>
 
@@ -104,7 +104,7 @@ github "Carbon-for-Developers/carbon-swift-sdk"
 ### CocoaPods<a id="cocoapods"></a>
 
 1. Add `source 'https://github.com/CocoaPods/Specs.git'` to your `Podfile`
-2. Add `pod 'CarbonAI', '~> 0.3.3'` to your `Podfile`
+2. Add `pod 'CarbonAI', '~> 0.3.4'` to your `Podfile`
 
 Your `Podfile` should look like:
 ```ruby
@@ -112,7 +112,7 @@ Your `Podfile` should look like:
 source 'https://github.com/CocoaPods/Specs.git'
 
 target 'Example' do
-  pod 'CarbonAI', '~> 0.3.3'
+  pod 'CarbonAI', '~> 0.3.4'
 end
 ```
 3. Run `pod install`
@@ -121,7 +121,7 @@ end
 ❯ pod install
 Analyzing dependencies
 Downloading dependencies
-Installing CarbonAI 0.3.3
+Installing CarbonAI 0.3.4
 Generating Pods project
 Integrating client project
 Pod installation complete! There is 1 dependency from the Podfile and 2 total pods installed.
@@ -1310,6 +1310,7 @@ let detectAudioLanguage = false
 let mediaType = FileContentTypesNullable(
     
 )
+let splitRows = false
 let uploadResponse = try await carbonai.files.upload(
     file: file,
     chunkSize: chunkSize,
@@ -1323,7 +1324,8 @@ let uploadResponse = try await carbonai.files.upload(
     maxItemsPerChunk: maxItemsPerChunk,
     parsePdfTablesWithOcr: parsePdfTablesWithOcr,
     detectAudioLanguage: detectAudioLanguage,
-    mediaType: mediaType
+    mediaType: mediaType,
+    splitRows: splitRows
 )
 ```
 
@@ -1392,6 +1394,11 @@ Whether to automatically detect the language of the uploaded audio file.
 The media type of the file. If not provided, it will be inferred from the file extension.
 
 
+##### splitRows: `Bool`<a id="splitrows-bool"></a>
+
+Whether to split tabular rows into chunks. Currently only valid for CSV, TSV, and XLSX files.
+
+
 #### 🔄 Return<a id="🔄-return"></a>
 
 [UserFile](./CarbonAI/Models/UserFile.swift)
@@ -1430,6 +1437,7 @@ let detectAudioLanguage = true
 let mediaType = FileContentTypesNullable(
     
 )
+let splitRows = true
 let uploadFromUrlResponse = try await carbonai.files.uploadFromUrl(
     url: url,
     fileName: fileName,
@@ -1444,7 +1452,8 @@ let uploadFromUrlResponse = try await carbonai.files.uploadFromUrl(
     maxItemsPerChunk: maxItemsPerChunk,
     parsePdfTablesWithOcr: parsePdfTablesWithOcr,
     detectAudioLanguage: detectAudioLanguage,
-    mediaType: mediaType
+    mediaType: mediaType,
+    splitRows: splitRows
 )
 ```
 
@@ -1492,6 +1501,9 @@ Number of objects per chunk. For csv, tsv, xlsx, and json files only.
 
 
 ##### media_type: `FileContentTypesNullable`<a id="media_type-filecontenttypesnullable"></a>
+
+
+##### split_rows: `Bool`<a id="split_rows-bool"></a>
 
 
 #### 🔄 Return<a id="🔄-return"></a>
@@ -2113,7 +2125,7 @@ Enable OCR for files that support it. Supported formats: pdf
 
 ##### enable_file_picker: `Bool`<a id="enable_file_picker-bool"></a>
 
-Enable integration's file picker for sources that support it. Supported sources: DROPBOX, GOOGLE_DRIVE, SHAREPOINT, ONEDRIVE, BOX
+Enable integration's file picker for sources that support it. Supported sources: DROPBOX, ONEDRIVE, BOX, GOOGLE_DRIVE, SHAREPOINT
 
 
 ##### sync_source_items: `Bool`<a id="sync_source_items-bool"></a>
