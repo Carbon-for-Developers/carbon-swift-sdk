@@ -6,7 +6,7 @@
 
 Connect external data to LLMs, no matter the source.
 
-[![CocoaPods](https://img.shields.io/badge/pod-v0.3.5-blue)](https://cocoapods.org/pods/CarbonAI)
+[![CocoaPods](https://img.shields.io/badge/pod-v0.3.6-blue)](https://cocoapods.org/pods/CarbonAI)
 
 </div>
 
@@ -104,7 +104,7 @@ github "Carbon-for-Developers/carbon-swift-sdk"
 ### CocoaPods<a id="cocoapods"></a>
 
 1. Add `source 'https://github.com/CocoaPods/Specs.git'` to your `Podfile`
-2. Add `pod 'CarbonAI', '~> 0.3.5'` to your `Podfile`
+2. Add `pod 'CarbonAI', '~> 0.3.6'` to your `Podfile`
 
 Your `Podfile` should look like:
 ```ruby
@@ -112,7 +112,7 @@ Your `Podfile` should look like:
 source 'https://github.com/CocoaPods/Specs.git'
 
 target 'Example' do
-  pod 'CarbonAI', '~> 0.3.5'
+  pod 'CarbonAI', '~> 0.3.6'
 end
 ```
 3. Run `pod install`
@@ -121,7 +121,7 @@ end
 ❯ pod install
 Analyzing dependencies
 Downloading dependencies
-Installing CarbonAI 0.3.5
+Installing CarbonAI 0.3.6
 Generating Pods project
 Integrating client project
 Pod installation complete! There is 1 dependency from the Podfile and 2 total pods installed.
@@ -1690,7 +1690,8 @@ let syncOptions = SyncOptions(
         HelpdeskFileTypes.ticket
         ],
         syncAttachments: false,
-        detectAudioLanguage: false
+        detectAudioLanguage: false,
+        splitRows: false
     )
 )
 let connectDataSourceResponse = try await carbonai.integrations.connectDataSource(
@@ -1750,7 +1751,8 @@ let fileSyncConfig = FileSyncConfigNullable(
     HelpdeskFileTypes.ticket
     ],
     syncAttachments: false,
-    detectAudioLanguage: false
+    detectAudioLanguage: false,
+    splitRows: false
 )
 let connectFreshdeskResponse = try await carbonai.integrations.connectFreshdesk(
     domain: domain,
@@ -2011,7 +2013,8 @@ let fileSyncConfig = FileSyncConfigNullable(
     HelpdeskFileTypes.ticket
     ],
     syncAttachments: false,
-    detectAudioLanguage: false
+    detectAudioLanguage: false,
+    splitRows: false
 )
 let getOauthUrlResponse = try await carbonai.integrations.getOauthUrl(
     service: service,
@@ -2125,7 +2128,7 @@ Enable OCR for files that support it. Supported formats: pdf
 
 ##### enable_file_picker: `Bool`<a id="enable_file_picker-bool"></a>
 
-Enable integration's file picker for sources that support it. Supported sources: BOX, ONEDRIVE, DROPBOX, GOOGLE_DRIVE, SHAREPOINT
+Enable integration's file picker for sources that support it. Supported sources: SHAREPOINT, ONEDRIVE, GOOGLE_DRIVE, DROPBOX, BOX
 
 
 ##### sync_source_items: `Bool`<a id="sync_source_items-bool"></a>
@@ -2451,7 +2454,8 @@ let fileSyncConfig = FileSyncConfigNullable(
     HelpdeskFileTypes.ticket
     ],
     syncAttachments: false,
-    detectAudioLanguage: false
+    detectAudioLanguage: false,
+    splitRows: false
 )
 let syncConfluenceResponse = try await carbonai.integrations.syncConfluence(
     dataSourceId: dataSourceId,
@@ -2605,7 +2609,8 @@ let fileSyncConfig = FileSyncConfigNullable(
     HelpdeskFileTypes.ticket
     ],
     syncAttachments: false,
-    detectAudioLanguage: false
+    detectAudioLanguage: false,
+    splitRows: false
 )
 let syncFilesResponse = try await carbonai.integrations.syncFiles(
     dataSourceId: dataSourceId,
@@ -2890,7 +2895,8 @@ let fileSyncConfig = FileSyncConfigNullable(
     HelpdeskFileTypes.ticket
     ],
     syncAttachments: false,
-    detectAudioLanguage: false
+    detectAudioLanguage: false,
+    splitRows: false
 )
 let incrementalSync = true
 let syncGmailResponse = try await carbonai.integrations.syncGmail(
@@ -3049,7 +3055,8 @@ let fileSyncConfig = FileSyncConfigNullable(
     HelpdeskFileTypes.ticket
     ],
     syncAttachments: false,
-    detectAudioLanguage: false
+    detectAudioLanguage: false,
+    splitRows: false
 )
 let incrementalSync = true
 let syncOutlookResponse = try await carbonai.integrations.syncOutlook(
@@ -3271,7 +3278,8 @@ let fileSyncConfig = FileSyncConfigNullable(
     HelpdeskFileTypes.ticket
     ],
     syncAttachments: false,
-    detectAudioLanguage: false
+    detectAudioLanguage: false,
+    splitRows: false
 )
 let syncS3FilesResponse = try await carbonai.integrations.syncS3Files(
     ids: ids,
