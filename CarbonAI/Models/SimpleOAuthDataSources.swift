@@ -18,4 +18,5 @@ public enum SimpleOAuthDataSources: String, Codable, CaseIterable {
     case box = "BOX"
     case gmail = "GMAIL"
     case outlook = "OUTLOOK"
+    case slack = "SLACK"
 }

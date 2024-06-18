@@ -1525,6 +1525,226 @@ open class IntegrationsAPI {
 
 
     /**
+     Slack List Conversations
+     
+     - parameter types: (query)  (optional, default to "public_channel")
+     - parameter cursor: (query)  (optional)
+     - parameter dataSourceId: (query)  (optional)
+     - parameter excludeArchived: (query)  (optional, default to true)
+     - parameter apiResponseQueue: The queue on which api response is dispatched.
+     - parameter completion: completion handler to receive the data and the error objects
+     */
+    @discardableResult
+    open class func listConversationsSync(types: String? = nil, cursor: String? = nil, dataSourceId: Int? = nil, excludeArchived: Bool? = nil, apiResponseQueue: DispatchQueue = CarbonAIAPI.apiResponseQueue, completion: @escaping ((_ data: AnyCodable?, _ error: Error?) -> Void)) -> RequestTask {
+        return listConversationsWithRequestBuilder(types: types, cursor: cursor, dataSourceId: dataSourceId, excludeArchived: excludeArchived).execute(apiResponseQueue) { result in
+            switch result {
+            case let .success(response):
+                completion(response.body, nil)
+            case let .failure(error):
+                completion(nil, error)
+            }
+        }
+    }
+
+    /**
+     Slack List Conversations
+     
+     - parameter types: (query)  (optional, default to "public_channel")
+     - parameter cursor: (query)  (optional)
+     - parameter dataSourceId: (query)  (optional)
+     - parameter excludeArchived: (query)  (optional, default to true)
+     - parameter apiResponseQueue: The queue on which api response is dispatched.
+     - parameter completion: completion handler to receive the data and the error objects
+     */
+    @available(iOS 13.0, macOS 10.15, tvOS 13.0, watchOS 6.0, *)
+    private class func listConversationsAsyncMappedParams(types: String? = nil, cursor: String? = nil, dataSourceId: Int? = nil, excludeArchived: Bool? = nil) async throws -> AnyCodable {
+        return try await withCheckedThrowingContinuation { continuation in
+            listConversationsWithRequestBuilder(types: types, cursor: cursor, dataSourceId: dataSourceId, excludeArchived: excludeArchived).execute { result in
+                switch result {
+                case let .success(response):
+                    continuation.resume(returning: response.body)
+                case let .failure(error):
+                    continuation.resume(throwing: error)
+                }
+            }
+        }
+    }
+
+    /**
+     Slack List Conversations
+     
+     - parameter types: (query)  (optional, default to "public_channel")
+     - parameter cursor: (query)  (optional)
+     - parameter dataSourceId: (query)  (optional)
+     - parameter excludeArchived: (query)  (optional, default to true)
+     - parameter apiResponseQueue: The queue on which api response is dispatched.
+     - parameter completion: completion handler to receive the data and the error objects
+     */
+    @available(iOS 13.0, macOS 10.15, tvOS 13.0, watchOS 6.0, *)
+    open class func listConversations(
+        types: String? = nil, 
+        cursor: String? = nil, 
+        dataSourceId: Int? = nil, 
+        excludeArchived: Bool? = nil
+    ) async throws -> AnyCodable {
+        return try await withCheckedThrowingContinuation { continuation in
+            listConversationsWithRequestBuilder(types: types, cursor: cursor, dataSourceId: dataSourceId, excludeArchived: excludeArchived).execute { result in
+                switch result {
+                case let .success(response):
+                    continuation.resume(returning: response.body)
+                case let .failure(error):
+                    continuation.resume(throwing: error)
+                }
+            }
+        }
+    }
+
+
+    /**
+     Slack List Conversations
+     
+     - parameter types: (query)  (optional, default to "public_channel")
+     - parameter cursor: (query)  (optional)
+     - parameter dataSourceId: (query)  (optional)
+     - parameter excludeArchived: (query)  (optional, default to true)
+     - parameter apiResponseQueue: The queue on which api response is dispatched.
+     - parameter completion: completion handler to receive the data and the error objects
+     */
+    @available(iOS 13.0, macOS 10.15, tvOS 13.0, watchOS 6.0, *)
+    open func listConversations(
+        types: String? = nil, 
+        cursor: String? = nil, 
+        dataSourceId: Int? = nil, 
+        excludeArchived: Bool? = nil
+    ) async throws -> AnyCodable {
+        return try await withCheckedThrowingContinuation { continuation in
+            listConversationsWithRequestBuilder(types: types, cursor: cursor, dataSourceId: dataSourceId, excludeArchived: excludeArchived).execute { result in
+                switch result {
+                case let .success(response):
+                    continuation.resume(returning: response.body)
+                case let .failure(error):
+                    continuation.resume(throwing: error)
+                }
+            }
+        }
+    }
+
+
+
+    /**
+     Slack List Conversations
+     - GET /integrations/slack/conversations
+     - List all of your public and private channels, DMs, and Group DMs. The ID from response  can be used as a filter to sync messages to Carbon    types: Comma separated list of types. Available types are im (DMs), mpim (group DMs), public_channel, and private_channel. Defaults to public_channel.     cursor: Used for pagination. If next_cursor is returned in response, you need to pass it as the cursor in the next request     data_source_id: Data source needs to be specified if you have linked multiple slack accounts   exclude_archived: Should archived conversations be excluded, defaults to true
+     - API Key:
+       - type: apiKey authorization 
+       - name: accessToken
+     - API Key:
+       - type: apiKey authorization 
+       - name: apiKey
+     - API Key:
+       - type: apiKey customer-id 
+       - name: customerId
+     - parameter types: (query)  (optional, default to "public_channel")
+     - parameter cursor: (query)  (optional)
+     - parameter dataSourceId: (query)  (optional)
+     - parameter excludeArchived: (query)  (optional, default to true)
+     - returns: RequestBuilder<AnyCodable> 
+     */
+    open class func listConversationsWithRequestBuilder(
+            types: String? = nil,
+            cursor: String? = nil,
+            dataSourceId: Int? = nil,
+            excludeArchived: Bool? = nil
+    ) -> RequestBuilder<AnyCodable> {
+        let basePath = CarbonAIAPI.basePath;
+        let localVariablePath = "/integrations/slack/conversations"
+        let localVariableURLString = basePath + localVariablePath
+        let localVariableParameters: [String: Any]? = nil
+        var localVariableUrlComponents = URLComponents(string: localVariableURLString)
+        localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems([
+            "types": (wrappedValue: types?.encodeToJSON(), isExplode: true),
+            "cursor": (wrappedValue: cursor?.encodeToJSON(), isExplode: true),
+            "data_source_id": (wrappedValue: dataSourceId?.encodeToJSON(), isExplode: true),
+            "exclude_archived": (wrappedValue: excludeArchived?.encodeToJSON(), isExplode: true),
+        ])
+
+        let localVariableNillableHeaders: [String: Any?] = [
+            :
+        ]
+
+        var localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
+
+        do {
+            try Authentication.setAuthenticationParameters(headers: &localVariableHeaderParameters, url: &localVariableUrlComponents, in: "header", name: "authorization", value: CarbonAIAPI.accessToken, prefix: "Token ")
+            try Authentication.setAuthenticationParameters(headers: &localVariableHeaderParameters, url: &localVariableUrlComponents, in: "header", name: "authorization", value: CarbonAIAPI.apiKey, prefix: "Bearer ")
+            try Authentication.setAuthenticationParameters(headers: &localVariableHeaderParameters, url: &localVariableUrlComponents, in: "header", name: "customer-id", value: CarbonAIAPI.customerId, prefix: nil)
+            let localVariableRequestBuilder: RequestBuilder<AnyCodable>.Type = CarbonAIAPI.requestBuilderFactory.getBuilder()
+            let URLString = localVariableUrlComponents?.string ?? localVariableURLString
+            return localVariableRequestBuilder.init(method: "GET", URLString: URLString, parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        } catch {
+            print("Error: \(error)")
+        }
+        fatalError("Error: Unable to send request to GET /integrations/slack/conversations")
+    }
+
+    /**
+     Slack List Conversations
+     - GET /integrations/slack/conversations
+     - List all of your public and private channels, DMs, and Group DMs. The ID from response  can be used as a filter to sync messages to Carbon    types: Comma separated list of types. Available types are im (DMs), mpim (group DMs), public_channel, and private_channel. Defaults to public_channel.     cursor: Used for pagination. If next_cursor is returned in response, you need to pass it as the cursor in the next request     data_source_id: Data source needs to be specified if you have linked multiple slack accounts   exclude_archived: Should archived conversations be excluded, defaults to true
+     - API Key:
+       - type: apiKey authorization 
+       - name: accessToken
+     - API Key:
+       - type: apiKey authorization 
+       - name: apiKey
+     - API Key:
+       - type: apiKey customer-id 
+       - name: customerId
+     - parameter types: (query)  (optional, default to "public_channel")
+     - parameter cursor: (query)  (optional)
+     - parameter dataSourceId: (query)  (optional)
+     - parameter excludeArchived: (query)  (optional, default to true)
+     - returns: RequestBuilder<AnyCodable> 
+     */
+    open func listConversationsWithRequestBuilder(
+            types: String? = nil,
+            cursor: String? = nil,
+            dataSourceId: Int? = nil,
+            excludeArchived: Bool? = nil
+    ) -> RequestBuilder<AnyCodable> {
+        let basePath = self.client!.basePath;
+        let localVariablePath = "/integrations/slack/conversations"
+        let localVariableURLString = basePath + localVariablePath
+        let localVariableParameters: [String: Any]? = nil
+        var localVariableUrlComponents = URLComponents(string: localVariableURLString)
+        localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems([
+            "types": (wrappedValue: types?.encodeToJSON(), isExplode: true),
+            "cursor": (wrappedValue: cursor?.encodeToJSON(), isExplode: true),
+            "data_source_id": (wrappedValue: dataSourceId?.encodeToJSON(), isExplode: true),
+            "exclude_archived": (wrappedValue: excludeArchived?.encodeToJSON(), isExplode: true),
+        ])
+
+        let localVariableNillableHeaders: [String: Any?] = [
+            :
+        ]
+
+        var localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
+
+        do {
+            try Authentication.setAuthenticationParameters(headers: &localVariableHeaderParameters, url: &localVariableUrlComponents, in: "header", name: "authorization", value: self.client!.accessToken, prefix: "Token ")
+            try Authentication.setAuthenticationParameters(headers: &localVariableHeaderParameters, url: &localVariableUrlComponents, in: "header", name: "authorization", value: self.client!.apiKey, prefix: "Bearer ")
+            try Authentication.setAuthenticationParameters(headers: &localVariableHeaderParameters, url: &localVariableUrlComponents, in: "header", name: "customer-id", value: self.client!.customerId, prefix: nil)
+            let localVariableRequestBuilder: RequestBuilder<AnyCodable>.Type = CarbonAIAPI.requestBuilderFactory.getBuilder()
+            let URLString = localVariableUrlComponents?.string ?? localVariableURLString
+            return localVariableRequestBuilder.init(method: "GET", URLString: URLString, parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        } catch {
+            print("Error: \(error)")
+        }
+        fatalError("Error: Unable to send request to GET /integrations/slack/conversations")
+    }
+
+
+    /**
      List Data Source Items
      
      - parameter listDataSourceItemsRequest: (body)  
@@ -4881,6 +5101,228 @@ open class IntegrationsAPI {
             print("Error: \(error)")
         }
         fatalError("Error: Unable to send request to POST /integrations/s3/files")
+    }
+
+
+    /**
+     Slack Sync
+     
+     - parameter slackSyncRequest: (body)  
+     - parameter apiResponseQueue: The queue on which api response is dispatched.
+     - parameter completion: completion handler to receive the data and the error objects
+     */
+    @discardableResult
+    open class func syncSlackSync(slackSyncRequest: SlackSyncRequest, apiResponseQueue: DispatchQueue = CarbonAIAPI.apiResponseQueue, completion: @escaping ((_ data: AnyCodable?, _ error: Error?) -> Void)) -> RequestTask {
+        return syncSlackWithRequestBuilder(slackSyncRequest: slackSyncRequest).execute(apiResponseQueue) { result in
+            switch result {
+            case let .success(response):
+                completion(response.body, nil)
+            case let .failure(error):
+                completion(nil, error)
+            }
+        }
+    }
+
+    /**
+     Slack Sync
+     
+     - parameter slackSyncRequest: (body)  
+     - parameter apiResponseQueue: The queue on which api response is dispatched.
+     - parameter completion: completion handler to receive the data and the error objects
+     */
+    @available(iOS 13.0, macOS 10.15, tvOS 13.0, watchOS 6.0, *)
+    private class func syncSlackAsyncMappedParams(slackSyncRequest: SlackSyncRequest) async throws -> AnyCodable {
+        return try await withCheckedThrowingContinuation { continuation in
+            syncSlackWithRequestBuilder(slackSyncRequest: slackSyncRequest).execute { result in
+                switch result {
+                case let .success(response):
+                    continuation.resume(returning: response.body)
+                case let .failure(error):
+                    continuation.resume(throwing: error)
+                }
+            }
+        }
+    }
+
+    /**
+     Slack Sync
+     
+     - parameter slackSyncRequest: (body)  
+     - parameter apiResponseQueue: The queue on which api response is dispatched.
+     - parameter completion: completion handler to receive the data and the error objects
+     */
+    @available(iOS 13.0, macOS 10.15, tvOS 13.0, watchOS 6.0, *)
+    open class func syncSlack(
+        filters: SlackFilters,
+        tags: AnyCodable? = nil, 
+        chunkSize: Int? = nil, 
+        chunkOverlap: Int? = nil, 
+        skipEmbeddingGeneration: Bool? = nil, 
+        embeddingModel: EmbeddingGenerators? = nil, 
+        generateSparseVectors: Bool? = nil, 
+        prependFilenameToChunks: Bool? = nil, 
+        dataSourceId: Int? = nil, 
+        requestId: String? = nil
+    ) async throws -> AnyCodable {
+        let slackSyncRequest = SlackSyncRequest(
+            tags: tags,
+            filters: filters,
+            chunkSize: chunkSize,
+            chunkOverlap: chunkOverlap,
+            skipEmbeddingGeneration: skipEmbeddingGeneration,
+            embeddingModel: embeddingModel,
+            generateSparseVectors: generateSparseVectors,
+            prependFilenameToChunks: prependFilenameToChunks,
+            dataSourceId: dataSourceId,
+            requestId: requestId
+        )
+        return try await withCheckedThrowingContinuation { continuation in
+            syncSlackWithRequestBuilder(slackSyncRequest: slackSyncRequest).execute { result in
+                switch result {
+                case let .success(response):
+                    continuation.resume(returning: response.body)
+                case let .failure(error):
+                    continuation.resume(throwing: error)
+                }
+            }
+        }
+    }
+
+
+    /**
+     Slack Sync
+     
+     - parameter slackSyncRequest: (body)  
+     - parameter apiResponseQueue: The queue on which api response is dispatched.
+     - parameter completion: completion handler to receive the data and the error objects
+     */
+    @available(iOS 13.0, macOS 10.15, tvOS 13.0, watchOS 6.0, *)
+    open func syncSlack(
+        filters: SlackFilters,
+        tags: AnyCodable? = nil, 
+        chunkSize: Int? = nil, 
+        chunkOverlap: Int? = nil, 
+        skipEmbeddingGeneration: Bool? = nil, 
+        embeddingModel: EmbeddingGenerators? = nil, 
+        generateSparseVectors: Bool? = nil, 
+        prependFilenameToChunks: Bool? = nil, 
+        dataSourceId: Int? = nil, 
+        requestId: String? = nil
+    ) async throws -> AnyCodable {
+        let slackSyncRequest = SlackSyncRequest(
+            tags: tags,
+            filters: filters,
+            chunkSize: chunkSize,
+            chunkOverlap: chunkOverlap,
+            skipEmbeddingGeneration: skipEmbeddingGeneration,
+            embeddingModel: embeddingModel,
+            generateSparseVectors: generateSparseVectors,
+            prependFilenameToChunks: prependFilenameToChunks,
+            dataSourceId: dataSourceId,
+            requestId: requestId
+        )
+        return try await withCheckedThrowingContinuation { continuation in
+            syncSlackWithRequestBuilder(slackSyncRequest: slackSyncRequest).execute { result in
+                switch result {
+                case let .success(response):
+                    continuation.resume(returning: response.body)
+                case let .failure(error):
+                    continuation.resume(throwing: error)
+                }
+            }
+        }
+    }
+
+
+
+    /**
+     Slack Sync
+     - POST /integrations/slack/sync
+     - You can list all conversations using the endpoint /integrations/slack/conversations. The ID of  conversation will be used as an input for this endpoint with timestamps as optional filters.
+     - API Key:
+       - type: apiKey authorization 
+       - name: accessToken
+     - API Key:
+       - type: apiKey authorization 
+       - name: apiKey
+     - API Key:
+       - type: apiKey customer-id 
+       - name: customerId
+     - parameter slackSyncRequest: (body)  
+     - returns: RequestBuilder<AnyCodable> 
+     */
+    open class func syncSlackWithRequestBuilder(
+            slackSyncRequest: SlackSyncRequest
+    ) -> RequestBuilder<AnyCodable> {
+        let basePath = CarbonAIAPI.basePath;
+        let localVariablePath = "/integrations/slack/sync"
+        let localVariableURLString = basePath + localVariablePath
+        let localVariableParameters = JSONEncodingHelper.encodingParameters(forEncodableObject: slackSyncRequest)
+
+        var localVariableUrlComponents = URLComponents(string: localVariableURLString)
+
+        let localVariableNillableHeaders: [String: Any?] = [
+            :
+        ]
+
+        var localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
+
+        do {
+            try Authentication.setAuthenticationParameters(headers: &localVariableHeaderParameters, url: &localVariableUrlComponents, in: "header", name: "authorization", value: CarbonAIAPI.accessToken, prefix: "Token ")
+            try Authentication.setAuthenticationParameters(headers: &localVariableHeaderParameters, url: &localVariableUrlComponents, in: "header", name: "authorization", value: CarbonAIAPI.apiKey, prefix: "Bearer ")
+            try Authentication.setAuthenticationParameters(headers: &localVariableHeaderParameters, url: &localVariableUrlComponents, in: "header", name: "customer-id", value: CarbonAIAPI.customerId, prefix: nil)
+            let localVariableRequestBuilder: RequestBuilder<AnyCodable>.Type = CarbonAIAPI.requestBuilderFactory.getBuilder()
+            let URLString = localVariableUrlComponents?.string ?? localVariableURLString
+            return localVariableRequestBuilder.init(method: "POST", URLString: URLString, parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        } catch {
+            print("Error: \(error)")
+        }
+        fatalError("Error: Unable to send request to POST /integrations/slack/sync")
+    }
+
+    /**
+     Slack Sync
+     - POST /integrations/slack/sync
+     - You can list all conversations using the endpoint /integrations/slack/conversations. The ID of  conversation will be used as an input for this endpoint with timestamps as optional filters.
+     - API Key:
+       - type: apiKey authorization 
+       - name: accessToken
+     - API Key:
+       - type: apiKey authorization 
+       - name: apiKey
+     - API Key:
+       - type: apiKey customer-id 
+       - name: customerId
+     - parameter slackSyncRequest: (body)  
+     - returns: RequestBuilder<AnyCodable> 
+     */
+    open func syncSlackWithRequestBuilder(
+            slackSyncRequest: SlackSyncRequest
+    ) -> RequestBuilder<AnyCodable> {
+        let basePath = self.client!.basePath;
+        let localVariablePath = "/integrations/slack/sync"
+        let localVariableURLString = basePath + localVariablePath
+        let localVariableParameters = JSONEncodingHelper.encodingParameters(forEncodableObject: slackSyncRequest)
+
+        var localVariableUrlComponents = URLComponents(string: localVariableURLString)
+
+        let localVariableNillableHeaders: [String: Any?] = [
+            :
+        ]
+
+        var localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
+
+        do {
+            try Authentication.setAuthenticationParameters(headers: &localVariableHeaderParameters, url: &localVariableUrlComponents, in: "header", name: "authorization", value: self.client!.accessToken, prefix: "Token ")
+            try Authentication.setAuthenticationParameters(headers: &localVariableHeaderParameters, url: &localVariableUrlComponents, in: "header", name: "authorization", value: self.client!.apiKey, prefix: "Bearer ")
+            try Authentication.setAuthenticationParameters(headers: &localVariableHeaderParameters, url: &localVariableUrlComponents, in: "header", name: "customer-id", value: self.client!.customerId, prefix: nil)
+            let localVariableRequestBuilder: RequestBuilder<AnyCodable>.Type = CarbonAIAPI.requestBuilderFactory.getBuilder()
+            let URLString = localVariableUrlComponents?.string ?? localVariableURLString
+            return localVariableRequestBuilder.init(method: "POST", URLString: URLString, parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        } catch {
+            print("Error: \(error)")
+        }
+        fatalError("Error: Unable to send request to POST /integrations/slack/sync")
     }
 
 }

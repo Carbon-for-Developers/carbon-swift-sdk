@@ -6,7 +6,7 @@
 
 Connect external data to LLMs, no matter the source.
 
-[![CocoaPods](https://img.shields.io/badge/pod-v0.3.6-blue)](https://cocoapods.org/pods/CarbonAI)
+[![CocoaPods](https://img.shields.io/badge/pod-v0.3.7-blue)](https://cocoapods.org/pods/CarbonAI)
 
 </div>
 
@@ -48,6 +48,7 @@ Connect external data to LLMs, no matter the source.
   * [`carbonai.integrations.createAwsIamUser`](#carbonaiintegrationscreateawsiamuser)
   * [`carbonai.integrations.getOauthUrl`](#carbonaiintegrationsgetoauthurl)
   * [`carbonai.integrations.listConfluencePages`](#carbonaiintegrationslistconfluencepages)
+  * [`carbonai.integrations.listConversations`](#carbonaiintegrationslistconversations)
   * [`carbonai.integrations.listDataSourceItems`](#carbonaiintegrationslistdatasourceitems)
   * [`carbonai.integrations.listFolders`](#carbonaiintegrationslistfolders)
   * [`carbonai.integrations.listGitbookSpaces`](#carbonaiintegrationslistgitbookspaces)
@@ -64,6 +65,7 @@ Connect external data to LLMs, no matter the source.
   * [`carbonai.integrations.syncRepos`](#carbonaiintegrationssyncrepos)
   * [`carbonai.integrations.syncRssFeed`](#carbonaiintegrationssyncrssfeed)
   * [`carbonai.integrations.syncS3Files`](#carbonaiintegrationssyncs3files)
+  * [`carbonai.integrations.syncSlack`](#carbonaiintegrationssyncslack)
   * [`carbonai.organizations.callGet`](#carbonaiorganizationscallget)
   * [`carbonai.organizations.update`](#carbonaiorganizationsupdate)
   * [`carbonai.organizations.updateStats`](#carbonaiorganizationsupdatestats)
@@ -104,7 +106,7 @@ github "Carbon-for-Developers/carbon-swift-sdk"
 ### CocoaPods<a id="cocoapods"></a>
 
 1. Add `source 'https://github.com/CocoaPods/Specs.git'` to your `Podfile`
-2. Add `pod 'CarbonAI', '~> 0.3.6'` to your `Podfile`
+2. Add `pod 'CarbonAI', '~> 0.3.7'` to your `Podfile`
 
 Your `Podfile` should look like:
 ```ruby
@@ -112,7 +114,7 @@ Your `Podfile` should look like:
 source 'https://github.com/CocoaPods/Specs.git'
 
 target 'Example' do
-  pod 'CarbonAI', '~> 0.3.6'
+  pod 'CarbonAI', '~> 0.3.7'
 end
 ```
 3. Run `pod install`
@@ -121,7 +123,7 @@ end
 ❯ pod install
 Analyzing dependencies
 Downloading dependencies
-Installing CarbonAI 0.3.6
+Installing CarbonAI 0.3.7
 Generating Pods project
 Integrating client project
 Pod installation complete! There is 1 dependency from the Podfile and 2 total pods installed.
@@ -2128,7 +2130,7 @@ Enable OCR for files that support it. Supported formats: pdf
 
 ##### enable_file_picker: `Bool`<a id="enable_file_picker-bool"></a>
 
-Enable integration's file picker for sources that support it. Supported sources: SHAREPOINT, ONEDRIVE, GOOGLE_DRIVE, DROPBOX, BOX
+Enable integration's file picker for sources that support it. Supported sources: DROPBOX, ONEDRIVE, SHAREPOINT, GOOGLE_DRIVE, BOX
 
 
 ##### sync_source_items: `Bool`<a id="sync_source_items-bool"></a>
@@ -2193,6 +2195,54 @@ let listConfluencePagesResponse = try await carbonai.integrations.listConfluence
 #### 🌐 Endpoint<a id="🌐-endpoint"></a>
 
 `/integrations/confluence/list` `POST`
+
+[🔙 **Back to Table of Contents**](#table-of-contents)
+
+---
+
+
+### `carbonai.integrations.listConversations`<a id="carbonaiintegrationslistconversations"></a>
+
+List all of your public and private channels, DMs, and Group DMs. The ID from response 
+can be used as a filter to sync messages to Carbon   
+types: Comma separated list of types. Available types are im (DMs), mpim (group DMs), public_channel, and private_channel.
+Defaults to public_channel.    
+cursor: Used for pagination. If next_cursor is returned in response, you need to pass it as the cursor in the next request    
+data_source_id: Data source needs to be specified if you have linked multiple slack accounts  
+exclude_archived: Should archived conversations be excluded, defaults to true
+
+#### 🛠️ Usage<a id="🛠️-usage"></a>
+
+```swift
+let types = "types_example"
+let cursor = "cursor_example"
+let dataSourceId = 987
+let excludeArchived = true
+let listConversationsResponse = try await carbonai.integrations.listConversations(
+    types: types,
+    cursor: cursor,
+    dataSourceId: dataSourceId,
+    excludeArchived: excludeArchived
+)
+```
+
+#### ⚙️ Parameters<a id="⚙️-parameters"></a>
+
+##### types: `String`<a id="types-string"></a>
+
+
+##### cursor: `String`<a id="cursor-string"></a>
+
+
+##### dataSourceId: `Int`<a id="datasourceid-int"></a>
+
+
+##### excludeArchived: `Bool`<a id="excludearchived-bool"></a>
+
+
+#### 🌐 Endpoint<a id="🌐-endpoint"></a>
+
+`/integrations/slack/conversations` `GET`
 
 [🔙 **Back to Table of Contents**](#table-of-contents)
 
@@ -3356,6 +3406,84 @@ Number of objects per chunk. For csv, tsv, xlsx, and json files only.
 #### 🌐 Endpoint<a id="🌐-endpoint"></a>
 
 `/integrations/s3/files` `POST`
+
+[🔙 **Back to Table of Contents**](#table-of-contents)
+
+---
+
+
+### `carbonai.integrations.syncSlack`<a id="carbonaiintegrationssyncslack"></a>
+
+You can list all conversations using the endpoint /integrations/slack/conversations. The ID of 
+conversation will be used as an input for this endpoint with timestamps as optional filters.
+
+#### 🛠️ Usage<a id="🛠️-usage"></a>
+
+```swift
+let filters = SlackFilters(
+    conversationId: "conversationId_example",
+    after: "after_example"
+)
+let tags = "TODO"
+let chunkSize = 987
+let chunkOverlap = 987
+let skipEmbeddingGeneration = true
+let embeddingModel = EmbeddingGenerators(
+    
+)
+let generateSparseVectors = true
+let prependFilenameToChunks = true
+let dataSourceId = 987
+let requestId = "requestId_example"
+let syncSlackResponse = try await carbonai.integrations.syncSlack(
+    filters: filters,
+    tags: tags,
+    chunkSize: chunkSize,
+    chunkOverlap: chunkOverlap,
+    skipEmbeddingGeneration: skipEmbeddingGeneration,
+    embeddingModel: embeddingModel,
+    generateSparseVectors: generateSparseVectors,
+    prependFilenameToChunks: prependFilenameToChunks,
+    dataSourceId: dataSourceId,
+    requestId: requestId
+)
+```
+
+#### ⚙️ Parameters<a id="⚙️-parameters"></a>
+
+##### filters: [`SlackFilters`](./CarbonAI/Models/SlackFilters.swift)<a id="filters-slackfilterscarbonaimodelsslackfiltersswift"></a>
+
+
+##### tags: `AnyCodable`<a id="tags-anycodable"></a>
+
+
+##### chunk_size: `Int`<a id="chunk_size-int"></a>
+
+
+##### chunk_overlap: `Int`<a id="chunk_overlap-int"></a>
+
+
+##### skip_embedding_generation: `Bool`<a id="skip_embedding_generation-bool"></a>
+
+
+##### embedding_model: `EmbeddingGenerators`<a id="embedding_model-embeddinggenerators"></a>
+
+
+##### generate_sparse_vectors: `Bool`<a id="generate_sparse_vectors-bool"></a>
+
+
+##### prepend_filename_to_chunks: `Bool`<a id="prepend_filename_to_chunks-bool"></a>
+
+
+##### data_source_id: `Int`<a id="data_source_id-int"></a>
+
+
+##### request_id: `String`<a id="request_id-string"></a>
+
+
+#### 🌐 Endpoint<a id="🌐-endpoint"></a>
+
+`/integrations/slack/sync` `POST`
 
 [🔙 **Back to Table of Contents**](#table-of-contents)
 
