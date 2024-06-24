@@ -6,7 +6,7 @@
 
 Connect external data to LLMs, no matter the source.
 
-[![CocoaPods](https://img.shields.io/badge/pod-v0.3.7-blue)](https://cocoapods.org/pods/CarbonAI)
+[![CocoaPods](https://img.shields.io/badge/pod-v0.3.8-blue)](https://cocoapods.org/pods/CarbonAI)
 
 </div>
 
@@ -40,7 +40,6 @@ Connect external data to LLMs, no matter the source.
   * [`carbonai.files.upload`](#carbonaifilesupload)
   * [`carbonai.files.uploadFromUrl`](#carbonaifilesuploadfromurl)
   * [`carbonai.files.uploadText`](#carbonaifilesuploadtext)
-  * [`carbonai.health.check`](#carbonaihealthcheck)
   * [`carbonai.integrations.cancel`](#carbonaiintegrationscancel)
   * [`carbonai.integrations.connectDataSource`](#carbonaiintegrationsconnectdatasource)
   * [`carbonai.integrations.connectFreshdesk`](#carbonaiintegrationsconnectfreshdesk)
@@ -74,11 +73,13 @@ Connect external data to LLMs, no matter the source.
   * [`carbonai.users.toggleUserFeatures`](#carbonaiuserstoggleuserfeatures)
   * [`carbonai.users.updateUsers`](#carbonaiusersupdateusers)
   * [`carbonai.utilities.fetchUrls`](#carbonaiutilitiesfetchurls)
+  * [`carbonai.utilities.fetchWebpage`](#carbonaiutilitiesfetchwebpage)
   * [`carbonai.utilities.fetchYoutubeTranscripts`](#carbonaiutilitiesfetchyoutubetranscripts)
   * [`carbonai.utilities.processSitemap`](#carbonaiutilitiesprocesssitemap)
   * [`carbonai.utilities.scrapeSitemap`](#carbonaiutilitiesscrapesitemap)
   * [`carbonai.utilities.scrapeWeb`](#carbonaiutilitiesscrapeweb)
   * [`carbonai.utilities.searchUrls`](#carbonaiutilitiessearchurls)
+  * [`carbonai.utilities.userWebpages`](#carbonaiutilitiesuserwebpages)
   * [`carbonai.webhooks.addUrl`](#carbonaiwebhooksaddurl)
   * [`carbonai.webhooks.deleteUrl`](#carbonaiwebhooksdeleteurl)
   * [`carbonai.webhooks.urls`](#carbonaiwebhooksurls)
@@ -106,7 +107,7 @@ github "Carbon-for-Developers/carbon-swift-sdk"
 ### CocoaPods<a id="cocoapods"></a>
 
 1. Add `source 'https://github.com/CocoaPods/Specs.git'` to your `Podfile`
-2. Add `pod 'CarbonAI', '~> 0.3.7'` to your `Podfile`
+2. Add `pod 'CarbonAI', '~> 0.3.8'` to your `Podfile`
 
 Your `Podfile` should look like:
 ```ruby
@@ -114,7 +115,7 @@ Your `Podfile` should look like:
 source 'https://github.com/CocoaPods/Specs.git'
 
 target 'Example' do
-  pod 'CarbonAI', '~> 0.3.7'
+  pod 'CarbonAI', '~> 0.3.8'
 end
 ```
 3. Run `pod install`
@@ -123,7 +124,7 @@ end
 ❯ pod install
 Analyzing dependencies
 Downloading dependencies
-Installing CarbonAI 0.3.7
+Installing CarbonAI 0.3.8
 Generating Pods project
 Integrating client project
 Pod installation complete! There is 1 dependency from the Podfile and 2 total pods installed.
@@ -1598,25 +1599,6 @@ let uploadTextResponse = try await carbonai.files.uploadText(
 ---
 
 
-### `carbonai.health.check`<a id="carbonaihealthcheck"></a>
-
-Health
-
-#### 🛠️ Usage<a id="🛠️-usage"></a>
-
-```swift
-let checkResponse = try await carbonai.health.check()
-```
-
-#### 🌐 Endpoint<a id="🌐-endpoint"></a>
-
-`/health` `GET`
-
-[🔙 **Back to Table of Contents**](#table-of-contents)
-
----
-
-
 ### `carbonai.integrations.cancel`<a id="carbonaiintegrationscancel"></a>
 
 Cancel Data Source Items Sync
@@ -2130,7 +2112,7 @@ Enable OCR for files that support it. Supported formats: pdf
 
 ##### enable_file_picker: `Bool`<a id="enable_file_picker-bool"></a>
 
-Enable integration's file picker for sources that support it. Supported sources: DROPBOX, ONEDRIVE, SHAREPOINT, GOOGLE_DRIVE, BOX
+Enable integration's file picker for sources that support it. Supported sources: SHAREPOINT, GOOGLE_DRIVE, ONEDRIVE, BOX, DROPBOX
 
 
 ##### sync_source_items: `Bool`<a id="sync_source_items-bool"></a>
@@ -3734,6 +3716,7 @@ Custom file upload limit for the user across a single upload.         If set, th
 
 
 ### `carbonai.utilities.fetchUrls`<a id="carbonaiutilitiesfetchurls"></a>
+![Deprecated](https://img.shields.io/badge/deprecated-yellow)
 
 Extracts all URLs from a webpage. 
 
@@ -3764,6 +3747,33 @@ let fetchUrlsResponse = try await carbonai.utilities.fetchUrls(
 #### 🌐 Endpoint<a id="🌐-endpoint"></a>
 
 `/fetch_urls` `GET`
+
+[🔙 **Back to Table of Contents**](#table-of-contents)
+
+---
+
+
+### `carbonai.utilities.fetchWebpage`<a id="carbonaiutilitiesfetchwebpage"></a>
+
+Fetch Urls V2
+
+#### 🛠️ Usage<a id="🛠️-usage"></a>
+
+```swift
+let url = "url_example"
+let fetchWebpageResponse = try await carbonai.utilities.fetchWebpage(
+    url: url
+)
+```
+
+#### ⚙️ Parameters<a id="⚙️-parameters"></a>
+
+##### url: `String`<a id="url-string"></a>
+
+
+#### 🌐 Endpoint<a id="🌐-endpoint"></a>
+
+`/fetch_webpage` `POST`
 
 [🔙 **Back to Table of Contents**](#table-of-contents)
 
@@ -4040,6 +4050,59 @@ let searchUrlsResponse = try await carbonai.utilities.searchUrls(
 #### 🌐 Endpoint<a id="🌐-endpoint"></a>
 
 `/search_urls` `GET`
+
+[🔙 **Back to Table of Contents**](#table-of-contents)
+
+---
+
+
+### `carbonai.utilities.userWebpages`<a id="carbonaiutilitiesuserwebpages"></a>
+
+User Web Pages
+
+#### 🛠️ Usage<a id="🛠️-usage"></a>
+
+```swift
+let filters = UserWebPagesFilters(
+    ids: [
+    123
+    ]
+)
+let pagination = Pagination(
+    limit: 123,
+    offset: 123
+)
+let orderBy = UserWebPageOrderByTypes(
+    
+)
+let orderDir = OrderDirV2(
+    
+)
+let userWebpagesResponse = try await carbonai.utilities.userWebpages(
+    filters: filters,
+    pagination: pagination,
+    orderBy: orderBy,
+    orderDir: orderDir
+)
+```
+
+#### ⚙️ Parameters<a id="⚙️-parameters"></a>
+
+##### filters: [`UserWebPagesFilters`](./CarbonAI/Models/UserWebPagesFilters.swift)<a id="filters-userwebpagesfilterscarbonaimodelsuserwebpagesfiltersswift"></a>
+
+
+##### pagination: [`Pagination`](./CarbonAI/Models/Pagination.swift)<a id="pagination-paginationcarbonaimodelspaginationswift"></a>
+
+
+##### order_by: `UserWebPageOrderByTypes`<a id="order_by-userwebpageorderbytypes"></a>
+
+
+##### order_dir: `OrderDirV2`<a id="order_dir-orderdirv2"></a>
+
+
+#### 🌐 Endpoint<a id="🌐-endpoint"></a>
+
+`/user_webpages` `POST`
 
 [🔙 **Back to Table of Contents**](#table-of-contents)
 

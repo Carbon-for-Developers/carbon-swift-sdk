@@ -25,6 +25,7 @@ open class UtilitiesAPI {
      - parameter apiResponseQueue: The queue on which api response is dispatched.
      - parameter completion: completion handler to receive the data and the error objects
      */
+    @available(*, deprecated, message: "This operation is deprecated.")
     @discardableResult
     open class func fetchUrlsSync(url: String, apiResponseQueue: DispatchQueue = CarbonAIAPI.apiResponseQueue, completion: @escaping ((_ data: FetchURLsResponse?, _ error: Error?) -> Void)) -> RequestTask {
         return fetchUrlsWithRequestBuilder(url: url).execute(apiResponseQueue) { result in
@@ -44,6 +45,7 @@ open class UtilitiesAPI {
      - parameter apiResponseQueue: The queue on which api response is dispatched.
      - parameter completion: completion handler to receive the data and the error objects
      */
+    @available(*, deprecated, message: "This operation is deprecated.")
     @available(iOS 13.0, macOS 10.15, tvOS 13.0, watchOS 6.0, *)
     private class func fetchUrlsAsyncMappedParams(url: String) async throws -> FetchURLsResponse {
         return try await withCheckedThrowingContinuation { continuation in
@@ -65,6 +67,7 @@ open class UtilitiesAPI {
      - parameter apiResponseQueue: The queue on which api response is dispatched.
      - parameter completion: completion handler to receive the data and the error objects
      */
+    @available(*, deprecated, message: "This operation is deprecated.")
     @available(iOS 13.0, macOS 10.15, tvOS 13.0, watchOS 6.0, *)
     open class func fetchUrls(
         url: String
@@ -89,6 +92,7 @@ open class UtilitiesAPI {
      - parameter apiResponseQueue: The queue on which api response is dispatched.
      - parameter completion: completion handler to receive the data and the error objects
      */
+    @available(*, deprecated, message: "This operation is deprecated.")
     @available(iOS 13.0, macOS 10.15, tvOS 13.0, watchOS 6.0, *)
     open func fetchUrls(
         url: String
@@ -123,6 +127,7 @@ open class UtilitiesAPI {
      - parameter url: (query)  
      - returns: RequestBuilder<FetchURLsResponse> 
      */
+    @available(*, deprecated, message: "This operation is deprecated.")
     open class func fetchUrlsWithRequestBuilder(
             url: String
     ) -> RequestBuilder<FetchURLsResponse> {
@@ -170,6 +175,7 @@ open class UtilitiesAPI {
      - parameter url: (query)  
      - returns: RequestBuilder<FetchURLsResponse> 
      */
+    @available(*, deprecated, message: "This operation is deprecated.")
     open func fetchUrlsWithRequestBuilder(
             url: String
     ) -> RequestBuilder<FetchURLsResponse> {
@@ -199,6 +205,190 @@ open class UtilitiesAPI {
             print("Error: \(error)")
         }
         fatalError("Error: Unable to send request to GET /fetch_urls")
+    }
+
+
+    /**
+     Fetch Urls V2
+     
+     - parameter fetchURLsRequest: (body)  
+     - parameter apiResponseQueue: The queue on which api response is dispatched.
+     - parameter completion: completion handler to receive the data and the error objects
+     */
+    @discardableResult
+    open class func fetchWebpageSync(fetchURLsRequest: FetchURLsRequest, apiResponseQueue: DispatchQueue = CarbonAIAPI.apiResponseQueue, completion: @escaping ((_ data: AnyCodable?, _ error: Error?) -> Void)) -> RequestTask {
+        return fetchWebpageWithRequestBuilder(fetchURLsRequest: fetchURLsRequest).execute(apiResponseQueue) { result in
+            switch result {
+            case let .success(response):
+                completion(response.body, nil)
+            case let .failure(error):
+                completion(nil, error)
+            }
+        }
+    }
+
+    /**
+     Fetch Urls V2
+     
+     - parameter fetchURLsRequest: (body)  
+     - parameter apiResponseQueue: The queue on which api response is dispatched.
+     - parameter completion: completion handler to receive the data and the error objects
+     */
+    @available(iOS 13.0, macOS 10.15, tvOS 13.0, watchOS 6.0, *)
+    private class func fetchWebpageAsyncMappedParams(fetchURLsRequest: FetchURLsRequest) async throws -> AnyCodable {
+        return try await withCheckedThrowingContinuation { continuation in
+            fetchWebpageWithRequestBuilder(fetchURLsRequest: fetchURLsRequest).execute { result in
+                switch result {
+                case let .success(response):
+                    continuation.resume(returning: response.body)
+                case let .failure(error):
+                    continuation.resume(throwing: error)
+                }
+            }
+        }
+    }
+
+    /**
+     Fetch Urls V2
+     
+     - parameter fetchURLsRequest: (body)  
+     - parameter apiResponseQueue: The queue on which api response is dispatched.
+     - parameter completion: completion handler to receive the data and the error objects
+     */
+    @available(iOS 13.0, macOS 10.15, tvOS 13.0, watchOS 6.0, *)
+    open class func fetchWebpage(
+        url: String
+    ) async throws -> AnyCodable {
+        let fetchURLsRequest = FetchURLsRequest(
+            url: url
+        )
+        return try await withCheckedThrowingContinuation { continuation in
+            fetchWebpageWithRequestBuilder(fetchURLsRequest: fetchURLsRequest).execute { result in
+                switch result {
+                case let .success(response):
+                    continuation.resume(returning: response.body)
+                case let .failure(error):
+                    continuation.resume(throwing: error)
+                }
+            }
+        }
+    }
+
+
+    /**
+     Fetch Urls V2
+     
+     - parameter fetchURLsRequest: (body)  
+     - parameter apiResponseQueue: The queue on which api response is dispatched.
+     - parameter completion: completion handler to receive the data and the error objects
+     */
+    @available(iOS 13.0, macOS 10.15, tvOS 13.0, watchOS 6.0, *)
+    open func fetchWebpage(
+        url: String
+    ) async throws -> AnyCodable {
+        let fetchURLsRequest = FetchURLsRequest(
+            url: url
+        )
+        return try await withCheckedThrowingContinuation { continuation in
+            fetchWebpageWithRequestBuilder(fetchURLsRequest: fetchURLsRequest).execute { result in
+                switch result {
+                case let .success(response):
+                    continuation.resume(returning: response.body)
+                case let .failure(error):
+                    continuation.resume(throwing: error)
+                }
+            }
+        }
+    }
+
+
+
+    /**
+     Fetch Urls V2
+     - POST /fetch_webpage
+     - API Key:
+       - type: apiKey authorization 
+       - name: accessToken
+     - API Key:
+       - type: apiKey authorization 
+       - name: apiKey
+     - API Key:
+       - type: apiKey customer-id 
+       - name: customerId
+     - parameter fetchURLsRequest: (body)  
+     - returns: RequestBuilder<AnyCodable> 
+     */
+    open class func fetchWebpageWithRequestBuilder(
+            fetchURLsRequest: FetchURLsRequest
+    ) -> RequestBuilder<AnyCodable> {
+        let basePath = CarbonAIAPI.basePath;
+        let localVariablePath = "/fetch_webpage"
+        let localVariableURLString = basePath + localVariablePath
+        let localVariableParameters = JSONEncodingHelper.encodingParameters(forEncodableObject: fetchURLsRequest)
+
+        var localVariableUrlComponents = URLComponents(string: localVariableURLString)
+
+        let localVariableNillableHeaders: [String: Any?] = [
+            :
+        ]
+
+        var localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
+
+        do {
+            try Authentication.setAuthenticationParameters(headers: &localVariableHeaderParameters, url: &localVariableUrlComponents, in: "header", name: "authorization", value: CarbonAIAPI.accessToken, prefix: "Token ")
+            try Authentication.setAuthenticationParameters(headers: &localVariableHeaderParameters, url: &localVariableUrlComponents, in: "header", name: "authorization", value: CarbonAIAPI.apiKey, prefix: "Bearer ")
+            try Authentication.setAuthenticationParameters(headers: &localVariableHeaderParameters, url: &localVariableUrlComponents, in: "header", name: "customer-id", value: CarbonAIAPI.customerId, prefix: nil)
+            let localVariableRequestBuilder: RequestBuilder<AnyCodable>.Type = CarbonAIAPI.requestBuilderFactory.getBuilder()
+            let URLString = localVariableUrlComponents?.string ?? localVariableURLString
+            return localVariableRequestBuilder.init(method: "POST", URLString: URLString, parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        } catch {
+            print("Error: \(error)")
+        }
+        fatalError("Error: Unable to send request to POST /fetch_webpage")
+    }
+
+    /**
+     Fetch Urls V2
+     - POST /fetch_webpage
+     - API Key:
+       - type: apiKey authorization 
+       - name: accessToken
+     - API Key:
+       - type: apiKey authorization 
+       - name: apiKey
+     - API Key:
+       - type: apiKey customer-id 
+       - name: customerId
+     - parameter fetchURLsRequest: (body)  
+     - returns: RequestBuilder<AnyCodable> 
+     */
+    open func fetchWebpageWithRequestBuilder(
+            fetchURLsRequest: FetchURLsRequest
+    ) -> RequestBuilder<AnyCodable> {
+        let basePath = self.client!.basePath;
+        let localVariablePath = "/fetch_webpage"
+        let localVariableURLString = basePath + localVariablePath
+        let localVariableParameters = JSONEncodingHelper.encodingParameters(forEncodableObject: fetchURLsRequest)
+
+        var localVariableUrlComponents = URLComponents(string: localVariableURLString)
+
+        let localVariableNillableHeaders: [String: Any?] = [
+            :
+        ]
+
+        var localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
+
+        do {
+            try Authentication.setAuthenticationParameters(headers: &localVariableHeaderParameters, url: &localVariableUrlComponents, in: "header", name: "authorization", value: self.client!.accessToken, prefix: "Token ")
+            try Authentication.setAuthenticationParameters(headers: &localVariableHeaderParameters, url: &localVariableUrlComponents, in: "header", name: "authorization", value: self.client!.apiKey, prefix: "Bearer ")
+            try Authentication.setAuthenticationParameters(headers: &localVariableHeaderParameters, url: &localVariableUrlComponents, in: "header", name: "customer-id", value: self.client!.customerId, prefix: nil)
+            let localVariableRequestBuilder: RequestBuilder<AnyCodable>.Type = CarbonAIAPI.requestBuilderFactory.getBuilder()
+            let URLString = localVariableUrlComponents?.string ?? localVariableURLString
+            return localVariableRequestBuilder.init(method: "POST", URLString: URLString, parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        } catch {
+            print("Error: \(error)")
+        }
+        fatalError("Error: Unable to send request to POST /fetch_webpage")
     }
 
 
@@ -1187,6 +1377,202 @@ open class UtilitiesAPI {
             print("Error: \(error)")
         }
         fatalError("Error: Unable to send request to GET /search_urls")
+    }
+
+
+    /**
+     User Web Pages
+     
+     - parameter userWebPagesRequest: (body)  
+     - parameter apiResponseQueue: The queue on which api response is dispatched.
+     - parameter completion: completion handler to receive the data and the error objects
+     */
+    @discardableResult
+    open class func userWebpagesSync(userWebPagesRequest: UserWebPagesRequest, apiResponseQueue: DispatchQueue = CarbonAIAPI.apiResponseQueue, completion: @escaping ((_ data: AnyCodable?, _ error: Error?) -> Void)) -> RequestTask {
+        return userWebpagesWithRequestBuilder(userWebPagesRequest: userWebPagesRequest).execute(apiResponseQueue) { result in
+            switch result {
+            case let .success(response):
+                completion(response.body, nil)
+            case let .failure(error):
+                completion(nil, error)
+            }
+        }
+    }
+
+    /**
+     User Web Pages
+     
+     - parameter userWebPagesRequest: (body)  
+     - parameter apiResponseQueue: The queue on which api response is dispatched.
+     - parameter completion: completion handler to receive the data and the error objects
+     */
+    @available(iOS 13.0, macOS 10.15, tvOS 13.0, watchOS 6.0, *)
+    private class func userWebpagesAsyncMappedParams(userWebPagesRequest: UserWebPagesRequest) async throws -> AnyCodable {
+        return try await withCheckedThrowingContinuation { continuation in
+            userWebpagesWithRequestBuilder(userWebPagesRequest: userWebPagesRequest).execute { result in
+                switch result {
+                case let .success(response):
+                    continuation.resume(returning: response.body)
+                case let .failure(error):
+                    continuation.resume(throwing: error)
+                }
+            }
+        }
+    }
+
+    /**
+     User Web Pages
+     
+     - parameter userWebPagesRequest: (body)  
+     - parameter apiResponseQueue: The queue on which api response is dispatched.
+     - parameter completion: completion handler to receive the data and the error objects
+     */
+    @available(iOS 13.0, macOS 10.15, tvOS 13.0, watchOS 6.0, *)
+    open class func userWebpages(
+        filters: UserWebPagesFilters? = nil, 
+        pagination: Pagination? = nil, 
+        orderBy: UserWebPageOrderByTypes? = nil, 
+        orderDir: OrderDirV2? = nil
+    ) async throws -> AnyCodable {
+        let userWebPagesRequest = UserWebPagesRequest(
+            filters: filters,
+            pagination: pagination,
+            orderBy: orderBy,
+            orderDir: orderDir
+        )
+        return try await withCheckedThrowingContinuation { continuation in
+            userWebpagesWithRequestBuilder(userWebPagesRequest: userWebPagesRequest).execute { result in
+                switch result {
+                case let .success(response):
+                    continuation.resume(returning: response.body)
+                case let .failure(error):
+                    continuation.resume(throwing: error)
+                }
+            }
+        }
+    }
+
+
+    /**
+     User Web Pages
+     
+     - parameter userWebPagesRequest: (body)  
+     - parameter apiResponseQueue: The queue on which api response is dispatched.
+     - parameter completion: completion handler to receive the data and the error objects
+     */
+    @available(iOS 13.0, macOS 10.15, tvOS 13.0, watchOS 6.0, *)
+    open func userWebpages(
+        filters: UserWebPagesFilters? = nil, 
+        pagination: Pagination? = nil, 
+        orderBy: UserWebPageOrderByTypes? = nil, 
+        orderDir: OrderDirV2? = nil
+    ) async throws -> AnyCodable {
+        let userWebPagesRequest = UserWebPagesRequest(
+            filters: filters,
+            pagination: pagination,
+            orderBy: orderBy,
+            orderDir: orderDir
+        )
+        return try await withCheckedThrowingContinuation { continuation in
+            userWebpagesWithRequestBuilder(userWebPagesRequest: userWebPagesRequest).execute { result in
+                switch result {
+                case let .success(response):
+                    continuation.resume(returning: response.body)
+                case let .failure(error):
+                    continuation.resume(throwing: error)
+                }
+            }
+        }
+    }
+
+
+
+    /**
+     User Web Pages
+     - POST /user_webpages
+     - API Key:
+       - type: apiKey authorization 
+       - name: accessToken
+     - API Key:
+       - type: apiKey authorization 
+       - name: apiKey
+     - API Key:
+       - type: apiKey customer-id 
+       - name: customerId
+     - parameter userWebPagesRequest: (body)  
+     - returns: RequestBuilder<AnyCodable> 
+     */
+    open class func userWebpagesWithRequestBuilder(
+            userWebPagesRequest: UserWebPagesRequest
+    ) -> RequestBuilder<AnyCodable> {
+        let basePath = CarbonAIAPI.basePath;
+        let localVariablePath = "/user_webpages"
+        let localVariableURLString = basePath + localVariablePath
+        let localVariableParameters = JSONEncodingHelper.encodingParameters(forEncodableObject: userWebPagesRequest)
+
+        var localVariableUrlComponents = URLComponents(string: localVariableURLString)
+
+        let localVariableNillableHeaders: [String: Any?] = [
+            :
+        ]
+
+        var localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
+
+        do {
+            try Authentication.setAuthenticationParameters(headers: &localVariableHeaderParameters, url: &localVariableUrlComponents, in: "header", name: "authorization", value: CarbonAIAPI.accessToken, prefix: "Token ")
+            try Authentication.setAuthenticationParameters(headers: &localVariableHeaderParameters, url: &localVariableUrlComponents, in: "header", name: "authorization", value: CarbonAIAPI.apiKey, prefix: "Bearer ")
+            try Authentication.setAuthenticationParameters(headers: &localVariableHeaderParameters, url: &localVariableUrlComponents, in: "header", name: "customer-id", value: CarbonAIAPI.customerId, prefix: nil)
+            let localVariableRequestBuilder: RequestBuilder<AnyCodable>.Type = CarbonAIAPI.requestBuilderFactory.getBuilder()
+            let URLString = localVariableUrlComponents?.string ?? localVariableURLString
+            return localVariableRequestBuilder.init(method: "POST", URLString: URLString, parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        } catch {
+            print("Error: \(error)")
+        }
+        fatalError("Error: Unable to send request to POST /user_webpages")
+    }
+
+    /**
+     User Web Pages
+     - POST /user_webpages
+     - API Key:
+       - type: apiKey authorization 
+       - name: accessToken
+     - API Key:
+       - type: apiKey authorization 
+       - name: apiKey
+     - API Key:
+       - type: apiKey customer-id 
+       - name: customerId
+     - parameter userWebPagesRequest: (body)  
+     - returns: RequestBuilder<AnyCodable> 
+     */
+    open func userWebpagesWithRequestBuilder(
+            userWebPagesRequest: UserWebPagesRequest
+    ) -> RequestBuilder<AnyCodable> {
+        let basePath = self.client!.basePath;
+        let localVariablePath = "/user_webpages"
+        let localVariableURLString = basePath + localVariablePath
+        let localVariableParameters = JSONEncodingHelper.encodingParameters(forEncodableObject: userWebPagesRequest)
+
+        var localVariableUrlComponents = URLComponents(string: localVariableURLString)
+
+        let localVariableNillableHeaders: [String: Any?] = [
+            :
+        ]
+
+        var localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
+
+        do {
+            try Authentication.setAuthenticationParameters(headers: &localVariableHeaderParameters, url: &localVariableUrlComponents, in: "header", name: "authorization", value: self.client!.accessToken, prefix: "Token ")
+            try Authentication.setAuthenticationParameters(headers: &localVariableHeaderParameters, url: &localVariableUrlComponents, in: "header", name: "authorization", value: self.client!.apiKey, prefix: "Bearer ")
+            try Authentication.setAuthenticationParameters(headers: &localVariableHeaderParameters, url: &localVariableUrlComponents, in: "header", name: "customer-id", value: self.client!.customerId, prefix: nil)
+            let localVariableRequestBuilder: RequestBuilder<AnyCodable>.Type = CarbonAIAPI.requestBuilderFactory.getBuilder()
+            let URLString = localVariableUrlComponents?.string ?? localVariableURLString
+            return localVariableRequestBuilder.init(method: "POST", URLString: URLString, parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        } catch {
+            print("Error: \(error)")
+        }
+        fatalError("Error: Unable to send request to POST /user_webpages")
     }
 
 }
