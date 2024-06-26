@@ -6,7 +6,7 @@
 
 Connect external data to LLMs, no matter the source.
 
-[![CocoaPods](https://img.shields.io/badge/pod-v0.3.8-blue)](https://cocoapods.org/pods/CarbonAI)
+[![CocoaPods](https://img.shields.io/badge/pod-v0.3.9-blue)](https://cocoapods.org/pods/CarbonAI)
 
 </div>
 
@@ -26,6 +26,7 @@ Connect external data to LLMs, no matter the source.
   * [`carbonai.dataSources.revokeAccessToken`](#carbonaidatasourcesrevokeaccesstoken)
   * [`carbonai.embeddings.getDocuments`](#carbonaiembeddingsgetdocuments)
   * [`carbonai.embeddings.getEmbeddingsAndChunks`](#carbonaiembeddingsgetembeddingsandchunks)
+  * [`carbonai.embeddings.list`](#carbonaiembeddingslist)
   * [`carbonai.embeddings.uploadChunksAndEmbeddings`](#carbonaiembeddingsuploadchunksandembeddings)
   * [`carbonai.files.createUserFileTags`](#carbonaifilescreateuserfiletags)
   * [`carbonai.files.delete`](#carbonaifilesdelete)
@@ -107,7 +108,7 @@ github "Carbon-for-Developers/carbon-swift-sdk"
 ### CocoaPods<a id="cocoapods"></a>
 
 1. Add `source 'https://github.com/CocoaPods/Specs.git'` to your `Podfile`
-2. Add `pod 'CarbonAI', '~> 0.3.8'` to your `Podfile`
+2. Add `pod 'CarbonAI', '~> 0.3.9'` to your `Podfile`
 
 Your `Podfile` should look like:
 ```ruby
@@ -115,7 +116,7 @@ Your `Podfile` should look like:
 source 'https://github.com/CocoaPods/Specs.git'
 
 target 'Example' do
-  pod 'CarbonAI', '~> 0.3.8'
+  pod 'CarbonAI', '~> 0.3.9'
 end
 ```
 3. Run `pod install`
@@ -124,7 +125,7 @@ end
 ❯ pod install
 Analyzing dependencies
 Downloading dependencies
-Installing CarbonAI 0.3.8
+Installing CarbonAI 0.3.9
 Generating Pods project
 Integrating client project
 Pod installation complete! There is 1 dependency from the Podfile and 2 total pods installed.
@@ -588,6 +589,97 @@ let getEmbeddingsAndChunksResponse = try await carbonai.embeddings.getEmbeddings
 #### 🌐 Endpoint<a id="🌐-endpoint"></a>
 
 `/text_chunks` `POST`
+
+[🔙 **Back to Table of Contents**](#table-of-contents)
+
+---
+
+
+### `carbonai.embeddings.list`<a id="carbonaiembeddingslist"></a>
+
+Retrieve Embeddings And Content V2
+
+#### 🛠️ Usage<a id="🛠️-usage"></a>
+
+```swift
+let filters = OrganizationUserFilesToSyncFilters(
+    tags: "TODO",
+    source: SourceProperty(
+        
+    ),
+    name: "name_example",
+    tagsV2: "TODO",
+    ids: [
+    123
+    ],
+    externalFileIds: [
+    "externalFileIds_example"
+    ],
+    syncStatuses: [
+    ExternalFileSyncStatuses.delayed
+    ],
+    parentFileIds: [
+    123
+    ],
+    organizationUserDataSourceId: [
+    123
+    ],
+    embeddingGenerators: [
+    EmbeddingGenerators.openai
+    ],
+    rootFilesOnly: false,
+    includeAllChildren: false,
+    nonSyncedOnly: false,
+    requestIds: [
+    "requestIds_example"
+    ],
+    syncErrorMessage: "syncErrorMessage_example",
+    includeContainers: false
+)
+let pagination = Pagination(
+    limit: 123,
+    offset: 123
+)
+let orderBy = OrganizationUserFilesToSyncOrderByTypes(
+    
+)
+let orderDir = OrderDir(
+    
+)
+let includeVectors = true
+let listResponse = try await carbonai.embeddings.list(
+    filters: filters,
+    pagination: pagination,
+    orderBy: orderBy,
+    orderDir: orderDir,
+    includeVectors: includeVectors
+)
+```
+
+#### ⚙️ Parameters<a id="⚙️-parameters"></a>
+
+##### filters: [`OrganizationUserFilesToSyncFilters`](./CarbonAI/Models/OrganizationUserFilesToSyncFilters.swift)<a id="filters-organizationuserfilestosyncfilterscarbonaimodelsorganizationuserfilestosyncfiltersswift"></a>
+
+
+##### pagination: [`Pagination`](./CarbonAI/Models/Pagination.swift)<a id="pagination-paginationcarbonaimodelspaginationswift"></a>
+
+
+##### order_by: `OrganizationUserFilesToSyncOrderByTypes`<a id="order_by-organizationuserfilestosyncorderbytypes"></a>
+
+
+##### order_dir: `OrderDir`<a id="order_dir-orderdir"></a>
+
+
+##### include_vectors: `Bool`<a id="include_vectors-bool"></a>
+
+
+#### 🔄 Return<a id="🔄-return"></a>
+
+[EmbeddingsAndChunksResponse](./CarbonAI/Models/EmbeddingsAndChunksResponse.swift)
+
+#### 🌐 Endpoint<a id="🌐-endpoint"></a>
+
+`/list_chunks_and_embeddings` `POST`
 
 [🔙 **Back to Table of Contents**](#table-of-contents)
 
@@ -2112,7 +2204,7 @@ Enable OCR for files that support it. Supported formats: pdf
 
 ##### enable_file_picker: `Bool`<a id="enable_file_picker-bool"></a>
 
-Enable integration's file picker for sources that support it. Supported sources: SHAREPOINT, GOOGLE_DRIVE, ONEDRIVE, BOX, DROPBOX
+Enable integration's file picker for sources that support it. Supported sources: ONEDRIVE, GOOGLE_DRIVE, DROPBOX, BOX, SHAREPOINT
 
 
 ##### sync_source_items: `Bool`<a id="sync_source_items-bool"></a>
