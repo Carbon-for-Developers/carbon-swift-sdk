@@ -355,6 +355,192 @@ open class UsersAPI {
 
 
     /**
+     List Users Endpoint
+     
+     - parameter listUsersRequest: (body)  
+     - parameter apiResponseQueue: The queue on which api response is dispatched.
+     - parameter completion: completion handler to receive the data and the error objects
+     */
+    @discardableResult
+    open class func listSync(listUsersRequest: ListUsersRequest, apiResponseQueue: DispatchQueue = CarbonAIAPI.apiResponseQueue, completion: @escaping ((_ data: UserListResponse?, _ error: Error?) -> Void)) -> RequestTask {
+        return listWithRequestBuilder(listUsersRequest: listUsersRequest).execute(apiResponseQueue) { result in
+            switch result {
+            case let .success(response):
+                completion(response.body, nil)
+            case let .failure(error):
+                completion(nil, error)
+            }
+        }
+    }
+
+    /**
+     List Users Endpoint
+     
+     - parameter listUsersRequest: (body)  
+     - parameter apiResponseQueue: The queue on which api response is dispatched.
+     - parameter completion: completion handler to receive the data and the error objects
+     */
+    @available(iOS 13.0, macOS 10.15, tvOS 13.0, watchOS 6.0, *)
+    private class func listAsyncMappedParams(listUsersRequest: ListUsersRequest) async throws -> UserListResponse {
+        return try await withCheckedThrowingContinuation { continuation in
+            listWithRequestBuilder(listUsersRequest: listUsersRequest).execute { result in
+                switch result {
+                case let .success(response):
+                    continuation.resume(returning: response.body)
+                case let .failure(error):
+                    continuation.resume(throwing: error)
+                }
+            }
+        }
+    }
+
+    /**
+     List Users Endpoint
+     
+     - parameter listUsersRequest: (body)  
+     - parameter apiResponseQueue: The queue on which api response is dispatched.
+     - parameter completion: completion handler to receive the data and the error objects
+     */
+    @available(iOS 13.0, macOS 10.15, tvOS 13.0, watchOS 6.0, *)
+    open class func list(
+        pagination: Pagination? = nil, 
+        filters: ListUsersFilters? = nil, 
+        orderBy: ListUsersOrderByTypes? = nil, 
+        orderDir: OrderDirV2? = nil, 
+        includeCount: Bool? = nil
+    ) async throws -> UserListResponse {
+        let listUsersRequest = ListUsersRequest(
+            pagination: pagination,
+            filters: filters,
+            orderBy: orderBy,
+            orderDir: orderDir,
+            includeCount: includeCount
+        )
+        return try await withCheckedThrowingContinuation { continuation in
+            listWithRequestBuilder(listUsersRequest: listUsersRequest).execute { result in
+                switch result {
+                case let .success(response):
+                    continuation.resume(returning: response.body)
+                case let .failure(error):
+                    continuation.resume(throwing: error)
+                }
+            }
+        }
+    }
+
+
+    /**
+     List Users Endpoint
+     
+     - parameter listUsersRequest: (body)  
+     - parameter apiResponseQueue: The queue on which api response is dispatched.
+     - parameter completion: completion handler to receive the data and the error objects
+     */
+    @available(iOS 13.0, macOS 10.15, tvOS 13.0, watchOS 6.0, *)
+    open func list(
+        pagination: Pagination? = nil, 
+        filters: ListUsersFilters? = nil, 
+        orderBy: ListUsersOrderByTypes? = nil, 
+        orderDir: OrderDirV2? = nil, 
+        includeCount: Bool? = nil
+    ) async throws -> UserListResponse {
+        let listUsersRequest = ListUsersRequest(
+            pagination: pagination,
+            filters: filters,
+            orderBy: orderBy,
+            orderDir: orderDir,
+            includeCount: includeCount
+        )
+        return try await withCheckedThrowingContinuation { continuation in
+            listWithRequestBuilder(listUsersRequest: listUsersRequest).execute { result in
+                switch result {
+                case let .success(response):
+                    continuation.resume(returning: response.body)
+                case let .failure(error):
+                    continuation.resume(throwing: error)
+                }
+            }
+        }
+    }
+
+
+
+    /**
+     List Users Endpoint
+     - POST /list_users
+     - List users within an organization
+     - API Key:
+       - type: apiKey authorization 
+       - name: apiKey
+     - parameter listUsersRequest: (body)  
+     - returns: RequestBuilder<UserListResponse> 
+     */
+    open class func listWithRequestBuilder(
+            listUsersRequest: ListUsersRequest
+    ) -> RequestBuilder<UserListResponse> {
+        let basePath = CarbonAIAPI.basePath;
+        let localVariablePath = "/list_users"
+        let localVariableURLString = basePath + localVariablePath
+        let localVariableParameters = JSONEncodingHelper.encodingParameters(forEncodableObject: listUsersRequest)
+
+        var localVariableUrlComponents = URLComponents(string: localVariableURLString)
+
+        let localVariableNillableHeaders: [String: Any?] = [
+            :
+        ]
+
+        var localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
+
+        do {
+            try Authentication.setAuthenticationParameters(headers: &localVariableHeaderParameters, url: &localVariableUrlComponents, in: "header", name: "authorization", value: CarbonAIAPI.apiKey, prefix: "Bearer ")
+            let localVariableRequestBuilder: RequestBuilder<UserListResponse>.Type = CarbonAIAPI.requestBuilderFactory.getBuilder()
+            let URLString = localVariableUrlComponents?.string ?? localVariableURLString
+            return localVariableRequestBuilder.init(method: "POST", URLString: URLString, parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        } catch {
+            print("Error: \(error)")
+        }
+        fatalError("Error: Unable to send request to POST /list_users")
+    }
+
+    /**
+     List Users Endpoint
+     - POST /list_users
+     - List users within an organization
+     - API Key:
+       - type: apiKey authorization 
+       - name: apiKey
+     - parameter listUsersRequest: (body)  
+     - returns: RequestBuilder<UserListResponse> 
+     */
+    open func listWithRequestBuilder(
+            listUsersRequest: ListUsersRequest
+    ) -> RequestBuilder<UserListResponse> {
+        let basePath = self.client!.basePath;
+        let localVariablePath = "/list_users"
+        let localVariableURLString = basePath + localVariablePath
+        let localVariableParameters = JSONEncodingHelper.encodingParameters(forEncodableObject: listUsersRequest)
+
+        var localVariableUrlComponents = URLComponents(string: localVariableURLString)
+
+        let localVariableNillableHeaders: [String: Any?] = [
+            :
+        ]
+
+        var localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
+
+        do {
+            try Authentication.setAuthenticationParameters(headers: &localVariableHeaderParameters, url: &localVariableUrlComponents, in: "header", name: "authorization", value: self.client!.apiKey, prefix: "Bearer ")
+            let localVariableRequestBuilder: RequestBuilder<UserListResponse>.Type = CarbonAIAPI.requestBuilderFactory.getBuilder()
+            let URLString = localVariableUrlComponents?.string ?? localVariableURLString
+            return localVariableRequestBuilder.init(method: "POST", URLString: URLString, parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        } catch {
+            print("Error: \(error)")
+        }
+        fatalError("Error: Unable to send request to POST /list_users")
+    }
+
+
+    /**
      Toggle User Features
      
      - parameter modifyUserConfigurationInput: (body)  

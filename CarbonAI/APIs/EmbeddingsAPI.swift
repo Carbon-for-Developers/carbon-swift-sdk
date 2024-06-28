@@ -81,7 +81,8 @@ open class EmbeddingsAPI {
         hybridSearch: Bool? = nil, 
         hybridSearchTuningParameters: HybridSearchTuningParamsNullable? = nil, 
         mediaType: FileContentTypesNullable? = nil, 
-        embeddingModel: EmbeddingGeneratorsNullable? = nil
+        embeddingModel: EmbeddingGeneratorsNullable? = nil, 
+        includeFileLevelMetadata: Bool? = nil
     ) async throws -> DocumentResponseList {
         let getEmbeddingDocumentsBody = GetEmbeddingDocumentsBody(
             tags: tags,
@@ -98,7 +99,8 @@ open class EmbeddingsAPI {
             hybridSearch: hybridSearch,
             hybridSearchTuningParameters: hybridSearchTuningParameters,
             mediaType: mediaType,
-            embeddingModel: embeddingModel
+            embeddingModel: embeddingModel,
+            includeFileLevelMetadata: includeFileLevelMetadata
         )
         return try await withCheckedThrowingContinuation { continuation in
             getDocumentsWithRequestBuilder(getEmbeddingDocumentsBody: getEmbeddingDocumentsBody).execute { result in
@@ -136,7 +138,8 @@ open class EmbeddingsAPI {
         hybridSearch: Bool? = nil, 
         hybridSearchTuningParameters: HybridSearchTuningParamsNullable? = nil, 
         mediaType: FileContentTypesNullable? = nil, 
-        embeddingModel: EmbeddingGeneratorsNullable? = nil
+        embeddingModel: EmbeddingGeneratorsNullable? = nil, 
+        includeFileLevelMetadata: Bool? = nil
     ) async throws -> DocumentResponseList {
         let getEmbeddingDocumentsBody = GetEmbeddingDocumentsBody(
             tags: tags,
@@ -153,7 +156,8 @@ open class EmbeddingsAPI {
             hybridSearch: hybridSearch,
             hybridSearchTuningParameters: hybridSearchTuningParameters,
             mediaType: mediaType,
-            embeddingModel: embeddingModel
+            embeddingModel: embeddingModel,
+            includeFileLevelMetadata: includeFileLevelMetadata
         )
         return try await withCheckedThrowingContinuation { continuation in
             getDocumentsWithRequestBuilder(getEmbeddingDocumentsBody: getEmbeddingDocumentsBody).execute { result in

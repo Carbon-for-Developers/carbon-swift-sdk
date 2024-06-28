@@ -6,7 +6,7 @@
 
 Connect external data to LLMs, no matter the source.
 
-[![CocoaPods](https://img.shields.io/badge/pod-v0.3.9-blue)](https://cocoapods.org/pods/CarbonAI)
+[![CocoaPods](https://img.shields.io/badge/pod-v0.3.10-blue)](https://cocoapods.org/pods/CarbonAI)
 
 </div>
 
@@ -71,6 +71,7 @@ Connect external data to LLMs, no matter the source.
   * [`carbonai.organizations.updateStats`](#carbonaiorganizationsupdatestats)
   * [`carbonai.users.callGet`](#carbonaiuserscallget)
   * [`carbonai.users.delete`](#carbonaiusersdelete)
+  * [`carbonai.users.list`](#carbonaiuserslist)
   * [`carbonai.users.toggleUserFeatures`](#carbonaiuserstoggleuserfeatures)
   * [`carbonai.users.updateUsers`](#carbonaiusersupdateusers)
   * [`carbonai.utilities.fetchUrls`](#carbonaiutilitiesfetchurls)
@@ -108,7 +109,7 @@ github "Carbon-for-Developers/carbon-swift-sdk"
 ### CocoaPods<a id="cocoapods"></a>
 
 1. Add `source 'https://github.com/CocoaPods/Specs.git'` to your `Podfile`
-2. Add `pod 'CarbonAI', '~> 0.3.9'` to your `Podfile`
+2. Add `pod 'CarbonAI', '~> 0.3.10'` to your `Podfile`
 
 Your `Podfile` should look like:
 ```ruby
@@ -116,7 +117,7 @@ Your `Podfile` should look like:
 source 'https://github.com/CocoaPods/Specs.git'
 
 target 'Example' do
-  pod 'CarbonAI', '~> 0.3.9'
+  pod 'CarbonAI', '~> 0.3.10'
 end
 ```
 3. Run `pod install`
@@ -125,7 +126,7 @@ end
 ❯ pod install
 Analyzing dependencies
 Downloading dependencies
-Installing CarbonAI 0.3.9
+Installing CarbonAI 0.3.10
 Generating Pods project
 Integrating client project
 Pod installation complete! There is 1 dependency from the Podfile and 2 total pods installed.
@@ -431,6 +432,7 @@ let mediaType = FileContentTypesNullable(
 let embeddingModel = EmbeddingGeneratorsNullable(
     
 )
+let includeFileLevelMetadata = true
 let getDocumentsResponse = try await carbonai.embeddings.getDocuments(
     query: query,
     k: k,
@@ -446,7 +448,8 @@ let getDocumentsResponse = try await carbonai.embeddings.getDocuments(
     hybridSearch: hybridSearch,
     hybridSearchTuningParameters: hybridSearchTuningParameters,
     mediaType: mediaType,
-    embeddingModel: embeddingModel
+    embeddingModel: embeddingModel,
+    includeFileLevelMetadata: includeFileLevelMetadata
 )
 ```
 
@@ -519,6 +522,11 @@ Flag to control whether or not to perform hybrid search.
 
 
 ##### embedding_model: `EmbeddingGeneratorsNullable`<a id="embedding_model-embeddinggeneratorsnullable"></a>
+
+
+##### include_file_level_metadata: `Bool`<a id="include_file_level_metadata-bool"></a>
+
+Flag to control whether or not to include file-level metadata in the response. This metadata         will be included in the `content_metadata` field of each document along with chunk/embedding level metadata.
 
 
 #### 🔄 Return<a id="🔄-return"></a>
@@ -2204,7 +2212,7 @@ Enable OCR for files that support it. Supported formats: pdf
 
 ##### enable_file_picker: `Bool`<a id="enable_file_picker-bool"></a>
 
-Enable integration's file picker for sources that support it. Supported sources: ONEDRIVE, GOOGLE_DRIVE, DROPBOX, BOX, SHAREPOINT
+Enable integration's file picker for sources that support it. Supported sources: GOOGLE_DRIVE, SHAREPOINT, ONEDRIVE, BOX, DROPBOX
 
 
 ##### sync_source_items: `Bool`<a id="sync_source_items-bool"></a>
@@ -3708,6 +3716,71 @@ let deleteResponse = try await carbonai.users.delete(
 #### 🌐 Endpoint<a id="🌐-endpoint"></a>
 
 `/delete_users` `POST`
+
+[🔙 **Back to Table of Contents**](#table-of-contents)
+
+---
+
+
+### `carbonai.users.list`<a id="carbonaiuserslist"></a>
+
+List users within an organization
+
+#### 🛠️ Usage<a id="🛠️-usage"></a>
+
+```swift
+let pagination = Pagination(
+    limit: 123,
+    offset: 123
+)
+let filters = ListUsersFilters(
+    customerIds: [
+    "customerIds_example"
+    ],
+    carbonUserIds: [
+    123
+    ]
+)
+let orderBy = ListUsersOrderByTypes(
+    
+)
+let orderDir = OrderDirV2(
+    
+)
+let includeCount = true
+let listResponse = try await carbonai.users.list(
+    pagination: pagination,
+    filters: filters,
+    orderBy: orderBy,
+    orderDir: orderDir,
+    includeCount: includeCount
+)
+```
+
+#### ⚙️ Parameters<a id="⚙️-parameters"></a>
+
+##### pagination: [`Pagination`](./CarbonAI/Models/Pagination.swift)<a id="pagination-paginationcarbonaimodelspaginationswift"></a>
+
+
+##### filters: [`ListUsersFilters`](./CarbonAI/Models/ListUsersFilters.swift)<a id="filters-listusersfilterscarbonaimodelslistusersfiltersswift"></a>
+
+
+##### order_by: `ListUsersOrderByTypes`<a id="order_by-listusersorderbytypes"></a>
+
+
+##### order_dir: `OrderDirV2`<a id="order_dir-orderdirv2"></a>
+
+
+##### include_count: `Bool`<a id="include_count-bool"></a>
+
+
+#### 🔄 Return<a id="🔄-return"></a>
+
+[UserListResponse](./CarbonAI/Models/UserListResponse.swift)
+
+#### 🌐 Endpoint<a id="🌐-endpoint"></a>
+
+`/list_users` `POST`
 
 [🔙 **Back to Table of Contents**](#table-of-contents)
 
