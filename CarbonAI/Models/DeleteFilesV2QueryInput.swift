@@ -14,15 +14,19 @@ public struct DeleteFilesV2QueryInput: Codable, JSONEncodable, Hashable {
 
     public var filters: OrganizationUserFilesToSyncFilters?
     public var sendWebhook: Bool? = false
+    /** Whether or not to delete all data related to the file from the database, BUT to preserve the file metadata, allowing for         resyncs. By default `preserve_file_record` is false, which means that all data related to the file *as well as* its metadata will be deleted. Note that         even if `preserve_file_record` is true, raw files uploaded via the `uploadfile` endpoint still cannot be resynced. */
+    public var preserveFileRecord: Bool? = false
 
-    public init(filters: OrganizationUserFilesToSyncFilters? = nil, sendWebhook: Bool? = false) {
+    public init(filters: OrganizationUserFilesToSyncFilters? = nil, sendWebhook: Bool? = false, preserveFileRecord: Bool? = false) {
         self.filters = filters
         self.sendWebhook = sendWebhook
+        self.preserveFileRecord = preserveFileRecord
     }
 
     public enum CodingKeys: String, CodingKey, CaseIterable {
         case filters
         case sendWebhook = "send_webhook"
+        case preserveFileRecord = "preserve_file_record"
     }
 
     // Encodable protocol methods
@@ -31,6 +35,7 @@ public struct DeleteFilesV2QueryInput: Codable, JSONEncodable, Hashable {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encodeIfPresent(filters, forKey: .filters)
         try container.encodeIfPresent(sendWebhook, forKey: .sendWebhook)
+        try container.encodeIfPresent(preserveFileRecord, forKey: .preserveFileRecord)
     }
 }
 

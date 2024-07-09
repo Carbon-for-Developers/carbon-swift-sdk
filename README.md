@@ -6,7 +6,7 @@
 
 Connect external data to LLMs, no matter the source.
 
-[![CocoaPods](https://img.shields.io/badge/pod-v0.3.11-blue)](https://cocoapods.org/pods/CarbonAI)
+[![CocoaPods](https://img.shields.io/badge/pod-v0.3.12-blue)](https://cocoapods.org/pods/CarbonAI)
 
 </div>
 
@@ -109,7 +109,7 @@ github "Carbon-for-Developers/carbon-swift-sdk"
 ### CocoaPods<a id="cocoapods"></a>
 
 1. Add `source 'https://github.com/CocoaPods/Specs.git'` to your `Podfile`
-2. Add `pod 'CarbonAI', '~> 0.3.11'` to your `Podfile`
+2. Add `pod 'CarbonAI', '~> 0.3.12'` to your `Podfile`
 
 Your `Podfile` should look like:
 ```ruby
@@ -117,7 +117,7 @@ Your `Podfile` should look like:
 source 'https://github.com/CocoaPods/Specs.git'
 
 target 'Example' do
-  pod 'CarbonAI', '~> 0.3.11'
+  pod 'CarbonAI', '~> 0.3.12'
 end
 ```
 3. Run `pod install`
@@ -126,7 +126,7 @@ end
 ❯ pod install
 Analyzing dependencies
 Downloading dependencies
-Installing CarbonAI 0.3.11
+Installing CarbonAI 0.3.12
 Generating Pods project
 Integrating client project
 Pod installation complete! There is 1 dependency from the Podfile and 2 total pods installed.
@@ -433,6 +433,7 @@ let embeddingModel = EmbeddingGeneratorsNullable(
     
 )
 let includeFileLevelMetadata = true
+let highAccuracy = true
 let getDocumentsResponse = try await carbonai.embeddings.getDocuments(
     query: query,
     k: k,
@@ -449,7 +450,8 @@ let getDocumentsResponse = try await carbonai.embeddings.getDocuments(
     hybridSearchTuningParameters: hybridSearchTuningParameters,
     mediaType: mediaType,
     embeddingModel: embeddingModel,
-    includeFileLevelMetadata: includeFileLevelMetadata
+    includeFileLevelMetadata: includeFileLevelMetadata,
+    highAccuracy: highAccuracy
 )
 ```
 
@@ -527,6 +529,11 @@ Flag to control whether or not to perform hybrid search.
 ##### include_file_level_metadata: `Bool`<a id="include_file_level_metadata-bool"></a>
 
 Flag to control whether or not to include file-level metadata in the response. This metadata         will be included in the `content_metadata` field of each document along with chunk/embedding level metadata.
+
+
+##### high_accuracy: `Bool`<a id="high_accuracy-bool"></a>
+
+Flag to control whether or not to perform a high accuracy embedding search. By default, this is set to false.         If true, the search may return more accurate results, but may take longer to complete.
 
 
 #### 🔄 Return<a id="🔄-return"></a>
@@ -976,9 +983,11 @@ let filters = OrganizationUserFilesToSyncFilters(
     includeContainers: false
 )
 let sendWebhook = true
+let preserveFileRecord = true
 let deleteV2Response = try await carbonai.files.deleteV2(
     filters: filters,
-    sendWebhook: sendWebhook
+    sendWebhook: sendWebhook,
+    preserveFileRecord: preserveFileRecord
 )
 ```
 
@@ -988,6 +997,11 @@ let deleteV2Response = try await carbonai.files.deleteV2(
 
 
 ##### send_webhook: `Bool`<a id="send_webhook-bool"></a>
+
+
+##### preserve_file_record: `Bool`<a id="preserve_file_record-bool"></a>
+
+Whether or not to delete all data related to the file from the database, BUT to preserve the file metadata, allowing for         resyncs. By default `preserve_file_record` is false, which means that all data related to the file *as well as* its metadata will be deleted. Note that         even if `preserve_file_record` is true, raw files uploaded via the `uploadfile` endpoint still cannot be resynced.
 
 
 #### 🔄 Return<a id="🔄-return"></a>
@@ -2212,7 +2226,7 @@ Enable OCR for files that support it. Supported formats: pdf
 
 ##### enable_file_picker: `Bool`<a id="enable_file_picker-bool"></a>
 
-Enable integration's file picker for sources that support it. Supported sources: BOX, ONEDRIVE, DROPBOX, SHAREPOINT, GOOGLE_DRIVE
+Enable integration's file picker for sources that support it. Supported sources: GOOGLE_DRIVE, DROPBOX, BOX, ONEDRIVE, SHAREPOINT
 
 
 ##### sync_source_items: `Bool`<a id="sync_source_items-bool"></a>

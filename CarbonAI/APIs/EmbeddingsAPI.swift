@@ -82,7 +82,8 @@ open class EmbeddingsAPI {
         hybridSearchTuningParameters: HybridSearchTuningParamsNullable? = nil, 
         mediaType: FileContentTypesNullable? = nil, 
         embeddingModel: EmbeddingGeneratorsNullable? = nil, 
-        includeFileLevelMetadata: Bool? = nil
+        includeFileLevelMetadata: Bool? = nil, 
+        highAccuracy: Bool? = nil
     ) async throws -> DocumentResponseList {
         let getEmbeddingDocumentsBody = GetEmbeddingDocumentsBody(
             tags: tags,
@@ -100,7 +101,8 @@ open class EmbeddingsAPI {
             hybridSearchTuningParameters: hybridSearchTuningParameters,
             mediaType: mediaType,
             embeddingModel: embeddingModel,
-            includeFileLevelMetadata: includeFileLevelMetadata
+            includeFileLevelMetadata: includeFileLevelMetadata,
+            highAccuracy: highAccuracy
         )
         return try await withCheckedThrowingContinuation { continuation in
             getDocumentsWithRequestBuilder(getEmbeddingDocumentsBody: getEmbeddingDocumentsBody).execute { result in
@@ -139,7 +141,8 @@ open class EmbeddingsAPI {
         hybridSearchTuningParameters: HybridSearchTuningParamsNullable? = nil, 
         mediaType: FileContentTypesNullable? = nil, 
         embeddingModel: EmbeddingGeneratorsNullable? = nil, 
-        includeFileLevelMetadata: Bool? = nil
+        includeFileLevelMetadata: Bool? = nil, 
+        highAccuracy: Bool? = nil
     ) async throws -> DocumentResponseList {
         let getEmbeddingDocumentsBody = GetEmbeddingDocumentsBody(
             tags: tags,
@@ -157,7 +160,8 @@ open class EmbeddingsAPI {
             hybridSearchTuningParameters: hybridSearchTuningParameters,
             mediaType: mediaType,
             embeddingModel: embeddingModel,
-            includeFileLevelMetadata: includeFileLevelMetadata
+            includeFileLevelMetadata: includeFileLevelMetadata,
+            highAccuracy: highAccuracy
         )
         return try await withCheckedThrowingContinuation { continuation in
             getDocumentsWithRequestBuilder(getEmbeddingDocumentsBody: getEmbeddingDocumentsBody).execute { result in

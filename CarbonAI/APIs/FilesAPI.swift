@@ -842,11 +842,13 @@ open class FilesAPI {
     @available(iOS 13.0, macOS 10.15, tvOS 13.0, watchOS 6.0, *)
     open class func deleteV2(
         filters: OrganizationUserFilesToSyncFilters? = nil, 
-        sendWebhook: Bool? = nil
+        sendWebhook: Bool? = nil, 
+        preserveFileRecord: Bool? = nil
     ) async throws -> GenericSuccessResponse {
         let deleteFilesV2QueryInput = DeleteFilesV2QueryInput(
             filters: filters,
-            sendWebhook: sendWebhook
+            sendWebhook: sendWebhook,
+            preserveFileRecord: preserveFileRecord
         )
         return try await withCheckedThrowingContinuation { continuation in
             deleteV2WithRequestBuilder(deleteFilesV2QueryInput: deleteFilesV2QueryInput).execute { result in
@@ -871,11 +873,13 @@ open class FilesAPI {
     @available(iOS 13.0, macOS 10.15, tvOS 13.0, watchOS 6.0, *)
     open func deleteV2(
         filters: OrganizationUserFilesToSyncFilters? = nil, 
-        sendWebhook: Bool? = nil
+        sendWebhook: Bool? = nil, 
+        preserveFileRecord: Bool? = nil
     ) async throws -> GenericSuccessResponse {
         let deleteFilesV2QueryInput = DeleteFilesV2QueryInput(
             filters: filters,
-            sendWebhook: sendWebhook
+            sendWebhook: sendWebhook,
+            preserveFileRecord: preserveFileRecord
         )
         return try await withCheckedThrowingContinuation { continuation in
             deleteV2WithRequestBuilder(deleteFilesV2QueryInput: deleteFilesV2QueryInput).execute { result in
