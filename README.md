@@ -6,7 +6,7 @@
 
 Connect external data to LLMs, no matter the source.
 
-[![CocoaPods](https://img.shields.io/badge/pod-v0.3.12-blue)](https://cocoapods.org/pods/CarbonAI)
+[![CocoaPods](https://img.shields.io/badge/pod-v0.3.13-blue)](https://cocoapods.org/pods/CarbonAI)
 
 </div>
 
@@ -109,7 +109,7 @@ github "Carbon-for-Developers/carbon-swift-sdk"
 ### CocoaPods<a id="cocoapods"></a>
 
 1. Add `source 'https://github.com/CocoaPods/Specs.git'` to your `Podfile`
-2. Add `pod 'CarbonAI', '~> 0.3.12'` to your `Podfile`
+2. Add `pod 'CarbonAI', '~> 0.3.13'` to your `Podfile`
 
 Your `Podfile` should look like:
 ```ruby
@@ -117,7 +117,7 @@ Your `Podfile` should look like:
 source 'https://github.com/CocoaPods/Specs.git'
 
 target 'Example' do
-  pod 'CarbonAI', '~> 0.3.12'
+  pod 'CarbonAI', '~> 0.3.13'
 end
 ```
 3. Run `pod install`
@@ -126,7 +126,7 @@ end
 ❯ pod install
 Analyzing dependencies
 Downloading dependencies
-Installing CarbonAI 0.3.12
+Installing CarbonAI 0.3.13
 Generating Pods project
 Integrating client project
 Pod installation complete! There is 1 dependency from the Podfile and 2 total pods installed.
@@ -649,7 +649,10 @@ let filters = OrganizationUserFilesToSyncFilters(
     "requestIds_example"
     ],
     syncErrorMessage: "syncErrorMessage_example",
-    includeContainers: false
+    includeContainers: false,
+    externalUrls: [
+    "externalUrls_example"
+    ]
 )
 let pagination = Pagination(
     limit: 123,
@@ -980,7 +983,10 @@ let filters = OrganizationUserFilesToSyncFilters(
     "requestIds_example"
     ],
     syncErrorMessage: "syncErrorMessage_example",
-    includeContainers: false
+    includeContainers: false,
+    externalUrls: [
+    "externalUrls_example"
+    ]
 )
 let sendWebhook = true
 let preserveFileRecord = true
@@ -1179,7 +1185,10 @@ let filters = OrganizationUserFilesToSyncFilters(
     "requestIds_example"
     ],
     syncErrorMessage: "syncErrorMessage_example",
-    includeContainers: false
+    includeContainers: false,
+    externalUrls: [
+    "externalUrls_example"
+    ]
 )
 let includeRawFile = true
 let includeParsedTextFile = true
@@ -1281,7 +1290,10 @@ let filters = OrganizationUserFilesToSyncFilters(
     "requestIds_example"
     ],
     syncErrorMessage: "syncErrorMessage_example",
-    includeContainers: false
+    includeContainers: false,
+    externalUrls: [
+    "externalUrls_example"
+    ]
 )
 let includeRawFile = true
 let includeParsedTextFile = true
@@ -2226,7 +2238,7 @@ Enable OCR for files that support it. Supported formats: pdf
 
 ##### enable_file_picker: `Bool`<a id="enable_file_picker-bool"></a>
 
-Enable integration's file picker for sources that support it. Supported sources: GOOGLE_DRIVE, DROPBOX, BOX, ONEDRIVE, SHAREPOINT
+Enable integration's file picker for sources that support it. Supported sources: BOX, ONEDRIVE, SHAREPOINT, DROPBOX, GOOGLE_DRIVE
 
 
 ##### sync_source_items: `Bool`<a id="sync_source_items-bool"></a>

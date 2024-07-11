@@ -24,14 +24,14 @@ public struct SyncFilesRequest: Codable, JSONEncodable, Hashable {
     /** Number of objects per chunk. For csv, tsv, xlsx, and json files only. */
     public var maxItemsPerChunk: Int?
     public var setPageAsBoundary: Bool? = false
-    public var requestId: String? = "791318ee-229d-4c64-bb0a-2563b8014484"
+    public var requestId: String? = "3d5122a0-73e5-4674-b4b4-26ff5ad078fa"
     public var useOcr: Bool? = false
     public var parsePdfTablesWithOcr: Bool? = false
     /** Only sync files if they have not already been synced or if the embedding properties have changed.         This flag is currently supported by ONEDRIVE, GOOGLE_DRIVE, BOX, DROPBOX, INTERCOM, GMAIL, OUTLOOK. It will be ignored for other data sources. */
     public var incrementalSync: Bool? = false
     public var fileSyncConfig: FileSyncConfigNullable?
 
-    public init(tags: AnyCodable? = nil, dataSourceId: Int, ids: IdsProperty, chunkSize: Int? = 1500, chunkOverlap: Int? = 20, skipEmbeddingGeneration: Bool? = false, embeddingModel: EmbeddingGeneratorsNullable? = nil, generateSparseVectors: Bool? = false, prependFilenameToChunks: Bool? = false, maxItemsPerChunk: Int? = nil, setPageAsBoundary: Bool? = false, requestId: String? = "791318ee-229d-4c64-bb0a-2563b8014484", useOcr: Bool? = false, parsePdfTablesWithOcr: Bool? = false, incrementalSync: Bool? = false, fileSyncConfig: FileSyncConfigNullable? = nil) {
+    public init(tags: AnyCodable? = nil, dataSourceId: Int, ids: IdsProperty, chunkSize: Int? = 1500, chunkOverlap: Int? = 20, skipEmbeddingGeneration: Bool? = false, embeddingModel: EmbeddingGeneratorsNullable? = nil, generateSparseVectors: Bool? = false, prependFilenameToChunks: Bool? = false, maxItemsPerChunk: Int? = nil, setPageAsBoundary: Bool? = false, requestId: String? = "3d5122a0-73e5-4674-b4b4-26ff5ad078fa", useOcr: Bool? = false, parsePdfTablesWithOcr: Bool? = false, incrementalSync: Bool? = false, fileSyncConfig: FileSyncConfigNullable? = nil) {
         self.tags = tags
         self.dataSourceId = dataSourceId
         self.ids = ids
