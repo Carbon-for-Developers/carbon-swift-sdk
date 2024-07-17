@@ -44,8 +44,9 @@ public struct GetEmbeddingDocumentsBody: Codable, JSONEncodable, Hashable {
     public var includeFileLevelMetadata: Bool? = false
     /** Flag to control whether or not to perform a high accuracy embedding search. By default, this is set to false.         If true, the search may return more accurate results, but may take longer to complete. */
     public var highAccuracy: Bool? = false
+    public var rerank: RerankParamsNullable?
 
-    public init(tags: [String: Tags1]? = nil, query: String, queryVector: [Double]? = nil, k: Int, fileIds: [Int]? = nil, parentFileIds: [Int]? = nil, includeAllChildren: Bool? = false, tagsV2: AnyCodable? = nil, includeTags: Bool? = nil, includeVectors: Bool? = nil, includeRawFile: Bool? = nil, hybridSearch: Bool? = nil, hybridSearchTuningParameters: HybridSearchTuningParamsNullable? = nil, mediaType: FileContentTypesNullable? = nil, embeddingModel: EmbeddingGeneratorsNullable? = nil, includeFileLevelMetadata: Bool? = false, highAccuracy: Bool? = false) {
+    public init(tags: [String: Tags1]? = nil, query: String, queryVector: [Double]? = nil, k: Int, fileIds: [Int]? = nil, parentFileIds: [Int]? = nil, includeAllChildren: Bool? = false, tagsV2: AnyCodable? = nil, includeTags: Bool? = nil, includeVectors: Bool? = nil, includeRawFile: Bool? = nil, hybridSearch: Bool? = nil, hybridSearchTuningParameters: HybridSearchTuningParamsNullable? = nil, mediaType: FileContentTypesNullable? = nil, embeddingModel: EmbeddingGeneratorsNullable? = nil, includeFileLevelMetadata: Bool? = false, highAccuracy: Bool? = false, rerank: RerankParamsNullable? = nil) {
         self.tags = tags
         self.query = query
         self.queryVector = queryVector
@@ -63,6 +64,7 @@ public struct GetEmbeddingDocumentsBody: Codable, JSONEncodable, Hashable {
         self.embeddingModel = embeddingModel
         self.includeFileLevelMetadata = includeFileLevelMetadata
         self.highAccuracy = highAccuracy
+        self.rerank = rerank
     }
 
     public enum CodingKeys: String, CodingKey, CaseIterable {
@@ -83,6 +85,7 @@ public struct GetEmbeddingDocumentsBody: Codable, JSONEncodable, Hashable {
         case embeddingModel = "embedding_model"
         case includeFileLevelMetadata = "include_file_level_metadata"
         case highAccuracy = "high_accuracy"
+        case rerank
     }
 
     // Encodable protocol methods
@@ -106,6 +109,7 @@ public struct GetEmbeddingDocumentsBody: Codable, JSONEncodable, Hashable {
         try container.encodeIfPresent(embeddingModel, forKey: .embeddingModel)
         try container.encodeIfPresent(includeFileLevelMetadata, forKey: .includeFileLevelMetadata)
         try container.encodeIfPresent(highAccuracy, forKey: .highAccuracy)
+        try container.encodeIfPresent(rerank, forKey: .rerank)
     }
 }
 

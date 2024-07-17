@@ -6,7 +6,7 @@
 
 Connect external data to LLMs, no matter the source.
 
-[![CocoaPods](https://img.shields.io/badge/pod-v0.3.13-blue)](https://cocoapods.org/pods/CarbonAI)
+[![CocoaPods](https://img.shields.io/badge/pod-v0.3.14-blue)](https://cocoapods.org/pods/CarbonAI)
 
 </div>
 
@@ -109,7 +109,7 @@ github "Carbon-for-Developers/carbon-swift-sdk"
 ### CocoaPods<a id="cocoapods"></a>
 
 1. Add `source 'https://github.com/CocoaPods/Specs.git'` to your `Podfile`
-2. Add `pod 'CarbonAI', '~> 0.3.13'` to your `Podfile`
+2. Add `pod 'CarbonAI', '~> 0.3.14'` to your `Podfile`
 
 Your `Podfile` should look like:
 ```ruby
@@ -117,7 +117,7 @@ Your `Podfile` should look like:
 source 'https://github.com/CocoaPods/Specs.git'
 
 target 'Example' do
-  pod 'CarbonAI', '~> 0.3.13'
+  pod 'CarbonAI', '~> 0.3.14'
 end
 ```
 3. Run `pod install`
@@ -126,7 +126,7 @@ end
 ❯ pod install
 Analyzing dependencies
 Downloading dependencies
-Installing CarbonAI 0.3.13
+Installing CarbonAI 0.3.14
 Generating Pods project
 Integrating client project
 Pod installation complete! There is 1 dependency from the Podfile and 2 total pods installed.
@@ -434,6 +434,9 @@ let embeddingModel = EmbeddingGeneratorsNullable(
 )
 let includeFileLevelMetadata = true
 let highAccuracy = true
+let rerank = RerankParamsNullable(
+    model: "model_example"
+)
 let getDocumentsResponse = try await carbonai.embeddings.getDocuments(
     query: query,
     k: k,
@@ -451,7 +454,8 @@ let getDocumentsResponse = try await carbonai.embeddings.getDocuments(
     mediaType: mediaType,
     embeddingModel: embeddingModel,
     includeFileLevelMetadata: includeFileLevelMetadata,
-    highAccuracy: highAccuracy
+    highAccuracy: highAccuracy,
+    rerank: rerank
 )
 ```
 
@@ -534,6 +538,9 @@ Flag to control whether or not to include file-level metadata in the response. T
 ##### high_accuracy: `Bool`<a id="high_accuracy-bool"></a>
 
 Flag to control whether or not to perform a high accuracy embedding search. By default, this is set to false.         If true, the search may return more accurate results, but may take longer to complete.
+
+
+##### rerank: [`RerankParamsNullable`](./CarbonAI/Models/RerankParamsNullable.swift)<a id="rerank-rerankparamsnullablecarbonaimodelsrerankparamsnullableswift"></a>
 
 
 #### 🔄 Return<a id="🔄-return"></a>
@@ -2238,7 +2245,7 @@ Enable OCR for files that support it. Supported formats: pdf
 
 ##### enable_file_picker: `Bool`<a id="enable_file_picker-bool"></a>
 
-Enable integration's file picker for sources that support it. Supported sources: BOX, ONEDRIVE, SHAREPOINT, DROPBOX, GOOGLE_DRIVE
+Enable integration's file picker for sources that support it. Supported sources: SHAREPOINT, DROPBOX, ONEDRIVE, GOOGLE_DRIVE, BOX
 
 
 ##### sync_source_items: `Bool`<a id="sync_source_items-bool"></a>

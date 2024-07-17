@@ -83,7 +83,8 @@ open class EmbeddingsAPI {
         mediaType: FileContentTypesNullable? = nil, 
         embeddingModel: EmbeddingGeneratorsNullable? = nil, 
         includeFileLevelMetadata: Bool? = nil, 
-        highAccuracy: Bool? = nil
+        highAccuracy: Bool? = nil, 
+        rerank: RerankParamsNullable? = nil
     ) async throws -> DocumentResponseList {
         let getEmbeddingDocumentsBody = GetEmbeddingDocumentsBody(
             tags: tags,
@@ -102,7 +103,8 @@ open class EmbeddingsAPI {
             mediaType: mediaType,
             embeddingModel: embeddingModel,
             includeFileLevelMetadata: includeFileLevelMetadata,
-            highAccuracy: highAccuracy
+            highAccuracy: highAccuracy,
+            rerank: rerank
         )
         return try await withCheckedThrowingContinuation { continuation in
             getDocumentsWithRequestBuilder(getEmbeddingDocumentsBody: getEmbeddingDocumentsBody).execute { result in
@@ -142,7 +144,8 @@ open class EmbeddingsAPI {
         mediaType: FileContentTypesNullable? = nil, 
         embeddingModel: EmbeddingGeneratorsNullable? = nil, 
         includeFileLevelMetadata: Bool? = nil, 
-        highAccuracy: Bool? = nil
+        highAccuracy: Bool? = nil, 
+        rerank: RerankParamsNullable? = nil
     ) async throws -> DocumentResponseList {
         let getEmbeddingDocumentsBody = GetEmbeddingDocumentsBody(
             tags: tags,
@@ -161,7 +164,8 @@ open class EmbeddingsAPI {
             mediaType: mediaType,
             embeddingModel: embeddingModel,
             includeFileLevelMetadata: includeFileLevelMetadata,
-            highAccuracy: highAccuracy
+            highAccuracy: highAccuracy,
+            rerank: rerank
         )
         return try await withCheckedThrowingContinuation { continuation in
             getDocumentsWithRequestBuilder(getEmbeddingDocumentsBody: getEmbeddingDocumentsBody).execute { result in
