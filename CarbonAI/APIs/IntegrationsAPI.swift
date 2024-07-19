@@ -1341,6 +1341,7 @@ open class IntegrationsAPI {
      - parameter apiResponseQueue: The queue on which api response is dispatched.
      - parameter completion: completion handler to receive the data and the error objects
      */
+    @available(*, deprecated, message: "This operation is deprecated.")
     @discardableResult
     open class func listConfluencePagesSync(listRequest: ListRequest, apiResponseQueue: DispatchQueue = CarbonAIAPI.apiResponseQueue, completion: @escaping ((_ data: ListResponse?, _ error: Error?) -> Void)) -> RequestTask {
         return listConfluencePagesWithRequestBuilder(listRequest: listRequest).execute(apiResponseQueue) { result in
@@ -1360,6 +1361,7 @@ open class IntegrationsAPI {
      - parameter apiResponseQueue: The queue on which api response is dispatched.
      - parameter completion: completion handler to receive the data and the error objects
      */
+    @available(*, deprecated, message: "This operation is deprecated.")
     @available(iOS 13.0, macOS 10.15, tvOS 13.0, watchOS 6.0, *)
     private class func listConfluencePagesAsyncMappedParams(listRequest: ListRequest) async throws -> ListResponse {
         return try await withCheckedThrowingContinuation { continuation in
@@ -1381,6 +1383,7 @@ open class IntegrationsAPI {
      - parameter apiResponseQueue: The queue on which api response is dispatched.
      - parameter completion: completion handler to receive the data and the error objects
      */
+    @available(*, deprecated, message: "This operation is deprecated.")
     @available(iOS 13.0, macOS 10.15, tvOS 13.0, watchOS 6.0, *)
     open class func listConfluencePages(
         dataSourceId: Int,
@@ -1410,6 +1413,7 @@ open class IntegrationsAPI {
      - parameter apiResponseQueue: The queue on which api response is dispatched.
      - parameter completion: completion handler to receive the data and the error objects
      */
+    @available(*, deprecated, message: "This operation is deprecated.")
     @available(iOS 13.0, macOS 10.15, tvOS 13.0, watchOS 6.0, *)
     open func listConfluencePages(
         dataSourceId: Int,
@@ -1436,7 +1440,7 @@ open class IntegrationsAPI {
     /**
      Confluence List
      - POST /integrations/confluence/list
-     - To begin listing a user's Confluence pages, at least a `data_source_id` of a connected Confluence account must be specified. This base request returns a list of root pages for every space the user has access to in a Confluence instance. To traverse further down the user's page directory, additional requests to this endpoint can be made with the same `data_source_id` and with `parent_id` set to the id of page from a previous request. For convenience, the `has_children` property in each directory item in the response list will flag which pages will return non-empty lists of pages when set as the `parent_id`.
+     - This endpoint has been deprecated. Use /integrations/items/list instead.  To begin listing a user's Confluence pages, at least a `data_source_id` of a connected Confluence account must be specified. This base request returns a list of root pages for every space the user has access to in a Confluence instance. To traverse further down the user's page directory, additional requests to this endpoint can be made with the same `data_source_id` and with `parent_id` set to the id of page from a previous request. For convenience, the `has_children` property in each directory item in the response list will flag which pages will return non-empty lists of pages when set as the `parent_id`.
      - API Key:
        - type: apiKey authorization 
        - name: accessToken
@@ -1449,6 +1453,7 @@ open class IntegrationsAPI {
      - parameter listRequest: (body)  
      - returns: RequestBuilder<ListResponse> 
      */
+    @available(*, deprecated, message: "This operation is deprecated.")
     open class func listConfluencePagesWithRequestBuilder(
             listRequest: ListRequest
     ) -> RequestBuilder<ListResponse> {
@@ -1481,7 +1486,7 @@ open class IntegrationsAPI {
     /**
      Confluence List
      - POST /integrations/confluence/list
-     - To begin listing a user's Confluence pages, at least a `data_source_id` of a connected Confluence account must be specified. This base request returns a list of root pages for every space the user has access to in a Confluence instance. To traverse further down the user's page directory, additional requests to this endpoint can be made with the same `data_source_id` and with `parent_id` set to the id of page from a previous request. For convenience, the `has_children` property in each directory item in the response list will flag which pages will return non-empty lists of pages when set as the `parent_id`.
+     - This endpoint has been deprecated. Use /integrations/items/list instead.  To begin listing a user's Confluence pages, at least a `data_source_id` of a connected Confluence account must be specified. This base request returns a list of root pages for every space the user has access to in a Confluence instance. To traverse further down the user's page directory, additional requests to this endpoint can be made with the same `data_source_id` and with `parent_id` set to the id of page from a previous request. For convenience, the `has_children` property in each directory item in the response list will flag which pages will return non-empty lists of pages when set as the `parent_id`.
      - API Key:
        - type: apiKey authorization 
        - name: accessToken
@@ -1494,6 +1499,7 @@ open class IntegrationsAPI {
      - parameter listRequest: (body)  
      - returns: RequestBuilder<ListResponse> 
      */
+    @available(*, deprecated, message: "This operation is deprecated.")
     open func listConfluencePagesWithRequestBuilder(
             listRequest: ListRequest
     ) -> RequestBuilder<ListResponse> {
@@ -2899,6 +2905,7 @@ open class IntegrationsAPI {
      - parameter apiResponseQueue: The queue on which api response is dispatched.
      - parameter completion: completion handler to receive the data and the error objects
      */
+    @available(*, deprecated, message: "This operation is deprecated.")
     @discardableResult
     open class func syncConfluenceSync(syncFilesRequest: SyncFilesRequest, apiResponseQueue: DispatchQueue = CarbonAIAPI.apiResponseQueue, completion: @escaping ((_ data: GenericSuccessResponse?, _ error: Error?) -> Void)) -> RequestTask {
         return syncConfluenceWithRequestBuilder(syncFilesRequest: syncFilesRequest).execute(apiResponseQueue) { result in
@@ -2918,6 +2925,7 @@ open class IntegrationsAPI {
      - parameter apiResponseQueue: The queue on which api response is dispatched.
      - parameter completion: completion handler to receive the data and the error objects
      */
+    @available(*, deprecated, message: "This operation is deprecated.")
     @available(iOS 13.0, macOS 10.15, tvOS 13.0, watchOS 6.0, *)
     private class func syncConfluenceAsyncMappedParams(syncFilesRequest: SyncFilesRequest) async throws -> GenericSuccessResponse {
         return try await withCheckedThrowingContinuation { continuation in
@@ -2939,6 +2947,7 @@ open class IntegrationsAPI {
      - parameter apiResponseQueue: The queue on which api response is dispatched.
      - parameter completion: completion handler to receive the data and the error objects
      */
+    @available(*, deprecated, message: "This operation is deprecated.")
     @available(iOS 13.0, macOS 10.15, tvOS 13.0, watchOS 6.0, *)
     open class func syncConfluence(
         dataSourceId: Int,
@@ -2996,6 +3005,7 @@ open class IntegrationsAPI {
      - parameter apiResponseQueue: The queue on which api response is dispatched.
      - parameter completion: completion handler to receive the data and the error objects
      */
+    @available(*, deprecated, message: "This operation is deprecated.")
     @available(iOS 13.0, macOS 10.15, tvOS 13.0, watchOS 6.0, *)
     open func syncConfluence(
         dataSourceId: Int,
@@ -3050,7 +3060,7 @@ open class IntegrationsAPI {
     /**
      Confluence Sync
      - POST /integrations/confluence/sync
-     - After listing pages in a user's Confluence account, the set of selected page `ids` and the connected account's `data_source_id` can be passed into this endpoint to sync them into Carbon. Additional parameters listed below can be used to associate data to the selected pages or alter the behavior of the sync.
+     - This endpoint has been deprecated. Use /integrations/files/sync instead.  After listing pages in a user's Confluence account, the set of selected page `ids` and the connected account's `data_source_id` can be passed into this endpoint to sync them into Carbon. Additional parameters listed below can be used to associate data to the selected pages or alter the behavior of the sync.
      - API Key:
        - type: apiKey authorization 
        - name: accessToken
@@ -3063,6 +3073,7 @@ open class IntegrationsAPI {
      - parameter syncFilesRequest: (body)  
      - returns: RequestBuilder<GenericSuccessResponse> 
      */
+    @available(*, deprecated, message: "This operation is deprecated.")
     open class func syncConfluenceWithRequestBuilder(
             syncFilesRequest: SyncFilesRequest
     ) -> RequestBuilder<GenericSuccessResponse> {
@@ -3095,7 +3106,7 @@ open class IntegrationsAPI {
     /**
      Confluence Sync
      - POST /integrations/confluence/sync
-     - After listing pages in a user's Confluence account, the set of selected page `ids` and the connected account's `data_source_id` can be passed into this endpoint to sync them into Carbon. Additional parameters listed below can be used to associate data to the selected pages or alter the behavior of the sync.
+     - This endpoint has been deprecated. Use /integrations/files/sync instead.  After listing pages in a user's Confluence account, the set of selected page `ids` and the connected account's `data_source_id` can be passed into this endpoint to sync them into Carbon. Additional parameters listed below can be used to associate data to the selected pages or alter the behavior of the sync.
      - API Key:
        - type: apiKey authorization 
        - name: accessToken
@@ -3108,6 +3119,7 @@ open class IntegrationsAPI {
      - parameter syncFilesRequest: (body)  
      - returns: RequestBuilder<GenericSuccessResponse> 
      */
+    @available(*, deprecated, message: "This operation is deprecated.")
     open func syncConfluenceWithRequestBuilder(
             syncFilesRequest: SyncFilesRequest
     ) -> RequestBuilder<GenericSuccessResponse> {

@@ -835,7 +835,8 @@ open class UtilitiesAPI {
         cssSelectorsToSkip: [String]? = nil, 
         embeddingModel: EmbeddingGenerators? = nil, 
         urlPathsToInclude: [String]? = nil, 
-        urlPathsToExclude: [String]? = nil
+        urlPathsToExclude: [String]? = nil, 
+        urlsToScrape: [String]? = nil
     ) async throws -> AnyCodable {
         let sitemapScrapeRequest = SitemapScrapeRequest(
             tags: tags,
@@ -852,7 +853,8 @@ open class UtilitiesAPI {
             cssSelectorsToSkip: cssSelectorsToSkip,
             embeddingModel: embeddingModel,
             urlPathsToInclude: urlPathsToInclude,
-            urlPathsToExclude: urlPathsToExclude
+            urlPathsToExclude: urlPathsToExclude,
+            urlsToScrape: urlsToScrape
         )
         return try await withCheckedThrowingContinuation { continuation in
             scrapeSitemapWithRequestBuilder(sitemapScrapeRequest: sitemapScrapeRequest).execute { result in
@@ -890,7 +892,8 @@ open class UtilitiesAPI {
         cssSelectorsToSkip: [String]? = nil, 
         embeddingModel: EmbeddingGenerators? = nil, 
         urlPathsToInclude: [String]? = nil, 
-        urlPathsToExclude: [String]? = nil
+        urlPathsToExclude: [String]? = nil, 
+        urlsToScrape: [String]? = nil
     ) async throws -> AnyCodable {
         let sitemapScrapeRequest = SitemapScrapeRequest(
             tags: tags,
@@ -907,7 +910,8 @@ open class UtilitiesAPI {
             cssSelectorsToSkip: cssSelectorsToSkip,
             embeddingModel: embeddingModel,
             urlPathsToInclude: urlPathsToInclude,
-            urlPathsToExclude: urlPathsToExclude
+            urlPathsToExclude: urlPathsToExclude,
+            urlsToScrape: urlsToScrape
         )
         return try await withCheckedThrowingContinuation { continuation in
             scrapeSitemapWithRequestBuilder(sitemapScrapeRequest: sitemapScrapeRequest).execute { result in

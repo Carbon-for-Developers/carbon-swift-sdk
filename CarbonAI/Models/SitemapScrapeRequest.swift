@@ -29,8 +29,10 @@ public struct SitemapScrapeRequest: Codable, JSONEncodable, Hashable {
     public var urlPathsToInclude: [String]?
     /** URL subpaths or directories that you want to exclude. For example if you want to exclude         URLs that start with /questions in stackoverflow.com, you will add /questions/ in this input */
     public var urlPathsToExclude: [String]?
+    /** You can submit a subset of URLs from the sitemap that should be scraped. To get the list of URLs,           you can check out /process_sitemap endpoint. If left empty, all URLs from the sitemap will be scraped. */
+    public var urlsToScrape: [String]?
 
-    public init(tags: [String: Tags1]? = nil, url: String, maxPagesToScrape: Int? = nil, chunkSize: Int? = 1500, chunkOverlap: Int? = 20, skipEmbeddingGeneration: Bool? = false, enableAutoSync: Bool? = false, generateSparseVectors: Bool? = false, prependFilenameToChunks: Bool? = false, htmlTagsToSkip: [String]? = nil, cssClassesToSkip: [String]? = nil, cssSelectorsToSkip: [String]? = nil, embeddingModel: EmbeddingGenerators? = nil, urlPathsToInclude: [String]? = nil, urlPathsToExclude: [String]? = nil) {
+    public init(tags: [String: Tags1]? = nil, url: String, maxPagesToScrape: Int? = nil, chunkSize: Int? = 1500, chunkOverlap: Int? = 20, skipEmbeddingGeneration: Bool? = false, enableAutoSync: Bool? = false, generateSparseVectors: Bool? = false, prependFilenameToChunks: Bool? = false, htmlTagsToSkip: [String]? = nil, cssClassesToSkip: [String]? = nil, cssSelectorsToSkip: [String]? = nil, embeddingModel: EmbeddingGenerators? = nil, urlPathsToInclude: [String]? = nil, urlPathsToExclude: [String]? = nil, urlsToScrape: [String]? = nil) {
         self.tags = tags
         self.url = url
         self.maxPagesToScrape = maxPagesToScrape
@@ -46,6 +48,7 @@ public struct SitemapScrapeRequest: Codable, JSONEncodable, Hashable {
         self.embeddingModel = embeddingModel
         self.urlPathsToInclude = urlPathsToInclude
         self.urlPathsToExclude = urlPathsToExclude
+        self.urlsToScrape = urlsToScrape
     }
 
     public enum CodingKeys: String, CodingKey, CaseIterable {
@@ -64,6 +67,7 @@ public struct SitemapScrapeRequest: Codable, JSONEncodable, Hashable {
         case embeddingModel = "embedding_model"
         case urlPathsToInclude = "url_paths_to_include"
         case urlPathsToExclude = "url_paths_to_exclude"
+        case urlsToScrape = "urls_to_scrape"
     }
 
     // Encodable protocol methods
@@ -85,6 +89,7 @@ public struct SitemapScrapeRequest: Codable, JSONEncodable, Hashable {
         try container.encodeIfPresent(embeddingModel, forKey: .embeddingModel)
         try container.encodeIfPresent(urlPathsToInclude, forKey: .urlPathsToInclude)
         try container.encodeIfPresent(urlPathsToExclude, forKey: .urlPathsToExclude)
+        try container.encodeIfPresent(urlsToScrape, forKey: .urlsToScrape)
     }
 }
 

@@ -6,7 +6,7 @@
 
 Connect external data to LLMs, no matter the source.
 
-[![CocoaPods](https://img.shields.io/badge/pod-v0.3.14-blue)](https://cocoapods.org/pods/CarbonAI)
+[![CocoaPods](https://img.shields.io/badge/pod-v0.3.15-blue)](https://cocoapods.org/pods/CarbonAI)
 
 </div>
 
@@ -109,7 +109,7 @@ github "Carbon-for-Developers/carbon-swift-sdk"
 ### CocoaPods<a id="cocoapods"></a>
 
 1. Add `source 'https://github.com/CocoaPods/Specs.git'` to your `Podfile`
-2. Add `pod 'CarbonAI', '~> 0.3.14'` to your `Podfile`
+2. Add `pod 'CarbonAI', '~> 0.3.15'` to your `Podfile`
 
 Your `Podfile` should look like:
 ```ruby
@@ -117,7 +117,7 @@ Your `Podfile` should look like:
 source 'https://github.com/CocoaPods/Specs.git'
 
 target 'Example' do
-  pod 'CarbonAI', '~> 0.3.14'
+  pod 'CarbonAI', '~> 0.3.15'
 end
 ```
 3. Run `pod install`
@@ -126,7 +126,7 @@ end
 ❯ pod install
 Analyzing dependencies
 Downloading dependencies
-Installing CarbonAI 0.3.14
+Installing CarbonAI 0.3.15
 Generating Pods project
 Integrating client project
 Pod installation complete! There is 1 dependency from the Podfile and 2 total pods installed.
@@ -2245,7 +2245,7 @@ Enable OCR for files that support it. Supported formats: pdf
 
 ##### enable_file_picker: `Bool`<a id="enable_file_picker-bool"></a>
 
-Enable integration's file picker for sources that support it. Supported sources: SHAREPOINT, DROPBOX, ONEDRIVE, GOOGLE_DRIVE, BOX
+Enable integration's file picker for sources that support it. Supported sources: BOX, GOOGLE_DRIVE, SHAREPOINT, ONEDRIVE, DROPBOX
 
 
 ##### sync_source_items: `Bool`<a id="sync_source_items-bool"></a>
@@ -2275,6 +2275,9 @@ Only sync files if they have not already been synced or if the embedding propert
 
 
 ### `carbonai.integrations.listConfluencePages`<a id="carbonaiintegrationslistconfluencepages"></a>
+![Deprecated](https://img.shields.io/badge/deprecated-yellow)
+
+This endpoint has been deprecated. Use /integrations/items/list instead.
 
 To begin listing a user's Confluence pages, at least a `data_source_id` of a connected
 Confluence account must be specified. This base request returns a list of root pages for
@@ -2586,6 +2589,9 @@ let listReposResponse = try await carbonai.integrations.listRepos(
 
 
 ### `carbonai.integrations.syncConfluence`<a id="carbonaiintegrationssyncconfluence"></a>
+![Deprecated](https://img.shields.io/badge/deprecated-yellow)
+
+This endpoint has been deprecated. Use /integrations/files/sync instead.
 
 After listing pages in a user's Confluence account, the set of selected page `ids` and the
 connected account's `data_source_id` can be passed into this endpoint to sync them into
@@ -4097,6 +4103,9 @@ let urlPathsToInclude = [
 let urlPathsToExclude = [
 "inner_example"
 ]
+let urlsToScrape = [
+"inner_example"
+]
 let scrapeSitemapResponse = try await carbonai.utilities.scrapeSitemap(
     url: url,
     tags: tags,
@@ -4112,7 +4121,8 @@ let scrapeSitemapResponse = try await carbonai.utilities.scrapeSitemap(
     cssSelectorsToSkip: cssSelectorsToSkip,
     embeddingModel: embeddingModel,
     urlPathsToInclude: urlPathsToInclude,
-    urlPathsToExclude: urlPathsToExclude
+    urlPathsToExclude: urlPathsToExclude,
+    urlsToScrape: urlsToScrape
 )
 ```
 
@@ -4165,6 +4175,11 @@ URL subpaths or directories that you want to include. For example if you want to
 ##### url_paths_to_exclude: `[String]`<a id="url_paths_to_exclude-string"></a>
 
 URL subpaths or directories that you want to exclude. For example if you want to exclude         URLs that start with /questions in stackoverflow.com, you will add /questions/ in this input
+
+
+##### urls_to_scrape: `[String]`<a id="urls_to_scrape-string"></a>
+
+You can submit a subset of URLs from the sitemap that should be scraped. To get the list of URLs,           you can check out /process_sitemap endpoint. If left empty, all URLs from the sitemap will be scraped.
 
 
 #### 🌐 Endpoint<a id="🌐-endpoint"></a>
