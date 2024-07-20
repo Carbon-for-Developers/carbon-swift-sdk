@@ -6,7 +6,7 @@
 
 Connect external data to LLMs, no matter the source.
 
-[![CocoaPods](https://img.shields.io/badge/pod-v0.3.15-blue)](https://cocoapods.org/pods/CarbonAI)
+[![CocoaPods](https://img.shields.io/badge/pod-v0.3.16-blue)](https://cocoapods.org/pods/CarbonAI)
 
 </div>
 
@@ -109,7 +109,7 @@ github "Carbon-for-Developers/carbon-swift-sdk"
 ### CocoaPods<a id="cocoapods"></a>
 
 1. Add `source 'https://github.com/CocoaPods/Specs.git'` to your `Podfile`
-2. Add `pod 'CarbonAI', '~> 0.3.15'` to your `Podfile`
+2. Add `pod 'CarbonAI', '~> 0.3.16'` to your `Podfile`
 
 Your `Podfile` should look like:
 ```ruby
@@ -117,7 +117,7 @@ Your `Podfile` should look like:
 source 'https://github.com/CocoaPods/Specs.git'
 
 target 'Example' do
-  pod 'CarbonAI', '~> 0.3.15'
+  pod 'CarbonAI', '~> 0.3.16'
 end
 ```
 3. Run `pod install`
@@ -126,7 +126,7 @@ end
 ❯ pod install
 Analyzing dependencies
 Downloading dependencies
-Installing CarbonAI 0.3.15
+Installing CarbonAI 0.3.16
 Generating Pods project
 Integrating client project
 Pod installation complete! There is 1 dependency from the Podfile and 2 total pods installed.
@@ -2245,7 +2245,7 @@ Enable OCR for files that support it. Supported formats: pdf
 
 ##### enable_file_picker: `Bool`<a id="enable_file_picker-bool"></a>
 
-Enable integration's file picker for sources that support it. Supported sources: BOX, GOOGLE_DRIVE, SHAREPOINT, ONEDRIVE, DROPBOX
+Enable integration's file picker for sources that support it. Supported sources: BOX, ONEDRIVE, DROPBOX, SHAREPOINT, GOOGLE_DRIVE
 
 
 ##### sync_source_items: `Bool`<a id="sync_source_items-bool"></a>
@@ -3651,14 +3651,21 @@ let globalUserConfig = UserConfigurationNullable(
     maxFiles: 123,
     maxFilesPerUpload: 123
 )
+let dataSourceConfigs = "TODO"
 let updateResponse = try await carbonai.organizations.update(
-    globalUserConfig: globalUserConfig
+    globalUserConfig: globalUserConfig,
+    dataSourceConfigs: dataSourceConfigs
 )
 ```
 
 #### ⚙️ Parameters<a id="⚙️-parameters"></a>
 
 ##### global_user_config: [`UserConfigurationNullable`](./CarbonAI/Models/UserConfigurationNullable.swift)<a id="global_user_config-userconfigurationnullablecarbonaimodelsuserconfigurationnullableswift"></a>
+
+
+##### data_source_configs: `[String: DataSourceConfiguration]`<a id="data_source_configs-string-datasourceconfiguration"></a>
+
+Used to set organization level defaults for configuration related to data sources.
 
 
 #### 🔄 Return<a id="🔄-return"></a>

@@ -13,13 +13,17 @@ import AnyCodable
 public struct UpdateOrganizationInput: Codable, JSONEncodable, Hashable {
 
     public var globalUserConfig: UserConfigurationNullable?
+    /** Used to set organization level defaults for configuration related to data sources. */
+    public var dataSourceConfigs: [String: DataSourceConfiguration]?
 
-    public init(globalUserConfig: UserConfigurationNullable? = nil) {
+    public init(globalUserConfig: UserConfigurationNullable? = nil, dataSourceConfigs: [String: DataSourceConfiguration]? = nil) {
         self.globalUserConfig = globalUserConfig
+        self.dataSourceConfigs = dataSourceConfigs
     }
 
     public enum CodingKeys: String, CodingKey, CaseIterable {
         case globalUserConfig = "global_user_config"
+        case dataSourceConfigs = "data_source_configs"
     }
 
     // Encodable protocol methods
@@ -27,6 +31,7 @@ public struct UpdateOrganizationInput: Codable, JSONEncodable, Hashable {
     public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encodeIfPresent(globalUserConfig, forKey: .globalUserConfig)
+        try container.encodeIfPresent(dataSourceConfigs, forKey: .dataSourceConfigs)
     }
 }
 

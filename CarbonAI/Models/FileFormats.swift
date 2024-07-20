@@ -58,4 +58,5 @@ public enum FileFormats: String, Codable, CaseIterable {
     case mkv = "MKV"
     case flv = "FLV"
     case webm = "WEBM"
+    case eml = "EML"
 }

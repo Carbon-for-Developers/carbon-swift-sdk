@@ -219,10 +219,12 @@ open class OrganizationsAPI {
      */
     @available(iOS 13.0, macOS 10.15, tvOS 13.0, watchOS 6.0, *)
     open class func update(
-        globalUserConfig: UserConfigurationNullable? = nil
+        globalUserConfig: UserConfigurationNullable? = nil, 
+        dataSourceConfigs: [String: DataSourceConfiguration]? = nil
     ) async throws -> GenericSuccessResponse {
         let updateOrganizationInput = UpdateOrganizationInput(
-            globalUserConfig: globalUserConfig
+            globalUserConfig: globalUserConfig,
+            dataSourceConfigs: dataSourceConfigs
         )
         return try await withCheckedThrowingContinuation { continuation in
             updateWithRequestBuilder(updateOrganizationInput: updateOrganizationInput).execute { result in
@@ -246,10 +248,12 @@ open class OrganizationsAPI {
      */
     @available(iOS 13.0, macOS 10.15, tvOS 13.0, watchOS 6.0, *)
     open func update(
-        globalUserConfig: UserConfigurationNullable? = nil
+        globalUserConfig: UserConfigurationNullable? = nil, 
+        dataSourceConfigs: [String: DataSourceConfiguration]? = nil
     ) async throws -> GenericSuccessResponse {
         let updateOrganizationInput = UpdateOrganizationInput(
-            globalUserConfig: globalUserConfig
+            globalUserConfig: globalUserConfig,
+            dataSourceConfigs: dataSourceConfigs
         )
         return try await withCheckedThrowingContinuation { continuation in
             updateWithRequestBuilder(updateOrganizationInput: updateOrganizationInput).execute { result in

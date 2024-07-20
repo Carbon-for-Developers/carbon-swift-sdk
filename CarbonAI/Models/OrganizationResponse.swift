@@ -27,12 +27,13 @@ public struct OrganizationResponse: Codable, JSONEncodable, Hashable {
     public var fileStatisticsAggregatedAt: Date?
     public var periodEndsAt: Date?
     public var cancelAtPeriodEnd: Bool?
+    public var connectorSettings: AnyCodable
     public var globalUserConfig: AnyCodable
     public var fileSyncUsage: AnyCodable
     public var createdAt: Date
     public var updatedAt: Date
 
-    public init(id: Int, name: String, nickname: String?, removeBranding: Bool, customBranding: AnyCodable?, customLimits: AnyCodable?, aggregateFileSize: AnyCodable, aggregateNumCharacters: AnyCodable, aggregateNumTokens: AnyCodable, aggregateNumEmbeddings: AnyCodable, aggregateNumFilesBySource: AnyCodable, aggregateNumFilesByFileFormat: AnyCodable, fileStatisticsAggregatedAt: Date?, periodEndsAt: Date?, cancelAtPeriodEnd: Bool?, globalUserConfig: AnyCodable, fileSyncUsage: AnyCodable, createdAt: Date, updatedAt: Date) {
+    public init(id: Int, name: String, nickname: String?, removeBranding: Bool, customBranding: AnyCodable?, customLimits: AnyCodable?, aggregateFileSize: AnyCodable, aggregateNumCharacters: AnyCodable, aggregateNumTokens: AnyCodable, aggregateNumEmbeddings: AnyCodable, aggregateNumFilesBySource: AnyCodable, aggregateNumFilesByFileFormat: AnyCodable, fileStatisticsAggregatedAt: Date?, periodEndsAt: Date?, cancelAtPeriodEnd: Bool?, connectorSettings: AnyCodable, globalUserConfig: AnyCodable, fileSyncUsage: AnyCodable, createdAt: Date, updatedAt: Date) {
         self.id = id
         self.name = name
         self.nickname = nickname
@@ -48,6 +49,7 @@ public struct OrganizationResponse: Codable, JSONEncodable, Hashable {
         self.fileStatisticsAggregatedAt = fileStatisticsAggregatedAt
         self.periodEndsAt = periodEndsAt
         self.cancelAtPeriodEnd = cancelAtPeriodEnd
+        self.connectorSettings = connectorSettings
         self.globalUserConfig = globalUserConfig
         self.fileSyncUsage = fileSyncUsage
         self.createdAt = createdAt
@@ -70,6 +72,7 @@ public struct OrganizationResponse: Codable, JSONEncodable, Hashable {
         case fileStatisticsAggregatedAt = "file_statistics_aggregated_at"
         case periodEndsAt = "period_ends_at"
         case cancelAtPeriodEnd = "cancel_at_period_end"
+        case connectorSettings = "connector_settings"
         case globalUserConfig = "global_user_config"
         case fileSyncUsage = "file_sync_usage"
         case createdAt = "created_at"
@@ -95,6 +98,7 @@ public struct OrganizationResponse: Codable, JSONEncodable, Hashable {
         try container.encode(fileStatisticsAggregatedAt, forKey: .fileStatisticsAggregatedAt)
         try container.encode(periodEndsAt, forKey: .periodEndsAt)
         try container.encode(cancelAtPeriodEnd, forKey: .cancelAtPeriodEnd)
+        try container.encode(connectorSettings, forKey: .connectorSettings)
         try container.encode(globalUserConfig, forKey: .globalUserConfig)
         try container.encode(fileSyncUsage, forKey: .fileSyncUsage)
         try container.encode(createdAt, forKey: .createdAt)

@@ -58,4 +58,5 @@ public enum FileFormatsNullable: String, Codable, CaseIterable {
     case mkv = "MKV"
     case flv = "FLV"
     case webm = "WEBM"
+    case eml = "EML"
 }

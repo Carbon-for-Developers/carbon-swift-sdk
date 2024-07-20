@@ -65,4 +65,5 @@ public enum DataSourceType: String, Codable, CaseIterable {
     case mkv = "MKV"
     case flv = "FLV"
     case webm = "WEBM"
+    case eml = "EML"
 }
