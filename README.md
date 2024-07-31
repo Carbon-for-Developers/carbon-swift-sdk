@@ -1443,6 +1443,9 @@ let prependFilenameToChunks = false
 let maxItemsPerChunk = 987
 let parsePdfTablesWithOcr = false
 let detectAudioLanguage = false
+let transcriptionService = TranscriptionServiceNullable(
+    
+)
 let mediaType = FileContentTypesNullable(
     
 )
@@ -1460,6 +1463,7 @@ let uploadResponse = try await carbonai.files.upload(
     maxItemsPerChunk: maxItemsPerChunk,
     parsePdfTablesWithOcr: parsePdfTablesWithOcr,
     detectAudioLanguage: detectAudioLanguage,
+    transcriptionService: transcriptionService,
     mediaType: mediaType,
     splitRows: splitRows
 )
@@ -1525,6 +1529,11 @@ Whether to use rich table parsing when `use_ocr` is enabled.
 Whether to automatically detect the language of the uploaded audio file.
 
 
+##### transcriptionService: `TranscriptionServiceNullable`<a id="transcriptionservice-transcriptionservicenullable"></a>
+
+The transcription service to use for audio files. If no service is specified, 'deepgram' will be used.
+
+
 ##### mediaType: `FileContentTypesNullable`<a id="mediatype-filecontenttypesnullable"></a>
 
 The media type of the file. If not provided, it will be inferred from the file extension.
@@ -1570,6 +1579,9 @@ let prependFilenameToChunks = true
 let maxItemsPerChunk = 987
 let parsePdfTablesWithOcr = true
 let detectAudioLanguage = true
+let transcriptionService = TranscriptionServiceNullable(
+    
+)
 let mediaType = FileContentTypesNullable(
     
 )
@@ -1588,6 +1600,7 @@ let uploadFromUrlResponse = try await carbonai.files.uploadFromUrl(
     maxItemsPerChunk: maxItemsPerChunk,
     parsePdfTablesWithOcr: parsePdfTablesWithOcr,
     detectAudioLanguage: detectAudioLanguage,
+    transcriptionService: transcriptionService,
     mediaType: mediaType,
     splitRows: splitRows
 )
@@ -1634,6 +1647,9 @@ Number of objects per chunk. For csv, tsv, xlsx, and json files only.
 
 
 ##### detect_audio_language: `Bool`<a id="detect_audio_language-bool"></a>
+
+
+##### transcription_service: `TranscriptionServiceNullable`<a id="transcription_service-transcriptionservicenullable"></a>
 
 
 ##### media_type: `FileContentTypesNullable`<a id="media_type-filecontenttypesnullable"></a>
@@ -1808,6 +1824,7 @@ let syncOptions = SyncOptions(
         ],
         syncAttachments: false,
         detectAudioLanguage: false,
+        transcriptionService: TranscriptionServiceNullable.assemblyai,
         splitRows: false
     )
 )
@@ -1869,6 +1886,7 @@ let fileSyncConfig = FileSyncConfigNullable(
     ],
     syncAttachments: false,
     detectAudioLanguage: false,
+    transcriptionService: TranscriptionServiceNullable.assemblyai,
     splitRows: false
 )
 let connectFreshdeskResponse = try await carbonai.integrations.connectFreshdesk(
@@ -2131,6 +2149,7 @@ let fileSyncConfig = FileSyncConfigNullable(
     ],
     syncAttachments: false,
     detectAudioLanguage: false,
+    transcriptionService: TranscriptionServiceNullable.assemblyai,
     splitRows: false
 )
 let getOauthUrlResponse = try await carbonai.integrations.getOauthUrl(
@@ -2245,7 +2264,7 @@ Enable OCR for files that support it. Supported formats: pdf
 
 ##### enable_file_picker: `Bool`<a id="enable_file_picker-bool"></a>
 
-Enable integration's file picker for sources that support it. Supported sources: BOX, ONEDRIVE, DROPBOX, SHAREPOINT, GOOGLE_DRIVE
+Enable integration's file picker for sources that support it. Supported sources: BOX, DROPBOX, GOOGLE_DRIVE, ONEDRIVE, SHAREPOINT
 
 
 ##### sync_source_items: `Bool`<a id="sync_source_items-bool"></a>
@@ -2626,6 +2645,7 @@ let fileSyncConfig = FileSyncConfigNullable(
     ],
     syncAttachments: false,
     detectAudioLanguage: false,
+    transcriptionService: TranscriptionServiceNullable.assemblyai,
     splitRows: false
 )
 let syncConfluenceResponse = try await carbonai.integrations.syncConfluence(
@@ -2781,6 +2801,7 @@ let fileSyncConfig = FileSyncConfigNullable(
     ],
     syncAttachments: false,
     detectAudioLanguage: false,
+    transcriptionService: TranscriptionServiceNullable.assemblyai,
     splitRows: false
 )
 let syncFilesResponse = try await carbonai.integrations.syncFiles(
@@ -3069,6 +3090,7 @@ let fileSyncConfig = FileSyncConfigNullable(
     ],
     syncAttachments: false,
     detectAudioLanguage: false,
+    transcriptionService: TranscriptionServiceNullable.assemblyai,
     splitRows: false
 )
 let incrementalSync = true
@@ -3230,6 +3252,7 @@ let fileSyncConfig = FileSyncConfigNullable(
     ],
     syncAttachments: false,
     detectAudioLanguage: false,
+    transcriptionService: TranscriptionServiceNullable.assemblyai,
     splitRows: false
 )
 let incrementalSync = true
@@ -3453,6 +3476,7 @@ let fileSyncConfig = FileSyncConfigNullable(
     ],
     syncAttachments: false,
     detectAudioLanguage: false,
+    transcriptionService: TranscriptionServiceNullable.assemblyai,
     splitRows: false
 )
 let syncS3FilesResponse = try await carbonai.integrations.syncS3Files(
