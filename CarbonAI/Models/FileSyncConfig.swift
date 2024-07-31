@@ -18,13 +18,15 @@ public struct FileSyncConfig: Codable, JSONEncodable, Hashable {
     public var syncAttachments: Bool? = false
     /** Detect audio language before transcription for audio files */
     public var detectAudioLanguage: Bool? = false
+    public var transcriptionService: TranscriptionServiceNullable?
     /** Whether to split tabular rows into chunks. Currently only valid for CSV, TSV, and XLSX files. */
     public var splitRows: Bool? = false
 
-    public init(autoSyncedSourceTypes: [HelpdeskFileTypes]? = nil, syncAttachments: Bool? = false, detectAudioLanguage: Bool? = false, splitRows: Bool? = false) {
+    public init(autoSyncedSourceTypes: [HelpdeskFileTypes]? = nil, syncAttachments: Bool? = false, detectAudioLanguage: Bool? = false, transcriptionService: TranscriptionServiceNullable? = nil, splitRows: Bool? = false) {
         self.autoSyncedSourceTypes = autoSyncedSourceTypes
         self.syncAttachments = syncAttachments
         self.detectAudioLanguage = detectAudioLanguage
+        self.transcriptionService = transcriptionService
         self.splitRows = splitRows
     }
 
@@ -32,6 +34,7 @@ public struct FileSyncConfig: Codable, JSONEncodable, Hashable {
         case autoSyncedSourceTypes = "auto_synced_source_types"
         case syncAttachments = "sync_attachments"
         case detectAudioLanguage = "detect_audio_language"
+        case transcriptionService = "transcription_service"
         case splitRows = "split_rows"
     }
 
@@ -42,6 +45,7 @@ public struct FileSyncConfig: Codable, JSONEncodable, Hashable {
         try container.encodeIfPresent(autoSyncedSourceTypes, forKey: .autoSyncedSourceTypes)
         try container.encodeIfPresent(syncAttachments, forKey: .syncAttachments)
         try container.encodeIfPresent(detectAudioLanguage, forKey: .detectAudioLanguage)
+        try container.encodeIfPresent(transcriptionService, forKey: .transcriptionService)
         try container.encodeIfPresent(splitRows, forKey: .splitRows)
     }
 }

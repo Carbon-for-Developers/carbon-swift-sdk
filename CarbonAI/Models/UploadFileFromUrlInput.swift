@@ -26,10 +26,11 @@ public struct UploadFileFromUrlInput: Codable, JSONEncodable, Hashable {
     public var maxItemsPerChunk: Int?
     public var parsePdfTablesWithOcr: Bool? = false
     public var detectAudioLanguage: Bool? = false
+    public var transcriptionService: TranscriptionServiceNullable?
     public var mediaType: FileContentTypesNullable?
     public var splitRows: Bool? = false
 
-    public init(url: String, fileName: String? = nil, chunkSize: Int? = nil, chunkOverlap: Int? = nil, skipEmbeddingGeneration: Bool? = false, setPageAsBoundary: Bool? = false, embeddingModel: EmbeddingGenerators? = nil, generateSparseVectors: Bool? = false, useTextract: Bool? = false, prependFilenameToChunks: Bool? = false, maxItemsPerChunk: Int? = nil, parsePdfTablesWithOcr: Bool? = false, detectAudioLanguage: Bool? = false, mediaType: FileContentTypesNullable? = nil, splitRows: Bool? = false) {
+    public init(url: String, fileName: String? = nil, chunkSize: Int? = nil, chunkOverlap: Int? = nil, skipEmbeddingGeneration: Bool? = false, setPageAsBoundary: Bool? = false, embeddingModel: EmbeddingGenerators? = nil, generateSparseVectors: Bool? = false, useTextract: Bool? = false, prependFilenameToChunks: Bool? = false, maxItemsPerChunk: Int? = nil, parsePdfTablesWithOcr: Bool? = false, detectAudioLanguage: Bool? = false, transcriptionService: TranscriptionServiceNullable? = nil, mediaType: FileContentTypesNullable? = nil, splitRows: Bool? = false) {
         self.url = url
         self.fileName = fileName
         self.chunkSize = chunkSize
@@ -43,6 +44,7 @@ public struct UploadFileFromUrlInput: Codable, JSONEncodable, Hashable {
         self.maxItemsPerChunk = maxItemsPerChunk
         self.parsePdfTablesWithOcr = parsePdfTablesWithOcr
         self.detectAudioLanguage = detectAudioLanguage
+        self.transcriptionService = transcriptionService
         self.mediaType = mediaType
         self.splitRows = splitRows
     }
@@ -61,6 +63,7 @@ public struct UploadFileFromUrlInput: Codable, JSONEncodable, Hashable {
         case maxItemsPerChunk = "max_items_per_chunk"
         case parsePdfTablesWithOcr = "parse_pdf_tables_with_ocr"
         case detectAudioLanguage = "detect_audio_language"
+        case transcriptionService = "transcription_service"
         case mediaType = "media_type"
         case splitRows = "split_rows"
     }
@@ -82,6 +85,7 @@ public struct UploadFileFromUrlInput: Codable, JSONEncodable, Hashable {
         try container.encodeIfPresent(maxItemsPerChunk, forKey: .maxItemsPerChunk)
         try container.encodeIfPresent(parsePdfTablesWithOcr, forKey: .parsePdfTablesWithOcr)
         try container.encodeIfPresent(detectAudioLanguage, forKey: .detectAudioLanguage)
+        try container.encodeIfPresent(transcriptionService, forKey: .transcriptionService)
         try container.encodeIfPresent(mediaType, forKey: .mediaType)
         try container.encodeIfPresent(splitRows, forKey: .splitRows)
     }
