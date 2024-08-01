@@ -13,7 +13,9 @@ import AnyCodable
 public struct SentWebhookPayload: Codable, JSONEncodable, Hashable {
 
     public enum WebhookType: String, Codable, CaseIterable {
+        case add = "ADD"
         case allUploadedFilesQueued = "ALL_UPLOADED_FILES_QUEUED"
+        case cancel = "CANCEL"
         case checkup = "CHECKUP"
         case dataSourceReady = "DATA_SOURCE_READY"
         case filesCreated = "FILES_CREATED"
@@ -25,7 +27,9 @@ public struct SentWebhookPayload: Codable, JSONEncodable, Hashable {
         case fileSyncLimitReached = "FILE_SYNC_LIMIT_REACHED"
         case organizationUserDeleted = "ORGANIZATION_USER_DELETED"
         case rateLimitError = "RATE_LIMIT_ERROR"
+        case revoke = "REVOKE"
         case sparseVectorQueueStatus = "SPARSE_VECTOR_QUEUE_STATUS"
+        case update = "UPDATE"
         case webpageError = "WEBPAGE_ERROR"
         case webpageReady = "WEBPAGE_READY"
         case webscrapeUrlsReady = "WEBSCRAPE_URLS_READY"

@@ -6,7 +6,7 @@
 
 Connect external data to LLMs, no matter the source.
 
-[![CocoaPods](https://img.shields.io/badge/pod-v0.3.17-blue)](https://cocoapods.org/pods/CarbonAI)
+[![CocoaPods](https://img.shields.io/badge/pod-v0.3.18-blue)](https://cocoapods.org/pods/CarbonAI)
 
 </div>
 
@@ -109,7 +109,7 @@ github "Carbon-for-Developers/carbon-swift-sdk"
 ### CocoaPods<a id="cocoapods"></a>
 
 1. Add `source 'https://github.com/CocoaPods/Specs.git'` to your `Podfile`
-2. Add `pod 'CarbonAI', '~> 0.3.17'` to your `Podfile`
+2. Add `pod 'CarbonAI', '~> 0.3.18'` to your `Podfile`
 
 Your `Podfile` should look like:
 ```ruby
@@ -117,7 +117,7 @@ Your `Podfile` should look like:
 source 'https://github.com/CocoaPods/Specs.git'
 
 target 'Example' do
-  pod 'CarbonAI', '~> 0.3.17'
+  pod 'CarbonAI', '~> 0.3.18'
 end
 ```
 3. Run `pod install`
@@ -126,7 +126,7 @@ end
 ❯ pod install
 Analyzing dependencies
 Downloading dependencies
-Installing CarbonAI 0.3.17
+Installing CarbonAI 0.3.18
 Generating Pods project
 Integrating client project
 Pod installation complete! There is 1 dependency from the Podfile and 2 total pods installed.
@@ -437,6 +437,9 @@ let highAccuracy = true
 let rerank = RerankParamsNullable(
     model: "model_example"
 )
+let fileTypesAtSource = [
+HelpdeskFileTypes.ticket
+]
 let getDocumentsResponse = try await carbonai.embeddings.getDocuments(
     query: query,
     k: k,
@@ -455,7 +458,8 @@ let getDocumentsResponse = try await carbonai.embeddings.getDocuments(
     embeddingModel: embeddingModel,
     includeFileLevelMetadata: includeFileLevelMetadata,
     highAccuracy: highAccuracy,
-    rerank: rerank
+    rerank: rerank,
+    fileTypesAtSource: fileTypesAtSource
 )
 ```
 
@@ -541,6 +545,11 @@ Flag to control whether or not to perform a high accuracy embedding search. By d
 
 
 ##### rerank: [`RerankParamsNullable`](./CarbonAI/Models/RerankParamsNullable.swift)<a id="rerank-rerankparamsnullablecarbonaimodelsrerankparamsnullableswift"></a>
+
+
+##### file_types_at_source: `[HelpdeskFileTypes]`<a id="file_types_at_source-helpdeskfiletypes"></a>
+
+Filter files based on their type at the source (for example help center tickets and articles)
 
 
 #### 🔄 Return<a id="🔄-return"></a>
@@ -659,6 +668,9 @@ let filters = OrganizationUserFilesToSyncFilters(
     includeContainers: false,
     externalUrls: [
     "externalUrls_example"
+    ],
+    fileTypesAtSource: [
+    HelpdeskFileTypes.ticket
     ]
 )
 let pagination = Pagination(
@@ -993,6 +1005,9 @@ let filters = OrganizationUserFilesToSyncFilters(
     includeContainers: false,
     externalUrls: [
     "externalUrls_example"
+    ],
+    fileTypesAtSource: [
+    HelpdeskFileTypes.ticket
     ]
 )
 let sendWebhook = true
@@ -1195,6 +1210,9 @@ let filters = OrganizationUserFilesToSyncFilters(
     includeContainers: false,
     externalUrls: [
     "externalUrls_example"
+    ],
+    fileTypesAtSource: [
+    HelpdeskFileTypes.ticket
     ]
 )
 let includeRawFile = true
@@ -1300,6 +1318,9 @@ let filters = OrganizationUserFilesToSyncFilters(
     includeContainers: false,
     externalUrls: [
     "externalUrls_example"
+    ],
+    fileTypesAtSource: [
+    HelpdeskFileTypes.ticket
     ]
 )
 let includeRawFile = true

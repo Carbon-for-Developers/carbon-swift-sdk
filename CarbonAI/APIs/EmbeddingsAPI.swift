@@ -84,7 +84,8 @@ open class EmbeddingsAPI {
         embeddingModel: EmbeddingGeneratorsNullable? = nil, 
         includeFileLevelMetadata: Bool? = nil, 
         highAccuracy: Bool? = nil, 
-        rerank: RerankParamsNullable? = nil
+        rerank: RerankParamsNullable? = nil, 
+        fileTypesAtSource: [HelpdeskFileTypes]? = nil
     ) async throws -> DocumentResponseList {
         let getEmbeddingDocumentsBody = GetEmbeddingDocumentsBody(
             tags: tags,
@@ -104,7 +105,8 @@ open class EmbeddingsAPI {
             embeddingModel: embeddingModel,
             includeFileLevelMetadata: includeFileLevelMetadata,
             highAccuracy: highAccuracy,
-            rerank: rerank
+            rerank: rerank,
+            fileTypesAtSource: fileTypesAtSource
         )
         return try await withCheckedThrowingContinuation { continuation in
             getDocumentsWithRequestBuilder(getEmbeddingDocumentsBody: getEmbeddingDocumentsBody).execute { result in
@@ -145,7 +147,8 @@ open class EmbeddingsAPI {
         embeddingModel: EmbeddingGeneratorsNullable? = nil, 
         includeFileLevelMetadata: Bool? = nil, 
         highAccuracy: Bool? = nil, 
-        rerank: RerankParamsNullable? = nil
+        rerank: RerankParamsNullable? = nil, 
+        fileTypesAtSource: [HelpdeskFileTypes]? = nil
     ) async throws -> DocumentResponseList {
         let getEmbeddingDocumentsBody = GetEmbeddingDocumentsBody(
             tags: tags,
@@ -165,7 +168,8 @@ open class EmbeddingsAPI {
             embeddingModel: embeddingModel,
             includeFileLevelMetadata: includeFileLevelMetadata,
             highAccuracy: highAccuracy,
-            rerank: rerank
+            rerank: rerank,
+            fileTypesAtSource: fileTypesAtSource
         )
         return try await withCheckedThrowingContinuation { continuation in
             getDocumentsWithRequestBuilder(getEmbeddingDocumentsBody: getEmbeddingDocumentsBody).execute { result in

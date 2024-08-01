@@ -45,8 +45,10 @@ public struct OrganizationUserFilesToSyncFilters: Codable, JSONEncodable, Hashab
     public var includeContainers: Bool?
     /** The external URLs of the files. The query will return files with these external URLs. */
     public var externalUrls: [String]?
+    /** Filter files based on their type at the source (for example help center tickets and articles) */
+    public var fileTypesAtSource: [HelpdeskFileTypes]?
 
-    public init(tags: [String: Tags1]? = nil, source: SourceProperty? = nil, name: String? = nil, tagsV2: AnyCodable? = nil, ids: [Int]? = nil, externalFileIds: [String]? = nil, syncStatuses: [ExternalFileSyncStatuses]? = nil, parentFileIds: [Int]? = nil, organizationUserDataSourceId: [Int]? = nil, embeddingGenerators: [EmbeddingGenerators]? = nil, rootFilesOnly: Bool? = nil, includeAllChildren: Bool? = false, nonSyncedOnly: Bool? = false, requestIds: [String]? = nil, syncErrorMessage: String? = nil, includeContainers: Bool? = nil, externalUrls: [String]? = nil) {
+    public init(tags: [String: Tags1]? = nil, source: SourceProperty? = nil, name: String? = nil, tagsV2: AnyCodable? = nil, ids: [Int]? = nil, externalFileIds: [String]? = nil, syncStatuses: [ExternalFileSyncStatuses]? = nil, parentFileIds: [Int]? = nil, organizationUserDataSourceId: [Int]? = nil, embeddingGenerators: [EmbeddingGenerators]? = nil, rootFilesOnly: Bool? = nil, includeAllChildren: Bool? = false, nonSyncedOnly: Bool? = false, requestIds: [String]? = nil, syncErrorMessage: String? = nil, includeContainers: Bool? = nil, externalUrls: [String]? = nil, fileTypesAtSource: [HelpdeskFileTypes]? = nil) {
         self.tags = tags
         self.source = source
         self.name = name
@@ -64,6 +66,7 @@ public struct OrganizationUserFilesToSyncFilters: Codable, JSONEncodable, Hashab
         self.syncErrorMessage = syncErrorMessage
         self.includeContainers = includeContainers
         self.externalUrls = externalUrls
+        self.fileTypesAtSource = fileTypesAtSource
     }
 
     public enum CodingKeys: String, CodingKey, CaseIterable {
@@ -84,6 +87,7 @@ public struct OrganizationUserFilesToSyncFilters: Codable, JSONEncodable, Hashab
         case syncErrorMessage = "sync_error_message"
         case includeContainers = "include_containers"
         case externalUrls = "external_urls"
+        case fileTypesAtSource = "file_types_at_source"
     }
 
     // Encodable protocol methods
@@ -107,6 +111,7 @@ public struct OrganizationUserFilesToSyncFilters: Codable, JSONEncodable, Hashab
         try container.encodeIfPresent(syncErrorMessage, forKey: .syncErrorMessage)
         try container.encodeIfPresent(includeContainers, forKey: .includeContainers)
         try container.encodeIfPresent(externalUrls, forKey: .externalUrls)
+        try container.encodeIfPresent(fileTypesAtSource, forKey: .fileTypesAtSource)
     }
 }
 
