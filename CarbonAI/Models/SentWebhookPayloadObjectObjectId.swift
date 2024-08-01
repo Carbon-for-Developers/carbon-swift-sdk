@@ -12,23 +12,20 @@ import AnyCodable
 
 public enum SentWebhookPayloadObjectObjectId: Codable, JSONEncodable, Hashable {
     case typeInt(Int)
-    case typeNull(Null)
     case typeString(String)
-    case type[Int]([Int])
-    case type[String]([String])
+    case typeIntArray([Int])
+    case typeStringArray([String])
 
     public func encode(to encoder: Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
         case .typeInt(let value):
             try container.encode(value)
-        case .typeNull(let value):
-            try container.encode(value)
         case .typeString(let value):
             try container.encode(value)
-        case .type[Int](let value):
+        case .typeIntArray(let value):
             try container.encode(value)
-        case .type[String](let value):
+        case .typeStringArray(let value):
             try container.encode(value)
         }
     }
@@ -37,14 +34,12 @@ public enum SentWebhookPayloadObjectObjectId: Codable, JSONEncodable, Hashable {
         let container = try decoder.singleValueContainer()
         if let value = try? container.decode(Int.self) {
             self = .typeInt(value)
-        } else if let value = try? container.decode(Null.self) {
-            self = .typeNull(value)
         } else if let value = try? container.decode(String.self) {
             self = .typeString(value)
         } else if let value = try? container.decode([Int].self) {
-            self = .type[Int](value)
+            self = .typeIntArray(value)
         } else if let value = try? container.decode([String].self) {
-            self = .type[String](value)
+            self = .typeStringArray(value)
         } else {
             throw DecodingError.typeMismatch(Self.Type.self, .init(codingPath: decoder.codingPath, debugDescription: "Unable to decode instance of SentWebhookPayloadObjectObjectId"))
         }

@@ -12,15 +12,12 @@ import AnyCodable
 
 public enum SentWebhookPayloadObjectAdditionalInformation: Codable, JSONEncodable, Hashable {
     case typeAnyCodable(AnyCodable)
-    case typeNull(Null)
     case typeString(String)
 
     public func encode(to encoder: Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
         case .typeAnyCodable(let value):
-            try container.encode(value)
-        case .typeNull(let value):
             try container.encode(value)
         case .typeString(let value):
             try container.encode(value)
@@ -31,8 +28,6 @@ public enum SentWebhookPayloadObjectAdditionalInformation: Codable, JSONEncodabl
         let container = try decoder.singleValueContainer()
         if let value = try? container.decode(AnyCodable.self) {
             self = .typeAnyCodable(value)
-        } else if let value = try? container.decode(Null.self) {
-            self = .typeNull(value)
         } else if let value = try? container.decode(String.self) {
             self = .typeString(value)
         } else {
