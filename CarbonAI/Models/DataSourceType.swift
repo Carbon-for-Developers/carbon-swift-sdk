@@ -11,6 +11,7 @@ import AnyCodable
 #endif
 
 public enum DataSourceType: String, Codable, CaseIterable {
+    case googleCloudStorage = "GOOGLE_CLOUD_STORAGE"
     case googleDrive = "GOOGLE_DRIVE"
     case notion = "NOTION"
     case notionDatabase = "NOTION_DATABASE"

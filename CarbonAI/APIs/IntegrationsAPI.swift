@@ -905,12 +905,14 @@ open class IntegrationsAPI {
     open class func createAwsIamUser(
         accessKey: String,
         accessKeySecret: String,
-        syncSourceItems: Bool? = nil
+        syncSourceItems: Bool? = nil, 
+        endpointUrl: String? = nil
     ) async throws -> OrganizationUserDataSourceAPI {
         let s3AuthRequest = S3AuthRequest(
             accessKey: accessKey,
             accessKeySecret: accessKeySecret,
-            syncSourceItems: syncSourceItems
+            syncSourceItems: syncSourceItems,
+            endpointUrl: endpointUrl
         )
         return try await withCheckedThrowingContinuation { continuation in
             createAwsIamUserWithRequestBuilder(s3AuthRequest: s3AuthRequest).execute { result in
@@ -936,12 +938,14 @@ open class IntegrationsAPI {
     open func createAwsIamUser(
         accessKey: String,
         accessKeySecret: String,
-        syncSourceItems: Bool? = nil
+        syncSourceItems: Bool? = nil, 
+        endpointUrl: String? = nil
     ) async throws -> OrganizationUserDataSourceAPI {
         let s3AuthRequest = S3AuthRequest(
             accessKey: accessKey,
             accessKeySecret: accessKeySecret,
-            syncSourceItems: syncSourceItems
+            syncSourceItems: syncSourceItems,
+            endpointUrl: endpointUrl
         )
         return try await withCheckedThrowingContinuation { continuation in
             createAwsIamUserWithRequestBuilder(s3AuthRequest: s3AuthRequest).execute { result in
@@ -960,7 +964,7 @@ open class IntegrationsAPI {
     /**
      S3 Auth
      - POST /integrations/s3
-     - Create a new IAM user with permissions to: <ol> <li>List all buckets.</li> <li>Read from the specific buckets and objects to sync with Carbon. Ensure any future buckets or objects carry  the same permissions.</li> </ol> Once created, generate an access key for this user and share the credentials with us. We recommend testing this key beforehand.
+     - This endpoint can be used to connect S3 as well as Digital Ocean Spaces (S3 compatible)   For S3, create a new IAM user with permissions to: <ol> <li>List all buckets.</li> <li>Read from the specific buckets and objects to sync with Carbon. Ensure any future buckets or objects carry  the same permissions.</li> </ol> Once created, generate an access key for this user and share the credentials with us. We recommend testing this key beforehand.   For Digital Ocean Spaces, generate the above credentials in your Applications and API page here https://cloud.digitalocean.com/account/api/spaces. Endpoint URL is required to connect Digital Ocean Spaces.
      - API Key:
        - type: apiKey authorization 
        - name: accessToken
@@ -1005,7 +1009,7 @@ open class IntegrationsAPI {
     /**
      S3 Auth
      - POST /integrations/s3
-     - Create a new IAM user with permissions to: <ol> <li>List all buckets.</li> <li>Read from the specific buckets and objects to sync with Carbon. Ensure any future buckets or objects carry  the same permissions.</li> </ol> Once created, generate an access key for this user and share the credentials with us. We recommend testing this key beforehand.
+     - This endpoint can be used to connect S3 as well as Digital Ocean Spaces (S3 compatible)   For S3, create a new IAM user with permissions to: <ol> <li>List all buckets.</li> <li>Read from the specific buckets and objects to sync with Carbon. Ensure any future buckets or objects carry  the same permissions.</li> </ol> Once created, generate an access key for this user and share the credentials with us. We recommend testing this key beforehand.   For Digital Ocean Spaces, generate the above credentials in your Applications and API page here https://cloud.digitalocean.com/account/api/spaces. Endpoint URL is required to connect Digital Ocean Spaces.
      - API Key:
        - type: apiKey authorization 
        - name: accessToken

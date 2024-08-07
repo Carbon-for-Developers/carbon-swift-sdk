@@ -15,17 +15,21 @@ public struct S3Authentication: Codable, JSONEncodable, Hashable {
     public var source: AnyCodable?
     public var accessKey: String
     public var accessKeySecret: String
+    /** You can specify a Digital Ocean endpoint URL to connect a Digital Ocean Space through this endpoint.         The URL should be of format <region>.digitaloceanspaces.com. It's not required for S3 buckets. */
+    public var endpointUrl: String?
 
-    public init(source: AnyCodable?, accessKey: String, accessKeySecret: String) {
+    public init(source: AnyCodable?, accessKey: String, accessKeySecret: String, endpointUrl: String? = nil) {
         self.source = source
         self.accessKey = accessKey
         self.accessKeySecret = accessKeySecret
+        self.endpointUrl = endpointUrl
     }
 
     public enum CodingKeys: String, CodingKey, CaseIterable {
         case source
         case accessKey = "access_key"
         case accessKeySecret = "access_key_secret"
+        case endpointUrl = "endpoint_url"
     }
 
     // Encodable protocol methods
@@ -35,6 +39,7 @@ public struct S3Authentication: Codable, JSONEncodable, Hashable {
         try container.encode(source, forKey: .source)
         try container.encode(accessKey, forKey: .accessKey)
         try container.encode(accessKeySecret, forKey: .accessKeySecret)
+        try container.encodeIfPresent(endpointUrl, forKey: .endpointUrl)
     }
 }
 

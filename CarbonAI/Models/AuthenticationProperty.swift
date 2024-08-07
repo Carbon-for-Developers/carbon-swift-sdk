@@ -27,8 +27,10 @@ public struct AuthenticationProperty: Codable, JSONEncodable, Hashable {
     public var apiKey: String
     public var accessKey: String
     public var accessKeySecret: String
+    /** You can specify a Digital Ocean endpoint URL to connect a Digital Ocean Space through this endpoint.         The URL should be of format <region>.digitaloceanspaces.com. It's not required for S3 buckets. */
+    public var endpointUrl: String?
 
-    public init(source: AnyCodable?, accessToken: String, refreshToken: String? = nil, workspaceId: String, tenantName: String, siteName: String, subdomain: String, accessTokenSecret: String, username: String, zoteroId: String, organizationName: String, domain: String, apiKey: String, accessKey: String, accessKeySecret: String) {
+    public init(source: AnyCodable?, accessToken: String, refreshToken: String? = nil, workspaceId: String, tenantName: String, siteName: String, subdomain: String, accessTokenSecret: String, username: String, zoteroId: String, organizationName: String, domain: String, apiKey: String, accessKey: String, accessKeySecret: String, endpointUrl: String? = nil) {
         self.source = source
         self.accessToken = accessToken
         self.refreshToken = refreshToken
@@ -44,6 +46,7 @@ public struct AuthenticationProperty: Codable, JSONEncodable, Hashable {
         self.apiKey = apiKey
         self.accessKey = accessKey
         self.accessKeySecret = accessKeySecret
+        self.endpointUrl = endpointUrl
     }
 
     public enum CodingKeys: String, CodingKey, CaseIterable {
@@ -62,6 +65,7 @@ public struct AuthenticationProperty: Codable, JSONEncodable, Hashable {
         case apiKey = "api_key"
         case accessKey = "access_key"
         case accessKeySecret = "access_key_secret"
+        case endpointUrl = "endpoint_url"
     }
 
     // Encodable protocol methods
@@ -83,6 +87,7 @@ public struct AuthenticationProperty: Codable, JSONEncodable, Hashable {
         try container.encode(apiKey, forKey: .apiKey)
         try container.encode(accessKey, forKey: .accessKey)
         try container.encode(accessKeySecret, forKey: .accessKeySecret)
+        try container.encodeIfPresent(endpointUrl, forKey: .endpointUrl)
     }
 }
 

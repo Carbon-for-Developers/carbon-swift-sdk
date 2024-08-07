@@ -19,4 +19,5 @@ public enum SimpleOAuthDataSources: String, Codable, CaseIterable {
     case gmail = "GMAIL"
     case outlook = "OUTLOOK"
     case slack = "SLACK"
+    case googleCloudStorage = "GOOGLE_CLOUD_STORAGE"
 }
