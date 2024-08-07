@@ -232,7 +232,7 @@ let orderDir = OrderDir(
     
 )
 let filters = OrganizationUserDataSourceFilters(
-    source: DataSourceTypeNullable.googleDrive,
+    source: DataSourceTypeNullable.googleCloudStorage,
     ids: [
     123
     ],
@@ -1822,7 +1822,8 @@ let authentication = AuthenticationProperty(
     domain: "domain_example",
     apiKey: "apiKey_example",
     accessKey: "accessKey_example",
-    accessKeySecret: "accessKeySecret_example"
+    accessKeySecret: "accessKeySecret_example",
+    endpointUrl: "endpointUrl_example"
 )
 let syncOptions = SyncOptions(
     tags: "TODO",
@@ -2078,13 +2079,16 @@ Enabling this flag will fetch all available content from the source to be listed
 
 ### `carbonai.integrations.createAwsIamUser`<a id="carbonaiintegrationscreateawsiamuser"></a>
 
-Create a new IAM user with permissions to:
+This endpoint can be used to connect S3 as well as Digital Ocean Spaces (S3 compatible)  
+For S3, create a new IAM user with permissions to:
 <ol>
 <li>List all buckets.</li>
 <li>Read from the specific buckets and objects to sync with Carbon. Ensure any future buckets or objects carry 
 the same permissions.</li>
 </ol>
-Once created, generate an access key for this user and share the credentials with us. We recommend testing this key beforehand.
+Once created, generate an access key for this user and share the credentials with us. We recommend testing this key beforehand.  
+For Digital Ocean Spaces, generate the above credentials in your Applications and API page here https://cloud.digitalocean.com/account/api/spaces.
+Endpoint URL is required to connect Digital Ocean Spaces.
 
 #### 🛠️ Usage<a id="🛠️-usage"></a>
 
@@ -2092,10 +2096,12 @@ Once created, generate an access key for this user and share the credentials wit
 let accessKey = "accessKey_example"
 let accessKeySecret = "accessKeySecret_example"
 let syncSourceItems = true
+let endpointUrl = "endpointUrl_example"
 let createAwsIamUserResponse = try await carbonai.integrations.createAwsIamUser(
     accessKey: accessKey,
     accessKeySecret: accessKeySecret,
-    syncSourceItems: syncSourceItems
+    syncSourceItems: syncSourceItems,
+    endpointUrl: endpointUrl
 )
 ```
 
@@ -2110,6 +2116,11 @@ let createAwsIamUserResponse = try await carbonai.integrations.createAwsIamUser(
 ##### sync_source_items: `Bool`<a id="sync_source_items-bool"></a>
 
 Enabling this flag will fetch all available content from the source to be listed via list items endpoint
+
+
+##### endpoint_url: `String`<a id="endpoint_url-string"></a>
+
+You can specify a Digital Ocean endpoint URL to connect a Digital Ocean Space through this endpoint.         The URL should be of format <region>.digitaloceanspaces.com. It's not required for S3 buckets.
 
 
 #### 🔄 Return<a id="🔄-return"></a>
