@@ -85,7 +85,8 @@ open class EmbeddingsAPI {
         includeFileLevelMetadata: Bool? = nil, 
         highAccuracy: Bool? = nil, 
         rerank: RerankParamsNullable? = nil, 
-        fileTypesAtSource: [HelpdeskFileTypes]? = nil
+        fileTypesAtSource: [HelpdeskFileTypes]? = nil, 
+        excludeColdStorageFiles: Bool? = nil
     ) async throws -> DocumentResponseList {
         let getEmbeddingDocumentsBody = GetEmbeddingDocumentsBody(
             tags: tags,
@@ -106,7 +107,8 @@ open class EmbeddingsAPI {
             includeFileLevelMetadata: includeFileLevelMetadata,
             highAccuracy: highAccuracy,
             rerank: rerank,
-            fileTypesAtSource: fileTypesAtSource
+            fileTypesAtSource: fileTypesAtSource,
+            excludeColdStorageFiles: excludeColdStorageFiles
         )
         return try await withCheckedThrowingContinuation { continuation in
             getDocumentsWithRequestBuilder(getEmbeddingDocumentsBody: getEmbeddingDocumentsBody).execute { result in
@@ -148,7 +150,8 @@ open class EmbeddingsAPI {
         includeFileLevelMetadata: Bool? = nil, 
         highAccuracy: Bool? = nil, 
         rerank: RerankParamsNullable? = nil, 
-        fileTypesAtSource: [HelpdeskFileTypes]? = nil
+        fileTypesAtSource: [HelpdeskFileTypes]? = nil, 
+        excludeColdStorageFiles: Bool? = nil
     ) async throws -> DocumentResponseList {
         let getEmbeddingDocumentsBody = GetEmbeddingDocumentsBody(
             tags: tags,
@@ -169,7 +172,8 @@ open class EmbeddingsAPI {
             includeFileLevelMetadata: includeFileLevelMetadata,
             highAccuracy: highAccuracy,
             rerank: rerank,
-            fileTypesAtSource: fileTypesAtSource
+            fileTypesAtSource: fileTypesAtSource,
+            excludeColdStorageFiles: excludeColdStorageFiles
         )
         return try await withCheckedThrowingContinuation { continuation in
             getDocumentsWithRequestBuilder(getEmbeddingDocumentsBody: getEmbeddingDocumentsBody).execute { result in

@@ -35,6 +35,8 @@ Connect external data to LLMs, no matter the source.
   * [`carbonai.files.deleteV2`](#carbonaifilesdeletev2)
   * [`carbonai.files.getParsedFile`](#carbonaifilesgetparsedfile)
   * [`carbonai.files.getRawFile`](#carbonaifilesgetrawfile)
+  * [`carbonai.files.modifyColdStorageParameters`](#carbonaifilesmodifycoldstorageparameters)
+  * [`carbonai.files.moveToHotStorage`](#carbonaifilesmovetohotstorage)
   * [`carbonai.files.queryUserFiles`](#carbonaifilesqueryuserfiles)
   * [`carbonai.files.queryUserFilesDeprecated`](#carbonaifilesqueryuserfilesdeprecated)
   * [`carbonai.files.resync`](#carbonaifilesresync)
@@ -440,6 +442,7 @@ let rerank = RerankParamsNullable(
 let fileTypesAtSource = [
 HelpdeskFileTypes.ticket
 ]
+let excludeColdStorageFiles = true
 let getDocumentsResponse = try await carbonai.embeddings.getDocuments(
     query: query,
     k: k,
@@ -459,7 +462,8 @@ let getDocumentsResponse = try await carbonai.embeddings.getDocuments(
     includeFileLevelMetadata: includeFileLevelMetadata,
     highAccuracy: highAccuracy,
     rerank: rerank,
-    fileTypesAtSource: fileTypesAtSource
+    fileTypesAtSource: fileTypesAtSource,
+    excludeColdStorageFiles: excludeColdStorageFiles
 )
 ```
 
@@ -550,6 +554,11 @@ Flag to control whether or not to perform a high accuracy embedding search. By d
 ##### file_types_at_source: `[HelpdeskFileTypes]`<a id="file_types_at_source-helpdeskfiletypes"></a>
 
 Filter files based on their type at the source (for example help center tickets and articles)
+
+
+##### exclude_cold_storage_files: `Bool`<a id="exclude_cold_storage_files-bool"></a>
+
+Flag to control whether or not to exclude files that are not in hot storage. If set to False, then an error will be returned if any filtered         files are in cold storage.
 
 
 #### 🔄 Return<a id="🔄-return"></a>
@@ -1109,6 +1118,148 @@ let getRawFileResponse = try await carbonai.files.getRawFile(
 ---
 
 
+### `carbonai.files.modifyColdStorageParameters`<a id="carbonaifilesmodifycoldstorageparameters"></a>
+
+Modify Cold Storage Parameters
+
+#### 🛠️ Usage<a id="🛠️-usage"></a>
+
+```swift
+let filters = OrganizationUserFilesToSyncFilters(
+    tags: "TODO",
+    source: SourceProperty(
+        
+    ),
+    name: "name_example",
+    tagsV2: "TODO",
+    ids: [
+    123
+    ],
+    externalFileIds: [
+    "externalFileIds_example"
+    ],
+    syncStatuses: [
+    ExternalFileSyncStatuses.delayed
+    ],
+    parentFileIds: [
+    123
+    ],
+    organizationUserDataSourceId: [
+    123
+    ],
+    embeddingGenerators: [
+    EmbeddingGenerators.openai
+    ],
+    rootFilesOnly: false,
+    includeAllChildren: false,
+    nonSyncedOnly: false,
+    requestIds: [
+    "requestIds_example"
+    ],
+    syncErrorMessage: "syncErrorMessage_example",
+    includeContainers: false,
+    externalUrls: [
+    "externalUrls_example"
+    ],
+    fileTypesAtSource: [
+    HelpdeskFileTypes.ticket
+    ]
+)
+let enableColdStorage = true
+let hotStorageTimeToLive = 987
+let modifyColdStorageParametersResponse = try await carbonai.files.modifyColdStorageParameters(
+    filters: filters,
+    enableColdStorage: enableColdStorage,
+    hotStorageTimeToLive: hotStorageTimeToLive
+)
+```
+
+#### ⚙️ Parameters<a id="⚙️-parameters"></a>
+
+##### filters: [`OrganizationUserFilesToSyncFilters`](./CarbonAI/Models/OrganizationUserFilesToSyncFilters.swift)<a id="filters-organizationuserfilestosyncfilterscarbonaimodelsorganizationuserfilestosyncfiltersswift"></a>
+
+
+##### enable_cold_storage: `Bool`<a id="enable_cold_storage-bool"></a>
+
+
+##### hot_storage_time_to_live: `Int`<a id="hot_storage_time_to_live-int"></a>
+
+
+#### 🌐 Endpoint<a id="🌐-endpoint"></a>
+
+`/modify_cold_storage_parameters` `POST`
+
+[🔙 **Back to Table of Contents**](#table-of-contents)
+
+---
+
+
+### `carbonai.files.moveToHotStorage`<a id="carbonaifilesmovetohotstorage"></a>
+
+Move To Hot Storage
+
+#### 🛠️ Usage<a id="🛠️-usage"></a>
+
+```swift
+let filters = OrganizationUserFilesToSyncFilters(
+    tags: "TODO",
+    source: SourceProperty(
+        
+    ),
+    name: "name_example",
+    tagsV2: "TODO",
+    ids: [
+    123
+    ],
+    externalFileIds: [
+    "externalFileIds_example"
+    ],
+    syncStatuses: [
+    ExternalFileSyncStatuses.delayed
+    ],
+    parentFileIds: [
+    123
+    ],
+    organizationUserDataSourceId: [
+    123
+    ],
+    embeddingGenerators: [
+    EmbeddingGenerators.openai
+    ],
+    rootFilesOnly: false,
+    includeAllChildren: false,
+    nonSyncedOnly: false,
+    requestIds: [
+    "requestIds_example"
+    ],
+    syncErrorMessage: "syncErrorMessage_example",
+    includeContainers: false,
+    externalUrls: [
+    "externalUrls_example"
+    ],
+    fileTypesAtSource: [
+    HelpdeskFileTypes.ticket
+    ]
+)
+let moveToHotStorageResponse = try await carbonai.files.moveToHotStorage(
+    filters: filters
+)
+```
+
+#### ⚙️ Parameters<a id="⚙️-parameters"></a>
+
+##### filters: [`OrganizationUserFilesToSyncFilters`](./CarbonAI/Models/OrganizationUserFilesToSyncFilters.swift)<a id="filters-organizationuserfilestosyncfilterscarbonaimodelsorganizationuserfilestosyncfiltersswift"></a>
+
+
+#### 🌐 Endpoint<a id="🌐-endpoint"></a>
+
+`/move_to_hot_storage` `POST`
+
+[🔙 **Back to Table of Contents**](#table-of-contents)
+
+---
+
+
 ### `carbonai.files.queryUserFiles`<a id="carbonaifilesqueryuserfiles"></a>
 
 For pre-filtering documents, using `tags_v2` is preferred to using `tags` (which is now deprecated). If both `tags_v2`
@@ -1467,10 +1618,13 @@ let detectAudioLanguage = false
 let transcriptionService = TranscriptionServiceNullable(
     
 )
+let includeSpeakerLabels = false
 let mediaType = FileContentTypesNullable(
     
 )
 let splitRows = false
+let enableColdStorage = false
+let hotStorageTimeToLive = 987
 let uploadResponse = try await carbonai.files.upload(
     file: file,
     chunkSize: chunkSize,
@@ -1485,8 +1639,11 @@ let uploadResponse = try await carbonai.files.upload(
     parsePdfTablesWithOcr: parsePdfTablesWithOcr,
     detectAudioLanguage: detectAudioLanguage,
     transcriptionService: transcriptionService,
+    includeSpeakerLabels: includeSpeakerLabels,
     mediaType: mediaType,
-    splitRows: splitRows
+    splitRows: splitRows,
+    enableColdStorage: enableColdStorage,
+    hotStorageTimeToLive: hotStorageTimeToLive
 )
 ```
 
@@ -1555,6 +1712,11 @@ Whether to automatically detect the language of the uploaded audio file.
 The transcription service to use for audio files. If no service is specified, 'deepgram' will be used.
 
 
+##### includeSpeakerLabels: `Bool`<a id="includespeakerlabels-bool"></a>
+
+Detect multiple speakers and label segments of speech by speaker for audio files.
+
+
 ##### mediaType: `FileContentTypesNullable`<a id="mediatype-filecontenttypesnullable"></a>
 
 The media type of the file. If not provided, it will be inferred from the file extension.
@@ -1563,6 +1725,16 @@ The media type of the file. If not provided, it will be inferred from the file e
 ##### splitRows: `Bool`<a id="splitrows-bool"></a>
 
 Whether to split tabular rows into chunks. Currently only valid for CSV, TSV, and XLSX files.
+
+
+##### enableColdStorage: `Bool`<a id="enablecoldstorage-bool"></a>
+
+Enable cold storage for the file. If set to true, the file will be moved to cold storage after a certain period of inactivity. Default is false.
+
+
+##### hotStorageTimeToLive: `Int`<a id="hotstoragetimetolive-int"></a>
+
+Time in seconds after which the file will be moved to cold storage.
 
 
 #### 🔄 Return<a id="🔄-return"></a>
@@ -1603,10 +1775,15 @@ let detectAudioLanguage = true
 let transcriptionService = TranscriptionServiceNullable(
     
 )
+let includeSpeakerLabels = true
 let mediaType = FileContentTypesNullable(
     
 )
 let splitRows = true
+let coldStorageParams = ColdStorageProps(
+    enableColdStorage: false,
+    hotStorageTimeToLive: 123
+)
 let uploadFromUrlResponse = try await carbonai.files.uploadFromUrl(
     url: url,
     fileName: fileName,
@@ -1622,8 +1799,10 @@ let uploadFromUrlResponse = try await carbonai.files.uploadFromUrl(
     parsePdfTablesWithOcr: parsePdfTablesWithOcr,
     detectAudioLanguage: detectAudioLanguage,
     transcriptionService: transcriptionService,
+    includeSpeakerLabels: includeSpeakerLabels,
     mediaType: mediaType,
-    splitRows: splitRows
+    splitRows: splitRows,
+    coldStorageParams: coldStorageParams
 )
 ```
 
@@ -1673,10 +1852,16 @@ Number of objects per chunk. For csv, tsv, xlsx, and json files only.
 ##### transcription_service: `TranscriptionServiceNullable`<a id="transcription_service-transcriptionservicenullable"></a>
 
 
+##### include_speaker_labels: `Bool`<a id="include_speaker_labels-bool"></a>
+
+
 ##### media_type: `FileContentTypesNullable`<a id="media_type-filecontenttypesnullable"></a>
 
 
 ##### split_rows: `Bool`<a id="split_rows-bool"></a>
+
+
+##### cold_storage_params: [`ColdStorageProps`](./CarbonAI/Models/ColdStorageProps.swift)<a id="cold_storage_params-coldstoragepropscarbonaimodelscoldstoragepropsswift"></a>
 
 
 #### 🔄 Return<a id="🔄-return"></a>
@@ -1718,6 +1903,10 @@ let embeddingModel = EmbeddingGeneratorsNullable(
     
 )
 let generateSparseVectors = true
+let coldStorageParams = ColdStorageProps(
+    enableColdStorage: false,
+    hotStorageTimeToLive: 123
+)
 let uploadTextResponse = try await carbonai.files.uploadText(
     contents: contents,
     name: name,
@@ -1726,7 +1915,8 @@ let uploadTextResponse = try await carbonai.files.uploadText(
     skipEmbeddingGeneration: skipEmbeddingGeneration,
     overwriteFileId: overwriteFileId,
     embeddingModel: embeddingModel,
-    generateSparseVectors: generateSparseVectors
+    generateSparseVectors: generateSparseVectors,
+    coldStorageParams: coldStorageParams
 )
 ```
 
@@ -1754,6 +1944,9 @@ let uploadTextResponse = try await carbonai.files.uploadText(
 
 
 ##### generate_sparse_vectors: `Bool`<a id="generate_sparse_vectors-bool"></a>
+
+
+##### cold_storage_params: [`ColdStorageProps`](./CarbonAI/Models/ColdStorageProps.swift)<a id="cold_storage_params-coldstoragepropscarbonaimodelscoldstoragepropsswift"></a>
 
 
 #### 🔄 Return<a id="🔄-return"></a>
@@ -1847,8 +2040,10 @@ let syncOptions = SyncOptions(
         syncAttachments: false,
         detectAudioLanguage: false,
         transcriptionService: TranscriptionServiceNullable.assemblyai,
+        includeSpeakerLabels: false,
         splitRows: false
-    )
+    ),
+    automaticallyOpenFilePicker: false
 )
 let connectDataSourceResponse = try await carbonai.integrations.connectDataSource(
     authentication: authentication,
@@ -1909,6 +2104,7 @@ let fileSyncConfig = FileSyncConfigNullable(
     syncAttachments: false,
     detectAudioLanguage: false,
     transcriptionService: TranscriptionServiceNullable.assemblyai,
+    includeSpeakerLabels: false,
     splitRows: false
 )
 let connectFreshdeskResponse = try await carbonai.integrations.connectFreshdesk(
@@ -2182,8 +2378,10 @@ let fileSyncConfig = FileSyncConfigNullable(
     syncAttachments: false,
     detectAudioLanguage: false,
     transcriptionService: TranscriptionServiceNullable.assemblyai,
+    includeSpeakerLabels: false,
     splitRows: false
 )
+let automaticallyOpenFilePicker = true
 let getOauthUrlResponse = try await carbonai.integrations.getOauthUrl(
     service: service,
     tags: tags,
@@ -2210,7 +2408,8 @@ let getOauthUrlResponse = try await carbonai.integrations.getOauthUrl(
     enableFilePicker: enableFilePicker,
     syncSourceItems: syncSourceItems,
     incrementalSync: incrementalSync,
-    fileSyncConfig: fileSyncConfig
+    fileSyncConfig: fileSyncConfig,
+    automaticallyOpenFilePicker: automaticallyOpenFilePicker
 )
 ```
 
@@ -2310,6 +2509,11 @@ Only sync files if they have not already been synced or if the embedding propert
 
 
 ##### file_sync_config: [`FileSyncConfigNullable`](./CarbonAI/Models/FileSyncConfigNullable.swift)<a id="file_sync_config-filesyncconfignullablecarbonaimodelsfilesyncconfignullableswift"></a>
+
+
+##### automatically_open_file_picker: `Bool`<a id="automatically_open_file_picker-bool"></a>
+
+Automatically open source file picker after the OAuth flow is complete. This flag is currently supported by         BOX, DROPBOX, GOOGLE_DRIVE, ONEDRIVE, SHAREPOINT. It will be ignored for other data sources.
 
 
 #### 🔄 Return<a id="🔄-return"></a>
@@ -2678,6 +2882,7 @@ let fileSyncConfig = FileSyncConfigNullable(
     syncAttachments: false,
     detectAudioLanguage: false,
     transcriptionService: TranscriptionServiceNullable.assemblyai,
+    includeSpeakerLabels: false,
     splitRows: false
 )
 let syncConfluenceResponse = try await carbonai.integrations.syncConfluence(
@@ -2834,6 +3039,7 @@ let fileSyncConfig = FileSyncConfigNullable(
     syncAttachments: false,
     detectAudioLanguage: false,
     transcriptionService: TranscriptionServiceNullable.assemblyai,
+    includeSpeakerLabels: false,
     splitRows: false
 )
 let syncFilesResponse = try await carbonai.integrations.syncFiles(
@@ -3123,6 +3329,7 @@ let fileSyncConfig = FileSyncConfigNullable(
     syncAttachments: false,
     detectAudioLanguage: false,
     transcriptionService: TranscriptionServiceNullable.assemblyai,
+    includeSpeakerLabels: false,
     splitRows: false
 )
 let incrementalSync = true
@@ -3285,6 +3492,7 @@ let fileSyncConfig = FileSyncConfigNullable(
     syncAttachments: false,
     detectAudioLanguage: false,
     transcriptionService: TranscriptionServiceNullable.assemblyai,
+    includeSpeakerLabels: false,
     splitRows: false
 )
 let incrementalSync = true
@@ -3509,6 +3717,7 @@ let fileSyncConfig = FileSyncConfigNullable(
     syncAttachments: false,
     detectAudioLanguage: false,
     transcriptionService: TranscriptionServiceNullable.assemblyai,
+    includeSpeakerLabels: false,
     splitRows: false
 )
 let syncS3FilesResponse = try await carbonai.integrations.syncS3Files(

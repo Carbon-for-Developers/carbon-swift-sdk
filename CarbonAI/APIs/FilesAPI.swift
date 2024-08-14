@@ -1369,6 +1369,382 @@ open class FilesAPI {
 
 
     /**
+     Modify Cold Storage Parameters
+     
+     - parameter modifyColdStorageParametersQueryInput: (body)  
+     - parameter apiResponseQueue: The queue on which api response is dispatched.
+     - parameter completion: completion handler to receive the data and the error objects
+     */
+    @discardableResult
+    open class func modifyColdStorageParametersSync(modifyColdStorageParametersQueryInput: ModifyColdStorageParametersQueryInput, apiResponseQueue: DispatchQueue = CarbonAIAPI.apiResponseQueue, completion: @escaping ((_ data: Bool?, _ error: Error?) -> Void)) -> RequestTask {
+        return modifyColdStorageParametersWithRequestBuilder(modifyColdStorageParametersQueryInput: modifyColdStorageParametersQueryInput).execute(apiResponseQueue) { result in
+            switch result {
+            case let .success(response):
+                completion(response.body, nil)
+            case let .failure(error):
+                completion(nil, error)
+            }
+        }
+    }
+
+    /**
+     Modify Cold Storage Parameters
+     
+     - parameter modifyColdStorageParametersQueryInput: (body)  
+     - parameter apiResponseQueue: The queue on which api response is dispatched.
+     - parameter completion: completion handler to receive the data and the error objects
+     */
+    @available(iOS 13.0, macOS 10.15, tvOS 13.0, watchOS 6.0, *)
+    private class func modifyColdStorageParametersAsyncMappedParams(modifyColdStorageParametersQueryInput: ModifyColdStorageParametersQueryInput) async throws -> Bool {
+        return try await withCheckedThrowingContinuation { continuation in
+            modifyColdStorageParametersWithRequestBuilder(modifyColdStorageParametersQueryInput: modifyColdStorageParametersQueryInput).execute { result in
+                switch result {
+                case let .success(response):
+                    continuation.resume(returning: response.body)
+                case let .failure(error):
+                    continuation.resume(throwing: error)
+                }
+            }
+        }
+    }
+
+    /**
+     Modify Cold Storage Parameters
+     
+     - parameter modifyColdStorageParametersQueryInput: (body)  
+     - parameter apiResponseQueue: The queue on which api response is dispatched.
+     - parameter completion: completion handler to receive the data and the error objects
+     */
+    @available(iOS 13.0, macOS 10.15, tvOS 13.0, watchOS 6.0, *)
+    open class func modifyColdStorageParameters(
+        filters: OrganizationUserFilesToSyncFilters? = nil, 
+        enableColdStorage: Bool? = nil, 
+        hotStorageTimeToLive: Int? = nil
+    ) async throws -> Bool {
+        let modifyColdStorageParametersQueryInput = ModifyColdStorageParametersQueryInput(
+            filters: filters,
+            enableColdStorage: enableColdStorage,
+            hotStorageTimeToLive: hotStorageTimeToLive
+        )
+        return try await withCheckedThrowingContinuation { continuation in
+            modifyColdStorageParametersWithRequestBuilder(modifyColdStorageParametersQueryInput: modifyColdStorageParametersQueryInput).execute { result in
+                switch result {
+                case let .success(response):
+                    continuation.resume(returning: response.body)
+                case let .failure(error):
+                    continuation.resume(throwing: error)
+                }
+            }
+        }
+    }
+
+
+    /**
+     Modify Cold Storage Parameters
+     
+     - parameter modifyColdStorageParametersQueryInput: (body)  
+     - parameter apiResponseQueue: The queue on which api response is dispatched.
+     - parameter completion: completion handler to receive the data and the error objects
+     */
+    @available(iOS 13.0, macOS 10.15, tvOS 13.0, watchOS 6.0, *)
+    open func modifyColdStorageParameters(
+        filters: OrganizationUserFilesToSyncFilters? = nil, 
+        enableColdStorage: Bool? = nil, 
+        hotStorageTimeToLive: Int? = nil
+    ) async throws -> Bool {
+        let modifyColdStorageParametersQueryInput = ModifyColdStorageParametersQueryInput(
+            filters: filters,
+            enableColdStorage: enableColdStorage,
+            hotStorageTimeToLive: hotStorageTimeToLive
+        )
+        return try await withCheckedThrowingContinuation { continuation in
+            modifyColdStorageParametersWithRequestBuilder(modifyColdStorageParametersQueryInput: modifyColdStorageParametersQueryInput).execute { result in
+                switch result {
+                case let .success(response):
+                    continuation.resume(returning: response.body)
+                case let .failure(error):
+                    continuation.resume(throwing: error)
+                }
+            }
+        }
+    }
+
+
+
+    /**
+     Modify Cold Storage Parameters
+     - POST /modify_cold_storage_parameters
+     - API Key:
+       - type: apiKey authorization 
+       - name: accessToken
+     - API Key:
+       - type: apiKey authorization 
+       - name: apiKey
+     - API Key:
+       - type: apiKey customer-id 
+       - name: customerId
+     - parameter modifyColdStorageParametersQueryInput: (body)  
+     - returns: RequestBuilder<Bool> 
+     */
+    open class func modifyColdStorageParametersWithRequestBuilder(
+            modifyColdStorageParametersQueryInput: ModifyColdStorageParametersQueryInput
+    ) -> RequestBuilder<Bool> {
+        let basePath = CarbonAIAPI.basePath;
+        let localVariablePath = "/modify_cold_storage_parameters"
+        let localVariableURLString = basePath + localVariablePath
+        let localVariableParameters = JSONEncodingHelper.encodingParameters(forEncodableObject: modifyColdStorageParametersQueryInput)
+
+        var localVariableUrlComponents = URLComponents(string: localVariableURLString)
+
+        let localVariableNillableHeaders: [String: Any?] = [
+            :
+        ]
+
+        var localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
+
+        do {
+            try Authentication.setAuthenticationParameters(headers: &localVariableHeaderParameters, url: &localVariableUrlComponents, in: "header", name: "authorization", value: CarbonAIAPI.accessToken, prefix: "Token ")
+            try Authentication.setAuthenticationParameters(headers: &localVariableHeaderParameters, url: &localVariableUrlComponents, in: "header", name: "authorization", value: CarbonAIAPI.apiKey, prefix: "Bearer ")
+            try Authentication.setAuthenticationParameters(headers: &localVariableHeaderParameters, url: &localVariableUrlComponents, in: "header", name: "customer-id", value: CarbonAIAPI.customerId, prefix: nil)
+            let localVariableRequestBuilder: RequestBuilder<Bool>.Type = CarbonAIAPI.requestBuilderFactory.getBuilder()
+            let URLString = localVariableUrlComponents?.string ?? localVariableURLString
+            return localVariableRequestBuilder.init(method: "POST", URLString: URLString, parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        } catch {
+            print("Error: \(error)")
+        }
+        fatalError("Error: Unable to send request to POST /modify_cold_storage_parameters")
+    }
+
+    /**
+     Modify Cold Storage Parameters
+     - POST /modify_cold_storage_parameters
+     - API Key:
+       - type: apiKey authorization 
+       - name: accessToken
+     - API Key:
+       - type: apiKey authorization 
+       - name: apiKey
+     - API Key:
+       - type: apiKey customer-id 
+       - name: customerId
+     - parameter modifyColdStorageParametersQueryInput: (body)  
+     - returns: RequestBuilder<Bool> 
+     */
+    open func modifyColdStorageParametersWithRequestBuilder(
+            modifyColdStorageParametersQueryInput: ModifyColdStorageParametersQueryInput
+    ) -> RequestBuilder<Bool> {
+        let basePath = self.client!.basePath;
+        let localVariablePath = "/modify_cold_storage_parameters"
+        let localVariableURLString = basePath + localVariablePath
+        let localVariableParameters = JSONEncodingHelper.encodingParameters(forEncodableObject: modifyColdStorageParametersQueryInput)
+
+        var localVariableUrlComponents = URLComponents(string: localVariableURLString)
+
+        let localVariableNillableHeaders: [String: Any?] = [
+            :
+        ]
+
+        var localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
+
+        do {
+            try Authentication.setAuthenticationParameters(headers: &localVariableHeaderParameters, url: &localVariableUrlComponents, in: "header", name: "authorization", value: self.client!.accessToken, prefix: "Token ")
+            try Authentication.setAuthenticationParameters(headers: &localVariableHeaderParameters, url: &localVariableUrlComponents, in: "header", name: "authorization", value: self.client!.apiKey, prefix: "Bearer ")
+            try Authentication.setAuthenticationParameters(headers: &localVariableHeaderParameters, url: &localVariableUrlComponents, in: "header", name: "customer-id", value: self.client!.customerId, prefix: nil)
+            let localVariableRequestBuilder: RequestBuilder<Bool>.Type = CarbonAIAPI.requestBuilderFactory.getBuilder()
+            let URLString = localVariableUrlComponents?.string ?? localVariableURLString
+            return localVariableRequestBuilder.init(method: "POST", URLString: URLString, parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        } catch {
+            print("Error: \(error)")
+        }
+        fatalError("Error: Unable to send request to POST /modify_cold_storage_parameters")
+    }
+
+
+    /**
+     Move To Hot Storage
+     
+     - parameter moveToHotStorageQueryInput: (body)  
+     - parameter apiResponseQueue: The queue on which api response is dispatched.
+     - parameter completion: completion handler to receive the data and the error objects
+     */
+    @discardableResult
+    open class func moveToHotStorageSync(moveToHotStorageQueryInput: MoveToHotStorageQueryInput, apiResponseQueue: DispatchQueue = CarbonAIAPI.apiResponseQueue, completion: @escaping ((_ data: Bool?, _ error: Error?) -> Void)) -> RequestTask {
+        return moveToHotStorageWithRequestBuilder(moveToHotStorageQueryInput: moveToHotStorageQueryInput).execute(apiResponseQueue) { result in
+            switch result {
+            case let .success(response):
+                completion(response.body, nil)
+            case let .failure(error):
+                completion(nil, error)
+            }
+        }
+    }
+
+    /**
+     Move To Hot Storage
+     
+     - parameter moveToHotStorageQueryInput: (body)  
+     - parameter apiResponseQueue: The queue on which api response is dispatched.
+     - parameter completion: completion handler to receive the data and the error objects
+     */
+    @available(iOS 13.0, macOS 10.15, tvOS 13.0, watchOS 6.0, *)
+    private class func moveToHotStorageAsyncMappedParams(moveToHotStorageQueryInput: MoveToHotStorageQueryInput) async throws -> Bool {
+        return try await withCheckedThrowingContinuation { continuation in
+            moveToHotStorageWithRequestBuilder(moveToHotStorageQueryInput: moveToHotStorageQueryInput).execute { result in
+                switch result {
+                case let .success(response):
+                    continuation.resume(returning: response.body)
+                case let .failure(error):
+                    continuation.resume(throwing: error)
+                }
+            }
+        }
+    }
+
+    /**
+     Move To Hot Storage
+     
+     - parameter moveToHotStorageQueryInput: (body)  
+     - parameter apiResponseQueue: The queue on which api response is dispatched.
+     - parameter completion: completion handler to receive the data and the error objects
+     */
+    @available(iOS 13.0, macOS 10.15, tvOS 13.0, watchOS 6.0, *)
+    open class func moveToHotStorage(
+        filters: OrganizationUserFilesToSyncFilters? = nil
+    ) async throws -> Bool {
+        let moveToHotStorageQueryInput = MoveToHotStorageQueryInput(
+            filters: filters
+        )
+        return try await withCheckedThrowingContinuation { continuation in
+            moveToHotStorageWithRequestBuilder(moveToHotStorageQueryInput: moveToHotStorageQueryInput).execute { result in
+                switch result {
+                case let .success(response):
+                    continuation.resume(returning: response.body)
+                case let .failure(error):
+                    continuation.resume(throwing: error)
+                }
+            }
+        }
+    }
+
+
+    /**
+     Move To Hot Storage
+     
+     - parameter moveToHotStorageQueryInput: (body)  
+     - parameter apiResponseQueue: The queue on which api response is dispatched.
+     - parameter completion: completion handler to receive the data and the error objects
+     */
+    @available(iOS 13.0, macOS 10.15, tvOS 13.0, watchOS 6.0, *)
+    open func moveToHotStorage(
+        filters: OrganizationUserFilesToSyncFilters? = nil
+    ) async throws -> Bool {
+        let moveToHotStorageQueryInput = MoveToHotStorageQueryInput(
+            filters: filters
+        )
+        return try await withCheckedThrowingContinuation { continuation in
+            moveToHotStorageWithRequestBuilder(moveToHotStorageQueryInput: moveToHotStorageQueryInput).execute { result in
+                switch result {
+                case let .success(response):
+                    continuation.resume(returning: response.body)
+                case let .failure(error):
+                    continuation.resume(throwing: error)
+                }
+            }
+        }
+    }
+
+
+
+    /**
+     Move To Hot Storage
+     - POST /move_to_hot_storage
+     - API Key:
+       - type: apiKey authorization 
+       - name: accessToken
+     - API Key:
+       - type: apiKey authorization 
+       - name: apiKey
+     - API Key:
+       - type: apiKey customer-id 
+       - name: customerId
+     - parameter moveToHotStorageQueryInput: (body)  
+     - returns: RequestBuilder<Bool> 
+     */
+    open class func moveToHotStorageWithRequestBuilder(
+            moveToHotStorageQueryInput: MoveToHotStorageQueryInput
+    ) -> RequestBuilder<Bool> {
+        let basePath = CarbonAIAPI.basePath;
+        let localVariablePath = "/move_to_hot_storage"
+        let localVariableURLString = basePath + localVariablePath
+        let localVariableParameters = JSONEncodingHelper.encodingParameters(forEncodableObject: moveToHotStorageQueryInput)
+
+        var localVariableUrlComponents = URLComponents(string: localVariableURLString)
+
+        let localVariableNillableHeaders: [String: Any?] = [
+            :
+        ]
+
+        var localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
+
+        do {
+            try Authentication.setAuthenticationParameters(headers: &localVariableHeaderParameters, url: &localVariableUrlComponents, in: "header", name: "authorization", value: CarbonAIAPI.accessToken, prefix: "Token ")
+            try Authentication.setAuthenticationParameters(headers: &localVariableHeaderParameters, url: &localVariableUrlComponents, in: "header", name: "authorization", value: CarbonAIAPI.apiKey, prefix: "Bearer ")
+            try Authentication.setAuthenticationParameters(headers: &localVariableHeaderParameters, url: &localVariableUrlComponents, in: "header", name: "customer-id", value: CarbonAIAPI.customerId, prefix: nil)
+            let localVariableRequestBuilder: RequestBuilder<Bool>.Type = CarbonAIAPI.requestBuilderFactory.getBuilder()
+            let URLString = localVariableUrlComponents?.string ?? localVariableURLString
+            return localVariableRequestBuilder.init(method: "POST", URLString: URLString, parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        } catch {
+            print("Error: \(error)")
+        }
+        fatalError("Error: Unable to send request to POST /move_to_hot_storage")
+    }
+
+    /**
+     Move To Hot Storage
+     - POST /move_to_hot_storage
+     - API Key:
+       - type: apiKey authorization 
+       - name: accessToken
+     - API Key:
+       - type: apiKey authorization 
+       - name: apiKey
+     - API Key:
+       - type: apiKey customer-id 
+       - name: customerId
+     - parameter moveToHotStorageQueryInput: (body)  
+     - returns: RequestBuilder<Bool> 
+     */
+    open func moveToHotStorageWithRequestBuilder(
+            moveToHotStorageQueryInput: MoveToHotStorageQueryInput
+    ) -> RequestBuilder<Bool> {
+        let basePath = self.client!.basePath;
+        let localVariablePath = "/move_to_hot_storage"
+        let localVariableURLString = basePath + localVariablePath
+        let localVariableParameters = JSONEncodingHelper.encodingParameters(forEncodableObject: moveToHotStorageQueryInput)
+
+        var localVariableUrlComponents = URLComponents(string: localVariableURLString)
+
+        let localVariableNillableHeaders: [String: Any?] = [
+            :
+        ]
+
+        var localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
+
+        do {
+            try Authentication.setAuthenticationParameters(headers: &localVariableHeaderParameters, url: &localVariableUrlComponents, in: "header", name: "authorization", value: self.client!.accessToken, prefix: "Token ")
+            try Authentication.setAuthenticationParameters(headers: &localVariableHeaderParameters, url: &localVariableUrlComponents, in: "header", name: "authorization", value: self.client!.apiKey, prefix: "Bearer ")
+            try Authentication.setAuthenticationParameters(headers: &localVariableHeaderParameters, url: &localVariableUrlComponents, in: "header", name: "customer-id", value: self.client!.customerId, prefix: nil)
+            let localVariableRequestBuilder: RequestBuilder<Bool>.Type = CarbonAIAPI.requestBuilderFactory.getBuilder()
+            let URLString = localVariableUrlComponents?.string ?? localVariableURLString
+            return localVariableRequestBuilder.init(method: "POST", URLString: URLString, parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        } catch {
+            print("Error: \(error)")
+        }
+        fatalError("Error: Unable to send request to POST /move_to_hot_storage")
+    }
+
+
+    /**
      User Files V2
      
      - parameter organizationUserFilesToSyncQueryInput: (body)  
@@ -2007,14 +2383,17 @@ open class FilesAPI {
      - parameter parsePdfTablesWithOcr: (query) Whether to use rich table parsing when &#x60;use_ocr&#x60; is enabled. (optional, default to false)
      - parameter detectAudioLanguage: (query) Whether to automatically detect the language of the uploaded audio file. (optional, default to false)
      - parameter transcriptionService: (query) The transcription service to use for audio files. If no service is specified, &#39;deepgram&#39; will be used. (optional)
+     - parameter includeSpeakerLabels: (query) Detect multiple speakers and label segments of speech by speaker for audio files. (optional, default to false)
      - parameter mediaType: (query) The media type of the file. If not provided, it will be inferred from the file extension. (optional)
      - parameter splitRows: (query) Whether to split tabular rows into chunks. Currently only valid for CSV, TSV, and XLSX files. (optional, default to false)
+     - parameter enableColdStorage: (query) Enable cold storage for the file. If set to true, the file will be moved to cold storage after a certain period of inactivity. Default is false. (optional, default to false)
+     - parameter hotStorageTimeToLive: (query) Time in seconds after which the file will be moved to cold storage. (optional)
      - parameter apiResponseQueue: The queue on which api response is dispatched.
      - parameter completion: completion handler to receive the data and the error objects
      */
     @discardableResult
-    open class func uploadSync(file: URL, bodyCreateUploadFileUploadfilePost: BodyCreateUploadFileUploadfilePost, chunkSize: Int? = nil, chunkOverlap: Int? = nil, skipEmbeddingGeneration: Bool? = nil, setPageAsBoundary: Bool? = nil, embeddingModel: EmbeddingModel? = nil, useOcr: Bool? = nil, generateSparseVectors: Bool? = nil, prependFilenameToChunks: Bool? = nil, maxItemsPerChunk: Int? = nil, parsePdfTablesWithOcr: Bool? = nil, detectAudioLanguage: Bool? = nil, transcriptionService: TranscriptionServiceNullable? = nil, mediaType: FileContentTypesNullable? = nil, splitRows: Bool? = nil, apiResponseQueue: DispatchQueue = CarbonAIAPI.apiResponseQueue, completion: @escaping ((_ data: UserFile?, _ error: Error?) -> Void)) -> RequestTask {
-        return uploadWithRequestBuilder(file: file, bodyCreateUploadFileUploadfilePost: bodyCreateUploadFileUploadfilePost, chunkSize: chunkSize, chunkOverlap: chunkOverlap, skipEmbeddingGeneration: skipEmbeddingGeneration, setPageAsBoundary: setPageAsBoundary, embeddingModel: embeddingModel, useOcr: useOcr, generateSparseVectors: generateSparseVectors, prependFilenameToChunks: prependFilenameToChunks, maxItemsPerChunk: maxItemsPerChunk, parsePdfTablesWithOcr: parsePdfTablesWithOcr, detectAudioLanguage: detectAudioLanguage, transcriptionService: transcriptionService, mediaType: mediaType, splitRows: splitRows).execute(apiResponseQueue) { result in
+    open class func uploadSync(file: URL, bodyCreateUploadFileUploadfilePost: BodyCreateUploadFileUploadfilePost, chunkSize: Int? = nil, chunkOverlap: Int? = nil, skipEmbeddingGeneration: Bool? = nil, setPageAsBoundary: Bool? = nil, embeddingModel: EmbeddingModel? = nil, useOcr: Bool? = nil, generateSparseVectors: Bool? = nil, prependFilenameToChunks: Bool? = nil, maxItemsPerChunk: Int? = nil, parsePdfTablesWithOcr: Bool? = nil, detectAudioLanguage: Bool? = nil, transcriptionService: TranscriptionServiceNullable? = nil, includeSpeakerLabels: Bool? = nil, mediaType: FileContentTypesNullable? = nil, splitRows: Bool? = nil, enableColdStorage: Bool? = nil, hotStorageTimeToLive: Int? = nil, apiResponseQueue: DispatchQueue = CarbonAIAPI.apiResponseQueue, completion: @escaping ((_ data: UserFile?, _ error: Error?) -> Void)) -> RequestTask {
+        return uploadWithRequestBuilder(file: file, bodyCreateUploadFileUploadfilePost: bodyCreateUploadFileUploadfilePost, chunkSize: chunkSize, chunkOverlap: chunkOverlap, skipEmbeddingGeneration: skipEmbeddingGeneration, setPageAsBoundary: setPageAsBoundary, embeddingModel: embeddingModel, useOcr: useOcr, generateSparseVectors: generateSparseVectors, prependFilenameToChunks: prependFilenameToChunks, maxItemsPerChunk: maxItemsPerChunk, parsePdfTablesWithOcr: parsePdfTablesWithOcr, detectAudioLanguage: detectAudioLanguage, transcriptionService: transcriptionService, includeSpeakerLabels: includeSpeakerLabels, mediaType: mediaType, splitRows: splitRows, enableColdStorage: enableColdStorage, hotStorageTimeToLive: hotStorageTimeToLive).execute(apiResponseQueue) { result in
             switch result {
             case let .success(response):
                 completion(response.body, nil)
@@ -2041,15 +2420,18 @@ open class FilesAPI {
      - parameter parsePdfTablesWithOcr: (query) Whether to use rich table parsing when &#x60;use_ocr&#x60; is enabled. (optional, default to false)
      - parameter detectAudioLanguage: (query) Whether to automatically detect the language of the uploaded audio file. (optional, default to false)
      - parameter transcriptionService: (query) The transcription service to use for audio files. If no service is specified, &#39;deepgram&#39; will be used. (optional)
+     - parameter includeSpeakerLabels: (query) Detect multiple speakers and label segments of speech by speaker for audio files. (optional, default to false)
      - parameter mediaType: (query) The media type of the file. If not provided, it will be inferred from the file extension. (optional)
      - parameter splitRows: (query) Whether to split tabular rows into chunks. Currently only valid for CSV, TSV, and XLSX files. (optional, default to false)
+     - parameter enableColdStorage: (query) Enable cold storage for the file. If set to true, the file will be moved to cold storage after a certain period of inactivity. Default is false. (optional, default to false)
+     - parameter hotStorageTimeToLive: (query) Time in seconds after which the file will be moved to cold storage. (optional)
      - parameter apiResponseQueue: The queue on which api response is dispatched.
      - parameter completion: completion handler to receive the data and the error objects
      */
     @available(iOS 13.0, macOS 10.15, tvOS 13.0, watchOS 6.0, *)
-    private class func uploadAsyncMappedParams(file: URL, bodyCreateUploadFileUploadfilePost: BodyCreateUploadFileUploadfilePost, chunkSize: Int? = nil, chunkOverlap: Int? = nil, skipEmbeddingGeneration: Bool? = nil, setPageAsBoundary: Bool? = nil, embeddingModel: EmbeddingModel? = nil, useOcr: Bool? = nil, generateSparseVectors: Bool? = nil, prependFilenameToChunks: Bool? = nil, maxItemsPerChunk: Int? = nil, parsePdfTablesWithOcr: Bool? = nil, detectAudioLanguage: Bool? = nil, transcriptionService: TranscriptionServiceNullable? = nil, mediaType: FileContentTypesNullable? = nil, splitRows: Bool? = nil) async throws -> UserFile {
+    private class func uploadAsyncMappedParams(file: URL, bodyCreateUploadFileUploadfilePost: BodyCreateUploadFileUploadfilePost, chunkSize: Int? = nil, chunkOverlap: Int? = nil, skipEmbeddingGeneration: Bool? = nil, setPageAsBoundary: Bool? = nil, embeddingModel: EmbeddingModel? = nil, useOcr: Bool? = nil, generateSparseVectors: Bool? = nil, prependFilenameToChunks: Bool? = nil, maxItemsPerChunk: Int? = nil, parsePdfTablesWithOcr: Bool? = nil, detectAudioLanguage: Bool? = nil, transcriptionService: TranscriptionServiceNullable? = nil, includeSpeakerLabels: Bool? = nil, mediaType: FileContentTypesNullable? = nil, splitRows: Bool? = nil, enableColdStorage: Bool? = nil, hotStorageTimeToLive: Int? = nil) async throws -> UserFile {
         return try await withCheckedThrowingContinuation { continuation in
-            uploadWithRequestBuilder(file: file, bodyCreateUploadFileUploadfilePost: bodyCreateUploadFileUploadfilePost, chunkSize: chunkSize, chunkOverlap: chunkOverlap, skipEmbeddingGeneration: skipEmbeddingGeneration, setPageAsBoundary: setPageAsBoundary, embeddingModel: embeddingModel, useOcr: useOcr, generateSparseVectors: generateSparseVectors, prependFilenameToChunks: prependFilenameToChunks, maxItemsPerChunk: maxItemsPerChunk, parsePdfTablesWithOcr: parsePdfTablesWithOcr, detectAudioLanguage: detectAudioLanguage, transcriptionService: transcriptionService, mediaType: mediaType, splitRows: splitRows).execute { result in
+            uploadWithRequestBuilder(file: file, bodyCreateUploadFileUploadfilePost: bodyCreateUploadFileUploadfilePost, chunkSize: chunkSize, chunkOverlap: chunkOverlap, skipEmbeddingGeneration: skipEmbeddingGeneration, setPageAsBoundary: setPageAsBoundary, embeddingModel: embeddingModel, useOcr: useOcr, generateSparseVectors: generateSparseVectors, prependFilenameToChunks: prependFilenameToChunks, maxItemsPerChunk: maxItemsPerChunk, parsePdfTablesWithOcr: parsePdfTablesWithOcr, detectAudioLanguage: detectAudioLanguage, transcriptionService: transcriptionService, includeSpeakerLabels: includeSpeakerLabels, mediaType: mediaType, splitRows: splitRows, enableColdStorage: enableColdStorage, hotStorageTimeToLive: hotStorageTimeToLive).execute { result in
                 switch result {
                 case let .success(response):
                     continuation.resume(returning: response.body)
@@ -2077,8 +2459,11 @@ open class FilesAPI {
      - parameter parsePdfTablesWithOcr: (query) Whether to use rich table parsing when &#x60;use_ocr&#x60; is enabled. (optional, default to false)
      - parameter detectAudioLanguage: (query) Whether to automatically detect the language of the uploaded audio file. (optional, default to false)
      - parameter transcriptionService: (query) The transcription service to use for audio files. If no service is specified, &#39;deepgram&#39; will be used. (optional)
+     - parameter includeSpeakerLabels: (query) Detect multiple speakers and label segments of speech by speaker for audio files. (optional, default to false)
      - parameter mediaType: (query) The media type of the file. If not provided, it will be inferred from the file extension. (optional)
      - parameter splitRows: (query) Whether to split tabular rows into chunks. Currently only valid for CSV, TSV, and XLSX files. (optional, default to false)
+     - parameter enableColdStorage: (query) Enable cold storage for the file. If set to true, the file will be moved to cold storage after a certain period of inactivity. Default is false. (optional, default to false)
+     - parameter hotStorageTimeToLive: (query) Time in seconds after which the file will be moved to cold storage. (optional)
      - parameter apiResponseQueue: The queue on which api response is dispatched.
      - parameter completion: completion handler to receive the data and the error objects
      */
@@ -2097,14 +2482,17 @@ open class FilesAPI {
         parsePdfTablesWithOcr: Bool? = nil, 
         detectAudioLanguage: Bool? = nil, 
         transcriptionService: TranscriptionServiceNullable? = nil, 
+        includeSpeakerLabels: Bool? = nil, 
         mediaType: FileContentTypesNullable? = nil, 
-        splitRows: Bool? = nil
+        splitRows: Bool? = nil, 
+        enableColdStorage: Bool? = nil, 
+        hotStorageTimeToLive: Int? = nil
     ) async throws -> UserFile {
         let bodyCreateUploadFileUploadfilePost = BodyCreateUploadFileUploadfilePost(
             file: file
         )
         return try await withCheckedThrowingContinuation { continuation in
-            uploadWithRequestBuilder(file: file, bodyCreateUploadFileUploadfilePost: bodyCreateUploadFileUploadfilePost, chunkSize: chunkSize, chunkOverlap: chunkOverlap, skipEmbeddingGeneration: skipEmbeddingGeneration, setPageAsBoundary: setPageAsBoundary, embeddingModel: embeddingModel, useOcr: useOcr, generateSparseVectors: generateSparseVectors, prependFilenameToChunks: prependFilenameToChunks, maxItemsPerChunk: maxItemsPerChunk, parsePdfTablesWithOcr: parsePdfTablesWithOcr, detectAudioLanguage: detectAudioLanguage, transcriptionService: transcriptionService, mediaType: mediaType, splitRows: splitRows).execute { result in
+            uploadWithRequestBuilder(file: file, bodyCreateUploadFileUploadfilePost: bodyCreateUploadFileUploadfilePost, chunkSize: chunkSize, chunkOverlap: chunkOverlap, skipEmbeddingGeneration: skipEmbeddingGeneration, setPageAsBoundary: setPageAsBoundary, embeddingModel: embeddingModel, useOcr: useOcr, generateSparseVectors: generateSparseVectors, prependFilenameToChunks: prependFilenameToChunks, maxItemsPerChunk: maxItemsPerChunk, parsePdfTablesWithOcr: parsePdfTablesWithOcr, detectAudioLanguage: detectAudioLanguage, transcriptionService: transcriptionService, includeSpeakerLabels: includeSpeakerLabels, mediaType: mediaType, splitRows: splitRows, enableColdStorage: enableColdStorage, hotStorageTimeToLive: hotStorageTimeToLive).execute { result in
                 switch result {
                 case let .success(response):
                     continuation.resume(returning: response.body)
@@ -2133,8 +2521,11 @@ open class FilesAPI {
      - parameter parsePdfTablesWithOcr: (query) Whether to use rich table parsing when &#x60;use_ocr&#x60; is enabled. (optional, default to false)
      - parameter detectAudioLanguage: (query) Whether to automatically detect the language of the uploaded audio file. (optional, default to false)
      - parameter transcriptionService: (query) The transcription service to use for audio files. If no service is specified, &#39;deepgram&#39; will be used. (optional)
+     - parameter includeSpeakerLabels: (query) Detect multiple speakers and label segments of speech by speaker for audio files. (optional, default to false)
      - parameter mediaType: (query) The media type of the file. If not provided, it will be inferred from the file extension. (optional)
      - parameter splitRows: (query) Whether to split tabular rows into chunks. Currently only valid for CSV, TSV, and XLSX files. (optional, default to false)
+     - parameter enableColdStorage: (query) Enable cold storage for the file. If set to true, the file will be moved to cold storage after a certain period of inactivity. Default is false. (optional, default to false)
+     - parameter hotStorageTimeToLive: (query) Time in seconds after which the file will be moved to cold storage. (optional)
      - parameter apiResponseQueue: The queue on which api response is dispatched.
      - parameter completion: completion handler to receive the data and the error objects
      */
@@ -2153,14 +2544,17 @@ open class FilesAPI {
         parsePdfTablesWithOcr: Bool? = nil, 
         detectAudioLanguage: Bool? = nil, 
         transcriptionService: TranscriptionServiceNullable? = nil, 
+        includeSpeakerLabels: Bool? = nil, 
         mediaType: FileContentTypesNullable? = nil, 
-        splitRows: Bool? = nil
+        splitRows: Bool? = nil, 
+        enableColdStorage: Bool? = nil, 
+        hotStorageTimeToLive: Int? = nil
     ) async throws -> UserFile {
         let bodyCreateUploadFileUploadfilePost = BodyCreateUploadFileUploadfilePost(
             file: file
         )
         return try await withCheckedThrowingContinuation { continuation in
-            uploadWithRequestBuilder(file: file, bodyCreateUploadFileUploadfilePost: bodyCreateUploadFileUploadfilePost, chunkSize: chunkSize, chunkOverlap: chunkOverlap, skipEmbeddingGeneration: skipEmbeddingGeneration, setPageAsBoundary: setPageAsBoundary, embeddingModel: embeddingModel, useOcr: useOcr, generateSparseVectors: generateSparseVectors, prependFilenameToChunks: prependFilenameToChunks, maxItemsPerChunk: maxItemsPerChunk, parsePdfTablesWithOcr: parsePdfTablesWithOcr, detectAudioLanguage: detectAudioLanguage, transcriptionService: transcriptionService, mediaType: mediaType, splitRows: splitRows).execute { result in
+            uploadWithRequestBuilder(file: file, bodyCreateUploadFileUploadfilePost: bodyCreateUploadFileUploadfilePost, chunkSize: chunkSize, chunkOverlap: chunkOverlap, skipEmbeddingGeneration: skipEmbeddingGeneration, setPageAsBoundary: setPageAsBoundary, embeddingModel: embeddingModel, useOcr: useOcr, generateSparseVectors: generateSparseVectors, prependFilenameToChunks: prependFilenameToChunks, maxItemsPerChunk: maxItemsPerChunk, parsePdfTablesWithOcr: parsePdfTablesWithOcr, detectAudioLanguage: detectAudioLanguage, transcriptionService: transcriptionService, includeSpeakerLabels: includeSpeakerLabels, mediaType: mediaType, splitRows: splitRows, enableColdStorage: enableColdStorage, hotStorageTimeToLive: hotStorageTimeToLive).execute { result in
                 switch result {
                 case let .success(response):
                     continuation.resume(returning: response.body)
@@ -2200,8 +2594,11 @@ open class FilesAPI {
      - parameter parsePdfTablesWithOcr: (query) Whether to use rich table parsing when &#x60;use_ocr&#x60; is enabled. (optional, default to false)
      - parameter detectAudioLanguage: (query) Whether to automatically detect the language of the uploaded audio file. (optional, default to false)
      - parameter transcriptionService: (query) The transcription service to use for audio files. If no service is specified, &#39;deepgram&#39; will be used. (optional)
+     - parameter includeSpeakerLabels: (query) Detect multiple speakers and label segments of speech by speaker for audio files. (optional, default to false)
      - parameter mediaType: (query) The media type of the file. If not provided, it will be inferred from the file extension. (optional)
      - parameter splitRows: (query) Whether to split tabular rows into chunks. Currently only valid for CSV, TSV, and XLSX files. (optional, default to false)
+     - parameter enableColdStorage: (query) Enable cold storage for the file. If set to true, the file will be moved to cold storage after a certain period of inactivity. Default is false. (optional, default to false)
+     - parameter hotStorageTimeToLive: (query) Time in seconds after which the file will be moved to cold storage. (optional)
      - returns: RequestBuilder<UserFile> 
      */
     open class func uploadWithRequestBuilder(
@@ -2219,8 +2616,11 @@ open class FilesAPI {
             parsePdfTablesWithOcr: Bool? = nil,
             detectAudioLanguage: Bool? = nil,
             transcriptionService: TranscriptionServiceNullable? = nil,
+            includeSpeakerLabels: Bool? = nil,
             mediaType: FileContentTypesNullable? = nil,
-            splitRows: Bool? = nil
+            splitRows: Bool? = nil,
+            enableColdStorage: Bool? = nil,
+            hotStorageTimeToLive: Int? = nil
     ) -> RequestBuilder<UserFile> {
         let basePath = CarbonAIAPI.basePath;
         let localVariablePath = "/uploadfile"
@@ -2245,8 +2645,11 @@ open class FilesAPI {
             "parse_pdf_tables_with_ocr": (wrappedValue: parsePdfTablesWithOcr?.encodeToJSON(), isExplode: true),
             "detect_audio_language": (wrappedValue: detectAudioLanguage?.encodeToJSON(), isExplode: true),
             "transcription_service": (wrappedValue: transcriptionService?.encodeToJSON(), isExplode: true),
+            "include_speaker_labels": (wrappedValue: includeSpeakerLabels?.encodeToJSON(), isExplode: true),
             "media_type": (wrappedValue: mediaType?.encodeToJSON(), isExplode: true),
             "split_rows": (wrappedValue: splitRows?.encodeToJSON(), isExplode: true),
+            "enable_cold_storage": (wrappedValue: enableColdStorage?.encodeToJSON(), isExplode: true),
+            "hot_storage_time_to_live": (wrappedValue: hotStorageTimeToLive?.encodeToJSON(), isExplode: true),
         ])
 
         let localVariableNillableHeaders: [String: Any?] = [
@@ -2295,8 +2698,11 @@ open class FilesAPI {
      - parameter parsePdfTablesWithOcr: (query) Whether to use rich table parsing when &#x60;use_ocr&#x60; is enabled. (optional, default to false)
      - parameter detectAudioLanguage: (query) Whether to automatically detect the language of the uploaded audio file. (optional, default to false)
      - parameter transcriptionService: (query) The transcription service to use for audio files. If no service is specified, &#39;deepgram&#39; will be used. (optional)
+     - parameter includeSpeakerLabels: (query) Detect multiple speakers and label segments of speech by speaker for audio files. (optional, default to false)
      - parameter mediaType: (query) The media type of the file. If not provided, it will be inferred from the file extension. (optional)
      - parameter splitRows: (query) Whether to split tabular rows into chunks. Currently only valid for CSV, TSV, and XLSX files. (optional, default to false)
+     - parameter enableColdStorage: (query) Enable cold storage for the file. If set to true, the file will be moved to cold storage after a certain period of inactivity. Default is false. (optional, default to false)
+     - parameter hotStorageTimeToLive: (query) Time in seconds after which the file will be moved to cold storage. (optional)
      - returns: RequestBuilder<UserFile> 
      */
     open func uploadWithRequestBuilder(
@@ -2314,8 +2720,11 @@ open class FilesAPI {
             parsePdfTablesWithOcr: Bool? = nil,
             detectAudioLanguage: Bool? = nil,
             transcriptionService: TranscriptionServiceNullable? = nil,
+            includeSpeakerLabels: Bool? = nil,
             mediaType: FileContentTypesNullable? = nil,
-            splitRows: Bool? = nil
+            splitRows: Bool? = nil,
+            enableColdStorage: Bool? = nil,
+            hotStorageTimeToLive: Int? = nil
     ) -> RequestBuilder<UserFile> {
         let basePath = self.client!.basePath;
         let localVariablePath = "/uploadfile"
@@ -2340,8 +2749,11 @@ open class FilesAPI {
             "parse_pdf_tables_with_ocr": (wrappedValue: parsePdfTablesWithOcr?.encodeToJSON(), isExplode: true),
             "detect_audio_language": (wrappedValue: detectAudioLanguage?.encodeToJSON(), isExplode: true),
             "transcription_service": (wrappedValue: transcriptionService?.encodeToJSON(), isExplode: true),
+            "include_speaker_labels": (wrappedValue: includeSpeakerLabels?.encodeToJSON(), isExplode: true),
             "media_type": (wrappedValue: mediaType?.encodeToJSON(), isExplode: true),
             "split_rows": (wrappedValue: splitRows?.encodeToJSON(), isExplode: true),
+            "enable_cold_storage": (wrappedValue: enableColdStorage?.encodeToJSON(), isExplode: true),
+            "hot_storage_time_to_live": (wrappedValue: hotStorageTimeToLive?.encodeToJSON(), isExplode: true),
         ])
 
         let localVariableNillableHeaders: [String: Any?] = [
@@ -2427,8 +2839,10 @@ open class FilesAPI {
         parsePdfTablesWithOcr: Bool? = nil, 
         detectAudioLanguage: Bool? = nil, 
         transcriptionService: TranscriptionServiceNullable? = nil, 
+        includeSpeakerLabels: Bool? = nil, 
         mediaType: FileContentTypesNullable? = nil, 
-        splitRows: Bool? = nil
+        splitRows: Bool? = nil, 
+        coldStorageParams: ColdStorageProps? = nil
     ) async throws -> UserFile {
         let uploadFileFromUrlInput = UploadFileFromUrlInput(
             url: url,
@@ -2445,8 +2859,10 @@ open class FilesAPI {
             parsePdfTablesWithOcr: parsePdfTablesWithOcr,
             detectAudioLanguage: detectAudioLanguage,
             transcriptionService: transcriptionService,
+            includeSpeakerLabels: includeSpeakerLabels,
             mediaType: mediaType,
-            splitRows: splitRows
+            splitRows: splitRows,
+            coldStorageParams: coldStorageParams
         )
         return try await withCheckedThrowingContinuation { continuation in
             uploadFromUrlWithRequestBuilder(uploadFileFromUrlInput: uploadFileFromUrlInput).execute { result in
@@ -2484,8 +2900,10 @@ open class FilesAPI {
         parsePdfTablesWithOcr: Bool? = nil, 
         detectAudioLanguage: Bool? = nil, 
         transcriptionService: TranscriptionServiceNullable? = nil, 
+        includeSpeakerLabels: Bool? = nil, 
         mediaType: FileContentTypesNullable? = nil, 
-        splitRows: Bool? = nil
+        splitRows: Bool? = nil, 
+        coldStorageParams: ColdStorageProps? = nil
     ) async throws -> UserFile {
         let uploadFileFromUrlInput = UploadFileFromUrlInput(
             url: url,
@@ -2502,8 +2920,10 @@ open class FilesAPI {
             parsePdfTablesWithOcr: parsePdfTablesWithOcr,
             detectAudioLanguage: detectAudioLanguage,
             transcriptionService: transcriptionService,
+            includeSpeakerLabels: includeSpeakerLabels,
             mediaType: mediaType,
-            splitRows: splitRows
+            splitRows: splitRows,
+            coldStorageParams: coldStorageParams
         )
         return try await withCheckedThrowingContinuation { continuation in
             uploadFromUrlWithRequestBuilder(uploadFileFromUrlInput: uploadFileFromUrlInput).execute { result in
@@ -2664,7 +3084,8 @@ open class FilesAPI {
         skipEmbeddingGeneration: Bool? = nil, 
         overwriteFileId: Int? = nil, 
         embeddingModel: EmbeddingGeneratorsNullable? = nil, 
-        generateSparseVectors: Bool? = nil
+        generateSparseVectors: Bool? = nil, 
+        coldStorageParams: ColdStorageProps? = nil
     ) async throws -> UserFile {
         let rawTextInput = RawTextInput(
             contents: contents,
@@ -2674,7 +3095,8 @@ open class FilesAPI {
             skipEmbeddingGeneration: skipEmbeddingGeneration,
             overwriteFileId: overwriteFileId,
             embeddingModel: embeddingModel,
-            generateSparseVectors: generateSparseVectors
+            generateSparseVectors: generateSparseVectors,
+            coldStorageParams: coldStorageParams
         )
         return try await withCheckedThrowingContinuation { continuation in
             uploadTextWithRequestBuilder(rawTextInput: rawTextInput).execute { result in
@@ -2705,7 +3127,8 @@ open class FilesAPI {
         skipEmbeddingGeneration: Bool? = nil, 
         overwriteFileId: Int? = nil, 
         embeddingModel: EmbeddingGeneratorsNullable? = nil, 
-        generateSparseVectors: Bool? = nil
+        generateSparseVectors: Bool? = nil, 
+        coldStorageParams: ColdStorageProps? = nil
     ) async throws -> UserFile {
         let rawTextInput = RawTextInput(
             contents: contents,
@@ -2715,7 +3138,8 @@ open class FilesAPI {
             skipEmbeddingGeneration: skipEmbeddingGeneration,
             overwriteFileId: overwriteFileId,
             embeddingModel: embeddingModel,
-            generateSparseVectors: generateSparseVectors
+            generateSparseVectors: generateSparseVectors,
+            coldStorageParams: coldStorageParams
         )
         return try await withCheckedThrowingContinuation { continuation in
             uploadTextWithRequestBuilder(rawTextInput: rawTextInput).execute { result in
