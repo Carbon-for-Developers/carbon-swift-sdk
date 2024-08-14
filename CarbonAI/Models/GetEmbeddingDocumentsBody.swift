@@ -47,8 +47,10 @@ public struct GetEmbeddingDocumentsBody: Codable, JSONEncodable, Hashable {
     public var rerank: RerankParamsNullable?
     /** Filter files based on their type at the source (for example help center tickets and articles) */
     public var fileTypesAtSource: [HelpdeskFileTypes]?
+    /** Flag to control whether or not to exclude files that are not in hot storage. If set to False, then an error will be returned if any filtered         files are in cold storage. */
+    public var excludeColdStorageFiles: Bool? = false
 
-    public init(tags: [String: Tags1]? = nil, query: String, queryVector: [Double]? = nil, k: Int, fileIds: [Int]? = nil, parentFileIds: [Int]? = nil, includeAllChildren: Bool? = false, tagsV2: AnyCodable? = nil, includeTags: Bool? = nil, includeVectors: Bool? = nil, includeRawFile: Bool? = nil, hybridSearch: Bool? = nil, hybridSearchTuningParameters: HybridSearchTuningParamsNullable? = nil, mediaType: FileContentTypesNullable? = nil, embeddingModel: EmbeddingGeneratorsNullable? = nil, includeFileLevelMetadata: Bool? = false, highAccuracy: Bool? = false, rerank: RerankParamsNullable? = nil, fileTypesAtSource: [HelpdeskFileTypes]? = nil) {
+    public init(tags: [String: Tags1]? = nil, query: String, queryVector: [Double]? = nil, k: Int, fileIds: [Int]? = nil, parentFileIds: [Int]? = nil, includeAllChildren: Bool? = false, tagsV2: AnyCodable? = nil, includeTags: Bool? = nil, includeVectors: Bool? = nil, includeRawFile: Bool? = nil, hybridSearch: Bool? = nil, hybridSearchTuningParameters: HybridSearchTuningParamsNullable? = nil, mediaType: FileContentTypesNullable? = nil, embeddingModel: EmbeddingGeneratorsNullable? = nil, includeFileLevelMetadata: Bool? = false, highAccuracy: Bool? = false, rerank: RerankParamsNullable? = nil, fileTypesAtSource: [HelpdeskFileTypes]? = nil, excludeColdStorageFiles: Bool? = false) {
         self.tags = tags
         self.query = query
         self.queryVector = queryVector
@@ -68,6 +70,7 @@ public struct GetEmbeddingDocumentsBody: Codable, JSONEncodable, Hashable {
         self.highAccuracy = highAccuracy
         self.rerank = rerank
         self.fileTypesAtSource = fileTypesAtSource
+        self.excludeColdStorageFiles = excludeColdStorageFiles
     }
 
     public enum CodingKeys: String, CodingKey, CaseIterable {
@@ -90,6 +93,7 @@ public struct GetEmbeddingDocumentsBody: Codable, JSONEncodable, Hashable {
         case highAccuracy = "high_accuracy"
         case rerank
         case fileTypesAtSource = "file_types_at_source"
+        case excludeColdStorageFiles = "exclude_cold_storage_files"
     }
 
     // Encodable protocol methods
@@ -115,6 +119,7 @@ public struct GetEmbeddingDocumentsBody: Codable, JSONEncodable, Hashable {
         try container.encodeIfPresent(highAccuracy, forKey: .highAccuracy)
         try container.encodeIfPresent(rerank, forKey: .rerank)
         try container.encodeIfPresent(fileTypesAtSource, forKey: .fileTypesAtSource)
+        try container.encodeIfPresent(excludeColdStorageFiles, forKey: .excludeColdStorageFiles)
     }
 }
 

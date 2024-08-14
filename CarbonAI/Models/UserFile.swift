@@ -44,10 +44,13 @@ public struct UserFile: Codable, JSONEncodable, Hashable {
     public var syncProperties: AnyCodable
     public var messagesMetadata: AnyCodable
     public var fileContentsDeleted: Bool = false
+    public var supportsColdStorage: Bool
+    public var hotStorageTimeToLive: Int?
+    public var embeddingStorageStatus: EmbeddingStorageStatus
     public var createdAt: Date
     public var updatedAt: Date
 
-    public init(tags: AnyCodable?, id: Int, source: DataSourceType, organizationId: Int, organizationSuppliedUserId: String, organizationUserDataSourceId: Int?, externalFileId: String, externalUrl: String?, syncStatus: ExternalFileSyncStatuses, syncErrorMessage: String?, lastSync: Date?, fileStatistics: FileStatisticsNullable?, fileMetadata: AnyCodable?, embeddingProperties: [String: EmbeddingProperties]?, chunkSize: Int?, chunkOverlap: Int?, chunkProperties: ChunkPropertiesNullable?, ocrProperties: AnyCodable, ocrJobStartedAt: Date?, name: String?, parentId: Int?, enableAutoSync: Bool?, presignedUrl: String?, parsedTextUrl: String?, additionalPresignedUrls: AnyCodable?, skipEmbeddingGeneration: Bool, sourceCreatedAt: Date?, generateSparseVectors: Bool?, requestId: String?, syncProperties: AnyCodable, messagesMetadata: AnyCodable, fileContentsDeleted: Bool = false, createdAt: Date, updatedAt: Date) {
+    public init(tags: AnyCodable?, id: Int, source: DataSourceType, organizationId: Int, organizationSuppliedUserId: String, organizationUserDataSourceId: Int?, externalFileId: String, externalUrl: String?, syncStatus: ExternalFileSyncStatuses, syncErrorMessage: String?, lastSync: Date?, fileStatistics: FileStatisticsNullable?, fileMetadata: AnyCodable?, embeddingProperties: [String: EmbeddingProperties]?, chunkSize: Int?, chunkOverlap: Int?, chunkProperties: ChunkPropertiesNullable?, ocrProperties: AnyCodable, ocrJobStartedAt: Date?, name: String?, parentId: Int?, enableAutoSync: Bool?, presignedUrl: String?, parsedTextUrl: String?, additionalPresignedUrls: AnyCodable?, skipEmbeddingGeneration: Bool, sourceCreatedAt: Date?, generateSparseVectors: Bool?, requestId: String?, syncProperties: AnyCodable, messagesMetadata: AnyCodable, fileContentsDeleted: Bool = false, supportsColdStorage: Bool, hotStorageTimeToLive: Int?, embeddingStorageStatus: EmbeddingStorageStatus, createdAt: Date, updatedAt: Date) {
         self.tags = tags
         self.id = id
         self.source = source
@@ -80,6 +83,9 @@ public struct UserFile: Codable, JSONEncodable, Hashable {
         self.syncProperties = syncProperties
         self.messagesMetadata = messagesMetadata
         self.fileContentsDeleted = fileContentsDeleted
+        self.supportsColdStorage = supportsColdStorage
+        self.hotStorageTimeToLive = hotStorageTimeToLive
+        self.embeddingStorageStatus = embeddingStorageStatus
         self.createdAt = createdAt
         self.updatedAt = updatedAt
     }
@@ -117,6 +123,9 @@ public struct UserFile: Codable, JSONEncodable, Hashable {
         case syncProperties = "sync_properties"
         case messagesMetadata = "messages_metadata"
         case fileContentsDeleted = "file_contents_deleted"
+        case supportsColdStorage = "supports_cold_storage"
+        case hotStorageTimeToLive = "hot_storage_time_to_live"
+        case embeddingStorageStatus = "embedding_storage_status"
         case createdAt = "created_at"
         case updatedAt = "updated_at"
     }
@@ -157,6 +166,9 @@ public struct UserFile: Codable, JSONEncodable, Hashable {
         try container.encode(syncProperties, forKey: .syncProperties)
         try container.encode(messagesMetadata, forKey: .messagesMetadata)
         try container.encode(fileContentsDeleted, forKey: .fileContentsDeleted)
+        try container.encode(supportsColdStorage, forKey: .supportsColdStorage)
+        try container.encode(hotStorageTimeToLive, forKey: .hotStorageTimeToLive)
+        try container.encode(embeddingStorageStatus, forKey: .embeddingStorageStatus)
         try container.encode(createdAt, forKey: .createdAt)
         try container.encode(updatedAt, forKey: .updatedAt)
     }

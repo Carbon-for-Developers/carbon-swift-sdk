@@ -1126,7 +1126,8 @@ open class IntegrationsAPI {
         enableFilePicker: Bool? = nil, 
         syncSourceItems: Bool? = nil, 
         incrementalSync: Bool? = nil, 
-        fileSyncConfig: FileSyncConfigNullable? = nil
+        fileSyncConfig: FileSyncConfigNullable? = nil, 
+        automaticallyOpenFilePicker: Bool? = nil
     ) async throws -> OuthURLResponse {
         let oAuthURLRequest = OAuthURLRequest(
             tags: tags,
@@ -1154,7 +1155,8 @@ open class IntegrationsAPI {
             enableFilePicker: enableFilePicker,
             syncSourceItems: syncSourceItems,
             incrementalSync: incrementalSync,
-            fileSyncConfig: fileSyncConfig
+            fileSyncConfig: fileSyncConfig,
+            automaticallyOpenFilePicker: automaticallyOpenFilePicker
         )
         return try await withCheckedThrowingContinuation { continuation in
             getOauthUrlWithRequestBuilder(oAuthURLRequest: oAuthURLRequest).execute { result in
@@ -1203,7 +1205,8 @@ open class IntegrationsAPI {
         enableFilePicker: Bool? = nil, 
         syncSourceItems: Bool? = nil, 
         incrementalSync: Bool? = nil, 
-        fileSyncConfig: FileSyncConfigNullable? = nil
+        fileSyncConfig: FileSyncConfigNullable? = nil, 
+        automaticallyOpenFilePicker: Bool? = nil
     ) async throws -> OuthURLResponse {
         let oAuthURLRequest = OAuthURLRequest(
             tags: tags,
@@ -1231,7 +1234,8 @@ open class IntegrationsAPI {
             enableFilePicker: enableFilePicker,
             syncSourceItems: syncSourceItems,
             incrementalSync: incrementalSync,
-            fileSyncConfig: fileSyncConfig
+            fileSyncConfig: fileSyncConfig,
+            automaticallyOpenFilePicker: automaticallyOpenFilePicker
         )
         return try await withCheckedThrowingContinuation { continuation in
             getOauthUrlWithRequestBuilder(oAuthURLRequest: oAuthURLRequest).execute { result in

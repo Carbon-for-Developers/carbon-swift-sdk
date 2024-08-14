@@ -20,8 +20,9 @@ public struct RawTextInput: Codable, JSONEncodable, Hashable {
     public var overwriteFileId: Int?
     public var embeddingModel: EmbeddingGeneratorsNullable?
     public var generateSparseVectors: Bool? = false
+    public var coldStorageParams: ColdStorageProps?
 
-    public init(contents: String, name: String? = nil, chunkSize: Int? = nil, chunkOverlap: Int? = nil, skipEmbeddingGeneration: Bool? = false, overwriteFileId: Int? = nil, embeddingModel: EmbeddingGeneratorsNullable? = nil, generateSparseVectors: Bool? = false) {
+    public init(contents: String, name: String? = nil, chunkSize: Int? = nil, chunkOverlap: Int? = nil, skipEmbeddingGeneration: Bool? = false, overwriteFileId: Int? = nil, embeddingModel: EmbeddingGeneratorsNullable? = nil, generateSparseVectors: Bool? = false, coldStorageParams: ColdStorageProps? = nil) {
         self.contents = contents
         self.name = name
         self.chunkSize = chunkSize
@@ -30,6 +31,7 @@ public struct RawTextInput: Codable, JSONEncodable, Hashable {
         self.overwriteFileId = overwriteFileId
         self.embeddingModel = embeddingModel
         self.generateSparseVectors = generateSparseVectors
+        self.coldStorageParams = coldStorageParams
     }
 
     public enum CodingKeys: String, CodingKey, CaseIterable {
@@ -41,6 +43,7 @@ public struct RawTextInput: Codable, JSONEncodable, Hashable {
         case overwriteFileId = "overwrite_file_id"
         case embeddingModel = "embedding_model"
         case generateSparseVectors = "generate_sparse_vectors"
+        case coldStorageParams = "cold_storage_params"
     }
 
     // Encodable protocol methods
@@ -55,6 +58,7 @@ public struct RawTextInput: Codable, JSONEncodable, Hashable {
         try container.encodeIfPresent(overwriteFileId, forKey: .overwriteFileId)
         try container.encodeIfPresent(embeddingModel, forKey: .embeddingModel)
         try container.encodeIfPresent(generateSparseVectors, forKey: .generateSparseVectors)
+        try container.encodeIfPresent(coldStorageParams, forKey: .coldStorageParams)
     }
 }
 

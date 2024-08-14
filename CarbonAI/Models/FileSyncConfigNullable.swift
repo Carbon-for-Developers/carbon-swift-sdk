@@ -20,14 +20,17 @@ public struct FileSyncConfigNullable: Codable, JSONEncodable, Hashable {
     /** Detect audio language before transcription for audio files */
     public var detectAudioLanguage: Bool? = false
     public var transcriptionService: TranscriptionServiceNullable?
+    /** Detect multiple speakers and label segments of speech by speaker for audio files. */
+    public var includeSpeakerLabels: Bool? = false
     /** Whether to split tabular rows into chunks. Currently only valid for CSV, TSV, and XLSX files. */
     public var splitRows: Bool? = false
 
-    public init(autoSyncedSourceTypes: [HelpdeskFileTypes]? = nil, syncAttachments: Bool? = false, detectAudioLanguage: Bool? = false, transcriptionService: TranscriptionServiceNullable? = nil, splitRows: Bool? = false) {
+    public init(autoSyncedSourceTypes: [HelpdeskFileTypes]? = nil, syncAttachments: Bool? = false, detectAudioLanguage: Bool? = false, transcriptionService: TranscriptionServiceNullable? = nil, includeSpeakerLabels: Bool? = false, splitRows: Bool? = false) {
         self.autoSyncedSourceTypes = autoSyncedSourceTypes
         self.syncAttachments = syncAttachments
         self.detectAudioLanguage = detectAudioLanguage
         self.transcriptionService = transcriptionService
+        self.includeSpeakerLabels = includeSpeakerLabels
         self.splitRows = splitRows
     }
 
@@ -36,6 +39,7 @@ public struct FileSyncConfigNullable: Codable, JSONEncodable, Hashable {
         case syncAttachments = "sync_attachments"
         case detectAudioLanguage = "detect_audio_language"
         case transcriptionService = "transcription_service"
+        case includeSpeakerLabels = "include_speaker_labels"
         case splitRows = "split_rows"
     }
 
@@ -47,6 +51,7 @@ public struct FileSyncConfigNullable: Codable, JSONEncodable, Hashable {
         try container.encodeIfPresent(syncAttachments, forKey: .syncAttachments)
         try container.encodeIfPresent(detectAudioLanguage, forKey: .detectAudioLanguage)
         try container.encodeIfPresent(transcriptionService, forKey: .transcriptionService)
+        try container.encodeIfPresent(includeSpeakerLabels, forKey: .includeSpeakerLabels)
         try container.encodeIfPresent(splitRows, forKey: .splitRows)
     }
 }
