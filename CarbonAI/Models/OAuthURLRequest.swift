@@ -37,7 +37,7 @@ public struct OAuthURLRequest: Codable, JSONEncodable, Hashable {
     public var connectingNewAccount: Bool? = false
     /** This request id will be added to all files that get synced using the generated OAuth URL */
     public var requestId: String?
-    /** Enable OCR for files that support it. Supported formats: jpg, png, pdf */
+    /** Enable OCR for files that support it. Supported formats: png, pdf, jpg */
     public var useOcr: Bool? = false
     public var parsePdfTablesWithOcr: Bool? = false
     /** Enable integration's file picker for sources that support it. Supported sources: BOX, DROPBOX, GOOGLE_DRIVE, ONEDRIVE, SHAREPOINT */
