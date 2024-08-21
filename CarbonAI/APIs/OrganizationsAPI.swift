@@ -432,7 +432,7 @@ open class OrganizationsAPI {
      - API Key:
        - type: apiKey authorization 
        - name: apiKey
-     - returns: RequestBuilder<GenericSuccessResponse> 
+     - returns: RequestBuilder<GenericSuccessResponse> Use this endpoint to reaggregate the statistics for an organization, for example aggregate_file_size. The reaggregation process is asyncronous so a webhook will be sent with the event type being FILE_STATISTICS_AGGREGATED to notify when the process is complee. After this aggregation is complete, the updated statistics can be retrieved using the /organization endpoint. The response of /organization willalso contain a timestamp of the last time the statistics were reaggregated.
      */
     open class func updateStatsWithRequestBuilder(
     ) -> RequestBuilder<GenericSuccessResponse> {
@@ -467,7 +467,7 @@ open class OrganizationsAPI {
      - API Key:
        - type: apiKey authorization 
        - name: apiKey
-     - returns: RequestBuilder<GenericSuccessResponse> 
+     - returns: RequestBuilder<GenericSuccessResponse> Use this endpoint to reaggregate the statistics for an organization, for example aggregate_file_size. The reaggregation process is asyncronous so a webhook will be sent with the event type being FILE_STATISTICS_AGGREGATED to notify when the process is complee. After this aggregation is complete, the updated statistics can be retrieved using the /organization endpoint. The response of /organization willalso contain a timestamp of the last time the statistics were reaggregated.
      */
     open func updateStatsWithRequestBuilder(
     ) -> RequestBuilder<GenericSuccessResponse> {

@@ -547,7 +547,7 @@ open class IntegrationsAPI {
        - type: apiKey customer-id 
        - name: customerId
      - parameter freshDeskConnectRequest: (body)  
-     - returns: RequestBuilder<GenericSuccessResponse> 
+     - returns: RequestBuilder<GenericSuccessResponse> Refer this article to obtain an API key https://support.freshdesk.com/en/support/solutions/articles/215517. Make sure that your API key has the permission to read solutions from your account and you are on a &lt;b&gt;paid&lt;/b&gt; plan. Once you have an API key, you can make a request to this endpoint along with your freshdesk domain. This will  trigger an automatic sync of the articles in your \&quot;solutions\&quot; tab. Additional parameters below can be used to associate  data with the synced articles or modify the sync behavior.
      */
     open class func connectFreshdeskWithRequestBuilder(
             freshDeskConnectRequest: FreshDeskConnectRequest
@@ -592,7 +592,7 @@ open class IntegrationsAPI {
        - type: apiKey customer-id 
        - name: customerId
      - parameter freshDeskConnectRequest: (body)  
-     - returns: RequestBuilder<GenericSuccessResponse> 
+     - returns: RequestBuilder<GenericSuccessResponse> Refer this article to obtain an API key https://support.freshdesk.com/en/support/solutions/articles/215517. Make sure that your API key has the permission to read solutions from your account and you are on a &lt;b&gt;paid&lt;/b&gt; plan. Once you have an API key, you can make a request to this endpoint along with your freshdesk domain. This will  trigger an automatic sync of the articles in your \&quot;solutions\&quot; tab. Additional parameters below can be used to associate  data with the synced articles or modify the sync behavior.
      */
     open func connectFreshdeskWithRequestBuilder(
             freshDeskConnectRequest: FreshDeskConnectRequest
@@ -777,7 +777,7 @@ open class IntegrationsAPI {
        - type: apiKey customer-id 
        - name: customerId
      - parameter gitbookConnectRequest: (body)  
-     - returns: RequestBuilder<GenericSuccessResponse> 
+     - returns: RequestBuilder<GenericSuccessResponse> You will need an access token to connect your Gitbook account. Note that the permissions will be defined by the user  generating access token so make sure you have the permission to access spaces you will be syncing.  Refer this article for more details https://developer.gitbook.com/gitbook-api/authentication. Additionally, you need to specify the name of organization you will be syncing data from.
      */
     open class func connectGitbookWithRequestBuilder(
             gitbookConnectRequest: GitbookConnectRequest
@@ -822,7 +822,7 @@ open class IntegrationsAPI {
        - type: apiKey customer-id 
        - name: customerId
      - parameter gitbookConnectRequest: (body)  
-     - returns: RequestBuilder<GenericSuccessResponse> 
+     - returns: RequestBuilder<GenericSuccessResponse> You will need an access token to connect your Gitbook account. Note that the permissions will be defined by the user  generating access token so make sure you have the permission to access spaces you will be syncing.  Refer this article for more details https://developer.gitbook.com/gitbook-api/authentication. Additionally, you need to specify the name of organization you will be syncing data from.
      */
     open func connectGitbookWithRequestBuilder(
             gitbookConnectRequest: GitbookConnectRequest
@@ -975,7 +975,7 @@ open class IntegrationsAPI {
        - type: apiKey customer-id 
        - name: customerId
      - parameter s3AuthRequest: (body)  
-     - returns: RequestBuilder<OrganizationUserDataSourceAPI> 
+     - returns: RequestBuilder<OrganizationUserDataSourceAPI> This endpoint can be used to connect S3 as well as Digital Ocean Spaces (S3 compatible)   For S3, create a new IAM user with permissions to: &lt;ol&gt; &lt;li&gt;List all buckets.&lt;/li&gt; &lt;li&gt;Read from the specific buckets and objects to sync with Carbon. Ensure any future buckets or objects carry  the same permissions.&lt;/li&gt; &lt;/ol&gt; Once created, generate an access key for this user and share the credentials with us. We recommend testing this key beforehand.   For Digital Ocean Spaces, generate the above credentials in your Applications and API page here https://cloud.digitalocean.com/account/api/spaces. Endpoint URL is required to connect Digital Ocean Spaces.
      */
     open class func createAwsIamUserWithRequestBuilder(
             s3AuthRequest: S3AuthRequest
@@ -1020,7 +1020,7 @@ open class IntegrationsAPI {
        - type: apiKey customer-id 
        - name: customerId
      - parameter s3AuthRequest: (body)  
-     - returns: RequestBuilder<OrganizationUserDataSourceAPI> 
+     - returns: RequestBuilder<OrganizationUserDataSourceAPI> This endpoint can be used to connect S3 as well as Digital Ocean Spaces (S3 compatible)   For S3, create a new IAM user with permissions to: &lt;ol&gt; &lt;li&gt;List all buckets.&lt;/li&gt; &lt;li&gt;Read from the specific buckets and objects to sync with Carbon. Ensure any future buckets or objects carry  the same permissions.&lt;/li&gt; &lt;/ol&gt; Once created, generate an access key for this user and share the credentials with us. We recommend testing this key beforehand.   For Digital Ocean Spaces, generate the above credentials in your Applications and API page here https://cloud.digitalocean.com/account/api/spaces. Endpoint URL is required to connect Digital Ocean Spaces.
      */
     open func createAwsIamUserWithRequestBuilder(
             s3AuthRequest: S3AuthRequest
@@ -1265,7 +1265,7 @@ open class IntegrationsAPI {
        - type: apiKey customer-id 
        - name: customerId
      - parameter oAuthURLRequest: (body)  
-     - returns: RequestBuilder<OuthURLResponse> 
+     - returns: RequestBuilder<OuthURLResponse> This endpoint can be used to generate the following URLs - An OAuth URL for OAuth based connectors - A file syncing URL which skips the OAuth flow if the user already has a valid access token and takes them to the success state.
      */
     open class func getOauthUrlWithRequestBuilder(
             oAuthURLRequest: OAuthURLRequest
@@ -1310,7 +1310,7 @@ open class IntegrationsAPI {
        - type: apiKey customer-id 
        - name: customerId
      - parameter oAuthURLRequest: (body)  
-     - returns: RequestBuilder<OuthURLResponse> 
+     - returns: RequestBuilder<OuthURLResponse> This endpoint can be used to generate the following URLs - An OAuth URL for OAuth based connectors - A file syncing URL which skips the OAuth flow if the user already has a valid access token and takes them to the success state.
      */
     open func getOauthUrlWithRequestBuilder(
             oAuthURLRequest: OAuthURLRequest
@@ -1459,7 +1459,7 @@ open class IntegrationsAPI {
        - type: apiKey customer-id 
        - name: customerId
      - parameter listRequest: (body)  
-     - returns: RequestBuilder<ListResponse> 
+     - returns: RequestBuilder<ListResponse> This endpoint has been deprecated. Use /integrations/items/list instead.  To begin listing a user&#39;s Confluence pages, at least a &#x60;data_source_id&#x60; of a connected Confluence account must be specified. This base request returns a list of root pages for every space the user has access to in a Confluence instance. To traverse further down the user&#39;s page directory, additional requests to this endpoint can be made with the same &#x60;data_source_id&#x60; and with &#x60;parent_id&#x60; set to the id of page from a previous request. For convenience, the &#x60;has_children&#x60; property in each directory item in the response list will flag which pages will return non-empty lists of pages when set as the &#x60;parent_id&#x60;.
      */
     @available(*, deprecated, message: "This operation is deprecated.")
     open class func listConfluencePagesWithRequestBuilder(
@@ -1505,7 +1505,7 @@ open class IntegrationsAPI {
        - type: apiKey customer-id 
        - name: customerId
      - parameter listRequest: (body)  
-     - returns: RequestBuilder<ListResponse> 
+     - returns: RequestBuilder<ListResponse> This endpoint has been deprecated. Use /integrations/items/list instead.  To begin listing a user&#39;s Confluence pages, at least a &#x60;data_source_id&#x60; of a connected Confluence account must be specified. This base request returns a list of root pages for every space the user has access to in a Confluence instance. To traverse further down the user&#39;s page directory, additional requests to this endpoint can be made with the same &#x60;data_source_id&#x60; and with &#x60;parent_id&#x60; set to the id of page from a previous request. For convenience, the &#x60;has_children&#x60; property in each directory item in the response list will flag which pages will return non-empty lists of pages when set as the &#x60;parent_id&#x60;.
      */
     @available(*, deprecated, message: "This operation is deprecated.")
     open func listConfluencePagesWithRequestBuilder(
@@ -1662,7 +1662,7 @@ open class IntegrationsAPI {
      - parameter cursor: (query)  (optional)
      - parameter dataSourceId: (query)  (optional)
      - parameter excludeArchived: (query)  (optional, default to true)
-     - returns: RequestBuilder<AnyCodable> 
+     - returns: RequestBuilder<AnyCodable> List all of your public and private channels, DMs, and Group DMs. The ID from response  can be used as a filter to sync messages to Carbon    types: Comma separated list of types. Available types are im (DMs), mpim (group DMs), public_channel, and private_channel. Defaults to public_channel.     cursor: Used for pagination. If next_cursor is returned in response, you need to pass it as the cursor in the next request     data_source_id: Data source needs to be specified if you have linked multiple slack accounts   exclude_archived: Should archived conversations be excluded, defaults to true
      */
     open class func listConversationsWithRequestBuilder(
             types: String? = nil,
@@ -1718,7 +1718,7 @@ open class IntegrationsAPI {
      - parameter cursor: (query)  (optional)
      - parameter dataSourceId: (query)  (optional)
      - parameter excludeArchived: (query)  (optional, default to true)
-     - returns: RequestBuilder<AnyCodable> 
+     - returns: RequestBuilder<AnyCodable> List all of your public and private channels, DMs, and Group DMs. The ID from response  can be used as a filter to sync messages to Carbon    types: Comma separated list of types. Available types are im (DMs), mpim (group DMs), public_channel, and private_channel. Defaults to public_channel.     cursor: Used for pagination. If next_cursor is returned in response, you need to pass it as the cursor in the next request     data_source_id: Data source needs to be specified if you have linked multiple slack accounts   exclude_archived: Should archived conversations be excluded, defaults to true
      */
     open func listConversationsWithRequestBuilder(
             types: String? = nil,
@@ -2065,7 +2065,7 @@ open class IntegrationsAPI {
        - type: apiKey customer-id 
        - name: customerId
      - parameter dataSourceId: (query)  (optional)
-     - returns: RequestBuilder<AnyCodable> 
+     - returns: RequestBuilder<AnyCodable> After connecting your Outlook account, you can use this endpoint to list all of your folders on outlook. This includes  both system folders like \&quot;inbox\&quot; and user created folders.
      */
     open class func listFoldersWithRequestBuilder(
             dataSourceId: Int? = nil
@@ -2112,7 +2112,7 @@ open class IntegrationsAPI {
        - type: apiKey customer-id 
        - name: customerId
      - parameter dataSourceId: (query)  (optional)
-     - returns: RequestBuilder<AnyCodable> 
+     - returns: RequestBuilder<AnyCodable> After connecting your Outlook account, you can use this endpoint to list all of your folders on outlook. This includes  both system folders like \&quot;inbox\&quot; and user created folders.
      */
     open func listFoldersWithRequestBuilder(
             dataSourceId: Int? = nil
@@ -2249,7 +2249,7 @@ open class IntegrationsAPI {
        - type: apiKey customer-id 
        - name: customerId
      - parameter dataSourceId: (query)  
-     - returns: RequestBuilder<AnyCodable> 
+     - returns: RequestBuilder<AnyCodable> After connecting your Gitbook account, you can use this endpoint to list all of your spaces under current organization.
      */
     open class func listGitbookSpacesWithRequestBuilder(
             dataSourceId: Int
@@ -2296,7 +2296,7 @@ open class IntegrationsAPI {
        - type: apiKey customer-id 
        - name: customerId
      - parameter dataSourceId: (query)  
-     - returns: RequestBuilder<AnyCodable> 
+     - returns: RequestBuilder<AnyCodable> After connecting your Gitbook account, you can use this endpoint to list all of your spaces under current organization.
      */
     open func listGitbookSpacesWithRequestBuilder(
             dataSourceId: Int
@@ -2433,7 +2433,7 @@ open class IntegrationsAPI {
        - type: apiKey customer-id 
        - name: customerId
      - parameter dataSourceId: (query)  (optional)
-     - returns: RequestBuilder<AnyCodable> 
+     - returns: RequestBuilder<AnyCodable> After connecting your Gmail account, you can use this endpoint to list all of your labels. User created labels will have the type \&quot;user\&quot; and Gmail&#39;s default labels will have the type \&quot;system\&quot;
      */
     open class func listLabelsWithRequestBuilder(
             dataSourceId: Int? = nil
@@ -2480,7 +2480,7 @@ open class IntegrationsAPI {
        - type: apiKey customer-id 
        - name: customerId
      - parameter dataSourceId: (query)  (optional)
-     - returns: RequestBuilder<AnyCodable> 
+     - returns: RequestBuilder<AnyCodable> After connecting your Gmail account, you can use this endpoint to list all of your labels. User created labels will have the type \&quot;user\&quot; and Gmail&#39;s default labels will have the type \&quot;system\&quot;
      */
     open func listLabelsWithRequestBuilder(
             dataSourceId: Int? = nil
@@ -2617,7 +2617,7 @@ open class IntegrationsAPI {
        - type: apiKey customer-id 
        - name: customerId
      - parameter dataSourceId: (query)  (optional)
-     - returns: RequestBuilder<AnyCodable> 
+     - returns: RequestBuilder<AnyCodable> After connecting your Outlook account, you can use this endpoint to list all of your categories on outlook. We currently support listing up to 250 categories.
      */
     open class func listOutlookCategoriesWithRequestBuilder(
             dataSourceId: Int? = nil
@@ -2664,7 +2664,7 @@ open class IntegrationsAPI {
        - type: apiKey customer-id 
        - name: customerId
      - parameter dataSourceId: (query)  (optional)
-     - returns: RequestBuilder<AnyCodable> 
+     - returns: RequestBuilder<AnyCodable> After connecting your Outlook account, you can use this endpoint to list all of your categories on outlook. We currently support listing up to 250 categories.
      */
     open func listOutlookCategoriesWithRequestBuilder(
             dataSourceId: Int? = nil
@@ -2815,7 +2815,7 @@ open class IntegrationsAPI {
      - parameter perPage: (query)  (optional, default to 30)
      - parameter page: (query)  (optional, default to 1)
      - parameter dataSourceId: (query)  (optional)
-     - returns: RequestBuilder<AnyCodable> 
+     - returns: RequestBuilder<AnyCodable> Once you have connected your GitHub account, you can use this endpoint to list the      repositories your account has access to. You can use a data source ID or username to fetch from a specific account.
      */
     open class func listReposWithRequestBuilder(
             perPage: Int? = nil,
@@ -2868,7 +2868,7 @@ open class IntegrationsAPI {
      - parameter perPage: (query)  (optional, default to 30)
      - parameter page: (query)  (optional, default to 1)
      - parameter dataSourceId: (query)  (optional)
-     - returns: RequestBuilder<AnyCodable> 
+     - returns: RequestBuilder<AnyCodable> Once you have connected your GitHub account, you can use this endpoint to list the      repositories your account has access to. You can use a data source ID or username to fetch from a specific account.
      */
     open func listReposWithRequestBuilder(
             perPage: Int? = nil,
@@ -3079,7 +3079,7 @@ open class IntegrationsAPI {
        - type: apiKey customer-id 
        - name: customerId
      - parameter syncFilesRequest: (body)  
-     - returns: RequestBuilder<GenericSuccessResponse> 
+     - returns: RequestBuilder<GenericSuccessResponse> This endpoint has been deprecated. Use /integrations/files/sync instead.  After listing pages in a user&#39;s Confluence account, the set of selected page &#x60;ids&#x60; and the connected account&#39;s &#x60;data_source_id&#x60; can be passed into this endpoint to sync them into Carbon. Additional parameters listed below can be used to associate data to the selected pages or alter the behavior of the sync.
      */
     @available(*, deprecated, message: "This operation is deprecated.")
     open class func syncConfluenceWithRequestBuilder(
@@ -3125,7 +3125,7 @@ open class IntegrationsAPI {
        - type: apiKey customer-id 
        - name: customerId
      - parameter syncFilesRequest: (body)  
-     - returns: RequestBuilder<GenericSuccessResponse> 
+     - returns: RequestBuilder<GenericSuccessResponse> This endpoint has been deprecated. Use /integrations/files/sync instead.  After listing pages in a user&#39;s Confluence account, the set of selected page &#x60;ids&#x60; and the connected account&#39;s &#x60;data_source_id&#x60; can be passed into this endpoint to sync them into Carbon. Additional parameters listed below can be used to associate data to the selected pages or alter the behavior of the sync.
      */
     @available(*, deprecated, message: "This operation is deprecated.")
     open func syncConfluenceWithRequestBuilder(
@@ -3511,7 +3511,7 @@ open class IntegrationsAPI {
        - type: apiKey customer-id 
        - name: customerId
      - parameter syncFilesRequest: (body)  
-     - returns: RequestBuilder<GenericSuccessResponse> 
+     - returns: RequestBuilder<GenericSuccessResponse> After listing files and folders via /integrations/items/sync and integrations/items/list, use the selected items&#39; external ids  as the ids in this endpoint to sync them into Carbon. Sharepoint items take an additional parameter root_id, which identifies the drive the file or folder is in and is stored in root_external_id. That additional paramter is optional and excluding it will tell the sync to assume the item is stored in the default Documents drive.
      */
     open class func syncFilesWithRequestBuilder(
             syncFilesRequest: SyncFilesRequest
@@ -3556,7 +3556,7 @@ open class IntegrationsAPI {
        - type: apiKey customer-id 
        - name: customerId
      - parameter syncFilesRequest: (body)  
-     - returns: RequestBuilder<GenericSuccessResponse> 
+     - returns: RequestBuilder<GenericSuccessResponse> After listing files and folders via /integrations/items/sync and integrations/items/list, use the selected items&#39; external ids  as the ids in this endpoint to sync them into Carbon. Sharepoint items take an additional parameter root_id, which identifies the drive the file or folder is in and is stored in root_external_id. That additional paramter is optional and excluding it will tell the sync to assume the item is stored in the default Documents drive.
      */
     open func syncFilesWithRequestBuilder(
             syncFilesRequest: SyncFilesRequest
@@ -3705,7 +3705,7 @@ open class IntegrationsAPI {
        - type: apiKey customer-id 
        - name: customerId
      - parameter githubConnectRequest: (body)  
-     - returns: RequestBuilder<GenericSuccessResponse> 
+     - returns: RequestBuilder<GenericSuccessResponse> Refer this article to obtain an access token https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/managing-your-personal-access-tokens. Make sure that your access token has the permission to read content from your desired repos. Note that if your access token expires you will need to manually update it through this endpoint.
      */
     open class func syncGitHubWithRequestBuilder(
             githubConnectRequest: GithubConnectRequest
@@ -3750,7 +3750,7 @@ open class IntegrationsAPI {
        - type: apiKey customer-id 
        - name: customerId
      - parameter githubConnectRequest: (body)  
-     - returns: RequestBuilder<GenericSuccessResponse> 
+     - returns: RequestBuilder<GenericSuccessResponse> Refer this article to obtain an access token https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/managing-your-personal-access-tokens. Make sure that your access token has the permission to read content from your desired repos. Note that if your access token expires you will need to manually update it through this endpoint.
      */
     open func syncGitHubWithRequestBuilder(
             githubConnectRequest: GithubConnectRequest
@@ -3927,7 +3927,7 @@ open class IntegrationsAPI {
        - type: apiKey customer-id 
        - name: customerId
      - parameter gitbookSyncRequest: (body)  
-     - returns: RequestBuilder<AnyCodable> 
+     - returns: RequestBuilder<AnyCodable> You can sync upto 20 Gitbook spaces at a time using this endpoint. Additional parameters below can be used to associate  data with the synced pages or modify the sync behavior.
      */
     open class func syncGitbookWithRequestBuilder(
             gitbookSyncRequest: GitbookSyncRequest
@@ -3972,7 +3972,7 @@ open class IntegrationsAPI {
        - type: apiKey customer-id 
        - name: customerId
      - parameter gitbookSyncRequest: (body)  
-     - returns: RequestBuilder<AnyCodable> 
+     - returns: RequestBuilder<AnyCodable> You can sync upto 20 Gitbook spaces at a time using this endpoint. Additional parameters below can be used to associate  data with the synced pages or modify the sync behavior.
      */
     open func syncGitbookWithRequestBuilder(
             gitbookSyncRequest: GitbookSyncRequest
@@ -4161,7 +4161,7 @@ open class IntegrationsAPI {
        - type: apiKey customer-id 
        - name: customerId
      - parameter gmailSyncInput: (body)  
-     - returns: RequestBuilder<GenericSuccessResponse> 
+     - returns: RequestBuilder<GenericSuccessResponse> Once you have successfully connected your gmail account, you can choose which emails to sync with us using the filters parameter. Filters is a JSON object with key value pairs. It also supports AND and OR operations. For now, we support a limited set of keys listed below.  &lt;b&gt;label&lt;/b&gt;: Inbuilt Gmail labels, for example \&quot;Important\&quot; or a custom label you created.   &lt;b&gt;after&lt;/b&gt; or &lt;b&gt;before&lt;/b&gt;: A date in YYYY/mm/dd format (example 2023/12/31). Gets emails after/before a certain date. You can also use them in combination to get emails from a certain period.   &lt;b&gt;is&lt;/b&gt;: Can have the following values - starred, important, snoozed, and unread   &lt;b&gt;from&lt;/b&gt;: Email address of the sender   &lt;b&gt;to&lt;/b&gt;: Email address of the recipient    Using keys or values outside of the specified values can lead to unexpected behaviour.  An example of a basic query with filters can be &#x60;&#x60;&#x60;json {     \&quot;filters\&quot;: {             \&quot;key\&quot;: \&quot;label\&quot;,             \&quot;value\&quot;: \&quot;Test\&quot;         } } &#x60;&#x60;&#x60; Which will list all emails that have the label \&quot;Test\&quot;.  You can use AND and OR operation in the following way: &#x60;&#x60;&#x60;json {     \&quot;filters\&quot;: {         \&quot;AND\&quot;: [             {                 \&quot;key\&quot;: \&quot;after\&quot;,                 \&quot;value\&quot;: \&quot;2024/01/07\&quot;             },             {                 \&quot;OR\&quot;: [                     {                         \&quot;key\&quot;: \&quot;label\&quot;,                         \&quot;value\&quot;: \&quot;Personal\&quot;                     },                     {                         \&quot;key\&quot;: \&quot;is\&quot;,                         \&quot;value\&quot;: \&quot;starred\&quot;                     }                 ]             }         ]     } } &#x60;&#x60;&#x60; This will return emails after 7th of Jan that are either starred or have the label \&quot;Personal\&quot;.  Note that this is the highest level of nesting we support, i.e. you can&#39;t add more AND/OR filters within the OR filter in the above example.
      */
     open class func syncGmailWithRequestBuilder(
             gmailSyncInput: GmailSyncInput
@@ -4206,7 +4206,7 @@ open class IntegrationsAPI {
        - type: apiKey customer-id 
        - name: customerId
      - parameter gmailSyncInput: (body)  
-     - returns: RequestBuilder<GenericSuccessResponse> 
+     - returns: RequestBuilder<GenericSuccessResponse> Once you have successfully connected your gmail account, you can choose which emails to sync with us using the filters parameter. Filters is a JSON object with key value pairs. It also supports AND and OR operations. For now, we support a limited set of keys listed below.  &lt;b&gt;label&lt;/b&gt;: Inbuilt Gmail labels, for example \&quot;Important\&quot; or a custom label you created.   &lt;b&gt;after&lt;/b&gt; or &lt;b&gt;before&lt;/b&gt;: A date in YYYY/mm/dd format (example 2023/12/31). Gets emails after/before a certain date. You can also use them in combination to get emails from a certain period.   &lt;b&gt;is&lt;/b&gt;: Can have the following values - starred, important, snoozed, and unread   &lt;b&gt;from&lt;/b&gt;: Email address of the sender   &lt;b&gt;to&lt;/b&gt;: Email address of the recipient    Using keys or values outside of the specified values can lead to unexpected behaviour.  An example of a basic query with filters can be &#x60;&#x60;&#x60;json {     \&quot;filters\&quot;: {             \&quot;key\&quot;: \&quot;label\&quot;,             \&quot;value\&quot;: \&quot;Test\&quot;         } } &#x60;&#x60;&#x60; Which will list all emails that have the label \&quot;Test\&quot;.  You can use AND and OR operation in the following way: &#x60;&#x60;&#x60;json {     \&quot;filters\&quot;: {         \&quot;AND\&quot;: [             {                 \&quot;key\&quot;: \&quot;after\&quot;,                 \&quot;value\&quot;: \&quot;2024/01/07\&quot;             },             {                 \&quot;OR\&quot;: [                     {                         \&quot;key\&quot;: \&quot;label\&quot;,                         \&quot;value\&quot;: \&quot;Personal\&quot;                     },                     {                         \&quot;key\&quot;: \&quot;is\&quot;,                         \&quot;value\&quot;: \&quot;starred\&quot;                     }                 ]             }         ]     } } &#x60;&#x60;&#x60; This will return emails after 7th of Jan that are either starred or have the label \&quot;Personal\&quot;.  Note that this is the highest level of nesting we support, i.e. you can&#39;t add more AND/OR filters within the OR filter in the above example.
      */
     open func syncGmailWithRequestBuilder(
             gmailSyncInput: GmailSyncInput
@@ -4399,7 +4399,7 @@ open class IntegrationsAPI {
        - type: apiKey customer-id 
        - name: customerId
      - parameter outlookSyncInput: (body)  
-     - returns: RequestBuilder<GenericSuccessResponse> 
+     - returns: RequestBuilder<GenericSuccessResponse> Once you have successfully connected your Outlook account, you can choose which emails to sync with us using the filters and folder parameter. \&quot;folder\&quot; should be the folder you want to sync from Outlook. By default we get messages from your inbox folder.   Filters is a JSON object with key value pairs. It also supports AND and OR operations. For now, we support a limited set of keys listed below.  &lt;b&gt;category&lt;/b&gt;: Custom categories that you created in Outlook.   &lt;b&gt;after&lt;/b&gt; or &lt;b&gt;before&lt;/b&gt;: A date in YYYY/mm/dd format (example 2023/12/31). Gets emails after/before a certain date. You can also use them in combination to get emails from a certain period.     &lt;b&gt;is&lt;/b&gt;: Can have the following values: flagged   &lt;b&gt;from&lt;/b&gt;: Email address of the sender     An example of a basic query with filters can be &#x60;&#x60;&#x60;json {     \&quot;filters\&quot;: {             \&quot;key\&quot;: \&quot;category\&quot;,             \&quot;value\&quot;: \&quot;Test\&quot;         } } &#x60;&#x60;&#x60; Which will list all emails that have the category \&quot;Test\&quot;.    Specifying a custom folder in the same query &#x60;&#x60;&#x60;json {     \&quot;folder\&quot;: \&quot;Folder Name\&quot;,     \&quot;filters\&quot;: {             \&quot;key\&quot;: \&quot;category\&quot;,             \&quot;value\&quot;: \&quot;Test\&quot;         } } &#x60;&#x60;&#x60;  You can use AND and OR operation in the following way: &#x60;&#x60;&#x60;json {     \&quot;filters\&quot;: {         \&quot;AND\&quot;: [             {                 \&quot;key\&quot;: \&quot;after\&quot;,                 \&quot;value\&quot;: \&quot;2024/01/07\&quot;             },             {                 \&quot;OR\&quot;: [                     {                         \&quot;key\&quot;: \&quot;category\&quot;,                         \&quot;value\&quot;: \&quot;Personal\&quot;                     },                     {                         \&quot;key\&quot;: \&quot;category\&quot;,                         \&quot;value\&quot;: \&quot;Test\&quot;                     },                 ]             }         ]     } } &#x60;&#x60;&#x60; This will return emails after 7th of Jan that have either Personal or Test as category.  Note that this is the highest level of nesting we support, i.e. you can&#39;t add more AND/OR filters within the OR filter in the above example.
      */
     open class func syncOutlookWithRequestBuilder(
             outlookSyncInput: OutlookSyncInput
@@ -4444,7 +4444,7 @@ open class IntegrationsAPI {
        - type: apiKey customer-id 
        - name: customerId
      - parameter outlookSyncInput: (body)  
-     - returns: RequestBuilder<GenericSuccessResponse> 
+     - returns: RequestBuilder<GenericSuccessResponse> Once you have successfully connected your Outlook account, you can choose which emails to sync with us using the filters and folder parameter. \&quot;folder\&quot; should be the folder you want to sync from Outlook. By default we get messages from your inbox folder.   Filters is a JSON object with key value pairs. It also supports AND and OR operations. For now, we support a limited set of keys listed below.  &lt;b&gt;category&lt;/b&gt;: Custom categories that you created in Outlook.   &lt;b&gt;after&lt;/b&gt; or &lt;b&gt;before&lt;/b&gt;: A date in YYYY/mm/dd format (example 2023/12/31). Gets emails after/before a certain date. You can also use them in combination to get emails from a certain period.     &lt;b&gt;is&lt;/b&gt;: Can have the following values: flagged   &lt;b&gt;from&lt;/b&gt;: Email address of the sender     An example of a basic query with filters can be &#x60;&#x60;&#x60;json {     \&quot;filters\&quot;: {             \&quot;key\&quot;: \&quot;category\&quot;,             \&quot;value\&quot;: \&quot;Test\&quot;         } } &#x60;&#x60;&#x60; Which will list all emails that have the category \&quot;Test\&quot;.    Specifying a custom folder in the same query &#x60;&#x60;&#x60;json {     \&quot;folder\&quot;: \&quot;Folder Name\&quot;,     \&quot;filters\&quot;: {             \&quot;key\&quot;: \&quot;category\&quot;,             \&quot;value\&quot;: \&quot;Test\&quot;         } } &#x60;&#x60;&#x60;  You can use AND and OR operation in the following way: &#x60;&#x60;&#x60;json {     \&quot;filters\&quot;: {         \&quot;AND\&quot;: [             {                 \&quot;key\&quot;: \&quot;after\&quot;,                 \&quot;value\&quot;: \&quot;2024/01/07\&quot;             },             {                 \&quot;OR\&quot;: [                     {                         \&quot;key\&quot;: \&quot;category\&quot;,                         \&quot;value\&quot;: \&quot;Personal\&quot;                     },                     {                         \&quot;key\&quot;: \&quot;category\&quot;,                         \&quot;value\&quot;: \&quot;Test\&quot;                     },                 ]             }         ]     } } &#x60;&#x60;&#x60; This will return emails after 7th of Jan that have either Personal or Test as category.  Note that this is the highest level of nesting we support, i.e. you can&#39;t add more AND/OR filters within the OR filter in the above example.
      */
     open func syncOutlookWithRequestBuilder(
             outlookSyncInput: OutlookSyncInput
@@ -4589,7 +4589,7 @@ open class IntegrationsAPI {
        - type: apiKey customer-id 
        - name: customerId
      - parameter githubFetchReposRequest: (body)  
-     - returns: RequestBuilder<AnyCodable> 
+     - returns: RequestBuilder<AnyCodable> You can retreive repos your token has access to using /integrations/github/repos and sync their content.  You can also pass full name of any public repository (username/repo-name). This will store the repo content with  carbon which can be accessed through /integrations/items/list endpoint. Maximum of 25 repositories are accepted per request.
      */
     open class func syncReposWithRequestBuilder(
             githubFetchReposRequest: GithubFetchReposRequest
@@ -4634,7 +4634,7 @@ open class IntegrationsAPI {
        - type: apiKey customer-id 
        - name: customerId
      - parameter githubFetchReposRequest: (body)  
-     - returns: RequestBuilder<AnyCodable> 
+     - returns: RequestBuilder<AnyCodable> You can retreive repos your token has access to using /integrations/github/repos and sync their content.  You can also pass full name of any public repository (username/repo-name). This will store the repo content with  carbon which can be accessed through /integrations/items/list endpoint. Maximum of 25 repositories are accepted per request.
      */
     open func syncReposWithRequestBuilder(
             githubFetchReposRequest: GithubFetchReposRequest
@@ -5047,7 +5047,7 @@ open class IntegrationsAPI {
        - type: apiKey customer-id 
        - name: customerId
      - parameter s3FileSyncInput: (body)  
-     - returns: RequestBuilder<GenericSuccessResponse> 
+     - returns: RequestBuilder<GenericSuccessResponse> After optionally loading the items via /integrations/items/sync and integrations/items/list, use the bucket name  and object key as the ID in this endpoint to sync them into Carbon. Additional parameters below can associate  data with the selected items or modify the sync behavior
      */
     open class func syncS3FilesWithRequestBuilder(
             s3FileSyncInput: S3FileSyncInput
@@ -5092,7 +5092,7 @@ open class IntegrationsAPI {
        - type: apiKey customer-id 
        - name: customerId
      - parameter s3FileSyncInput: (body)  
-     - returns: RequestBuilder<GenericSuccessResponse> 
+     - returns: RequestBuilder<GenericSuccessResponse> After optionally loading the items via /integrations/items/sync and integrations/items/list, use the bucket name  and object key as the ID in this endpoint to sync them into Carbon. Additional parameters below can associate  data with the selected items or modify the sync behavior
      */
     open func syncS3FilesWithRequestBuilder(
             s3FileSyncInput: S3FileSyncInput
@@ -5269,7 +5269,7 @@ open class IntegrationsAPI {
        - type: apiKey customer-id 
        - name: customerId
      - parameter slackSyncRequest: (body)  
-     - returns: RequestBuilder<AnyCodable> 
+     - returns: RequestBuilder<AnyCodable> You can list all conversations using the endpoint /integrations/slack/conversations. The ID of  conversation will be used as an input for this endpoint with timestamps as optional filters.
      */
     open class func syncSlackWithRequestBuilder(
             slackSyncRequest: SlackSyncRequest
@@ -5314,7 +5314,7 @@ open class IntegrationsAPI {
        - type: apiKey customer-id 
        - name: customerId
      - parameter slackSyncRequest: (body)  
-     - returns: RequestBuilder<AnyCodable> 
+     - returns: RequestBuilder<AnyCodable> You can list all conversations using the endpoint /integrations/slack/conversations. The ID of  conversation will be used as an input for this endpoint with timestamps as optional filters.
      */
     open func syncSlackWithRequestBuilder(
             slackSyncRequest: SlackSyncRequest

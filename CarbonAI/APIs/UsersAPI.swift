@@ -473,7 +473,7 @@ open class UsersAPI {
        - type: apiKey authorization 
        - name: apiKey
      - parameter listUsersRequest: (body)  
-     - returns: RequestBuilder<UserListResponse> 
+     - returns: RequestBuilder<UserListResponse> List users within an organization
      */
     open class func listWithRequestBuilder(
             listUsersRequest: ListUsersRequest
@@ -510,7 +510,7 @@ open class UsersAPI {
        - type: apiKey authorization 
        - name: apiKey
      - parameter listUsersRequest: (body)  
-     - returns: RequestBuilder<UserListResponse> 
+     - returns: RequestBuilder<UserListResponse> List users within an organization
      */
     open func listWithRequestBuilder(
             listUsersRequest: ListUsersRequest

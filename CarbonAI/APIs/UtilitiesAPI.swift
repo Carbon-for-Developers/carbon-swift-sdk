@@ -125,7 +125,7 @@ open class UtilitiesAPI {
        - type: apiKey customer-id 
        - name: customerId
      - parameter url: (query)  
-     - returns: RequestBuilder<FetchURLsResponse> 
+     - returns: RequestBuilder<FetchURLsResponse> Extracts all URLs from a webpage.   Args:     url (str): URL of the webpage  Returns:     FetchURLsResponse: A response object with a list of URLs extracted from the webpage and the webpage content.
      */
     @available(*, deprecated, message: "This operation is deprecated.")
     open class func fetchUrlsWithRequestBuilder(
@@ -173,7 +173,7 @@ open class UtilitiesAPI {
        - type: apiKey customer-id 
        - name: customerId
      - parameter url: (query)  
-     - returns: RequestBuilder<FetchURLsResponse> 
+     - returns: RequestBuilder<FetchURLsResponse> Extracts all URLs from a webpage.   Args:     url (str): URL of the webpage  Returns:     FetchURLsResponse: A response object with a list of URLs extracted from the webpage and the webpage content.
      */
     @available(*, deprecated, message: "This operation is deprecated.")
     open func fetchUrlsWithRequestBuilder(
@@ -502,7 +502,7 @@ open class UtilitiesAPI {
        - name: customerId
      - parameter id: (query)  
      - parameter raw: (query)  (optional, default to false)
-     - returns: RequestBuilder<YoutubeTranscriptResponse> 
+     - returns: RequestBuilder<YoutubeTranscriptResponse> Fetches english transcripts from YouTube videos.  Args:     id (str): The ID of the YouTube video.      raw (bool): Whether to return the raw transcript or not. Defaults to False.  Returns:     dict: A dictionary with the transcript of the YouTube video.
      */
     open class func fetchYoutubeTranscriptsWithRequestBuilder(
             id: String,
@@ -552,7 +552,7 @@ open class UtilitiesAPI {
        - name: customerId
      - parameter id: (query)  
      - parameter raw: (query)  (optional, default to false)
-     - returns: RequestBuilder<YoutubeTranscriptResponse> 
+     - returns: RequestBuilder<YoutubeTranscriptResponse> Fetches english transcripts from YouTube videos.  Args:     id (str): The ID of the YouTube video.      raw (bool): Whether to return the raw transcript or not. Defaults to False.  Returns:     dict: A dictionary with the transcript of the YouTube video.
      */
     open func fetchYoutubeTranscriptsWithRequestBuilder(
             id: String,
@@ -691,7 +691,7 @@ open class UtilitiesAPI {
        - type: apiKey customer-id 
        - name: customerId
      - parameter url: (query)  
-     - returns: RequestBuilder<AnyCodable> 
+     - returns: RequestBuilder<AnyCodable> Retrieves all URLs from a sitemap, which can subsequently be utilized with our &#x60;web_scrape&#x60; endpoint.  &lt;!--Args:     url (str): URL of the sitemap  Returns:     dict: A dictionary with a list of URLs extracted from the sitemap.--&gt;
      */
     open class func processSitemapWithRequestBuilder(
             url: String
@@ -738,7 +738,7 @@ open class UtilitiesAPI {
        - type: apiKey customer-id 
        - name: customerId
      - parameter url: (query)  
-     - returns: RequestBuilder<AnyCodable> 
+     - returns: RequestBuilder<AnyCodable> Retrieves all URLs from a sitemap, which can subsequently be utilized with our &#x60;web_scrape&#x60; endpoint.  &lt;!--Args:     url (str): URL of the sitemap  Returns:     dict: A dictionary with a list of URLs extracted from the sitemap.--&gt;
      */
     open func processSitemapWithRequestBuilder(
             url: String
@@ -941,7 +941,7 @@ open class UtilitiesAPI {
        - type: apiKey customer-id 
        - name: customerId
      - parameter sitemapScrapeRequest: (body)  
-     - returns: RequestBuilder<AnyCodable> 
+     - returns: RequestBuilder<AnyCodable> Extracts all URLs from a sitemap and performs a web scrape on each of them.  Args:     sitemap_url (str): URL of the sitemap  Returns:     dict: A response object with the status of the scraping job message.--&gt;
      */
     open class func scrapeSitemapWithRequestBuilder(
             sitemapScrapeRequest: SitemapScrapeRequest
@@ -986,7 +986,7 @@ open class UtilitiesAPI {
        - type: apiKey customer-id 
        - name: customerId
      - parameter sitemapScrapeRequest: (body)  
-     - returns: RequestBuilder<AnyCodable> 
+     - returns: RequestBuilder<AnyCodable> Extracts all URLs from a sitemap and performs a web scrape on each of them.  Args:     sitemap_url (str): URL of the sitemap  Returns:     dict: A response object with the status of the scraping job message.--&gt;
      */
     open func scrapeSitemapWithRequestBuilder(
             sitemapScrapeRequest: SitemapScrapeRequest
@@ -1123,7 +1123,7 @@ open class UtilitiesAPI {
        - type: apiKey customer-id 
        - name: customerId
      - parameter webscrapeRequest: (body)  
-     - returns: RequestBuilder<AnyCodable> 
+     - returns: RequestBuilder<AnyCodable> Conduct a web scrape on a given webpage URL. Our web scraper is fully compatible with JavaScript and supports recursion depth, enabling you to efficiently extract all content from the target website.  &lt;!--Args:     scraping_requests (List[WebscrapeRequest]): A list of WebscrapeRequest objects.       Returns:     dict: A response object with the status of the scraping job message.--&gt;
      */
     open class func scrapeWebWithRequestBuilder(
             webscrapeRequest: [WebscrapeRequest]
@@ -1168,7 +1168,7 @@ open class UtilitiesAPI {
        - type: apiKey customer-id 
        - name: customerId
      - parameter webscrapeRequest: (body)  
-     - returns: RequestBuilder<AnyCodable> 
+     - returns: RequestBuilder<AnyCodable> Conduct a web scrape on a given webpage URL. Our web scraper is fully compatible with JavaScript and supports recursion depth, enabling you to efficiently extract all content from the target website.  &lt;!--Args:     scraping_requests (List[WebscrapeRequest]): A list of WebscrapeRequest objects.       Returns:     dict: A response object with the status of the scraping job message.--&gt;
      */
     open func scrapeWebWithRequestBuilder(
             webscrapeRequest: [WebscrapeRequest]
@@ -1303,7 +1303,7 @@ open class UtilitiesAPI {
        - type: apiKey customer-id 
        - name: customerId
      - parameter query: (query)  
-     - returns: RequestBuilder<FetchURLsResponse> 
+     - returns: RequestBuilder<FetchURLsResponse> Perform a web search and obtain a list of relevant URLs.  As an illustration, when you perform a search for “content related to MRNA,” you will receive a list of links such as the following:      - https://tomrenz.substack.com/p/mrna-and-why-it-matters      - https://www.statnews.com/2020/11/10/the-story-of-mrna-how-a-once-dismissed-idea-became-a-leading-technology-in-the-covid-vaccine-race/      - https://www.statnews.com/2022/11/16/covid-19-vaccines-were-a-success-but-mrna-still-has-a-delivery-problem/          - https://joomi.substack.com/p/were-still-being-misled-about-how  Subsequently, you can submit these links to the web_scrape endpoint in order to retrieve the content of the respective web pages.  Args:     query (str): Query to search for  Returns:     FetchURLsResponse: A response object with a list of URLs for a given search query.
      */
     open class func searchUrlsWithRequestBuilder(
             query: String
@@ -1350,7 +1350,7 @@ open class UtilitiesAPI {
        - type: apiKey customer-id 
        - name: customerId
      - parameter query: (query)  
-     - returns: RequestBuilder<FetchURLsResponse> 
+     - returns: RequestBuilder<FetchURLsResponse> Perform a web search and obtain a list of relevant URLs.  As an illustration, when you perform a search for “content related to MRNA,” you will receive a list of links such as the following:      - https://tomrenz.substack.com/p/mrna-and-why-it-matters      - https://www.statnews.com/2020/11/10/the-story-of-mrna-how-a-once-dismissed-idea-became-a-leading-technology-in-the-covid-vaccine-race/      - https://www.statnews.com/2022/11/16/covid-19-vaccines-were-a-success-but-mrna-still-has-a-delivery-problem/          - https://joomi.substack.com/p/were-still-being-misled-about-how  Subsequently, you can submit these links to the web_scrape endpoint in order to retrieve the content of the respective web pages.  Args:     query (str): Query to search for  Returns:     FetchURLsResponse: A response object with a list of URLs for a given search query.
      */
     open func searchUrlsWithRequestBuilder(
             query: String
