@@ -282,7 +282,7 @@ open class AuthAPI {
      - API Key:
        - type: apiKey customer-id 
        - name: customerId
-     - returns: RequestBuilder<WhiteLabelingResponse> 
+     - returns: RequestBuilder<WhiteLabelingResponse> Returns whether or not the organization is white labeled and which integrations are white labeled  :param current_user: the current user :param db: the database session :return: a WhiteLabelingResponse
      */
     open class func getWhiteLabelingWithRequestBuilder(
     ) -> RequestBuilder<WhiteLabelingResponse> {
@@ -325,7 +325,7 @@ open class AuthAPI {
      - API Key:
        - type: apiKey customer-id 
        - name: customerId
-     - returns: RequestBuilder<WhiteLabelingResponse> 
+     - returns: RequestBuilder<WhiteLabelingResponse> Returns whether or not the organization is white labeled and which integrations are white labeled  :param current_user: the current user :param db: the database session :return: a WhiteLabelingResponse
      */
     open func getWhiteLabelingWithRequestBuilder(
     ) -> RequestBuilder<WhiteLabelingResponse> {
