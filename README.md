@@ -2342,7 +2342,7 @@ success state.
 #### 🛠️ Usage<a id="🛠️-usage"></a>
 
 ```swift
-let service = DataSourceType(
+let service = ExternalDataSourceType(
     
 )
 let tags = TODO
@@ -2415,7 +2415,7 @@ let getOauthUrlResponse = try await carbonai.integrations.getOauthUrl(
 
 #### ⚙️ Parameters<a id="⚙️-parameters"></a>
 
-##### service: `DataSourceType`<a id="service-datasourcetype"></a>
+##### service: `ExternalDataSourceType`<a id="service-externaldatasourcetype"></a>
 
 
 ##### tags: `AnyCodable`<a id="tags-anycodable"></a>
@@ -2487,7 +2487,7 @@ This request id will be added to all files that get synced using the generated O
 
 ##### use_ocr: `Bool`<a id="use_ocr-bool"></a>
 
-Enable OCR for files that support it. Supported formats: pdf, jpg, png
+Enable OCR for files that support it. Supported formats: pdf, png, jpg
 
 
 ##### parse_pdf_tables_with_ocr: `Bool`<a id="parse_pdf_tables_with_ocr-bool"></a>

@@ -1101,7 +1101,7 @@ open class IntegrationsAPI {
      */
     @available(iOS 13.0, macOS 10.15, tvOS 13.0, watchOS 6.0, *)
     open class func getOauthUrl(
-        service: DataSourceType,
+        service: ExternalDataSourceType,
         tags: AnyCodable? = nil, 
         scope: String? = nil, 
         chunkSize: Int? = nil, 
@@ -1180,7 +1180,7 @@ open class IntegrationsAPI {
      */
     @available(iOS 13.0, macOS 10.15, tvOS 13.0, watchOS 6.0, *)
     open func getOauthUrl(
-        service: DataSourceType,
+        service: ExternalDataSourceType,
         tags: AnyCodable? = nil, 
         scope: String? = nil, 
         chunkSize: Int? = nil, 
