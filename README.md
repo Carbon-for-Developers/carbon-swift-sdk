@@ -4378,6 +4378,7 @@ let urlPathsToExclude = [
 let urlsToScrape = [
 "inner_example"
 ]
+let downloadCssAndMedia = true
 let scrapeSitemapResponse = try await carbonai.utilities.scrapeSitemap(
     url: url,
     tags: tags,
@@ -4394,7 +4395,8 @@ let scrapeSitemapResponse = try await carbonai.utilities.scrapeSitemap(
     embeddingModel: embeddingModel,
     urlPathsToInclude: urlPathsToInclude,
     urlPathsToExclude: urlPathsToExclude,
-    urlsToScrape: urlsToScrape
+    urlsToScrape: urlsToScrape,
+    downloadCssAndMedia: downloadCssAndMedia
 )
 ```
 
@@ -4452,6 +4454,11 @@ URL subpaths or directories that you want to exclude. For example if you want to
 ##### urls_to_scrape: `[String]`<a id="urls_to_scrape-string"></a>
 
 You can submit a subset of URLs from the sitemap that should be scraped. To get the list of URLs,           you can check out /process_sitemap endpoint. If left empty, all URLs from the sitemap will be scraped.
+
+
+##### download_css_and_media: `Bool`<a id="download_css_and_media-bool"></a>
+
+Whether the scraper should download css and media from the page (images, fonts, etc). Scrapes          might take longer to finish with this flag enabled, but the success rate is improved.
 
 
 #### 🌐 Endpoint<a id="🌐-endpoint"></a>
