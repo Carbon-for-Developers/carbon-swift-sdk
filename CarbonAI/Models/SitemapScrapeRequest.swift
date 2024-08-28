@@ -31,8 +31,10 @@ public struct SitemapScrapeRequest: Codable, JSONEncodable, Hashable {
     public var urlPathsToExclude: [String]?
     /** You can submit a subset of URLs from the sitemap that should be scraped. To get the list of URLs,           you can check out /process_sitemap endpoint. If left empty, all URLs from the sitemap will be scraped. */
     public var urlsToScrape: [String]?
+    /** Whether the scraper should download css and media from the page (images, fonts, etc). Scrapes          might take longer to finish with this flag enabled, but the success rate is improved. */
+    public var downloadCssAndMedia: Bool? = false
 
-    public init(tags: [String: Tags1]? = nil, url: String, maxPagesToScrape: Int? = nil, chunkSize: Int? = 1500, chunkOverlap: Int? = 20, skipEmbeddingGeneration: Bool? = false, enableAutoSync: Bool? = false, generateSparseVectors: Bool? = false, prependFilenameToChunks: Bool? = false, htmlTagsToSkip: [String]? = nil, cssClassesToSkip: [String]? = nil, cssSelectorsToSkip: [String]? = nil, embeddingModel: EmbeddingGenerators? = nil, urlPathsToInclude: [String]? = nil, urlPathsToExclude: [String]? = nil, urlsToScrape: [String]? = nil) {
+    public init(tags: [String: Tags1]? = nil, url: String, maxPagesToScrape: Int? = nil, chunkSize: Int? = 1500, chunkOverlap: Int? = 20, skipEmbeddingGeneration: Bool? = false, enableAutoSync: Bool? = false, generateSparseVectors: Bool? = false, prependFilenameToChunks: Bool? = false, htmlTagsToSkip: [String]? = nil, cssClassesToSkip: [String]? = nil, cssSelectorsToSkip: [String]? = nil, embeddingModel: EmbeddingGenerators? = nil, urlPathsToInclude: [String]? = nil, urlPathsToExclude: [String]? = nil, urlsToScrape: [String]? = nil, downloadCssAndMedia: Bool? = false) {
         self.tags = tags
         self.url = url
         self.maxPagesToScrape = maxPagesToScrape
@@ -49,6 +51,7 @@ public struct SitemapScrapeRequest: Codable, JSONEncodable, Hashable {
         self.urlPathsToInclude = urlPathsToInclude
         self.urlPathsToExclude = urlPathsToExclude
         self.urlsToScrape = urlsToScrape
+        self.downloadCssAndMedia = downloadCssAndMedia
     }
 
     public enum CodingKeys: String, CodingKey, CaseIterable {
@@ -68,6 +71,7 @@ public struct SitemapScrapeRequest: Codable, JSONEncodable, Hashable {
         case urlPathsToInclude = "url_paths_to_include"
         case urlPathsToExclude = "url_paths_to_exclude"
         case urlsToScrape = "urls_to_scrape"
+        case downloadCssAndMedia = "download_css_and_media"
     }
 
     // Encodable protocol methods
@@ -90,6 +94,7 @@ public struct SitemapScrapeRequest: Codable, JSONEncodable, Hashable {
         try container.encodeIfPresent(urlPathsToInclude, forKey: .urlPathsToInclude)
         try container.encodeIfPresent(urlPathsToExclude, forKey: .urlPathsToExclude)
         try container.encodeIfPresent(urlsToScrape, forKey: .urlsToScrape)
+        try container.encodeIfPresent(downloadCssAndMedia, forKey: .downloadCssAndMedia)
     }
 }
 
