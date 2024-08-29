@@ -45,6 +45,7 @@ public enum DataSourceTypeNullable: String, Codable, CaseIterable {
     case salesforce = "SALESFORCE"
     case github = "GITHUB"
     case slack = "SLACK"
+    case guru = "GURU"
     case jpg = "JPG"
     case png = "PNG"
     case jpeg = "JPEG"

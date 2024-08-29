@@ -47,6 +47,7 @@ Connect external data to LLMs, no matter the source.
   * [`carbonai.integrations.connectDataSource`](#carbonaiintegrationsconnectdatasource)
   * [`carbonai.integrations.connectFreshdesk`](#carbonaiintegrationsconnectfreshdesk)
   * [`carbonai.integrations.connectGitbook`](#carbonaiintegrationsconnectgitbook)
+  * [`carbonai.integrations.connectGuru`](#carbonaiintegrationsconnectguru)
   * [`carbonai.integrations.createAwsIamUser`](#carbonaiintegrationscreateawsiamuser)
   * [`carbonai.integrations.getOauthUrl`](#carbonaiintegrationsgetoauthurl)
   * [`carbonai.integrations.listConfluencePages`](#carbonaiintegrationslistconfluencepages)
@@ -2273,6 +2274,111 @@ Enabling this flag will fetch all available content from the source to be listed
 ---
 
 
+### `carbonai.integrations.connectGuru`<a id="carbonaiintegrationsconnectguru"></a>
+
+You will need an access token to connect your Guru account. To obtain an access token, follow the steps highlighted here
+https://help.getguru.com/docs/gurus-api#obtaining-a-user-token. The username should be your Guru username.
+
+#### 🛠️ Usage<a id="🛠️-usage"></a>
+
+```swift
+let username = "username_example"
+let accessToken = "accessToken_example"
+let tags = "TODO"
+let chunkSize = 987
+let chunkOverlap = 987
+let skipEmbeddingGeneration = true
+let embeddingModel = EmbeddingGenerators(
+    
+)
+let generateSparseVectors = true
+let prependFilenameToChunks = true
+let syncFilesOnConnection = true
+let requestId = "requestId_example"
+let syncSourceItems = true
+let fileSyncConfig = FileSyncConfigNullable(
+    autoSyncedSourceTypes: [
+    HelpdeskFileTypes.ticket
+    ],
+    syncAttachments: false,
+    detectAudioLanguage: false,
+    transcriptionService: TranscriptionServiceNullable.assemblyai,
+    includeSpeakerLabels: false,
+    splitRows: false
+)
+let connectGuruResponse = try await carbonai.integrations.connectGuru(
+    username: username,
+    accessToken: accessToken,
+    tags: tags,
+    chunkSize: chunkSize,
+    chunkOverlap: chunkOverlap,
+    skipEmbeddingGeneration: skipEmbeddingGeneration,
+    embeddingModel: embeddingModel,
+    generateSparseVectors: generateSparseVectors,
+    prependFilenameToChunks: prependFilenameToChunks,
+    syncFilesOnConnection: syncFilesOnConnection,
+    requestId: requestId,
+    syncSourceItems: syncSourceItems,
+    fileSyncConfig: fileSyncConfig
+)
+```
+
+#### ⚙️ Parameters<a id="⚙️-parameters"></a>
+
+##### username: `String`<a id="username-string"></a>
+
+
+##### access_token: `String`<a id="access_token-string"></a>
+
+
+##### tags: `AnyCodable`<a id="tags-anycodable"></a>
+
+
+##### chunk_size: `Int`<a id="chunk_size-int"></a>
+
+
+##### chunk_overlap: `Int`<a id="chunk_overlap-int"></a>
+
+
+##### skip_embedding_generation: `Bool`<a id="skip_embedding_generation-bool"></a>
+
+
+##### embedding_model: `EmbeddingGenerators`<a id="embedding_model-embeddinggenerators"></a>
+
+
+##### generate_sparse_vectors: `Bool`<a id="generate_sparse_vectors-bool"></a>
+
+
+##### prepend_filename_to_chunks: `Bool`<a id="prepend_filename_to_chunks-bool"></a>
+
+
+##### sync_files_on_connection: `Bool`<a id="sync_files_on_connection-bool"></a>
+
+
+##### request_id: `String`<a id="request_id-string"></a>
+
+
+##### sync_source_items: `Bool`<a id="sync_source_items-bool"></a>
+
+Enabling this flag will fetch all available content from the source to be listed via list items endpoint
+
+
+##### file_sync_config: [`FileSyncConfigNullable`](./CarbonAI/Models/FileSyncConfigNullable.swift)<a id="file_sync_config-filesyncconfignullablecarbonaimodelsfilesyncconfignullableswift"></a>
+
+
+#### 🔄 Return<a id="🔄-return"></a>
+
+[GenericSuccessResponse](./CarbonAI/Models/GenericSuccessResponse.swift)
+
+#### 🌐 Endpoint<a id="🌐-endpoint"></a>
+
+`/integrations/guru` `POST`
+
+[🔙 **Back to Table of Contents**](#table-of-contents)
+
+---
+
+
 ### `carbonai.integrations.createAwsIamUser`<a id="carbonaiintegrationscreateawsiamuser"></a>
 
 This endpoint can be used to connect S3 as well as Digital Ocean Spaces (S3 compatible)  
@@ -3263,6 +3369,8 @@ You can also use them in combination to get emails from a certain period.
 <b>is</b>: Can have the following values - starred, important, snoozed, and unread  
 <b>from</b>: Email address of the sender  
 <b>to</b>: Email address of the recipient  
+<b>in</b>: Can have the following values - sent (sync emails sent by the user)  
+<b>has</b>: Can have the following values - attachment (sync emails that have attachments)  
 
 Using keys or values outside of the specified values can lead to unexpected behaviour.
 
