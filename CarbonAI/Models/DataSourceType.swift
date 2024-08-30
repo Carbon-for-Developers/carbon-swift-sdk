@@ -45,6 +45,7 @@ public enum DataSourceType: String, Codable, CaseIterable {
     case salesforce = "SALESFORCE"
     case github = "GITHUB"
     case slack = "SLACK"
+    case guru = "GURU"
     case jpg = "JPG"
     case png = "PNG"
     case jpeg = "JPEG"
@@ -67,4 +68,5 @@ public enum DataSourceType: String, Codable, CaseIterable {
     case flv = "FLV"
     case webm = "WEBM"
     case eml = "EML"
+    case msg = "MSG"
 }

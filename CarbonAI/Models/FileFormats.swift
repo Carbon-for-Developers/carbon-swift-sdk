@@ -38,6 +38,7 @@ public enum FileFormats: String, Codable, CaseIterable {
     case salesforce = "SALESFORCE"
     case github = "GITHUB"
     case slack = "SLACK"
+    case guru = "GURU"
     case jpg = "JPG"
     case png = "PNG"
     case mp3 = "MP3"
@@ -59,4 +60,5 @@ public enum FileFormats: String, Codable, CaseIterable {
     case flv = "FLV"
     case webm = "WEBM"
     case eml = "EML"
+    case msg = "MSG"
 }
