@@ -13,7 +13,7 @@ import AnyCodable
 public struct FileSyncConfig: Codable, JSONEncodable, Hashable {
 
     /** File types to automatically sync when the data source connects. Only a subset of file types can be          controlled. If not supported, then they will always be synced */
-    public var autoSyncedSourceTypes: [HelpdeskFileTypes]?
+    public var autoSyncedSourceTypes: [AutoSyncedSourceTypesPropertyInner]?
     /** Automatically sync attachments from files where supported. Currently applies to Helpdesk Tickets */
     public var syncAttachments: Bool? = false
     /** Detect audio language before transcription for audio files */
@@ -23,14 +23,17 @@ public struct FileSyncConfig: Codable, JSONEncodable, Hashable {
     public var includeSpeakerLabels: Bool? = false
     /** Whether to split tabular rows into chunks. Currently only valid for CSV, TSV, and XLSX files. */
     public var splitRows: Bool? = false
+    /** If this flag is enabled, the file will be chunked and stored with Carbon,           but no embeddings will be generated. This overrides the skip_embedding_generation flag. */
+    public var generateChunksOnly: Bool? = false
 
-    public init(autoSyncedSourceTypes: [HelpdeskFileTypes]? = nil, syncAttachments: Bool? = false, detectAudioLanguage: Bool? = false, transcriptionService: TranscriptionServiceNullable? = nil, includeSpeakerLabels: Bool? = false, splitRows: Bool? = false) {
+    public init(autoSyncedSourceTypes: [AutoSyncedSourceTypesPropertyInner]? = nil, syncAttachments: Bool? = false, detectAudioLanguage: Bool? = false, transcriptionService: TranscriptionServiceNullable? = nil, includeSpeakerLabels: Bool? = false, splitRows: Bool? = false, generateChunksOnly: Bool? = false) {
         self.autoSyncedSourceTypes = autoSyncedSourceTypes
         self.syncAttachments = syncAttachments
         self.detectAudioLanguage = detectAudioLanguage
         self.transcriptionService = transcriptionService
         self.includeSpeakerLabels = includeSpeakerLabels
         self.splitRows = splitRows
+        self.generateChunksOnly = generateChunksOnly
     }
 
     public enum CodingKeys: String, CodingKey, CaseIterable {
@@ -40,6 +43,7 @@ public struct FileSyncConfig: Codable, JSONEncodable, Hashable {
         case transcriptionService = "transcription_service"
         case includeSpeakerLabels = "include_speaker_labels"
         case splitRows = "split_rows"
+        case generateChunksOnly = "generate_chunks_only"
     }
 
     // Encodable protocol methods
@@ -52,6 +56,7 @@ public struct FileSyncConfig: Codable, JSONEncodable, Hashable {
         try container.encodeIfPresent(transcriptionService, forKey: .transcriptionService)
         try container.encodeIfPresent(includeSpeakerLabels, forKey: .includeSpeakerLabels)
         try container.encodeIfPresent(splitRows, forKey: .splitRows)
+        try container.encodeIfPresent(generateChunksOnly, forKey: .generateChunksOnly)
     }
 }
 

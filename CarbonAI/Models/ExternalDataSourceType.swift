@@ -26,4 +26,5 @@ public enum ExternalDataSourceType: String, Codable, CaseIterable {
     case slack = "SLACK"
     case zendesk = "ZENDESK"
     case zotero = "ZOTERO"
+    case servicenow = "SERVICENOW"
 }

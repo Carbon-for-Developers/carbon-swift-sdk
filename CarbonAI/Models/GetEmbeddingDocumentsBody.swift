@@ -46,11 +46,11 @@ public struct GetEmbeddingDocumentsBody: Codable, JSONEncodable, Hashable {
     public var highAccuracy: Bool? = false
     public var rerank: RerankParamsNullable?
     /** Filter files based on their type at the source (for example help center tickets and articles) */
-    public var fileTypesAtSource: [HelpdeskFileTypes]?
+    public var fileTypesAtSource: [AutoSyncedSourceTypesPropertyInner]?
     /** Flag to control whether or not to exclude files that are not in hot storage. If set to False, then an error will be returned if any filtered         files are in cold storage. */
     public var excludeColdStorageFiles: Bool? = false
 
-    public init(tags: [String: Tags1]? = nil, query: String, queryVector: [Double]? = nil, k: Int, fileIds: [Int]? = nil, parentFileIds: [Int]? = nil, includeAllChildren: Bool? = false, tagsV2: AnyCodable? = nil, includeTags: Bool? = nil, includeVectors: Bool? = nil, includeRawFile: Bool? = nil, hybridSearch: Bool? = nil, hybridSearchTuningParameters: HybridSearchTuningParamsNullable? = nil, mediaType: FileContentTypesNullable? = nil, embeddingModel: EmbeddingGeneratorsNullable? = nil, includeFileLevelMetadata: Bool? = false, highAccuracy: Bool? = false, rerank: RerankParamsNullable? = nil, fileTypesAtSource: [HelpdeskFileTypes]? = nil, excludeColdStorageFiles: Bool? = false) {
+    public init(tags: [String: Tags1]? = nil, query: String, queryVector: [Double]? = nil, k: Int, fileIds: [Int]? = nil, parentFileIds: [Int]? = nil, includeAllChildren: Bool? = false, tagsV2: AnyCodable? = nil, includeTags: Bool? = nil, includeVectors: Bool? = nil, includeRawFile: Bool? = nil, hybridSearch: Bool? = nil, hybridSearchTuningParameters: HybridSearchTuningParamsNullable? = nil, mediaType: FileContentTypesNullable? = nil, embeddingModel: EmbeddingGeneratorsNullable? = nil, includeFileLevelMetadata: Bool? = false, highAccuracy: Bool? = false, rerank: RerankParamsNullable? = nil, fileTypesAtSource: [AutoSyncedSourceTypesPropertyInner]? = nil, excludeColdStorageFiles: Bool? = false) {
         self.tags = tags
         self.query = query
         self.queryVector = queryVector

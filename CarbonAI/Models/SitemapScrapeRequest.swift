@@ -33,8 +33,10 @@ public struct SitemapScrapeRequest: Codable, JSONEncodable, Hashable {
     public var urlsToScrape: [String]?
     /** Whether the scraper should download css and media from the page (images, fonts, etc). Scrapes          might take longer to finish with this flag enabled, but the success rate is improved. */
     public var downloadCssAndMedia: Bool? = false
+    /** If this flag is enabled, the file will be chunked and stored with Carbon,           but no embeddings will be generated. This overrides the skip_embedding_generation flag. */
+    public var generateChunksOnly: Bool? = false
 
-    public init(tags: [String: Tags1]? = nil, url: String, maxPagesToScrape: Int? = nil, chunkSize: Int? = 1500, chunkOverlap: Int? = 20, skipEmbeddingGeneration: Bool? = false, enableAutoSync: Bool? = false, generateSparseVectors: Bool? = false, prependFilenameToChunks: Bool? = false, htmlTagsToSkip: [String]? = nil, cssClassesToSkip: [String]? = nil, cssSelectorsToSkip: [String]? = nil, embeddingModel: EmbeddingGenerators? = nil, urlPathsToInclude: [String]? = nil, urlPathsToExclude: [String]? = nil, urlsToScrape: [String]? = nil, downloadCssAndMedia: Bool? = false) {
+    public init(tags: [String: Tags1]? = nil, url: String, maxPagesToScrape: Int? = nil, chunkSize: Int? = 1500, chunkOverlap: Int? = 20, skipEmbeddingGeneration: Bool? = false, enableAutoSync: Bool? = false, generateSparseVectors: Bool? = false, prependFilenameToChunks: Bool? = false, htmlTagsToSkip: [String]? = nil, cssClassesToSkip: [String]? = nil, cssSelectorsToSkip: [String]? = nil, embeddingModel: EmbeddingGenerators? = nil, urlPathsToInclude: [String]? = nil, urlPathsToExclude: [String]? = nil, urlsToScrape: [String]? = nil, downloadCssAndMedia: Bool? = false, generateChunksOnly: Bool? = false) {
         self.tags = tags
         self.url = url
         self.maxPagesToScrape = maxPagesToScrape
@@ -52,6 +54,7 @@ public struct SitemapScrapeRequest: Codable, JSONEncodable, Hashable {
         self.urlPathsToExclude = urlPathsToExclude
         self.urlsToScrape = urlsToScrape
         self.downloadCssAndMedia = downloadCssAndMedia
+        self.generateChunksOnly = generateChunksOnly
     }
 
     public enum CodingKeys: String, CodingKey, CaseIterable {
@@ -72,6 +75,7 @@ public struct SitemapScrapeRequest: Codable, JSONEncodable, Hashable {
         case urlPathsToExclude = "url_paths_to_exclude"
         case urlsToScrape = "urls_to_scrape"
         case downloadCssAndMedia = "download_css_and_media"
+        case generateChunksOnly = "generate_chunks_only"
     }
 
     // Encodable protocol methods
@@ -95,6 +99,7 @@ public struct SitemapScrapeRequest: Codable, JSONEncodable, Hashable {
         try container.encodeIfPresent(urlPathsToExclude, forKey: .urlPathsToExclude)
         try container.encodeIfPresent(urlsToScrape, forKey: .urlsToScrape)
         try container.encodeIfPresent(downloadCssAndMedia, forKey: .downloadCssAndMedia)
+        try container.encodeIfPresent(generateChunksOnly, forKey: .generateChunksOnly)
     }
 }
 

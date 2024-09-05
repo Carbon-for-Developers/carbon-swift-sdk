@@ -44,13 +44,14 @@ public struct OAuthURLRequest: Codable, JSONEncodable, Hashable {
     public var enableFilePicker: Bool? = true
     /** Enabling this flag will fetch all available content from the source to be listed via list items endpoint */
     public var syncSourceItems: Bool? = true
-    /** Only sync files if they have not already been synced or if the embedding properties have changed.         This flag is currently supported by ONEDRIVE, GOOGLE_DRIVE, BOX, DROPBOX, INTERCOM, GMAIL, OUTLOOK, ZENDESK, CONFLUENCE, NOTION, SHAREPOINT. It will be ignored for other data sources. */
+    /** Only sync files if they have not already been synced or if the embedding properties have changed.         This flag is currently supported by ONEDRIVE, GOOGLE_DRIVE, BOX, DROPBOX, INTERCOM, GMAIL, OUTLOOK, ZENDESK, CONFLUENCE, NOTION, SHAREPOINT, SERVICENOW. It will be ignored for other data sources. */
     public var incrementalSync: Bool? = false
     public var fileSyncConfig: FileSyncConfigNullable?
     /** Automatically open source file picker after the OAuth flow is complete. This flag is currently supported by         BOX, DROPBOX, GOOGLE_DRIVE, ONEDRIVE, SHAREPOINT. It will be ignored for other data sources. */
     public var automaticallyOpenFilePicker: Bool?
+    public var servicenowCredentials: ServiceNowCredentialsNullable?
 
-    public init(tags: AnyCodable? = nil, scope: String? = nil, service: ExternalDataSourceType, chunkSize: Int? = 1500, chunkOverlap: Int? = 20, skipEmbeddingGeneration: Bool? = false, embeddingModel: EmbeddingGeneratorsNullable? = nil, zendeskSubdomain: String? = nil, microsoftTenant: String? = nil, sharepointSiteName: String? = nil, confluenceSubdomain: String? = nil, generateSparseVectors: Bool? = false, prependFilenameToChunks: Bool? = false, maxItemsPerChunk: Int? = nil, salesforceDomain: String? = nil, syncFilesOnConnection: Bool? = true, setPageAsBoundary: Bool? = false, dataSourceId: Int? = nil, connectingNewAccount: Bool? = false, requestId: String? = nil, useOcr: Bool? = false, parsePdfTablesWithOcr: Bool? = false, enableFilePicker: Bool? = true, syncSourceItems: Bool? = true, incrementalSync: Bool? = false, fileSyncConfig: FileSyncConfigNullable? = nil, automaticallyOpenFilePicker: Bool? = nil) {
+    public init(tags: AnyCodable? = nil, scope: String? = nil, service: ExternalDataSourceType, chunkSize: Int? = 1500, chunkOverlap: Int? = 20, skipEmbeddingGeneration: Bool? = false, embeddingModel: EmbeddingGeneratorsNullable? = nil, zendeskSubdomain: String? = nil, microsoftTenant: String? = nil, sharepointSiteName: String? = nil, confluenceSubdomain: String? = nil, generateSparseVectors: Bool? = false, prependFilenameToChunks: Bool? = false, maxItemsPerChunk: Int? = nil, salesforceDomain: String? = nil, syncFilesOnConnection: Bool? = true, setPageAsBoundary: Bool? = false, dataSourceId: Int? = nil, connectingNewAccount: Bool? = false, requestId: String? = nil, useOcr: Bool? = false, parsePdfTablesWithOcr: Bool? = false, enableFilePicker: Bool? = true, syncSourceItems: Bool? = true, incrementalSync: Bool? = false, fileSyncConfig: FileSyncConfigNullable? = nil, automaticallyOpenFilePicker: Bool? = nil, servicenowCredentials: ServiceNowCredentialsNullable? = nil) {
         self.tags = tags
         self.scope = scope
         self.service = service
@@ -78,6 +79,7 @@ public struct OAuthURLRequest: Codable, JSONEncodable, Hashable {
         self.incrementalSync = incrementalSync
         self.fileSyncConfig = fileSyncConfig
         self.automaticallyOpenFilePicker = automaticallyOpenFilePicker
+        self.servicenowCredentials = servicenowCredentials
     }
 
     public enum CodingKeys: String, CodingKey, CaseIterable {
@@ -108,6 +110,7 @@ public struct OAuthURLRequest: Codable, JSONEncodable, Hashable {
         case incrementalSync = "incremental_sync"
         case fileSyncConfig = "file_sync_config"
         case automaticallyOpenFilePicker = "automatically_open_file_picker"
+        case servicenowCredentials = "servicenow_credentials"
     }
 
     // Encodable protocol methods
@@ -141,6 +144,7 @@ public struct OAuthURLRequest: Codable, JSONEncodable, Hashable {
         try container.encodeIfPresent(incrementalSync, forKey: .incrementalSync)
         try container.encodeIfPresent(fileSyncConfig, forKey: .fileSyncConfig)
         try container.encodeIfPresent(automaticallyOpenFilePicker, forKey: .automaticallyOpenFilePicker)
+        try container.encodeIfPresent(servicenowCredentials, forKey: .servicenowCredentials)
     }
 }
 

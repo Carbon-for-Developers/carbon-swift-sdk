@@ -1361,7 +1361,8 @@ open class IntegrationsAPI {
         syncSourceItems: Bool? = nil, 
         incrementalSync: Bool? = nil, 
         fileSyncConfig: FileSyncConfigNullable? = nil, 
-        automaticallyOpenFilePicker: Bool? = nil
+        automaticallyOpenFilePicker: Bool? = nil, 
+        servicenowCredentials: ServiceNowCredentialsNullable? = nil
     ) async throws -> OuthURLResponse {
         let oAuthURLRequest = OAuthURLRequest(
             tags: tags,
@@ -1390,7 +1391,8 @@ open class IntegrationsAPI {
             syncSourceItems: syncSourceItems,
             incrementalSync: incrementalSync,
             fileSyncConfig: fileSyncConfig,
-            automaticallyOpenFilePicker: automaticallyOpenFilePicker
+            automaticallyOpenFilePicker: automaticallyOpenFilePicker,
+            servicenowCredentials: servicenowCredentials
         )
         return try await withCheckedThrowingContinuation { continuation in
             getOauthUrlWithRequestBuilder(oAuthURLRequest: oAuthURLRequest).execute { result in
@@ -1440,7 +1442,8 @@ open class IntegrationsAPI {
         syncSourceItems: Bool? = nil, 
         incrementalSync: Bool? = nil, 
         fileSyncConfig: FileSyncConfigNullable? = nil, 
-        automaticallyOpenFilePicker: Bool? = nil
+        automaticallyOpenFilePicker: Bool? = nil, 
+        servicenowCredentials: ServiceNowCredentialsNullable? = nil
     ) async throws -> OuthURLResponse {
         let oAuthURLRequest = OAuthURLRequest(
             tags: tags,
@@ -1469,7 +1472,8 @@ open class IntegrationsAPI {
             syncSourceItems: syncSourceItems,
             incrementalSync: incrementalSync,
             fileSyncConfig: fileSyncConfig,
-            automaticallyOpenFilePicker: automaticallyOpenFilePicker
+            automaticallyOpenFilePicker: automaticallyOpenFilePicker,
+            servicenowCredentials: servicenowCredentials
         )
         return try await withCheckedThrowingContinuation { continuation in
             getOauthUrlWithRequestBuilder(oAuthURLRequest: oAuthURLRequest).execute { result in

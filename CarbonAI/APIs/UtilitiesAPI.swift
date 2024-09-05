@@ -837,7 +837,8 @@ open class UtilitiesAPI {
         urlPathsToInclude: [String]? = nil, 
         urlPathsToExclude: [String]? = nil, 
         urlsToScrape: [String]? = nil, 
-        downloadCssAndMedia: Bool? = nil
+        downloadCssAndMedia: Bool? = nil, 
+        generateChunksOnly: Bool? = nil
     ) async throws -> AnyCodable {
         let sitemapScrapeRequest = SitemapScrapeRequest(
             tags: tags,
@@ -856,7 +857,8 @@ open class UtilitiesAPI {
             urlPathsToInclude: urlPathsToInclude,
             urlPathsToExclude: urlPathsToExclude,
             urlsToScrape: urlsToScrape,
-            downloadCssAndMedia: downloadCssAndMedia
+            downloadCssAndMedia: downloadCssAndMedia,
+            generateChunksOnly: generateChunksOnly
         )
         return try await withCheckedThrowingContinuation { continuation in
             scrapeSitemapWithRequestBuilder(sitemapScrapeRequest: sitemapScrapeRequest).execute { result in
@@ -896,7 +898,8 @@ open class UtilitiesAPI {
         urlPathsToInclude: [String]? = nil, 
         urlPathsToExclude: [String]? = nil, 
         urlsToScrape: [String]? = nil, 
-        downloadCssAndMedia: Bool? = nil
+        downloadCssAndMedia: Bool? = nil, 
+        generateChunksOnly: Bool? = nil
     ) async throws -> AnyCodable {
         let sitemapScrapeRequest = SitemapScrapeRequest(
             tags: tags,
@@ -915,7 +918,8 @@ open class UtilitiesAPI {
             urlPathsToInclude: urlPathsToInclude,
             urlPathsToExclude: urlPathsToExclude,
             urlsToScrape: urlsToScrape,
-            downloadCssAndMedia: downloadCssAndMedia
+            downloadCssAndMedia: downloadCssAndMedia,
+            generateChunksOnly: generateChunksOnly
         )
         return try await withCheckedThrowingContinuation { continuation in
             scrapeSitemapWithRequestBuilder(sitemapScrapeRequest: sitemapScrapeRequest).execute { result in

@@ -85,7 +85,7 @@ open class EmbeddingsAPI {
         includeFileLevelMetadata: Bool? = nil, 
         highAccuracy: Bool? = nil, 
         rerank: RerankParamsNullable? = nil, 
-        fileTypesAtSource: [HelpdeskFileTypes]? = nil, 
+        fileTypesAtSource: [AutoSyncedSourceTypesPropertyInner]? = nil, 
         excludeColdStorageFiles: Bool? = nil
     ) async throws -> DocumentResponseList {
         let getEmbeddingDocumentsBody = GetEmbeddingDocumentsBody(
@@ -150,7 +150,7 @@ open class EmbeddingsAPI {
         includeFileLevelMetadata: Bool? = nil, 
         highAccuracy: Bool? = nil, 
         rerank: RerankParamsNullable? = nil, 
-        fileTypesAtSource: [HelpdeskFileTypes]? = nil, 
+        fileTypesAtSource: [AutoSyncedSourceTypesPropertyInner]? = nil, 
         excludeColdStorageFiles: Bool? = nil
     ) async throws -> DocumentResponseList {
         let getEmbeddingDocumentsBody = GetEmbeddingDocumentsBody(

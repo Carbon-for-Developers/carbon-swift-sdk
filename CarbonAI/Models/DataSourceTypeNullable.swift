@@ -26,6 +26,7 @@ public enum DataSourceTypeNullable: String, Codable, CaseIterable {
     case s3 = "S3"
     case gmail = "GMAIL"
     case outlook = "OUTLOOK"
+    case servicenow = "SERVICENOW"
     case text = "TEXT"
     case csv = "CSV"
     case tsv = "TSV"

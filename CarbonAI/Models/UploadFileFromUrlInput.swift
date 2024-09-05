@@ -31,8 +31,10 @@ public struct UploadFileFromUrlInput: Codable, JSONEncodable, Hashable {
     public var mediaType: FileContentTypesNullable?
     public var splitRows: Bool? = false
     public var coldStorageParams: ColdStorageProps?
+    /** If this flag is enabled, the file will be chunked and stored with Carbon,         but no embeddings will be generated. This overrides the skip_embedding_generation flag. */
+    public var generateChunksOnly: Bool? = false
 
-    public init(url: String, fileName: String? = nil, chunkSize: Int? = nil, chunkOverlap: Int? = nil, skipEmbeddingGeneration: Bool? = false, setPageAsBoundary: Bool? = false, embeddingModel: EmbeddingGenerators? = nil, generateSparseVectors: Bool? = false, useTextract: Bool? = false, prependFilenameToChunks: Bool? = false, maxItemsPerChunk: Int? = nil, parsePdfTablesWithOcr: Bool? = false, detectAudioLanguage: Bool? = false, transcriptionService: TranscriptionServiceNullable? = nil, includeSpeakerLabels: Bool? = false, mediaType: FileContentTypesNullable? = nil, splitRows: Bool? = false, coldStorageParams: ColdStorageProps? = nil) {
+    public init(url: String, fileName: String? = nil, chunkSize: Int? = nil, chunkOverlap: Int? = nil, skipEmbeddingGeneration: Bool? = false, setPageAsBoundary: Bool? = false, embeddingModel: EmbeddingGenerators? = nil, generateSparseVectors: Bool? = false, useTextract: Bool? = false, prependFilenameToChunks: Bool? = false, maxItemsPerChunk: Int? = nil, parsePdfTablesWithOcr: Bool? = false, detectAudioLanguage: Bool? = false, transcriptionService: TranscriptionServiceNullable? = nil, includeSpeakerLabels: Bool? = false, mediaType: FileContentTypesNullable? = nil, splitRows: Bool? = false, coldStorageParams: ColdStorageProps? = nil, generateChunksOnly: Bool? = false) {
         self.url = url
         self.fileName = fileName
         self.chunkSize = chunkSize
@@ -51,6 +53,7 @@ public struct UploadFileFromUrlInput: Codable, JSONEncodable, Hashable {
         self.mediaType = mediaType
         self.splitRows = splitRows
         self.coldStorageParams = coldStorageParams
+        self.generateChunksOnly = generateChunksOnly
     }
 
     public enum CodingKeys: String, CodingKey, CaseIterable {
@@ -72,6 +75,7 @@ public struct UploadFileFromUrlInput: Codable, JSONEncodable, Hashable {
         case mediaType = "media_type"
         case splitRows = "split_rows"
         case coldStorageParams = "cold_storage_params"
+        case generateChunksOnly = "generate_chunks_only"
     }
 
     // Encodable protocol methods
@@ -96,6 +100,7 @@ public struct UploadFileFromUrlInput: Codable, JSONEncodable, Hashable {
         try container.encodeIfPresent(mediaType, forKey: .mediaType)
         try container.encodeIfPresent(splitRows, forKey: .splitRows)
         try container.encodeIfPresent(coldStorageParams, forKey: .coldStorageParams)
+        try container.encodeIfPresent(generateChunksOnly, forKey: .generateChunksOnly)
     }
 }
 
