@@ -2388,12 +2388,13 @@ open class FilesAPI {
      - parameter splitRows: (query) Whether to split tabular rows into chunks. Currently only valid for CSV, TSV, and XLSX files. (optional, default to false)
      - parameter enableColdStorage: (query) Enable cold storage for the file. If set to true, the file will be moved to cold storage after a certain period of inactivity. Default is false. (optional, default to false)
      - parameter hotStorageTimeToLive: (query) Time in seconds after which the file will be moved to cold storage. (optional)
+     - parameter generateChunksOnly: (query) If this flag is enabled, the file will be chunked and stored with Carbon,             but no embeddings will be generated. This overrides the skip_embedding_generation flag. (optional, default to false)
      - parameter apiResponseQueue: The queue on which api response is dispatched.
      - parameter completion: completion handler to receive the data and the error objects
      */
     @discardableResult
-    open class func uploadSync(file: URL, bodyCreateUploadFileUploadfilePost: BodyCreateUploadFileUploadfilePost, chunkSize: Int? = nil, chunkOverlap: Int? = nil, skipEmbeddingGeneration: Bool? = nil, setPageAsBoundary: Bool? = nil, embeddingModel: EmbeddingModel? = nil, useOcr: Bool? = nil, generateSparseVectors: Bool? = nil, prependFilenameToChunks: Bool? = nil, maxItemsPerChunk: Int? = nil, parsePdfTablesWithOcr: Bool? = nil, detectAudioLanguage: Bool? = nil, transcriptionService: TranscriptionServiceNullable? = nil, includeSpeakerLabels: Bool? = nil, mediaType: FileContentTypesNullable? = nil, splitRows: Bool? = nil, enableColdStorage: Bool? = nil, hotStorageTimeToLive: Int? = nil, apiResponseQueue: DispatchQueue = CarbonAIAPI.apiResponseQueue, completion: @escaping ((_ data: UserFile?, _ error: Error?) -> Void)) -> RequestTask {
-        return uploadWithRequestBuilder(file: file, bodyCreateUploadFileUploadfilePost: bodyCreateUploadFileUploadfilePost, chunkSize: chunkSize, chunkOverlap: chunkOverlap, skipEmbeddingGeneration: skipEmbeddingGeneration, setPageAsBoundary: setPageAsBoundary, embeddingModel: embeddingModel, useOcr: useOcr, generateSparseVectors: generateSparseVectors, prependFilenameToChunks: prependFilenameToChunks, maxItemsPerChunk: maxItemsPerChunk, parsePdfTablesWithOcr: parsePdfTablesWithOcr, detectAudioLanguage: detectAudioLanguage, transcriptionService: transcriptionService, includeSpeakerLabels: includeSpeakerLabels, mediaType: mediaType, splitRows: splitRows, enableColdStorage: enableColdStorage, hotStorageTimeToLive: hotStorageTimeToLive).execute(apiResponseQueue) { result in
+    open class func uploadSync(file: URL, bodyCreateUploadFileUploadfilePost: BodyCreateUploadFileUploadfilePost, chunkSize: Int? = nil, chunkOverlap: Int? = nil, skipEmbeddingGeneration: Bool? = nil, setPageAsBoundary: Bool? = nil, embeddingModel: EmbeddingModel? = nil, useOcr: Bool? = nil, generateSparseVectors: Bool? = nil, prependFilenameToChunks: Bool? = nil, maxItemsPerChunk: Int? = nil, parsePdfTablesWithOcr: Bool? = nil, detectAudioLanguage: Bool? = nil, transcriptionService: TranscriptionServiceNullable? = nil, includeSpeakerLabels: Bool? = nil, mediaType: FileContentTypesNullable? = nil, splitRows: Bool? = nil, enableColdStorage: Bool? = nil, hotStorageTimeToLive: Int? = nil, generateChunksOnly: Bool? = nil, apiResponseQueue: DispatchQueue = CarbonAIAPI.apiResponseQueue, completion: @escaping ((_ data: UserFile?, _ error: Error?) -> Void)) -> RequestTask {
+        return uploadWithRequestBuilder(file: file, bodyCreateUploadFileUploadfilePost: bodyCreateUploadFileUploadfilePost, chunkSize: chunkSize, chunkOverlap: chunkOverlap, skipEmbeddingGeneration: skipEmbeddingGeneration, setPageAsBoundary: setPageAsBoundary, embeddingModel: embeddingModel, useOcr: useOcr, generateSparseVectors: generateSparseVectors, prependFilenameToChunks: prependFilenameToChunks, maxItemsPerChunk: maxItemsPerChunk, parsePdfTablesWithOcr: parsePdfTablesWithOcr, detectAudioLanguage: detectAudioLanguage, transcriptionService: transcriptionService, includeSpeakerLabels: includeSpeakerLabels, mediaType: mediaType, splitRows: splitRows, enableColdStorage: enableColdStorage, hotStorageTimeToLive: hotStorageTimeToLive, generateChunksOnly: generateChunksOnly).execute(apiResponseQueue) { result in
             switch result {
             case let .success(response):
                 completion(response.body, nil)
@@ -2425,13 +2426,14 @@ open class FilesAPI {
      - parameter splitRows: (query) Whether to split tabular rows into chunks. Currently only valid for CSV, TSV, and XLSX files. (optional, default to false)
      - parameter enableColdStorage: (query) Enable cold storage for the file. If set to true, the file will be moved to cold storage after a certain period of inactivity. Default is false. (optional, default to false)
      - parameter hotStorageTimeToLive: (query) Time in seconds after which the file will be moved to cold storage. (optional)
+     - parameter generateChunksOnly: (query) If this flag is enabled, the file will be chunked and stored with Carbon,             but no embeddings will be generated. This overrides the skip_embedding_generation flag. (optional, default to false)
      - parameter apiResponseQueue: The queue on which api response is dispatched.
      - parameter completion: completion handler to receive the data and the error objects
      */
     @available(iOS 13.0, macOS 10.15, tvOS 13.0, watchOS 6.0, *)
-    private class func uploadAsyncMappedParams(file: URL, bodyCreateUploadFileUploadfilePost: BodyCreateUploadFileUploadfilePost, chunkSize: Int? = nil, chunkOverlap: Int? = nil, skipEmbeddingGeneration: Bool? = nil, setPageAsBoundary: Bool? = nil, embeddingModel: EmbeddingModel? = nil, useOcr: Bool? = nil, generateSparseVectors: Bool? = nil, prependFilenameToChunks: Bool? = nil, maxItemsPerChunk: Int? = nil, parsePdfTablesWithOcr: Bool? = nil, detectAudioLanguage: Bool? = nil, transcriptionService: TranscriptionServiceNullable? = nil, includeSpeakerLabels: Bool? = nil, mediaType: FileContentTypesNullable? = nil, splitRows: Bool? = nil, enableColdStorage: Bool? = nil, hotStorageTimeToLive: Int? = nil) async throws -> UserFile {
+    private class func uploadAsyncMappedParams(file: URL, bodyCreateUploadFileUploadfilePost: BodyCreateUploadFileUploadfilePost, chunkSize: Int? = nil, chunkOverlap: Int? = nil, skipEmbeddingGeneration: Bool? = nil, setPageAsBoundary: Bool? = nil, embeddingModel: EmbeddingModel? = nil, useOcr: Bool? = nil, generateSparseVectors: Bool? = nil, prependFilenameToChunks: Bool? = nil, maxItemsPerChunk: Int? = nil, parsePdfTablesWithOcr: Bool? = nil, detectAudioLanguage: Bool? = nil, transcriptionService: TranscriptionServiceNullable? = nil, includeSpeakerLabels: Bool? = nil, mediaType: FileContentTypesNullable? = nil, splitRows: Bool? = nil, enableColdStorage: Bool? = nil, hotStorageTimeToLive: Int? = nil, generateChunksOnly: Bool? = nil) async throws -> UserFile {
         return try await withCheckedThrowingContinuation { continuation in
-            uploadWithRequestBuilder(file: file, bodyCreateUploadFileUploadfilePost: bodyCreateUploadFileUploadfilePost, chunkSize: chunkSize, chunkOverlap: chunkOverlap, skipEmbeddingGeneration: skipEmbeddingGeneration, setPageAsBoundary: setPageAsBoundary, embeddingModel: embeddingModel, useOcr: useOcr, generateSparseVectors: generateSparseVectors, prependFilenameToChunks: prependFilenameToChunks, maxItemsPerChunk: maxItemsPerChunk, parsePdfTablesWithOcr: parsePdfTablesWithOcr, detectAudioLanguage: detectAudioLanguage, transcriptionService: transcriptionService, includeSpeakerLabels: includeSpeakerLabels, mediaType: mediaType, splitRows: splitRows, enableColdStorage: enableColdStorage, hotStorageTimeToLive: hotStorageTimeToLive).execute { result in
+            uploadWithRequestBuilder(file: file, bodyCreateUploadFileUploadfilePost: bodyCreateUploadFileUploadfilePost, chunkSize: chunkSize, chunkOverlap: chunkOverlap, skipEmbeddingGeneration: skipEmbeddingGeneration, setPageAsBoundary: setPageAsBoundary, embeddingModel: embeddingModel, useOcr: useOcr, generateSparseVectors: generateSparseVectors, prependFilenameToChunks: prependFilenameToChunks, maxItemsPerChunk: maxItemsPerChunk, parsePdfTablesWithOcr: parsePdfTablesWithOcr, detectAudioLanguage: detectAudioLanguage, transcriptionService: transcriptionService, includeSpeakerLabels: includeSpeakerLabels, mediaType: mediaType, splitRows: splitRows, enableColdStorage: enableColdStorage, hotStorageTimeToLive: hotStorageTimeToLive, generateChunksOnly: generateChunksOnly).execute { result in
                 switch result {
                 case let .success(response):
                     continuation.resume(returning: response.body)
@@ -2464,6 +2466,7 @@ open class FilesAPI {
      - parameter splitRows: (query) Whether to split tabular rows into chunks. Currently only valid for CSV, TSV, and XLSX files. (optional, default to false)
      - parameter enableColdStorage: (query) Enable cold storage for the file. If set to true, the file will be moved to cold storage after a certain period of inactivity. Default is false. (optional, default to false)
      - parameter hotStorageTimeToLive: (query) Time in seconds after which the file will be moved to cold storage. (optional)
+     - parameter generateChunksOnly: (query) If this flag is enabled, the file will be chunked and stored with Carbon,             but no embeddings will be generated. This overrides the skip_embedding_generation flag. (optional, default to false)
      - parameter apiResponseQueue: The queue on which api response is dispatched.
      - parameter completion: completion handler to receive the data and the error objects
      */
@@ -2486,13 +2489,14 @@ open class FilesAPI {
         mediaType: FileContentTypesNullable? = nil, 
         splitRows: Bool? = nil, 
         enableColdStorage: Bool? = nil, 
-        hotStorageTimeToLive: Int? = nil
+        hotStorageTimeToLive: Int? = nil, 
+        generateChunksOnly: Bool? = nil
     ) async throws -> UserFile {
         let bodyCreateUploadFileUploadfilePost = BodyCreateUploadFileUploadfilePost(
             file: file
         )
         return try await withCheckedThrowingContinuation { continuation in
-            uploadWithRequestBuilder(file: file, bodyCreateUploadFileUploadfilePost: bodyCreateUploadFileUploadfilePost, chunkSize: chunkSize, chunkOverlap: chunkOverlap, skipEmbeddingGeneration: skipEmbeddingGeneration, setPageAsBoundary: setPageAsBoundary, embeddingModel: embeddingModel, useOcr: useOcr, generateSparseVectors: generateSparseVectors, prependFilenameToChunks: prependFilenameToChunks, maxItemsPerChunk: maxItemsPerChunk, parsePdfTablesWithOcr: parsePdfTablesWithOcr, detectAudioLanguage: detectAudioLanguage, transcriptionService: transcriptionService, includeSpeakerLabels: includeSpeakerLabels, mediaType: mediaType, splitRows: splitRows, enableColdStorage: enableColdStorage, hotStorageTimeToLive: hotStorageTimeToLive).execute { result in
+            uploadWithRequestBuilder(file: file, bodyCreateUploadFileUploadfilePost: bodyCreateUploadFileUploadfilePost, chunkSize: chunkSize, chunkOverlap: chunkOverlap, skipEmbeddingGeneration: skipEmbeddingGeneration, setPageAsBoundary: setPageAsBoundary, embeddingModel: embeddingModel, useOcr: useOcr, generateSparseVectors: generateSparseVectors, prependFilenameToChunks: prependFilenameToChunks, maxItemsPerChunk: maxItemsPerChunk, parsePdfTablesWithOcr: parsePdfTablesWithOcr, detectAudioLanguage: detectAudioLanguage, transcriptionService: transcriptionService, includeSpeakerLabels: includeSpeakerLabels, mediaType: mediaType, splitRows: splitRows, enableColdStorage: enableColdStorage, hotStorageTimeToLive: hotStorageTimeToLive, generateChunksOnly: generateChunksOnly).execute { result in
                 switch result {
                 case let .success(response):
                     continuation.resume(returning: response.body)
@@ -2526,6 +2530,7 @@ open class FilesAPI {
      - parameter splitRows: (query) Whether to split tabular rows into chunks. Currently only valid for CSV, TSV, and XLSX files. (optional, default to false)
      - parameter enableColdStorage: (query) Enable cold storage for the file. If set to true, the file will be moved to cold storage after a certain period of inactivity. Default is false. (optional, default to false)
      - parameter hotStorageTimeToLive: (query) Time in seconds after which the file will be moved to cold storage. (optional)
+     - parameter generateChunksOnly: (query) If this flag is enabled, the file will be chunked and stored with Carbon,             but no embeddings will be generated. This overrides the skip_embedding_generation flag. (optional, default to false)
      - parameter apiResponseQueue: The queue on which api response is dispatched.
      - parameter completion: completion handler to receive the data and the error objects
      */
@@ -2548,13 +2553,14 @@ open class FilesAPI {
         mediaType: FileContentTypesNullable? = nil, 
         splitRows: Bool? = nil, 
         enableColdStorage: Bool? = nil, 
-        hotStorageTimeToLive: Int? = nil
+        hotStorageTimeToLive: Int? = nil, 
+        generateChunksOnly: Bool? = nil
     ) async throws -> UserFile {
         let bodyCreateUploadFileUploadfilePost = BodyCreateUploadFileUploadfilePost(
             file: file
         )
         return try await withCheckedThrowingContinuation { continuation in
-            uploadWithRequestBuilder(file: file, bodyCreateUploadFileUploadfilePost: bodyCreateUploadFileUploadfilePost, chunkSize: chunkSize, chunkOverlap: chunkOverlap, skipEmbeddingGeneration: skipEmbeddingGeneration, setPageAsBoundary: setPageAsBoundary, embeddingModel: embeddingModel, useOcr: useOcr, generateSparseVectors: generateSparseVectors, prependFilenameToChunks: prependFilenameToChunks, maxItemsPerChunk: maxItemsPerChunk, parsePdfTablesWithOcr: parsePdfTablesWithOcr, detectAudioLanguage: detectAudioLanguage, transcriptionService: transcriptionService, includeSpeakerLabels: includeSpeakerLabels, mediaType: mediaType, splitRows: splitRows, enableColdStorage: enableColdStorage, hotStorageTimeToLive: hotStorageTimeToLive).execute { result in
+            uploadWithRequestBuilder(file: file, bodyCreateUploadFileUploadfilePost: bodyCreateUploadFileUploadfilePost, chunkSize: chunkSize, chunkOverlap: chunkOverlap, skipEmbeddingGeneration: skipEmbeddingGeneration, setPageAsBoundary: setPageAsBoundary, embeddingModel: embeddingModel, useOcr: useOcr, generateSparseVectors: generateSparseVectors, prependFilenameToChunks: prependFilenameToChunks, maxItemsPerChunk: maxItemsPerChunk, parsePdfTablesWithOcr: parsePdfTablesWithOcr, detectAudioLanguage: detectAudioLanguage, transcriptionService: transcriptionService, includeSpeakerLabels: includeSpeakerLabels, mediaType: mediaType, splitRows: splitRows, enableColdStorage: enableColdStorage, hotStorageTimeToLive: hotStorageTimeToLive, generateChunksOnly: generateChunksOnly).execute { result in
                 switch result {
                 case let .success(response):
                     continuation.resume(returning: response.body)
@@ -2599,6 +2605,7 @@ open class FilesAPI {
      - parameter splitRows: (query) Whether to split tabular rows into chunks. Currently only valid for CSV, TSV, and XLSX files. (optional, default to false)
      - parameter enableColdStorage: (query) Enable cold storage for the file. If set to true, the file will be moved to cold storage after a certain period of inactivity. Default is false. (optional, default to false)
      - parameter hotStorageTimeToLive: (query) Time in seconds after which the file will be moved to cold storage. (optional)
+     - parameter generateChunksOnly: (query) If this flag is enabled, the file will be chunked and stored with Carbon,             but no embeddings will be generated. This overrides the skip_embedding_generation flag. (optional, default to false)
      - returns: RequestBuilder<UserFile> This endpoint is used to directly upload local files to Carbon. The &#x60;POST&#x60; request should be a multipart form request. Note that the &#x60;set_page_as_boundary&#x60; query parameter is applicable only to PDFs for now. When this value is set, PDF chunks are at most one page long. Additional information can be retrieved for each chunk, however, namely the coordinates of the bounding box around the chunk (this can be used for things like text highlighting). Following is a description of all possible query parameters: - &#x60;chunk_size&#x60;: the chunk size (in tokens) applied when splitting the document - &#x60;chunk_overlap&#x60;: the chunk overlap (in tokens) applied when splitting the document - &#x60;skip_embedding_generation&#x60;: whether or not to skip the generation of chunks and embeddings - &#x60;set_page_as_boundary&#x60;: described above - &#x60;embedding_model&#x60;: the model used to generate embeddings for the document chunks - &#x60;use_ocr&#x60;: whether or not to use OCR as a preprocessing step prior to generating chunks. Valid for PDFs, JPEGs, and PNGs - &#x60;generate_sparse_vectors&#x60;: whether or not to generate sparse vectors for the file. Required for hybrid search. - &#x60;prepend_filename_to_chunks&#x60;: whether or not to prepend the filename to the chunk text   Carbon supports multiple models for use in generating embeddings for files. For images, we support Vertex AI&#39;s multimodal model; for text, we support OpenAI&#39;s &#x60;text-embedding-ada-002&#x60; and Cohere&#39;s embed-multilingual-v3.0. The model can be specified via the &#x60;embedding_model&#x60; parameter (in the POST body for &#x60;/embeddings&#x60;, and a query  parameter in &#x60;/uploadfile&#x60;). If no model is supplied, the &#x60;text-embedding-ada-002&#x60; is used by default. When performing embedding queries, embeddings from files that used the specified model will be considered in the query. For example, if files A and B have embeddings generated with &#x60;OPENAI&#x60;, and files C and D have embeddings generated with &#x60;COHERE_MULTILINGUAL_V3&#x60;, then by default, queries will only consider files A and B. If &#x60;COHERE_MULTILINGUAL_V3&#x60; is specified as the &#x60;embedding_model&#x60; in &#x60;/embeddings&#x60;, then only files C and D will be considered. Make sure that the set of all files you want considered for a query have embeddings generated via the same model. For now, **do not** set &#x60;VERTEX_MULTIMODAL&#x60; as an &#x60;embedding_model&#x60;. This model is used automatically by Carbon when it detects an image file.
      */
     open class func uploadWithRequestBuilder(
@@ -2620,7 +2627,8 @@ open class FilesAPI {
             mediaType: FileContentTypesNullable? = nil,
             splitRows: Bool? = nil,
             enableColdStorage: Bool? = nil,
-            hotStorageTimeToLive: Int? = nil
+            hotStorageTimeToLive: Int? = nil,
+            generateChunksOnly: Bool? = nil
     ) -> RequestBuilder<UserFile> {
         let basePath = CarbonAIAPI.basePath;
         let localVariablePath = "/uploadfile"
@@ -2650,6 +2658,7 @@ open class FilesAPI {
             "split_rows": (wrappedValue: splitRows?.encodeToJSON(), isExplode: true),
             "enable_cold_storage": (wrappedValue: enableColdStorage?.encodeToJSON(), isExplode: true),
             "hot_storage_time_to_live": (wrappedValue: hotStorageTimeToLive?.encodeToJSON(), isExplode: true),
+            "generate_chunks_only": (wrappedValue: generateChunksOnly?.encodeToJSON(), isExplode: true),
         ])
 
         let localVariableNillableHeaders: [String: Any?] = [
@@ -2703,6 +2712,7 @@ open class FilesAPI {
      - parameter splitRows: (query) Whether to split tabular rows into chunks. Currently only valid for CSV, TSV, and XLSX files. (optional, default to false)
      - parameter enableColdStorage: (query) Enable cold storage for the file. If set to true, the file will be moved to cold storage after a certain period of inactivity. Default is false. (optional, default to false)
      - parameter hotStorageTimeToLive: (query) Time in seconds after which the file will be moved to cold storage. (optional)
+     - parameter generateChunksOnly: (query) If this flag is enabled, the file will be chunked and stored with Carbon,             but no embeddings will be generated. This overrides the skip_embedding_generation flag. (optional, default to false)
      - returns: RequestBuilder<UserFile> This endpoint is used to directly upload local files to Carbon. The &#x60;POST&#x60; request should be a multipart form request. Note that the &#x60;set_page_as_boundary&#x60; query parameter is applicable only to PDFs for now. When this value is set, PDF chunks are at most one page long. Additional information can be retrieved for each chunk, however, namely the coordinates of the bounding box around the chunk (this can be used for things like text highlighting). Following is a description of all possible query parameters: - &#x60;chunk_size&#x60;: the chunk size (in tokens) applied when splitting the document - &#x60;chunk_overlap&#x60;: the chunk overlap (in tokens) applied when splitting the document - &#x60;skip_embedding_generation&#x60;: whether or not to skip the generation of chunks and embeddings - &#x60;set_page_as_boundary&#x60;: described above - &#x60;embedding_model&#x60;: the model used to generate embeddings for the document chunks - &#x60;use_ocr&#x60;: whether or not to use OCR as a preprocessing step prior to generating chunks. Valid for PDFs, JPEGs, and PNGs - &#x60;generate_sparse_vectors&#x60;: whether or not to generate sparse vectors for the file. Required for hybrid search. - &#x60;prepend_filename_to_chunks&#x60;: whether or not to prepend the filename to the chunk text   Carbon supports multiple models for use in generating embeddings for files. For images, we support Vertex AI&#39;s multimodal model; for text, we support OpenAI&#39;s &#x60;text-embedding-ada-002&#x60; and Cohere&#39;s embed-multilingual-v3.0. The model can be specified via the &#x60;embedding_model&#x60; parameter (in the POST body for &#x60;/embeddings&#x60;, and a query  parameter in &#x60;/uploadfile&#x60;). If no model is supplied, the &#x60;text-embedding-ada-002&#x60; is used by default. When performing embedding queries, embeddings from files that used the specified model will be considered in the query. For example, if files A and B have embeddings generated with &#x60;OPENAI&#x60;, and files C and D have embeddings generated with &#x60;COHERE_MULTILINGUAL_V3&#x60;, then by default, queries will only consider files A and B. If &#x60;COHERE_MULTILINGUAL_V3&#x60; is specified as the &#x60;embedding_model&#x60; in &#x60;/embeddings&#x60;, then only files C and D will be considered. Make sure that the set of all files you want considered for a query have embeddings generated via the same model. For now, **do not** set &#x60;VERTEX_MULTIMODAL&#x60; as an &#x60;embedding_model&#x60;. This model is used automatically by Carbon when it detects an image file.
      */
     open func uploadWithRequestBuilder(
@@ -2724,7 +2734,8 @@ open class FilesAPI {
             mediaType: FileContentTypesNullable? = nil,
             splitRows: Bool? = nil,
             enableColdStorage: Bool? = nil,
-            hotStorageTimeToLive: Int? = nil
+            hotStorageTimeToLive: Int? = nil,
+            generateChunksOnly: Bool? = nil
     ) -> RequestBuilder<UserFile> {
         let basePath = self.client!.basePath;
         let localVariablePath = "/uploadfile"
@@ -2754,6 +2765,7 @@ open class FilesAPI {
             "split_rows": (wrappedValue: splitRows?.encodeToJSON(), isExplode: true),
             "enable_cold_storage": (wrappedValue: enableColdStorage?.encodeToJSON(), isExplode: true),
             "hot_storage_time_to_live": (wrappedValue: hotStorageTimeToLive?.encodeToJSON(), isExplode: true),
+            "generate_chunks_only": (wrappedValue: generateChunksOnly?.encodeToJSON(), isExplode: true),
         ])
 
         let localVariableNillableHeaders: [String: Any?] = [
@@ -2842,7 +2854,8 @@ open class FilesAPI {
         includeSpeakerLabels: Bool? = nil, 
         mediaType: FileContentTypesNullable? = nil, 
         splitRows: Bool? = nil, 
-        coldStorageParams: ColdStorageProps? = nil
+        coldStorageParams: ColdStorageProps? = nil, 
+        generateChunksOnly: Bool? = nil
     ) async throws -> UserFile {
         let uploadFileFromUrlInput = UploadFileFromUrlInput(
             url: url,
@@ -2862,7 +2875,8 @@ open class FilesAPI {
             includeSpeakerLabels: includeSpeakerLabels,
             mediaType: mediaType,
             splitRows: splitRows,
-            coldStorageParams: coldStorageParams
+            coldStorageParams: coldStorageParams,
+            generateChunksOnly: generateChunksOnly
         )
         return try await withCheckedThrowingContinuation { continuation in
             uploadFromUrlWithRequestBuilder(uploadFileFromUrlInput: uploadFileFromUrlInput).execute { result in
@@ -2903,7 +2917,8 @@ open class FilesAPI {
         includeSpeakerLabels: Bool? = nil, 
         mediaType: FileContentTypesNullable? = nil, 
         splitRows: Bool? = nil, 
-        coldStorageParams: ColdStorageProps? = nil
+        coldStorageParams: ColdStorageProps? = nil, 
+        generateChunksOnly: Bool? = nil
     ) async throws -> UserFile {
         let uploadFileFromUrlInput = UploadFileFromUrlInput(
             url: url,
@@ -2923,7 +2938,8 @@ open class FilesAPI {
             includeSpeakerLabels: includeSpeakerLabels,
             mediaType: mediaType,
             splitRows: splitRows,
-            coldStorageParams: coldStorageParams
+            coldStorageParams: coldStorageParams,
+            generateChunksOnly: generateChunksOnly
         )
         return try await withCheckedThrowingContinuation { continuation in
             uploadFromUrlWithRequestBuilder(uploadFileFromUrlInput: uploadFileFromUrlInput).execute { result in
@@ -3085,7 +3101,8 @@ open class FilesAPI {
         overwriteFileId: Int? = nil, 
         embeddingModel: EmbeddingGeneratorsNullable? = nil, 
         generateSparseVectors: Bool? = nil, 
-        coldStorageParams: ColdStorageProps? = nil
+        coldStorageParams: ColdStorageProps? = nil, 
+        generateChunksOnly: Bool? = nil
     ) async throws -> UserFile {
         let rawTextInput = RawTextInput(
             contents: contents,
@@ -3096,7 +3113,8 @@ open class FilesAPI {
             overwriteFileId: overwriteFileId,
             embeddingModel: embeddingModel,
             generateSparseVectors: generateSparseVectors,
-            coldStorageParams: coldStorageParams
+            coldStorageParams: coldStorageParams,
+            generateChunksOnly: generateChunksOnly
         )
         return try await withCheckedThrowingContinuation { continuation in
             uploadTextWithRequestBuilder(rawTextInput: rawTextInput).execute { result in
@@ -3128,7 +3146,8 @@ open class FilesAPI {
         overwriteFileId: Int? = nil, 
         embeddingModel: EmbeddingGeneratorsNullable? = nil, 
         generateSparseVectors: Bool? = nil, 
-        coldStorageParams: ColdStorageProps? = nil
+        coldStorageParams: ColdStorageProps? = nil, 
+        generateChunksOnly: Bool? = nil
     ) async throws -> UserFile {
         let rawTextInput = RawTextInput(
             contents: contents,
@@ -3139,7 +3158,8 @@ open class FilesAPI {
             overwriteFileId: overwriteFileId,
             embeddingModel: embeddingModel,
             generateSparseVectors: generateSparseVectors,
-            coldStorageParams: coldStorageParams
+            coldStorageParams: coldStorageParams,
+            generateChunksOnly: generateChunksOnly
         )
         return try await withCheckedThrowingContinuation { continuation in
             uploadTextWithRequestBuilder(rawTextInput: rawTextInput).execute { result in

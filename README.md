@@ -441,7 +441,9 @@ let rerank = RerankParamsNullable(
     model: "model_example"
 )
 let fileTypesAtSource = [
-HelpdeskFileTypes.ticket
+AutoSyncedSourceTypesPropertyInner(
+    
+)
 ]
 let excludeColdStorageFiles = true
 let getDocumentsResponse = try await carbonai.embeddings.getDocuments(
@@ -552,7 +554,7 @@ Flag to control whether or not to perform a high accuracy embedding search. By d
 ##### rerank: [`RerankParamsNullable`](./CarbonAI/Models/RerankParamsNullable.swift)<a id="rerank-rerankparamsnullablecarbonaimodelsrerankparamsnullableswift"></a>
 
 
-##### file_types_at_source: `[HelpdeskFileTypes]`<a id="file_types_at_source-helpdeskfiletypes"></a>
+##### file_types_at_source: `[AutoSyncedSourceTypesPropertyInner]`<a id="file_types_at_source-autosyncedsourcetypespropertyinner"></a>
 
 Filter files based on their type at the source (for example help center tickets and articles)
 
@@ -680,7 +682,9 @@ let filters = OrganizationUserFilesToSyncFilters(
     "externalUrls_example"
     ],
     fileTypesAtSource: [
-    HelpdeskFileTypes.ticket
+    AutoSyncedSourceTypesPropertyInner(
+        
+    )
     ]
 )
 let pagination = Pagination(
@@ -1017,7 +1021,9 @@ let filters = OrganizationUserFilesToSyncFilters(
     "externalUrls_example"
     ],
     fileTypesAtSource: [
-    HelpdeskFileTypes.ticket
+    AutoSyncedSourceTypesPropertyInner(
+        
+    )
     ]
 )
 let sendWebhook = true
@@ -1163,7 +1169,9 @@ let filters = OrganizationUserFilesToSyncFilters(
     "externalUrls_example"
     ],
     fileTypesAtSource: [
-    HelpdeskFileTypes.ticket
+    AutoSyncedSourceTypesPropertyInner(
+        
+    )
     ]
 )
 let enableColdStorage = true
@@ -1239,7 +1247,9 @@ let filters = OrganizationUserFilesToSyncFilters(
     "externalUrls_example"
     ],
     fileTypesAtSource: [
-    HelpdeskFileTypes.ticket
+    AutoSyncedSourceTypesPropertyInner(
+        
+    )
     ]
 )
 let moveToHotStorageResponse = try await carbonai.files.moveToHotStorage(
@@ -1364,7 +1374,9 @@ let filters = OrganizationUserFilesToSyncFilters(
     "externalUrls_example"
     ],
     fileTypesAtSource: [
-    HelpdeskFileTypes.ticket
+    AutoSyncedSourceTypesPropertyInner(
+        
+    )
     ]
 )
 let includeRawFile = true
@@ -1472,7 +1484,9 @@ let filters = OrganizationUserFilesToSyncFilters(
     "externalUrls_example"
     ],
     fileTypesAtSource: [
-    HelpdeskFileTypes.ticket
+    AutoSyncedSourceTypesPropertyInner(
+        
+    )
     ]
 )
 let includeRawFile = true
@@ -1626,6 +1640,7 @@ let mediaType = FileContentTypesNullable(
 let splitRows = false
 let enableColdStorage = false
 let hotStorageTimeToLive = 987
+let generateChunksOnly = false
 let uploadResponse = try await carbonai.files.upload(
     file: file,
     chunkSize: chunkSize,
@@ -1644,7 +1659,8 @@ let uploadResponse = try await carbonai.files.upload(
     mediaType: mediaType,
     splitRows: splitRows,
     enableColdStorage: enableColdStorage,
-    hotStorageTimeToLive: hotStorageTimeToLive
+    hotStorageTimeToLive: hotStorageTimeToLive,
+    generateChunksOnly: generateChunksOnly
 )
 ```
 
@@ -1738,6 +1754,11 @@ Enable cold storage for the file. If set to true, the file will be moved to cold
 Time in seconds after which the file will be moved to cold storage.
 
 
+##### generateChunksOnly: `Bool`<a id="generatechunksonly-bool"></a>
+
+If this flag is enabled, the file will be chunked and stored with Carbon,             but no embeddings will be generated. This overrides the skip_embedding_generation flag.
+
+
 #### 🔄 Return<a id="🔄-return"></a>
 
 [UserFile](./CarbonAI/Models/UserFile.swift)
@@ -1785,6 +1806,7 @@ let coldStorageParams = ColdStorageProps(
     enableColdStorage: false,
     hotStorageTimeToLive: 123
 )
+let generateChunksOnly = true
 let uploadFromUrlResponse = try await carbonai.files.uploadFromUrl(
     url: url,
     fileName: fileName,
@@ -1803,7 +1825,8 @@ let uploadFromUrlResponse = try await carbonai.files.uploadFromUrl(
     includeSpeakerLabels: includeSpeakerLabels,
     mediaType: mediaType,
     splitRows: splitRows,
-    coldStorageParams: coldStorageParams
+    coldStorageParams: coldStorageParams,
+    generateChunksOnly: generateChunksOnly
 )
 ```
 
@@ -1865,6 +1888,11 @@ Number of objects per chunk. For csv, tsv, xlsx, and json files only.
 ##### cold_storage_params: [`ColdStorageProps`](./CarbonAI/Models/ColdStorageProps.swift)<a id="cold_storage_params-coldstoragepropscarbonaimodelscoldstoragepropsswift"></a>
 
 
+##### generate_chunks_only: `Bool`<a id="generate_chunks_only-bool"></a>
+
+If this flag is enabled, the file will be chunked and stored with Carbon,         but no embeddings will be generated. This overrides the skip_embedding_generation flag.
+
+
 #### 🔄 Return<a id="🔄-return"></a>
 
 [UserFile](./CarbonAI/Models/UserFile.swift)
@@ -1908,6 +1936,7 @@ let coldStorageParams = ColdStorageProps(
     enableColdStorage: false,
     hotStorageTimeToLive: 123
 )
+let generateChunksOnly = true
 let uploadTextResponse = try await carbonai.files.uploadText(
     contents: contents,
     name: name,
@@ -1917,7 +1946,8 @@ let uploadTextResponse = try await carbonai.files.uploadText(
     overwriteFileId: overwriteFileId,
     embeddingModel: embeddingModel,
     generateSparseVectors: generateSparseVectors,
-    coldStorageParams: coldStorageParams
+    coldStorageParams: coldStorageParams,
+    generateChunksOnly: generateChunksOnly
 )
 ```
 
@@ -1948,6 +1978,11 @@ let uploadTextResponse = try await carbonai.files.uploadText(
 
 
 ##### cold_storage_params: [`ColdStorageProps`](./CarbonAI/Models/ColdStorageProps.swift)<a id="cold_storage_params-coldstoragepropscarbonaimodelscoldstoragepropsswift"></a>
+
+
+##### generate_chunks_only: `Bool`<a id="generate_chunks_only-bool"></a>
+
+If this flag is enabled, the file will be chunked and stored with Carbon,         but no embeddings will be generated. This overrides the skip_embedding_generation flag.
 
 
 #### 🔄 Return<a id="🔄-return"></a>
@@ -2017,7 +2052,11 @@ let authentication = AuthenticationProperty(
     apiKey: "apiKey_example",
     accessKey: "accessKey_example",
     accessKeySecret: "accessKeySecret_example",
-    endpointUrl: "endpointUrl_example"
+    endpointUrl: "endpointUrl_example",
+    instanceSubdomain: "instanceSubdomain_example",
+    clientId: "clientId_example",
+    clientSecret: "clientSecret_example",
+    redirectUri: "redirectUri_example"
 )
 let syncOptions = SyncOptions(
     tags: "TODO",
@@ -2036,13 +2075,16 @@ let syncOptions = SyncOptions(
     incrementalSync: false,
     fileSyncConfig: FileSyncConfigNullable(
         autoSyncedSourceTypes: [
-        HelpdeskFileTypes.ticket
+        AutoSyncedSourceTypesPropertyInner(
+            
+        )
         ],
         syncAttachments: false,
         detectAudioLanguage: false,
         transcriptionService: TranscriptionServiceNullable.assemblyai,
         includeSpeakerLabels: false,
-        splitRows: false
+        splitRows: false,
+        generateChunksOnly: false
     ),
     automaticallyOpenFilePicker: false
 )
@@ -2100,13 +2142,16 @@ let requestId = "requestId_example"
 let syncSourceItems = true
 let fileSyncConfig = FileSyncConfigNullable(
     autoSyncedSourceTypes: [
-    HelpdeskFileTypes.ticket
+    AutoSyncedSourceTypesPropertyInner(
+        
+    )
     ],
     syncAttachments: false,
     detectAudioLanguage: false,
     transcriptionService: TranscriptionServiceNullable.assemblyai,
     includeSpeakerLabels: false,
-    splitRows: false
+    splitRows: false,
+    generateChunksOnly: false
 )
 let connectFreshdeskResponse = try await carbonai.integrations.connectFreshdesk(
     domain: domain,
@@ -2298,13 +2343,16 @@ let requestId = "requestId_example"
 let syncSourceItems = true
 let fileSyncConfig = FileSyncConfigNullable(
     autoSyncedSourceTypes: [
-    HelpdeskFileTypes.ticket
+    AutoSyncedSourceTypesPropertyInner(
+        
+    )
     ],
     syncAttachments: false,
     detectAudioLanguage: false,
     transcriptionService: TranscriptionServiceNullable.assemblyai,
     includeSpeakerLabels: false,
-    splitRows: false
+    splitRows: false,
+    generateChunksOnly: false
 )
 let connectGuruResponse = try await carbonai.integrations.connectGuru(
     username: username,
@@ -2479,15 +2527,24 @@ let syncSourceItems = true
 let incrementalSync = true
 let fileSyncConfig = FileSyncConfigNullable(
     autoSyncedSourceTypes: [
-    HelpdeskFileTypes.ticket
+    AutoSyncedSourceTypesPropertyInner(
+        
+    )
     ],
     syncAttachments: false,
     detectAudioLanguage: false,
     transcriptionService: TranscriptionServiceNullable.assemblyai,
     includeSpeakerLabels: false,
-    splitRows: false
+    splitRows: false,
+    generateChunksOnly: false
 )
 let automaticallyOpenFilePicker = true
+let servicenowCredentials = ServiceNowCredentialsNullable(
+    instanceSubdomain: "instanceSubdomain_example",
+    clientId: "clientId_example",
+    clientSecret: "clientSecret_example",
+    redirectUri: "redirectUri_example"
+)
 let getOauthUrlResponse = try await carbonai.integrations.getOauthUrl(
     service: service,
     tags: tags,
@@ -2515,7 +2572,8 @@ let getOauthUrlResponse = try await carbonai.integrations.getOauthUrl(
     syncSourceItems: syncSourceItems,
     incrementalSync: incrementalSync,
     fileSyncConfig: fileSyncConfig,
-    automaticallyOpenFilePicker: automaticallyOpenFilePicker
+    automaticallyOpenFilePicker: automaticallyOpenFilePicker,
+    servicenowCredentials: servicenowCredentials
 )
 ```
 
@@ -2611,7 +2669,7 @@ Enabling this flag will fetch all available content from the source to be listed
 
 ##### incremental_sync: `Bool`<a id="incremental_sync-bool"></a>
 
-Only sync files if they have not already been synced or if the embedding properties have changed.         This flag is currently supported by ONEDRIVE, GOOGLE_DRIVE, BOX, DROPBOX, INTERCOM, GMAIL, OUTLOOK, ZENDESK, CONFLUENCE, NOTION, SHAREPOINT. It will be ignored for other data sources.
+Only sync files if they have not already been synced or if the embedding properties have changed.         This flag is currently supported by ONEDRIVE, GOOGLE_DRIVE, BOX, DROPBOX, INTERCOM, GMAIL, OUTLOOK, ZENDESK, CONFLUENCE, NOTION, SHAREPOINT, SERVICENOW. It will be ignored for other data sources.
 
 
 ##### file_sync_config: [`FileSyncConfigNullable`](./CarbonAI/Models/FileSyncConfigNullable.swift)<a id="file_sync_config-filesyncconfignullablecarbonaimodelsfilesyncconfignullableswift"></a>
@@ -2620,6 +2678,9 @@ Only sync files if they have not already been synced or if the embedding propert
 ##### automatically_open_file_picker: `Bool`<a id="automatically_open_file_picker-bool"></a>
 
 Automatically open source file picker after the OAuth flow is complete. This flag is currently supported by         BOX, DROPBOX, GOOGLE_DRIVE, ONEDRIVE, SHAREPOINT. It will be ignored for other data sources.
+
+
+##### servicenow_credentials: [`ServiceNowCredentialsNullable`](./CarbonAI/Models/ServiceNowCredentialsNullable.swift)<a id="servicenow_credentials-servicenowcredentialsnullablecarbonaimodelsservicenowcredentialsnullableswift"></a>
 
 
 #### 🔄 Return<a id="🔄-return"></a>
@@ -2983,13 +3044,16 @@ let parsePdfTablesWithOcr = true
 let incrementalSync = true
 let fileSyncConfig = FileSyncConfigNullable(
     autoSyncedSourceTypes: [
-    HelpdeskFileTypes.ticket
+    AutoSyncedSourceTypesPropertyInner(
+        
+    )
     ],
     syncAttachments: false,
     detectAudioLanguage: false,
     transcriptionService: TranscriptionServiceNullable.assemblyai,
     includeSpeakerLabels: false,
-    splitRows: false
+    splitRows: false,
+    generateChunksOnly: false
 )
 let syncConfluenceResponse = try await carbonai.integrations.syncConfluence(
     dataSourceId: dataSourceId,
@@ -3059,7 +3123,7 @@ Number of objects per chunk. For csv, tsv, xlsx, and json files only.
 
 ##### incremental_sync: `Bool`<a id="incremental_sync-bool"></a>
 
-Only sync files if they have not already been synced or if the embedding properties have changed.         This flag is currently supported by ONEDRIVE, GOOGLE_DRIVE, BOX, DROPBOX, INTERCOM, GMAIL, OUTLOOK, ZENDESK, CONFLUENCE, NOTION, SHAREPOINT. It will be ignored for other data sources.
+Only sync files if they have not already been synced or if the embedding properties have changed.         This flag is currently supported by ONEDRIVE, GOOGLE_DRIVE, BOX, DROPBOX, INTERCOM, GMAIL, OUTLOOK, ZENDESK, CONFLUENCE, NOTION, SHAREPOINT, SERVICENOW. It will be ignored for other data sources.
 
 
 ##### file_sync_config: [`FileSyncConfigNullable`](./CarbonAI/Models/FileSyncConfigNullable.swift)<a id="file_sync_config-filesyncconfignullablecarbonaimodelsfilesyncconfignullableswift"></a>
@@ -3140,13 +3204,16 @@ let parsePdfTablesWithOcr = true
 let incrementalSync = true
 let fileSyncConfig = FileSyncConfigNullable(
     autoSyncedSourceTypes: [
-    HelpdeskFileTypes.ticket
+    AutoSyncedSourceTypesPropertyInner(
+        
+    )
     ],
     syncAttachments: false,
     detectAudioLanguage: false,
     transcriptionService: TranscriptionServiceNullable.assemblyai,
     includeSpeakerLabels: false,
-    splitRows: false
+    splitRows: false,
+    generateChunksOnly: false
 )
 let syncFilesResponse = try await carbonai.integrations.syncFiles(
     dataSourceId: dataSourceId,
@@ -3216,7 +3283,7 @@ Number of objects per chunk. For csv, tsv, xlsx, and json files only.
 
 ##### incremental_sync: `Bool`<a id="incremental_sync-bool"></a>
 
-Only sync files if they have not already been synced or if the embedding properties have changed.         This flag is currently supported by ONEDRIVE, GOOGLE_DRIVE, BOX, DROPBOX, INTERCOM, GMAIL, OUTLOOK, ZENDESK, CONFLUENCE, NOTION, SHAREPOINT. It will be ignored for other data sources.
+Only sync files if they have not already been synced or if the embedding properties have changed.         This flag is currently supported by ONEDRIVE, GOOGLE_DRIVE, BOX, DROPBOX, INTERCOM, GMAIL, OUTLOOK, ZENDESK, CONFLUENCE, NOTION, SHAREPOINT, SERVICENOW. It will be ignored for other data sources.
 
 
 ##### file_sync_config: [`FileSyncConfigNullable`](./CarbonAI/Models/FileSyncConfigNullable.swift)<a id="file_sync_config-filesyncconfignullablecarbonaimodelsfilesyncconfignullableswift"></a>
@@ -3432,13 +3499,16 @@ let requestId = "requestId_example"
 let syncAttachments = true
 let fileSyncConfig = FileSyncConfigNullable(
     autoSyncedSourceTypes: [
-    HelpdeskFileTypes.ticket
+    AutoSyncedSourceTypesPropertyInner(
+        
+    )
     ],
     syncAttachments: false,
     detectAudioLanguage: false,
     transcriptionService: TranscriptionServiceNullable.assemblyai,
     includeSpeakerLabels: false,
-    splitRows: false
+    splitRows: false,
+    generateChunksOnly: false
 )
 let incrementalSync = true
 let syncGmailResponse = try await carbonai.integrations.syncGmail(
@@ -3595,13 +3665,16 @@ let requestId = "requestId_example"
 let syncAttachments = true
 let fileSyncConfig = FileSyncConfigNullable(
     autoSyncedSourceTypes: [
-    HelpdeskFileTypes.ticket
+    AutoSyncedSourceTypesPropertyInner(
+        
+    )
     ],
     syncAttachments: false,
     detectAudioLanguage: false,
     transcriptionService: TranscriptionServiceNullable.assemblyai,
     includeSpeakerLabels: false,
-    splitRows: false
+    splitRows: false,
+    generateChunksOnly: false
 )
 let incrementalSync = true
 let syncOutlookResponse = try await carbonai.integrations.syncOutlook(
@@ -3820,13 +3893,16 @@ let useOcr = true
 let parsePdfTablesWithOcr = true
 let fileSyncConfig = FileSyncConfigNullable(
     autoSyncedSourceTypes: [
-    HelpdeskFileTypes.ticket
+    AutoSyncedSourceTypesPropertyInner(
+        
+    )
     ],
     syncAttachments: false,
     detectAudioLanguage: false,
     transcriptionService: TranscriptionServiceNullable.assemblyai,
     includeSpeakerLabels: false,
-    splitRows: false
+    splitRows: false,
+    generateChunksOnly: false
 )
 let syncS3FilesResponse = try await carbonai.integrations.syncS3Files(
     ids: ids,
@@ -4487,6 +4563,7 @@ let urlsToScrape = [
 "inner_example"
 ]
 let downloadCssAndMedia = true
+let generateChunksOnly = true
 let scrapeSitemapResponse = try await carbonai.utilities.scrapeSitemap(
     url: url,
     tags: tags,
@@ -4504,7 +4581,8 @@ let scrapeSitemapResponse = try await carbonai.utilities.scrapeSitemap(
     urlPathsToInclude: urlPathsToInclude,
     urlPathsToExclude: urlPathsToExclude,
     urlsToScrape: urlsToScrape,
-    downloadCssAndMedia: downloadCssAndMedia
+    downloadCssAndMedia: downloadCssAndMedia,
+    generateChunksOnly: generateChunksOnly
 )
 ```
 
@@ -4567,6 +4645,11 @@ You can submit a subset of URLs from the sitemap that should be scraped. To get 
 ##### download_css_and_media: `Bool`<a id="download_css_and_media-bool"></a>
 
 Whether the scraper should download css and media from the page (images, fonts, etc). Scrapes          might take longer to finish with this flag enabled, but the success rate is improved.
+
+
+##### generate_chunks_only: `Bool`<a id="generate_chunks_only-bool"></a>
+
+If this flag is enabled, the file will be chunked and stored with Carbon,           but no embeddings will be generated. This overrides the skip_embedding_generation flag.
 
 
 #### 🌐 Endpoint<a id="🌐-endpoint"></a>

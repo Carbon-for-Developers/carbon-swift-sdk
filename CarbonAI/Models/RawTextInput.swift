@@ -21,8 +21,10 @@ public struct RawTextInput: Codable, JSONEncodable, Hashable {
     public var embeddingModel: EmbeddingGeneratorsNullable?
     public var generateSparseVectors: Bool? = false
     public var coldStorageParams: ColdStorageProps?
+    /** If this flag is enabled, the file will be chunked and stored with Carbon,         but no embeddings will be generated. This overrides the skip_embedding_generation flag. */
+    public var generateChunksOnly: Bool? = false
 
-    public init(contents: String, name: String? = nil, chunkSize: Int? = nil, chunkOverlap: Int? = nil, skipEmbeddingGeneration: Bool? = false, overwriteFileId: Int? = nil, embeddingModel: EmbeddingGeneratorsNullable? = nil, generateSparseVectors: Bool? = false, coldStorageParams: ColdStorageProps? = nil) {
+    public init(contents: String, name: String? = nil, chunkSize: Int? = nil, chunkOverlap: Int? = nil, skipEmbeddingGeneration: Bool? = false, overwriteFileId: Int? = nil, embeddingModel: EmbeddingGeneratorsNullable? = nil, generateSparseVectors: Bool? = false, coldStorageParams: ColdStorageProps? = nil, generateChunksOnly: Bool? = false) {
         self.contents = contents
         self.name = name
         self.chunkSize = chunkSize
@@ -32,6 +34,7 @@ public struct RawTextInput: Codable, JSONEncodable, Hashable {
         self.embeddingModel = embeddingModel
         self.generateSparseVectors = generateSparseVectors
         self.coldStorageParams = coldStorageParams
+        self.generateChunksOnly = generateChunksOnly
     }
 
     public enum CodingKeys: String, CodingKey, CaseIterable {
@@ -44,6 +47,7 @@ public struct RawTextInput: Codable, JSONEncodable, Hashable {
         case embeddingModel = "embedding_model"
         case generateSparseVectors = "generate_sparse_vectors"
         case coldStorageParams = "cold_storage_params"
+        case generateChunksOnly = "generate_chunks_only"
     }
 
     // Encodable protocol methods
@@ -59,6 +63,7 @@ public struct RawTextInput: Codable, JSONEncodable, Hashable {
         try container.encodeIfPresent(embeddingModel, forKey: .embeddingModel)
         try container.encodeIfPresent(generateSparseVectors, forKey: .generateSparseVectors)
         try container.encodeIfPresent(coldStorageParams, forKey: .coldStorageParams)
+        try container.encodeIfPresent(generateChunksOnly, forKey: .generateChunksOnly)
     }
 }
 

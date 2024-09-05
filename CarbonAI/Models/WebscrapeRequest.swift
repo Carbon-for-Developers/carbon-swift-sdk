@@ -30,8 +30,10 @@ public struct WebscrapeRequest: Codable, JSONEncodable, Hashable {
     public var urlPathsToInclude: [String]?
     /** Whether the scraper should download css and media from the page (images, fonts, etc). Scrapes          might take longer to finish with this flag enabled, but the success rate is improved. */
     public var downloadCssAndMedia: Bool? = false
+    /** If this flag is enabled, the file will be chunked and stored with Carbon,           but no embeddings will be generated. This overrides the skip_embedding_generation flag. */
+    public var generateChunksOnly: Bool? = false
 
-    public init(tags: [String: Tags1]? = nil, url: String, recursionDepth: Int? = 3, maxPagesToScrape: Int? = 100, chunkSize: Int? = 1500, chunkOverlap: Int? = 20, skipEmbeddingGeneration: Bool? = false, enableAutoSync: Bool? = false, generateSparseVectors: Bool? = false, prependFilenameToChunks: Bool? = false, htmlTagsToSkip: [String]? = nil, cssClassesToSkip: [String]? = nil, cssSelectorsToSkip: [String]? = nil, embeddingModel: EmbeddingGenerators? = nil, urlPathsToInclude: [String]? = nil, downloadCssAndMedia: Bool? = false) {
+    public init(tags: [String: Tags1]? = nil, url: String, recursionDepth: Int? = 3, maxPagesToScrape: Int? = 100, chunkSize: Int? = 1500, chunkOverlap: Int? = 20, skipEmbeddingGeneration: Bool? = false, enableAutoSync: Bool? = false, generateSparseVectors: Bool? = false, prependFilenameToChunks: Bool? = false, htmlTagsToSkip: [String]? = nil, cssClassesToSkip: [String]? = nil, cssSelectorsToSkip: [String]? = nil, embeddingModel: EmbeddingGenerators? = nil, urlPathsToInclude: [String]? = nil, downloadCssAndMedia: Bool? = false, generateChunksOnly: Bool? = false) {
         self.tags = tags
         self.url = url
         self.recursionDepth = recursionDepth
@@ -48,6 +50,7 @@ public struct WebscrapeRequest: Codable, JSONEncodable, Hashable {
         self.embeddingModel = embeddingModel
         self.urlPathsToInclude = urlPathsToInclude
         self.downloadCssAndMedia = downloadCssAndMedia
+        self.generateChunksOnly = generateChunksOnly
     }
 
     public enum CodingKeys: String, CodingKey, CaseIterable {
@@ -67,6 +70,7 @@ public struct WebscrapeRequest: Codable, JSONEncodable, Hashable {
         case embeddingModel = "embedding_model"
         case urlPathsToInclude = "url_paths_to_include"
         case downloadCssAndMedia = "download_css_and_media"
+        case generateChunksOnly = "generate_chunks_only"
     }
 
     // Encodable protocol methods
@@ -89,6 +93,7 @@ public struct WebscrapeRequest: Codable, JSONEncodable, Hashable {
         try container.encodeIfPresent(embeddingModel, forKey: .embeddingModel)
         try container.encodeIfPresent(urlPathsToInclude, forKey: .urlPathsToInclude)
         try container.encodeIfPresent(downloadCssAndMedia, forKey: .downloadCssAndMedia)
+        try container.encodeIfPresent(generateChunksOnly, forKey: .generateChunksOnly)
     }
 }
 

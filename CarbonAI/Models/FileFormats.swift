@@ -39,6 +39,7 @@ public enum FileFormats: String, Codable, CaseIterable {
     case github = "GITHUB"
     case slack = "SLACK"
     case guru = "GURU"
+    case servicenow = "SERVICENOW"
     case jpg = "JPG"
     case png = "PNG"
     case mp3 = "MP3"
