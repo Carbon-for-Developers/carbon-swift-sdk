@@ -1335,7 +1335,7 @@ open class IntegrationsAPI {
      */
     @available(iOS 13.0, macOS 10.15, tvOS 13.0, watchOS 6.0, *)
     open class func getOauthUrl(
-        service: ExternalDataSourceType,
+        service: OauthBasedConnectors,
         tags: AnyCodable? = nil, 
         scope: String? = nil, 
         chunkSize: Int? = nil, 
@@ -1362,6 +1362,7 @@ open class IntegrationsAPI {
         incrementalSync: Bool? = nil, 
         fileSyncConfig: FileSyncConfigNullable? = nil, 
         automaticallyOpenFilePicker: Bool? = nil, 
+        gongAccountEmail: String? = nil, 
         servicenowCredentials: ServiceNowCredentialsNullable? = nil
     ) async throws -> OuthURLResponse {
         let oAuthURLRequest = OAuthURLRequest(
@@ -1392,6 +1393,7 @@ open class IntegrationsAPI {
             incrementalSync: incrementalSync,
             fileSyncConfig: fileSyncConfig,
             automaticallyOpenFilePicker: automaticallyOpenFilePicker,
+            gongAccountEmail: gongAccountEmail,
             servicenowCredentials: servicenowCredentials
         )
         return try await withCheckedThrowingContinuation { continuation in
@@ -1416,7 +1418,7 @@ open class IntegrationsAPI {
      */
     @available(iOS 13.0, macOS 10.15, tvOS 13.0, watchOS 6.0, *)
     open func getOauthUrl(
-        service: ExternalDataSourceType,
+        service: OauthBasedConnectors,
         tags: AnyCodable? = nil, 
         scope: String? = nil, 
         chunkSize: Int? = nil, 
@@ -1443,6 +1445,7 @@ open class IntegrationsAPI {
         incrementalSync: Bool? = nil, 
         fileSyncConfig: FileSyncConfigNullable? = nil, 
         automaticallyOpenFilePicker: Bool? = nil, 
+        gongAccountEmail: String? = nil, 
         servicenowCredentials: ServiceNowCredentialsNullable? = nil
     ) async throws -> OuthURLResponse {
         let oAuthURLRequest = OAuthURLRequest(
@@ -1473,6 +1476,7 @@ open class IntegrationsAPI {
             incrementalSync: incrementalSync,
             fileSyncConfig: fileSyncConfig,
             automaticallyOpenFilePicker: automaticallyOpenFilePicker,
+            gongAccountEmail: gongAccountEmail,
             servicenowCredentials: servicenowCredentials
         )
         return try await withCheckedThrowingContinuation { continuation in

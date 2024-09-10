@@ -40,6 +40,7 @@ public enum FileFormatsNullable: String, Codable, CaseIterable {
     case slack = "SLACK"
     case guru = "GURU"
     case servicenow = "SERVICENOW"
+    case gong = "GONG"
     case jpg = "JPG"
     case png = "PNG"
     case mp3 = "MP3"

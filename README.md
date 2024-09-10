@@ -2056,7 +2056,8 @@ let authentication = AuthenticationProperty(
     instanceSubdomain: "instanceSubdomain_example",
     clientId: "clientId_example",
     clientSecret: "clientSecret_example",
-    redirectUri: "redirectUri_example"
+    redirectUri: "redirectUri_example",
+    gongAccountEmail: "gongAccountEmail_example"
 )
 let syncOptions = SyncOptions(
     tags: "TODO",
@@ -2496,7 +2497,7 @@ success state.
 #### 🛠️ Usage<a id="🛠️-usage"></a>
 
 ```swift
-let service = ExternalDataSourceType(
+let service = OauthBasedConnectors(
     
 )
 let tags = TODO
@@ -2539,6 +2540,7 @@ let fileSyncConfig = FileSyncConfigNullable(
     generateChunksOnly: false
 )
 let automaticallyOpenFilePicker = true
+let gongAccountEmail = "gongAccountEmail_example"
 let servicenowCredentials = ServiceNowCredentialsNullable(
     instanceSubdomain: "instanceSubdomain_example",
     clientId: "clientId_example",
@@ -2573,13 +2575,14 @@ let getOauthUrlResponse = try await carbonai.integrations.getOauthUrl(
     incrementalSync: incrementalSync,
     fileSyncConfig: fileSyncConfig,
     automaticallyOpenFilePicker: automaticallyOpenFilePicker,
+    gongAccountEmail: gongAccountEmail,
     servicenowCredentials: servicenowCredentials
 )
 ```
 
 #### ⚙️ Parameters<a id="⚙️-parameters"></a>
 
-##### service: `ExternalDataSourceType`<a id="service-externaldatasourcetype"></a>
+##### service: `OauthBasedConnectors`<a id="service-oauthbasedconnectors"></a>
 
 
 ##### tags: `AnyCodable`<a id="tags-anycodable"></a>
@@ -2678,6 +2681,11 @@ Only sync files if they have not already been synced or if the embedding propert
 ##### automatically_open_file_picker: `Bool`<a id="automatically_open_file_picker-bool"></a>
 
 Automatically open source file picker after the OAuth flow is complete. This flag is currently supported by         BOX, DROPBOX, GOOGLE_DRIVE, ONEDRIVE, SHAREPOINT. It will be ignored for other data sources.
+
+
+##### gong_account_email: `String`<a id="gong_account_email-string"></a>
+
+If you are connecting a Gong account, you need to input the email of the account you         wish to connect. This email will be used to identify your carbon data source.
 
 
 ##### servicenow_credentials: [`ServiceNowCredentialsNullable`](./CarbonAI/Models/ServiceNowCredentialsNullable.swift)<a id="servicenow_credentials-servicenowcredentialsnullablecarbonaimodelsservicenowcredentialsnullableswift"></a>
