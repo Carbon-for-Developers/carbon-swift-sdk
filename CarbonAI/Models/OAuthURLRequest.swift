@@ -14,7 +14,7 @@ public struct OAuthURLRequest: Codable, JSONEncodable, Hashable {
 
     public var tags: AnyCodable?
     public var scope: String?
-    public var service: ExternalDataSourceType
+    public var service: OauthBasedConnectors
     public var chunkSize: Int? = 1500
     public var chunkOverlap: Int? = 20
     public var skipEmbeddingGeneration: Bool? = false
@@ -49,9 +49,11 @@ public struct OAuthURLRequest: Codable, JSONEncodable, Hashable {
     public var fileSyncConfig: FileSyncConfigNullable?
     /** Automatically open source file picker after the OAuth flow is complete. This flag is currently supported by         BOX, DROPBOX, GOOGLE_DRIVE, ONEDRIVE, SHAREPOINT. It will be ignored for other data sources. */
     public var automaticallyOpenFilePicker: Bool?
+    /** If you are connecting a Gong account, you need to input the email of the account you         wish to connect. This email will be used to identify your carbon data source. */
+    public var gongAccountEmail: String?
     public var servicenowCredentials: ServiceNowCredentialsNullable?
 
-    public init(tags: AnyCodable? = nil, scope: String? = nil, service: ExternalDataSourceType, chunkSize: Int? = 1500, chunkOverlap: Int? = 20, skipEmbeddingGeneration: Bool? = false, embeddingModel: EmbeddingGeneratorsNullable? = nil, zendeskSubdomain: String? = nil, microsoftTenant: String? = nil, sharepointSiteName: String? = nil, confluenceSubdomain: String? = nil, generateSparseVectors: Bool? = false, prependFilenameToChunks: Bool? = false, maxItemsPerChunk: Int? = nil, salesforceDomain: String? = nil, syncFilesOnConnection: Bool? = true, setPageAsBoundary: Bool? = false, dataSourceId: Int? = nil, connectingNewAccount: Bool? = false, requestId: String? = nil, useOcr: Bool? = false, parsePdfTablesWithOcr: Bool? = false, enableFilePicker: Bool? = true, syncSourceItems: Bool? = true, incrementalSync: Bool? = false, fileSyncConfig: FileSyncConfigNullable? = nil, automaticallyOpenFilePicker: Bool? = nil, servicenowCredentials: ServiceNowCredentialsNullable? = nil) {
+    public init(tags: AnyCodable? = nil, scope: String? = nil, service: OauthBasedConnectors, chunkSize: Int? = 1500, chunkOverlap: Int? = 20, skipEmbeddingGeneration: Bool? = false, embeddingModel: EmbeddingGeneratorsNullable? = nil, zendeskSubdomain: String? = nil, microsoftTenant: String? = nil, sharepointSiteName: String? = nil, confluenceSubdomain: String? = nil, generateSparseVectors: Bool? = false, prependFilenameToChunks: Bool? = false, maxItemsPerChunk: Int? = nil, salesforceDomain: String? = nil, syncFilesOnConnection: Bool? = true, setPageAsBoundary: Bool? = false, dataSourceId: Int? = nil, connectingNewAccount: Bool? = false, requestId: String? = nil, useOcr: Bool? = false, parsePdfTablesWithOcr: Bool? = false, enableFilePicker: Bool? = true, syncSourceItems: Bool? = true, incrementalSync: Bool? = false, fileSyncConfig: FileSyncConfigNullable? = nil, automaticallyOpenFilePicker: Bool? = nil, gongAccountEmail: String? = nil, servicenowCredentials: ServiceNowCredentialsNullable? = nil) {
         self.tags = tags
         self.scope = scope
         self.service = service
@@ -79,6 +81,7 @@ public struct OAuthURLRequest: Codable, JSONEncodable, Hashable {
         self.incrementalSync = incrementalSync
         self.fileSyncConfig = fileSyncConfig
         self.automaticallyOpenFilePicker = automaticallyOpenFilePicker
+        self.gongAccountEmail = gongAccountEmail
         self.servicenowCredentials = servicenowCredentials
     }
 
@@ -110,6 +113,7 @@ public struct OAuthURLRequest: Codable, JSONEncodable, Hashable {
         case incrementalSync = "incremental_sync"
         case fileSyncConfig = "file_sync_config"
         case automaticallyOpenFilePicker = "automatically_open_file_picker"
+        case gongAccountEmail = "gong_account_email"
         case servicenowCredentials = "servicenow_credentials"
     }
 
@@ -144,6 +148,7 @@ public struct OAuthURLRequest: Codable, JSONEncodable, Hashable {
         try container.encodeIfPresent(incrementalSync, forKey: .incrementalSync)
         try container.encodeIfPresent(fileSyncConfig, forKey: .fileSyncConfig)
         try container.encodeIfPresent(automaticallyOpenFilePicker, forKey: .automaticallyOpenFilePicker)
+        try container.encodeIfPresent(gongAccountEmail, forKey: .gongAccountEmail)
         try container.encodeIfPresent(servicenowCredentials, forKey: .servicenowCredentials)
     }
 }

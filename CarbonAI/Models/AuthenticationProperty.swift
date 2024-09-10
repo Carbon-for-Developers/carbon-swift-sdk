@@ -33,8 +33,9 @@ public struct AuthenticationProperty: Codable, JSONEncodable, Hashable {
     public var clientId: String
     public var clientSecret: String
     public var redirectUri: String
+    public var gongAccountEmail: String
 
-    public init(source: AnyCodable?, accessToken: String, refreshToken: String? = nil, workspaceId: String, tenantName: String, siteName: String, subdomain: String, accessTokenSecret: String, username: String, zoteroId: String, organizationName: String, domain: String, apiKey: String, accessKey: String, accessKeySecret: String, endpointUrl: String? = nil, instanceSubdomain: String, clientId: String, clientSecret: String, redirectUri: String) {
+    public init(source: AnyCodable?, accessToken: String, refreshToken: String? = nil, workspaceId: String, tenantName: String, siteName: String, subdomain: String, accessTokenSecret: String, username: String, zoteroId: String, organizationName: String, domain: String, apiKey: String, accessKey: String, accessKeySecret: String, endpointUrl: String? = nil, instanceSubdomain: String, clientId: String, clientSecret: String, redirectUri: String, gongAccountEmail: String) {
         self.source = source
         self.accessToken = accessToken
         self.refreshToken = refreshToken
@@ -55,6 +56,7 @@ public struct AuthenticationProperty: Codable, JSONEncodable, Hashable {
         self.clientId = clientId
         self.clientSecret = clientSecret
         self.redirectUri = redirectUri
+        self.gongAccountEmail = gongAccountEmail
     }
 
     public enum CodingKeys: String, CodingKey, CaseIterable {
@@ -78,6 +80,7 @@ public struct AuthenticationProperty: Codable, JSONEncodable, Hashable {
         case clientId = "client_id"
         case clientSecret = "client_secret"
         case redirectUri = "redirect_uri"
+        case gongAccountEmail = "gong_account_email"
     }
 
     // Encodable protocol methods
@@ -104,6 +107,7 @@ public struct AuthenticationProperty: Codable, JSONEncodable, Hashable {
         try container.encode(clientId, forKey: .clientId)
         try container.encode(clientSecret, forKey: .clientSecret)
         try container.encode(redirectUri, forKey: .redirectUri)
+        try container.encode(gongAccountEmail, forKey: .gongAccountEmail)
     }
 }
 
