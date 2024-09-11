@@ -30,10 +30,11 @@ public struct OrganizationResponse: Codable, JSONEncodable, Hashable {
     public var connectorSettings: AnyCodable
     public var globalUserConfig: AnyCodable
     public var fileSyncUsage: AnyCodable
+    public var loggingSettings: AnyCodable
     public var createdAt: Date
     public var updatedAt: Date
 
-    public init(id: Int, name: String, nickname: String?, removeBranding: Bool, customBranding: AnyCodable?, customLimits: AnyCodable?, aggregateFileSize: AnyCodable, aggregateNumCharacters: AnyCodable, aggregateNumTokens: AnyCodable, aggregateNumEmbeddings: AnyCodable, aggregateNumFilesBySource: AnyCodable, aggregateNumFilesByFileFormat: AnyCodable, fileStatisticsAggregatedAt: Date?, periodEndsAt: Date?, cancelAtPeriodEnd: Bool?, connectorSettings: AnyCodable, globalUserConfig: AnyCodable, fileSyncUsage: AnyCodable, createdAt: Date, updatedAt: Date) {
+    public init(id: Int, name: String, nickname: String?, removeBranding: Bool, customBranding: AnyCodable?, customLimits: AnyCodable?, aggregateFileSize: AnyCodable, aggregateNumCharacters: AnyCodable, aggregateNumTokens: AnyCodable, aggregateNumEmbeddings: AnyCodable, aggregateNumFilesBySource: AnyCodable, aggregateNumFilesByFileFormat: AnyCodable, fileStatisticsAggregatedAt: Date?, periodEndsAt: Date?, cancelAtPeriodEnd: Bool?, connectorSettings: AnyCodable, globalUserConfig: AnyCodable, fileSyncUsage: AnyCodable, loggingSettings: AnyCodable, createdAt: Date, updatedAt: Date) {
         self.id = id
         self.name = name
         self.nickname = nickname
@@ -52,6 +53,7 @@ public struct OrganizationResponse: Codable, JSONEncodable, Hashable {
         self.connectorSettings = connectorSettings
         self.globalUserConfig = globalUserConfig
         self.fileSyncUsage = fileSyncUsage
+        self.loggingSettings = loggingSettings
         self.createdAt = createdAt
         self.updatedAt = updatedAt
     }
@@ -75,6 +77,7 @@ public struct OrganizationResponse: Codable, JSONEncodable, Hashable {
         case connectorSettings = "connector_settings"
         case globalUserConfig = "global_user_config"
         case fileSyncUsage = "file_sync_usage"
+        case loggingSettings = "logging_settings"
         case createdAt = "created_at"
         case updatedAt = "updated_at"
     }
@@ -101,6 +104,7 @@ public struct OrganizationResponse: Codable, JSONEncodable, Hashable {
         try container.encode(connectorSettings, forKey: .connectorSettings)
         try container.encode(globalUserConfig, forKey: .globalUserConfig)
         try container.encode(fileSyncUsage, forKey: .fileSyncUsage)
+        try container.encode(loggingSettings, forKey: .loggingSettings)
         try container.encode(createdAt, forKey: .createdAt)
         try container.encode(updatedAt, forKey: .updatedAt)
     }
