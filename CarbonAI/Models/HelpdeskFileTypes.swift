@@ -13,4 +13,5 @@ import AnyCodable
 public enum HelpdeskFileTypes: String, Codable, CaseIterable {
     case ticket = "TICKET"
     case article = "ARTICLE"
+    case conversation = "CONVERSATION"
 }
