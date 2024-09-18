@@ -16,12 +16,14 @@ public struct ResyncFileQueryInput: Codable, JSONEncodable, Hashable {
     public var chunkSize: Int?
     public var chunkOverlap: Int?
     public var forceEmbeddingGeneration: Bool? = false
+    public var skipFileProcessing: Bool? = false
 
-    public init(fileId: Int, chunkSize: Int? = nil, chunkOverlap: Int? = nil, forceEmbeddingGeneration: Bool? = false) {
+    public init(fileId: Int, chunkSize: Int? = nil, chunkOverlap: Int? = nil, forceEmbeddingGeneration: Bool? = false, skipFileProcessing: Bool? = false) {
         self.fileId = fileId
         self.chunkSize = chunkSize
         self.chunkOverlap = chunkOverlap
         self.forceEmbeddingGeneration = forceEmbeddingGeneration
+        self.skipFileProcessing = skipFileProcessing
     }
 
     public enum CodingKeys: String, CodingKey, CaseIterable {
@@ -29,6 +31,7 @@ public struct ResyncFileQueryInput: Codable, JSONEncodable, Hashable {
         case chunkSize = "chunk_size"
         case chunkOverlap = "chunk_overlap"
         case forceEmbeddingGeneration = "force_embedding_generation"
+        case skipFileProcessing = "skip_file_processing"
     }
 
     // Encodable protocol methods
@@ -39,6 +42,7 @@ public struct ResyncFileQueryInput: Codable, JSONEncodable, Hashable {
         try container.encodeIfPresent(chunkSize, forKey: .chunkSize)
         try container.encodeIfPresent(chunkOverlap, forKey: .chunkOverlap)
         try container.encodeIfPresent(forceEmbeddingGeneration, forKey: .forceEmbeddingGeneration)
+        try container.encodeIfPresent(skipFileProcessing, forKey: .skipFileProcessing)
     }
 }
 

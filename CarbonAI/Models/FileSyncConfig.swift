@@ -25,8 +25,10 @@ public struct FileSyncConfig: Codable, JSONEncodable, Hashable {
     public var splitRows: Bool? = false
     /** If this flag is enabled, the file will be chunked and stored with Carbon,           but no embeddings will be generated. This overrides the skip_embedding_generation flag. */
     public var generateChunksOnly: Bool? = false
+    /** Setting this flag will create a new file record with Carbon but skip any and all processing.          This means that we do not download the remote file content or generate any chunks or embeddings. We will store         some metadata like name, external id, and external URL depending on the source you are syncing from. Note that this          flag overrides both skip_embedding_generation and generate_chunks_only flags. The file will be moved to          READY_TO_SYNC status. */
+    public var skipFileProcessing: Bool? = false
 
-    public init(autoSyncedSourceTypes: [AutoSyncedSourceTypesPropertyInner]? = nil, syncAttachments: Bool? = false, detectAudioLanguage: Bool? = false, transcriptionService: TranscriptionServiceNullable? = nil, includeSpeakerLabels: Bool? = false, splitRows: Bool? = false, generateChunksOnly: Bool? = false) {
+    public init(autoSyncedSourceTypes: [AutoSyncedSourceTypesPropertyInner]? = nil, syncAttachments: Bool? = false, detectAudioLanguage: Bool? = false, transcriptionService: TranscriptionServiceNullable? = nil, includeSpeakerLabels: Bool? = false, splitRows: Bool? = false, generateChunksOnly: Bool? = false, skipFileProcessing: Bool? = false) {
         self.autoSyncedSourceTypes = autoSyncedSourceTypes
         self.syncAttachments = syncAttachments
         self.detectAudioLanguage = detectAudioLanguage
@@ -34,6 +36,7 @@ public struct FileSyncConfig: Codable, JSONEncodable, Hashable {
         self.includeSpeakerLabels = includeSpeakerLabels
         self.splitRows = splitRows
         self.generateChunksOnly = generateChunksOnly
+        self.skipFileProcessing = skipFileProcessing
     }
 
     public enum CodingKeys: String, CodingKey, CaseIterable {
@@ -44,6 +47,7 @@ public struct FileSyncConfig: Codable, JSONEncodable, Hashable {
         case includeSpeakerLabels = "include_speaker_labels"
         case splitRows = "split_rows"
         case generateChunksOnly = "generate_chunks_only"
+        case skipFileProcessing = "skip_file_processing"
     }
 
     // Encodable protocol methods
@@ -57,6 +61,7 @@ public struct FileSyncConfig: Codable, JSONEncodable, Hashable {
         try container.encodeIfPresent(includeSpeakerLabels, forKey: .includeSpeakerLabels)
         try container.encodeIfPresent(splitRows, forKey: .splitRows)
         try container.encodeIfPresent(generateChunksOnly, forKey: .generateChunksOnly)
+        try container.encodeIfPresent(skipFileProcessing, forKey: .skipFileProcessing)
     }
 }
 

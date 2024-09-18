@@ -684,7 +684,8 @@ open class IntegrationsAPI {
         prependFilenameToChunks: Bool? = nil, 
         syncFilesOnConnection: Bool? = nil, 
         requestId: String? = nil, 
-        syncSourceItems: Bool? = nil
+        syncSourceItems: Bool? = nil, 
+        fileSyncConfig: FileSyncConfigNullable? = nil
     ) async throws -> GenericSuccessResponse {
         let gitbookConnectRequest = GitbookConnectRequest(
             tags: tags,
@@ -698,7 +699,8 @@ open class IntegrationsAPI {
             prependFilenameToChunks: prependFilenameToChunks,
             syncFilesOnConnection: syncFilesOnConnection,
             requestId: requestId,
-            syncSourceItems: syncSourceItems
+            syncSourceItems: syncSourceItems,
+            fileSyncConfig: fileSyncConfig
         )
         return try await withCheckedThrowingContinuation { continuation in
             connectGitbookWithRequestBuilder(gitbookConnectRequest: gitbookConnectRequest).execute { result in
@@ -733,7 +735,8 @@ open class IntegrationsAPI {
         prependFilenameToChunks: Bool? = nil, 
         syncFilesOnConnection: Bool? = nil, 
         requestId: String? = nil, 
-        syncSourceItems: Bool? = nil
+        syncSourceItems: Bool? = nil, 
+        fileSyncConfig: FileSyncConfigNullable? = nil
     ) async throws -> GenericSuccessResponse {
         let gitbookConnectRequest = GitbookConnectRequest(
             tags: tags,
@@ -747,7 +750,8 @@ open class IntegrationsAPI {
             prependFilenameToChunks: prependFilenameToChunks,
             syncFilesOnConnection: syncFilesOnConnection,
             requestId: requestId,
-            syncSourceItems: syncSourceItems
+            syncSourceItems: syncSourceItems,
+            fileSyncConfig: fileSyncConfig
         )
         return try await withCheckedThrowingContinuation { continuation in
             connectGitbookWithRequestBuilder(gitbookConnectRequest: gitbookConnectRequest).execute { result in
@@ -4082,7 +4086,8 @@ open class IntegrationsAPI {
         embeddingModel: EmbeddingGenerators? = nil, 
         generateSparseVectors: Bool? = nil, 
         prependFilenameToChunks: Bool? = nil, 
-        requestId: String? = nil
+        requestId: String? = nil, 
+        fileSyncConfig: FileSyncConfigNullable? = nil
     ) async throws -> AnyCodable {
         let gitbookSyncRequest = GitbookSyncRequest(
             tags: tags,
@@ -4094,7 +4099,8 @@ open class IntegrationsAPI {
             embeddingModel: embeddingModel,
             generateSparseVectors: generateSparseVectors,
             prependFilenameToChunks: prependFilenameToChunks,
-            requestId: requestId
+            requestId: requestId,
+            fileSyncConfig: fileSyncConfig
         )
         return try await withCheckedThrowingContinuation { continuation in
             syncGitbookWithRequestBuilder(gitbookSyncRequest: gitbookSyncRequest).execute { result in
@@ -4127,7 +4133,8 @@ open class IntegrationsAPI {
         embeddingModel: EmbeddingGenerators? = nil, 
         generateSparseVectors: Bool? = nil, 
         prependFilenameToChunks: Bool? = nil, 
-        requestId: String? = nil
+        requestId: String? = nil, 
+        fileSyncConfig: FileSyncConfigNullable? = nil
     ) async throws -> AnyCodable {
         let gitbookSyncRequest = GitbookSyncRequest(
             tags: tags,
@@ -4139,7 +4146,8 @@ open class IntegrationsAPI {
             embeddingModel: embeddingModel,
             generateSparseVectors: generateSparseVectors,
             prependFilenameToChunks: prependFilenameToChunks,
-            requestId: requestId
+            requestId: requestId,
+            fileSyncConfig: fileSyncConfig
         )
         return try await withCheckedThrowingContinuation { continuation in
             syncGitbookWithRequestBuilder(gitbookSyncRequest: gitbookSyncRequest).execute { result in

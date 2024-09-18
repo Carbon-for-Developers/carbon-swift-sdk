@@ -2222,13 +2222,15 @@ open class FilesAPI {
         fileId: Int,
         chunkSize: Int? = nil, 
         chunkOverlap: Int? = nil, 
-        forceEmbeddingGeneration: Bool? = nil
+        forceEmbeddingGeneration: Bool? = nil, 
+        skipFileProcessing: Bool? = nil
     ) async throws -> UserFile {
         let resyncFileQueryInput = ResyncFileQueryInput(
             fileId: fileId,
             chunkSize: chunkSize,
             chunkOverlap: chunkOverlap,
-            forceEmbeddingGeneration: forceEmbeddingGeneration
+            forceEmbeddingGeneration: forceEmbeddingGeneration,
+            skipFileProcessing: skipFileProcessing
         )
         return try await withCheckedThrowingContinuation { continuation in
             resyncWithRequestBuilder(resyncFileQueryInput: resyncFileQueryInput).execute { result in
@@ -2255,13 +2257,15 @@ open class FilesAPI {
         fileId: Int,
         chunkSize: Int? = nil, 
         chunkOverlap: Int? = nil, 
-        forceEmbeddingGeneration: Bool? = nil
+        forceEmbeddingGeneration: Bool? = nil, 
+        skipFileProcessing: Bool? = nil
     ) async throws -> UserFile {
         let resyncFileQueryInput = ResyncFileQueryInput(
             fileId: fileId,
             chunkSize: chunkSize,
             chunkOverlap: chunkOverlap,
-            forceEmbeddingGeneration: forceEmbeddingGeneration
+            forceEmbeddingGeneration: forceEmbeddingGeneration,
+            skipFileProcessing: skipFileProcessing
         )
         return try await withCheckedThrowingContinuation { continuation in
             resyncWithRequestBuilder(resyncFileQueryInput: resyncFileQueryInput).execute { result in
