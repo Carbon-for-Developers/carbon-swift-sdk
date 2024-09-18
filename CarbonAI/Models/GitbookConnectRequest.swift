@@ -25,8 +25,9 @@ public struct GitbookConnectRequest: Codable, JSONEncodable, Hashable {
     public var requestId: String?
     /** Enabling this flag will fetch all available content from the source to be listed via list items endpoint */
     public var syncSourceItems: Bool? = true
+    public var fileSyncConfig: FileSyncConfigNullable?
 
-    public init(tags: AnyCodable? = nil, organization: String, accessToken: String, chunkSize: Int? = 1500, chunkOverlap: Int? = 20, skipEmbeddingGeneration: Bool? = false, embeddingModel: EmbeddingGenerators? = nil, generateSparseVectors: Bool? = false, prependFilenameToChunks: Bool? = false, syncFilesOnConnection: Bool? = true, requestId: String? = nil, syncSourceItems: Bool? = true) {
+    public init(tags: AnyCodable? = nil, organization: String, accessToken: String, chunkSize: Int? = 1500, chunkOverlap: Int? = 20, skipEmbeddingGeneration: Bool? = false, embeddingModel: EmbeddingGenerators? = nil, generateSparseVectors: Bool? = false, prependFilenameToChunks: Bool? = false, syncFilesOnConnection: Bool? = true, requestId: String? = nil, syncSourceItems: Bool? = true, fileSyncConfig: FileSyncConfigNullable? = nil) {
         self.tags = tags
         self.organization = organization
         self.accessToken = accessToken
@@ -39,6 +40,7 @@ public struct GitbookConnectRequest: Codable, JSONEncodable, Hashable {
         self.syncFilesOnConnection = syncFilesOnConnection
         self.requestId = requestId
         self.syncSourceItems = syncSourceItems
+        self.fileSyncConfig = fileSyncConfig
     }
 
     public enum CodingKeys: String, CodingKey, CaseIterable {
@@ -54,6 +56,7 @@ public struct GitbookConnectRequest: Codable, JSONEncodable, Hashable {
         case syncFilesOnConnection = "sync_files_on_connection"
         case requestId = "request_id"
         case syncSourceItems = "sync_source_items"
+        case fileSyncConfig = "file_sync_config"
     }
 
     // Encodable protocol methods
@@ -72,6 +75,7 @@ public struct GitbookConnectRequest: Codable, JSONEncodable, Hashable {
         try container.encodeIfPresent(syncFilesOnConnection, forKey: .syncFilesOnConnection)
         try container.encodeIfPresent(requestId, forKey: .requestId)
         try container.encodeIfPresent(syncSourceItems, forKey: .syncSourceItems)
+        try container.encodeIfPresent(fileSyncConfig, forKey: .fileSyncConfig)
     }
 }
 

@@ -1550,11 +1550,13 @@ let fileId = 987
 let chunkSize = 987
 let chunkOverlap = 987
 let forceEmbeddingGeneration = true
+let skipFileProcessing = true
 let resyncResponse = try await carbonai.files.resync(
     fileId: fileId,
     chunkSize: chunkSize,
     chunkOverlap: chunkOverlap,
-    forceEmbeddingGeneration: forceEmbeddingGeneration
+    forceEmbeddingGeneration: forceEmbeddingGeneration,
+    skipFileProcessing: skipFileProcessing
 )
 ```
 
@@ -1570,6 +1572,9 @@ let resyncResponse = try await carbonai.files.resync(
 
 
 ##### force_embedding_generation: `Bool`<a id="force_embedding_generation-bool"></a>
+
+
+##### skip_file_processing: `Bool`<a id="skip_file_processing-bool"></a>
 
 
 #### 🔄 Return<a id="🔄-return"></a>
@@ -2085,7 +2090,8 @@ let syncOptions = SyncOptions(
         transcriptionService: TranscriptionServiceNullable.assemblyai,
         includeSpeakerLabels: false,
         splitRows: false,
-        generateChunksOnly: false
+        generateChunksOnly: false,
+        skipFileProcessing: false
     ),
     automaticallyOpenFilePicker: false
 )
@@ -2152,7 +2158,8 @@ let fileSyncConfig = FileSyncConfigNullable(
     transcriptionService: TranscriptionServiceNullable.assemblyai,
     includeSpeakerLabels: false,
     splitRows: false,
-    generateChunksOnly: false
+    generateChunksOnly: false,
+    skipFileProcessing: false
 )
 let connectFreshdeskResponse = try await carbonai.integrations.connectFreshdesk(
     domain: domain,
@@ -2251,6 +2258,20 @@ let prependFilenameToChunks = true
 let syncFilesOnConnection = true
 let requestId = "requestId_example"
 let syncSourceItems = true
+let fileSyncConfig = FileSyncConfigNullable(
+    autoSyncedSourceTypes: [
+    AutoSyncedSourceTypesPropertyInner(
+        
+    )
+    ],
+    syncAttachments: false,
+    detectAudioLanguage: false,
+    transcriptionService: TranscriptionServiceNullable.assemblyai,
+    includeSpeakerLabels: false,
+    splitRows: false,
+    generateChunksOnly: false,
+    skipFileProcessing: false
+)
 let connectGitbookResponse = try await carbonai.integrations.connectGitbook(
     organization: organization,
     accessToken: accessToken,
@@ -2263,7 +2284,8 @@ let connectGitbookResponse = try await carbonai.integrations.connectGitbook(
     prependFilenameToChunks: prependFilenameToChunks,
     syncFilesOnConnection: syncFilesOnConnection,
     requestId: requestId,
-    syncSourceItems: syncSourceItems
+    syncSourceItems: syncSourceItems,
+    fileSyncConfig: fileSyncConfig
 )
 ```
 
@@ -2305,6 +2327,9 @@ let connectGitbookResponse = try await carbonai.integrations.connectGitbook(
 ##### sync_source_items: `Bool`<a id="sync_source_items-bool"></a>
 
 Enabling this flag will fetch all available content from the source to be listed via list items endpoint
+
+
+##### file_sync_config: [`FileSyncConfigNullable`](./CarbonAI/Models/FileSyncConfigNullable.swift)<a id="file_sync_config-filesyncconfignullablecarbonaimodelsfilesyncconfignullableswift"></a>
 
 
 #### 🔄 Return<a id="🔄-return"></a>
@@ -2353,7 +2378,8 @@ let fileSyncConfig = FileSyncConfigNullable(
     transcriptionService: TranscriptionServiceNullable.assemblyai,
     includeSpeakerLabels: false,
     splitRows: false,
-    generateChunksOnly: false
+    generateChunksOnly: false,
+    skipFileProcessing: false
 )
 let connectGuruResponse = try await carbonai.integrations.connectGuru(
     username: username,
@@ -2537,7 +2563,8 @@ let fileSyncConfig = FileSyncConfigNullable(
     transcriptionService: TranscriptionServiceNullable.assemblyai,
     includeSpeakerLabels: false,
     splitRows: false,
-    generateChunksOnly: false
+    generateChunksOnly: false,
+    skipFileProcessing: false
 )
 let automaticallyOpenFilePicker = true
 let gongAccountEmail = "gongAccountEmail_example"
@@ -3061,7 +3088,8 @@ let fileSyncConfig = FileSyncConfigNullable(
     transcriptionService: TranscriptionServiceNullable.assemblyai,
     includeSpeakerLabels: false,
     splitRows: false,
-    generateChunksOnly: false
+    generateChunksOnly: false,
+    skipFileProcessing: false
 )
 let syncConfluenceResponse = try await carbonai.integrations.syncConfluence(
     dataSourceId: dataSourceId,
@@ -3221,7 +3249,8 @@ let fileSyncConfig = FileSyncConfigNullable(
     transcriptionService: TranscriptionServiceNullable.assemblyai,
     includeSpeakerLabels: false,
     splitRows: false,
-    generateChunksOnly: false
+    generateChunksOnly: false,
+    skipFileProcessing: false
 )
 let syncFilesResponse = try await carbonai.integrations.syncFiles(
     dataSourceId: dataSourceId,
@@ -3377,6 +3406,20 @@ let embeddingModel = EmbeddingGenerators(
 let generateSparseVectors = true
 let prependFilenameToChunks = true
 let requestId = "requestId_example"
+let fileSyncConfig = FileSyncConfigNullable(
+    autoSyncedSourceTypes: [
+    AutoSyncedSourceTypesPropertyInner(
+        
+    )
+    ],
+    syncAttachments: false,
+    detectAudioLanguage: false,
+    transcriptionService: TranscriptionServiceNullable.assemblyai,
+    includeSpeakerLabels: false,
+    splitRows: false,
+    generateChunksOnly: false,
+    skipFileProcessing: false
+)
 let syncGitbookResponse = try await carbonai.integrations.syncGitbook(
     spaceIds: spaceIds,
     dataSourceId: dataSourceId,
@@ -3387,7 +3430,8 @@ let syncGitbookResponse = try await carbonai.integrations.syncGitbook(
     embeddingModel: embeddingModel,
     generateSparseVectors: generateSparseVectors,
     prependFilenameToChunks: prependFilenameToChunks,
-    requestId: requestId
+    requestId: requestId,
+    fileSyncConfig: fileSyncConfig
 )
 ```
 
@@ -3421,6 +3465,9 @@ let syncGitbookResponse = try await carbonai.integrations.syncGitbook(
 
 
 ##### request_id: `String`<a id="request_id-string"></a>
+
+
+##### file_sync_config: [`FileSyncConfigNullable`](./CarbonAI/Models/FileSyncConfigNullable.swift)<a id="file_sync_config-filesyncconfignullablecarbonaimodelsfilesyncconfignullableswift"></a>
 
 
 #### 🌐 Endpoint<a id="🌐-endpoint"></a>
@@ -3516,7 +3563,8 @@ let fileSyncConfig = FileSyncConfigNullable(
     transcriptionService: TranscriptionServiceNullable.assemblyai,
     includeSpeakerLabels: false,
     splitRows: false,
-    generateChunksOnly: false
+    generateChunksOnly: false,
+    skipFileProcessing: false
 )
 let incrementalSync = true
 let syncGmailResponse = try await carbonai.integrations.syncGmail(
@@ -3682,7 +3730,8 @@ let fileSyncConfig = FileSyncConfigNullable(
     transcriptionService: TranscriptionServiceNullable.assemblyai,
     includeSpeakerLabels: false,
     splitRows: false,
-    generateChunksOnly: false
+    generateChunksOnly: false,
+    skipFileProcessing: false
 )
 let incrementalSync = true
 let syncOutlookResponse = try await carbonai.integrations.syncOutlook(
@@ -3910,7 +3959,8 @@ let fileSyncConfig = FileSyncConfigNullable(
     transcriptionService: TranscriptionServiceNullable.assemblyai,
     includeSpeakerLabels: false,
     splitRows: false,
-    generateChunksOnly: false
+    generateChunksOnly: false,
+    skipFileProcessing: false
 )
 let syncS3FilesResponse = try await carbonai.integrations.syncS3Files(
     ids: ids,

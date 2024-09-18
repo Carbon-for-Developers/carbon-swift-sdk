@@ -20,4 +20,5 @@ public enum ExternalFileSyncStatuses: String, Codable, CaseIterable {
     case rateLimited = "RATE_LIMITED"
     case syncAborted = "SYNC_ABORTED"
     case queuedForOcr = "QUEUED_FOR_OCR"
+    case readyToSync = "READY_TO_SYNC"
 }

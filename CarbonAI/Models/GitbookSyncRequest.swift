@@ -22,8 +22,9 @@ public struct GitbookSyncRequest: Codable, JSONEncodable, Hashable {
     public var generateSparseVectors: Bool? = false
     public var prependFilenameToChunks: Bool? = false
     public var requestId: String?
+    public var fileSyncConfig: FileSyncConfigNullable?
 
-    public init(tags: AnyCodable? = nil, spaceIds: [String], dataSourceId: Int, chunkSize: Int? = 1500, chunkOverlap: Int? = 20, skipEmbeddingGeneration: Bool? = false, embeddingModel: EmbeddingGenerators? = nil, generateSparseVectors: Bool? = false, prependFilenameToChunks: Bool? = false, requestId: String? = nil) {
+    public init(tags: AnyCodable? = nil, spaceIds: [String], dataSourceId: Int, chunkSize: Int? = 1500, chunkOverlap: Int? = 20, skipEmbeddingGeneration: Bool? = false, embeddingModel: EmbeddingGenerators? = nil, generateSparseVectors: Bool? = false, prependFilenameToChunks: Bool? = false, requestId: String? = nil, fileSyncConfig: FileSyncConfigNullable? = nil) {
         self.tags = tags
         self.spaceIds = spaceIds
         self.dataSourceId = dataSourceId
@@ -34,6 +35,7 @@ public struct GitbookSyncRequest: Codable, JSONEncodable, Hashable {
         self.generateSparseVectors = generateSparseVectors
         self.prependFilenameToChunks = prependFilenameToChunks
         self.requestId = requestId
+        self.fileSyncConfig = fileSyncConfig
     }
 
     public enum CodingKeys: String, CodingKey, CaseIterable {
@@ -47,6 +49,7 @@ public struct GitbookSyncRequest: Codable, JSONEncodable, Hashable {
         case generateSparseVectors = "generate_sparse_vectors"
         case prependFilenameToChunks = "prepend_filename_to_chunks"
         case requestId = "request_id"
+        case fileSyncConfig = "file_sync_config"
     }
 
     // Encodable protocol methods
@@ -63,6 +66,7 @@ public struct GitbookSyncRequest: Codable, JSONEncodable, Hashable {
         try container.encodeIfPresent(generateSparseVectors, forKey: .generateSparseVectors)
         try container.encodeIfPresent(prependFilenameToChunks, forKey: .prependFilenameToChunks)
         try container.encodeIfPresent(requestId, forKey: .requestId)
+        try container.encodeIfPresent(fileSyncConfig, forKey: .fileSyncConfig)
     }
 }
 
