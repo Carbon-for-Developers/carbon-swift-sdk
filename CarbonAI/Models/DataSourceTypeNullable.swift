@@ -24,6 +24,7 @@ public enum DataSourceTypeNullable: String, Codable, CaseIterable {
     case zendesk = "ZENDESK"
     case zotero = "ZOTERO"
     case s3 = "S3"
+    case azureBlobStorage = "AZURE_BLOB_STORAGE"
     case gmail = "GMAIL"
     case outlook = "OUTLOOK"
     case servicenow = "SERVICENOW"

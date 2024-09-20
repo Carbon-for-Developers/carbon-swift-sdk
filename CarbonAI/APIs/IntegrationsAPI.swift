@@ -3153,6 +3153,442 @@ open class IntegrationsAPI {
 
 
     /**
+     Azure Blob Files
+     
+     - parameter azureBlobFileSyncInput: (body)  
+     - parameter apiResponseQueue: The queue on which api response is dispatched.
+     - parameter completion: completion handler to receive the data and the error objects
+     */
+    @discardableResult
+    open class func syncAzureBlobFilesSync(azureBlobFileSyncInput: AzureBlobFileSyncInput, apiResponseQueue: DispatchQueue = CarbonAIAPI.apiResponseQueue, completion: @escaping ((_ data: GenericSuccessResponse?, _ error: Error?) -> Void)) -> RequestTask {
+        return syncAzureBlobFilesWithRequestBuilder(azureBlobFileSyncInput: azureBlobFileSyncInput).execute(apiResponseQueue) { result in
+            switch result {
+            case let .success(response):
+                completion(response.body, nil)
+            case let .failure(error):
+                completion(nil, error)
+            }
+        }
+    }
+
+    /**
+     Azure Blob Files
+     
+     - parameter azureBlobFileSyncInput: (body)  
+     - parameter apiResponseQueue: The queue on which api response is dispatched.
+     - parameter completion: completion handler to receive the data and the error objects
+     */
+    @available(iOS 13.0, macOS 10.15, tvOS 13.0, watchOS 6.0, *)
+    private class func syncAzureBlobFilesAsyncMappedParams(azureBlobFileSyncInput: AzureBlobFileSyncInput) async throws -> GenericSuccessResponse {
+        return try await withCheckedThrowingContinuation { continuation in
+            syncAzureBlobFilesWithRequestBuilder(azureBlobFileSyncInput: azureBlobFileSyncInput).execute { result in
+                switch result {
+                case let .success(response):
+                    continuation.resume(returning: response.body)
+                case let .failure(error):
+                    continuation.resume(throwing: error)
+                }
+            }
+        }
+    }
+
+    /**
+     Azure Blob Files
+     
+     - parameter azureBlobFileSyncInput: (body)  
+     - parameter apiResponseQueue: The queue on which api response is dispatched.
+     - parameter completion: completion handler to receive the data and the error objects
+     */
+    @available(iOS 13.0, macOS 10.15, tvOS 13.0, watchOS 6.0, *)
+    open class func syncAzureBlobFiles(
+        ids: [AzureBlobGetFileInput],
+        tags: AnyCodable? = nil, 
+        chunkSize: Int? = nil, 
+        chunkOverlap: Int? = nil, 
+        skipEmbeddingGeneration: Bool? = nil, 
+        embeddingModel: EmbeddingGenerators? = nil, 
+        generateSparseVectors: Bool? = nil, 
+        prependFilenameToChunks: Bool? = nil, 
+        maxItemsPerChunk: Int? = nil, 
+        setPageAsBoundary: Bool? = nil, 
+        dataSourceId: Int? = nil, 
+        requestId: String? = nil, 
+        useOcr: Bool? = nil, 
+        parsePdfTablesWithOcr: Bool? = nil, 
+        fileSyncConfig: FileSyncConfigNullable? = nil
+    ) async throws -> GenericSuccessResponse {
+        let azureBlobFileSyncInput = AzureBlobFileSyncInput(
+            tags: tags,
+            ids: ids,
+            chunkSize: chunkSize,
+            chunkOverlap: chunkOverlap,
+            skipEmbeddingGeneration: skipEmbeddingGeneration,
+            embeddingModel: embeddingModel,
+            generateSparseVectors: generateSparseVectors,
+            prependFilenameToChunks: prependFilenameToChunks,
+            maxItemsPerChunk: maxItemsPerChunk,
+            setPageAsBoundary: setPageAsBoundary,
+            dataSourceId: dataSourceId,
+            requestId: requestId,
+            useOcr: useOcr,
+            parsePdfTablesWithOcr: parsePdfTablesWithOcr,
+            fileSyncConfig: fileSyncConfig
+        )
+        return try await withCheckedThrowingContinuation { continuation in
+            syncAzureBlobFilesWithRequestBuilder(azureBlobFileSyncInput: azureBlobFileSyncInput).execute { result in
+                switch result {
+                case let .success(response):
+                    continuation.resume(returning: response.body)
+                case let .failure(error):
+                    continuation.resume(throwing: error)
+                }
+            }
+        }
+    }
+
+
+    /**
+     Azure Blob Files
+     
+     - parameter azureBlobFileSyncInput: (body)  
+     - parameter apiResponseQueue: The queue on which api response is dispatched.
+     - parameter completion: completion handler to receive the data and the error objects
+     */
+    @available(iOS 13.0, macOS 10.15, tvOS 13.0, watchOS 6.0, *)
+    open func syncAzureBlobFiles(
+        ids: [AzureBlobGetFileInput],
+        tags: AnyCodable? = nil, 
+        chunkSize: Int? = nil, 
+        chunkOverlap: Int? = nil, 
+        skipEmbeddingGeneration: Bool? = nil, 
+        embeddingModel: EmbeddingGenerators? = nil, 
+        generateSparseVectors: Bool? = nil, 
+        prependFilenameToChunks: Bool? = nil, 
+        maxItemsPerChunk: Int? = nil, 
+        setPageAsBoundary: Bool? = nil, 
+        dataSourceId: Int? = nil, 
+        requestId: String? = nil, 
+        useOcr: Bool? = nil, 
+        parsePdfTablesWithOcr: Bool? = nil, 
+        fileSyncConfig: FileSyncConfigNullable? = nil
+    ) async throws -> GenericSuccessResponse {
+        let azureBlobFileSyncInput = AzureBlobFileSyncInput(
+            tags: tags,
+            ids: ids,
+            chunkSize: chunkSize,
+            chunkOverlap: chunkOverlap,
+            skipEmbeddingGeneration: skipEmbeddingGeneration,
+            embeddingModel: embeddingModel,
+            generateSparseVectors: generateSparseVectors,
+            prependFilenameToChunks: prependFilenameToChunks,
+            maxItemsPerChunk: maxItemsPerChunk,
+            setPageAsBoundary: setPageAsBoundary,
+            dataSourceId: dataSourceId,
+            requestId: requestId,
+            useOcr: useOcr,
+            parsePdfTablesWithOcr: parsePdfTablesWithOcr,
+            fileSyncConfig: fileSyncConfig
+        )
+        return try await withCheckedThrowingContinuation { continuation in
+            syncAzureBlobFilesWithRequestBuilder(azureBlobFileSyncInput: azureBlobFileSyncInput).execute { result in
+                switch result {
+                case let .success(response):
+                    continuation.resume(returning: response.body)
+                case let .failure(error):
+                    continuation.resume(throwing: error)
+                }
+            }
+        }
+    }
+
+
+
+    /**
+     Azure Blob Files
+     - POST /integrations/azure_blob_storage/files
+     - After optionally loading the items via /integrations/items/sync and integrations/items/list, use the container name  and file name as the ID in this endpoint to sync them into Carbon. Additional parameters below can associate  data with the selected items or modify the sync behavior
+     - API Key:
+       - type: apiKey authorization 
+       - name: accessToken
+     - API Key:
+       - type: apiKey authorization 
+       - name: apiKey
+     - API Key:
+       - type: apiKey customer-id 
+       - name: customerId
+     - parameter azureBlobFileSyncInput: (body)  
+     - returns: RequestBuilder<GenericSuccessResponse> After optionally loading the items via /integrations/items/sync and integrations/items/list, use the container name  and file name as the ID in this endpoint to sync them into Carbon. Additional parameters below can associate  data with the selected items or modify the sync behavior
+     */
+    open class func syncAzureBlobFilesWithRequestBuilder(
+            azureBlobFileSyncInput: AzureBlobFileSyncInput
+    ) -> RequestBuilder<GenericSuccessResponse> {
+        let basePath = CarbonAIAPI.basePath;
+        let localVariablePath = "/integrations/azure_blob_storage/files"
+        let localVariableURLString = basePath + localVariablePath
+        let localVariableParameters = JSONEncodingHelper.encodingParameters(forEncodableObject: azureBlobFileSyncInput)
+
+        var localVariableUrlComponents = URLComponents(string: localVariableURLString)
+
+        let localVariableNillableHeaders: [String: Any?] = [
+            :
+        ]
+
+        var localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
+
+        do {
+            try Authentication.setAuthenticationParameters(headers: &localVariableHeaderParameters, url: &localVariableUrlComponents, in: "header", name: "authorization", value: CarbonAIAPI.accessToken, prefix: "Token ")
+            try Authentication.setAuthenticationParameters(headers: &localVariableHeaderParameters, url: &localVariableUrlComponents, in: "header", name: "authorization", value: CarbonAIAPI.apiKey, prefix: "Bearer ")
+            try Authentication.setAuthenticationParameters(headers: &localVariableHeaderParameters, url: &localVariableUrlComponents, in: "header", name: "customer-id", value: CarbonAIAPI.customerId, prefix: nil)
+            let localVariableRequestBuilder: RequestBuilder<GenericSuccessResponse>.Type = CarbonAIAPI.requestBuilderFactory.getBuilder()
+            let URLString = localVariableUrlComponents?.string ?? localVariableURLString
+            return localVariableRequestBuilder.init(method: "POST", URLString: URLString, parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        } catch {
+            print("Error: \(error)")
+        }
+        fatalError("Error: Unable to send request to POST /integrations/azure_blob_storage/files")
+    }
+
+    /**
+     Azure Blob Files
+     - POST /integrations/azure_blob_storage/files
+     - After optionally loading the items via /integrations/items/sync and integrations/items/list, use the container name  and file name as the ID in this endpoint to sync them into Carbon. Additional parameters below can associate  data with the selected items or modify the sync behavior
+     - API Key:
+       - type: apiKey authorization 
+       - name: accessToken
+     - API Key:
+       - type: apiKey authorization 
+       - name: apiKey
+     - API Key:
+       - type: apiKey customer-id 
+       - name: customerId
+     - parameter azureBlobFileSyncInput: (body)  
+     - returns: RequestBuilder<GenericSuccessResponse> After optionally loading the items via /integrations/items/sync and integrations/items/list, use the container name  and file name as the ID in this endpoint to sync them into Carbon. Additional parameters below can associate  data with the selected items or modify the sync behavior
+     */
+    open func syncAzureBlobFilesWithRequestBuilder(
+            azureBlobFileSyncInput: AzureBlobFileSyncInput
+    ) -> RequestBuilder<GenericSuccessResponse> {
+        let basePath = self.client!.basePath;
+        let localVariablePath = "/integrations/azure_blob_storage/files"
+        let localVariableURLString = basePath + localVariablePath
+        let localVariableParameters = JSONEncodingHelper.encodingParameters(forEncodableObject: azureBlobFileSyncInput)
+
+        var localVariableUrlComponents = URLComponents(string: localVariableURLString)
+
+        let localVariableNillableHeaders: [String: Any?] = [
+            :
+        ]
+
+        var localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
+
+        do {
+            try Authentication.setAuthenticationParameters(headers: &localVariableHeaderParameters, url: &localVariableUrlComponents, in: "header", name: "authorization", value: self.client!.accessToken, prefix: "Token ")
+            try Authentication.setAuthenticationParameters(headers: &localVariableHeaderParameters, url: &localVariableUrlComponents, in: "header", name: "authorization", value: self.client!.apiKey, prefix: "Bearer ")
+            try Authentication.setAuthenticationParameters(headers: &localVariableHeaderParameters, url: &localVariableUrlComponents, in: "header", name: "customer-id", value: self.client!.customerId, prefix: nil)
+            let localVariableRequestBuilder: RequestBuilder<GenericSuccessResponse>.Type = CarbonAIAPI.requestBuilderFactory.getBuilder()
+            let URLString = localVariableUrlComponents?.string ?? localVariableURLString
+            return localVariableRequestBuilder.init(method: "POST", URLString: URLString, parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        } catch {
+            print("Error: \(error)")
+        }
+        fatalError("Error: Unable to send request to POST /integrations/azure_blob_storage/files")
+    }
+
+
+    /**
+     Azure Blob Storage Auth
+     
+     - parameter azureBlobAuthRequest: (body)  
+     - parameter apiResponseQueue: The queue on which api response is dispatched.
+     - parameter completion: completion handler to receive the data and the error objects
+     */
+    @discardableResult
+    open class func syncAzureBlobStorageSync(azureBlobAuthRequest: AzureBlobAuthRequest, apiResponseQueue: DispatchQueue = CarbonAIAPI.apiResponseQueue, completion: @escaping ((_ data: OrganizationUserDataSourceAPI?, _ error: Error?) -> Void)) -> RequestTask {
+        return syncAzureBlobStorageWithRequestBuilder(azureBlobAuthRequest: azureBlobAuthRequest).execute(apiResponseQueue) { result in
+            switch result {
+            case let .success(response):
+                completion(response.body, nil)
+            case let .failure(error):
+                completion(nil, error)
+            }
+        }
+    }
+
+    /**
+     Azure Blob Storage Auth
+     
+     - parameter azureBlobAuthRequest: (body)  
+     - parameter apiResponseQueue: The queue on which api response is dispatched.
+     - parameter completion: completion handler to receive the data and the error objects
+     */
+    @available(iOS 13.0, macOS 10.15, tvOS 13.0, watchOS 6.0, *)
+    private class func syncAzureBlobStorageAsyncMappedParams(azureBlobAuthRequest: AzureBlobAuthRequest) async throws -> OrganizationUserDataSourceAPI {
+        return try await withCheckedThrowingContinuation { continuation in
+            syncAzureBlobStorageWithRequestBuilder(azureBlobAuthRequest: azureBlobAuthRequest).execute { result in
+                switch result {
+                case let .success(response):
+                    continuation.resume(returning: response.body)
+                case let .failure(error):
+                    continuation.resume(throwing: error)
+                }
+            }
+        }
+    }
+
+    /**
+     Azure Blob Storage Auth
+     
+     - parameter azureBlobAuthRequest: (body)  
+     - parameter apiResponseQueue: The queue on which api response is dispatched.
+     - parameter completion: completion handler to receive the data and the error objects
+     */
+    @available(iOS 13.0, macOS 10.15, tvOS 13.0, watchOS 6.0, *)
+    open class func syncAzureBlobStorage(
+        accountName: String,
+        accountKey: String,
+        syncSourceItems: Bool? = nil
+    ) async throws -> OrganizationUserDataSourceAPI {
+        let azureBlobAuthRequest = AzureBlobAuthRequest(
+            accountName: accountName,
+            accountKey: accountKey,
+            syncSourceItems: syncSourceItems
+        )
+        return try await withCheckedThrowingContinuation { continuation in
+            syncAzureBlobStorageWithRequestBuilder(azureBlobAuthRequest: azureBlobAuthRequest).execute { result in
+                switch result {
+                case let .success(response):
+                    continuation.resume(returning: response.body)
+                case let .failure(error):
+                    continuation.resume(throwing: error)
+                }
+            }
+        }
+    }
+
+
+    /**
+     Azure Blob Storage Auth
+     
+     - parameter azureBlobAuthRequest: (body)  
+     - parameter apiResponseQueue: The queue on which api response is dispatched.
+     - parameter completion: completion handler to receive the data and the error objects
+     */
+    @available(iOS 13.0, macOS 10.15, tvOS 13.0, watchOS 6.0, *)
+    open func syncAzureBlobStorage(
+        accountName: String,
+        accountKey: String,
+        syncSourceItems: Bool? = nil
+    ) async throws -> OrganizationUserDataSourceAPI {
+        let azureBlobAuthRequest = AzureBlobAuthRequest(
+            accountName: accountName,
+            accountKey: accountKey,
+            syncSourceItems: syncSourceItems
+        )
+        return try await withCheckedThrowingContinuation { continuation in
+            syncAzureBlobStorageWithRequestBuilder(azureBlobAuthRequest: azureBlobAuthRequest).execute { result in
+                switch result {
+                case let .success(response):
+                    continuation.resume(returning: response.body)
+                case let .failure(error):
+                    continuation.resume(throwing: error)
+                }
+            }
+        }
+    }
+
+
+
+    /**
+     Azure Blob Storage Auth
+     - POST /integrations/azure_blob_storage
+     - This endpoint can be used to connect Azure Blob Storage.  For Azure Blob Storage, follow these steps: <ol>   <li>Create a new Azure Storage account and grant the following permissions:     <ul>       <li>List containers.</li>       <li>Read from specific containers and blobs to sync with Carbon. Ensure any future containers or blobs carry the same permissions.</li>     </ul>   </li>   <li>Generate a shared access signature (SAS) token or an access key for the storage account.</li> </ol>  Once created, provide us with the following details to generate the connection URL: <ol>   <li>Storage Account KeyName.</li>   <li>Storage Account Name.</li> </ol>
+     - API Key:
+       - type: apiKey authorization 
+       - name: accessToken
+     - API Key:
+       - type: apiKey authorization 
+       - name: apiKey
+     - API Key:
+       - type: apiKey customer-id 
+       - name: customerId
+     - parameter azureBlobAuthRequest: (body)  
+     - returns: RequestBuilder<OrganizationUserDataSourceAPI> This endpoint can be used to connect Azure Blob Storage.  For Azure Blob Storage, follow these steps: &lt;ol&gt;   &lt;li&gt;Create a new Azure Storage account and grant the following permissions:     &lt;ul&gt;       &lt;li&gt;List containers.&lt;/li&gt;       &lt;li&gt;Read from specific containers and blobs to sync with Carbon. Ensure any future containers or blobs carry the same permissions.&lt;/li&gt;     &lt;/ul&gt;   &lt;/li&gt;   &lt;li&gt;Generate a shared access signature (SAS) token or an access key for the storage account.&lt;/li&gt; &lt;/ol&gt;  Once created, provide us with the following details to generate the connection URL: &lt;ol&gt;   &lt;li&gt;Storage Account KeyName.&lt;/li&gt;   &lt;li&gt;Storage Account Name.&lt;/li&gt; &lt;/ol&gt;
+     */
+    open class func syncAzureBlobStorageWithRequestBuilder(
+            azureBlobAuthRequest: AzureBlobAuthRequest
+    ) -> RequestBuilder<OrganizationUserDataSourceAPI> {
+        let basePath = CarbonAIAPI.basePath;
+        let localVariablePath = "/integrations/azure_blob_storage"
+        let localVariableURLString = basePath + localVariablePath
+        let localVariableParameters = JSONEncodingHelper.encodingParameters(forEncodableObject: azureBlobAuthRequest)
+
+        var localVariableUrlComponents = URLComponents(string: localVariableURLString)
+
+        let localVariableNillableHeaders: [String: Any?] = [
+            :
+        ]
+
+        var localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
+
+        do {
+            try Authentication.setAuthenticationParameters(headers: &localVariableHeaderParameters, url: &localVariableUrlComponents, in: "header", name: "authorization", value: CarbonAIAPI.accessToken, prefix: "Token ")
+            try Authentication.setAuthenticationParameters(headers: &localVariableHeaderParameters, url: &localVariableUrlComponents, in: "header", name: "authorization", value: CarbonAIAPI.apiKey, prefix: "Bearer ")
+            try Authentication.setAuthenticationParameters(headers: &localVariableHeaderParameters, url: &localVariableUrlComponents, in: "header", name: "customer-id", value: CarbonAIAPI.customerId, prefix: nil)
+            let localVariableRequestBuilder: RequestBuilder<OrganizationUserDataSourceAPI>.Type = CarbonAIAPI.requestBuilderFactory.getBuilder()
+            let URLString = localVariableUrlComponents?.string ?? localVariableURLString
+            return localVariableRequestBuilder.init(method: "POST", URLString: URLString, parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        } catch {
+            print("Error: \(error)")
+        }
+        fatalError("Error: Unable to send request to POST /integrations/azure_blob_storage")
+    }
+
+    /**
+     Azure Blob Storage Auth
+     - POST /integrations/azure_blob_storage
+     - This endpoint can be used to connect Azure Blob Storage.  For Azure Blob Storage, follow these steps: <ol>   <li>Create a new Azure Storage account and grant the following permissions:     <ul>       <li>List containers.</li>       <li>Read from specific containers and blobs to sync with Carbon. Ensure any future containers or blobs carry the same permissions.</li>     </ul>   </li>   <li>Generate a shared access signature (SAS) token or an access key for the storage account.</li> </ol>  Once created, provide us with the following details to generate the connection URL: <ol>   <li>Storage Account KeyName.</li>   <li>Storage Account Name.</li> </ol>
+     - API Key:
+       - type: apiKey authorization 
+       - name: accessToken
+     - API Key:
+       - type: apiKey authorization 
+       - name: apiKey
+     - API Key:
+       - type: apiKey customer-id 
+       - name: customerId
+     - parameter azureBlobAuthRequest: (body)  
+     - returns: RequestBuilder<OrganizationUserDataSourceAPI> This endpoint can be used to connect Azure Blob Storage.  For Azure Blob Storage, follow these steps: &lt;ol&gt;   &lt;li&gt;Create a new Azure Storage account and grant the following permissions:     &lt;ul&gt;       &lt;li&gt;List containers.&lt;/li&gt;       &lt;li&gt;Read from specific containers and blobs to sync with Carbon. Ensure any future containers or blobs carry the same permissions.&lt;/li&gt;     &lt;/ul&gt;   &lt;/li&gt;   &lt;li&gt;Generate a shared access signature (SAS) token or an access key for the storage account.&lt;/li&gt; &lt;/ol&gt;  Once created, provide us with the following details to generate the connection URL: &lt;ol&gt;   &lt;li&gt;Storage Account KeyName.&lt;/li&gt;   &lt;li&gt;Storage Account Name.&lt;/li&gt; &lt;/ol&gt;
+     */
+    open func syncAzureBlobStorageWithRequestBuilder(
+            azureBlobAuthRequest: AzureBlobAuthRequest
+    ) -> RequestBuilder<OrganizationUserDataSourceAPI> {
+        let basePath = self.client!.basePath;
+        let localVariablePath = "/integrations/azure_blob_storage"
+        let localVariableURLString = basePath + localVariablePath
+        let localVariableParameters = JSONEncodingHelper.encodingParameters(forEncodableObject: azureBlobAuthRequest)
+
+        var localVariableUrlComponents = URLComponents(string: localVariableURLString)
+
+        let localVariableNillableHeaders: [String: Any?] = [
+            :
+        ]
+
+        var localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
+
+        do {
+            try Authentication.setAuthenticationParameters(headers: &localVariableHeaderParameters, url: &localVariableUrlComponents, in: "header", name: "authorization", value: self.client!.accessToken, prefix: "Token ")
+            try Authentication.setAuthenticationParameters(headers: &localVariableHeaderParameters, url: &localVariableUrlComponents, in: "header", name: "authorization", value: self.client!.apiKey, prefix: "Bearer ")
+            try Authentication.setAuthenticationParameters(headers: &localVariableHeaderParameters, url: &localVariableUrlComponents, in: "header", name: "customer-id", value: self.client!.customerId, prefix: nil)
+            let localVariableRequestBuilder: RequestBuilder<OrganizationUserDataSourceAPI>.Type = CarbonAIAPI.requestBuilderFactory.getBuilder()
+            let URLString = localVariableUrlComponents?.string ?? localVariableURLString
+            return localVariableRequestBuilder.init(method: "POST", URLString: URLString, parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        } catch {
+            print("Error: \(error)")
+        }
+        fatalError("Error: Unable to send request to POST /integrations/azure_blob_storage")
+    }
+
+
+    /**
      Confluence Sync
      
      - parameter syncFilesRequest: (body)  
