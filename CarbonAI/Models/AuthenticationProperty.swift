@@ -29,13 +29,15 @@ public struct AuthenticationProperty: Codable, JSONEncodable, Hashable {
     public var accessKeySecret: String
     /** You can specify a Digital Ocean endpoint URL to connect a Digital Ocean Space through this endpoint.         The URL should be of format <region>.digitaloceanspaces.com. It's not required for S3 buckets. */
     public var endpointUrl: String?
+    public var accountName: String
+    public var accountKey: String
     public var instanceSubdomain: String
     public var clientId: String
     public var clientSecret: String
     public var redirectUri: String
     public var gongAccountEmail: String
 
-    public init(source: AnyCodable?, accessToken: String, refreshToken: String? = nil, workspaceId: String, tenantName: String, siteName: String, subdomain: String, accessTokenSecret: String, username: String, zoteroId: String, organizationName: String, domain: String, apiKey: String, accessKey: String, accessKeySecret: String, endpointUrl: String? = nil, instanceSubdomain: String, clientId: String, clientSecret: String, redirectUri: String, gongAccountEmail: String) {
+    public init(source: AnyCodable?, accessToken: String, refreshToken: String? = nil, workspaceId: String, tenantName: String, siteName: String, subdomain: String, accessTokenSecret: String, username: String, zoteroId: String, organizationName: String, domain: String, apiKey: String, accessKey: String, accessKeySecret: String, endpointUrl: String? = nil, accountName: String, accountKey: String, instanceSubdomain: String, clientId: String, clientSecret: String, redirectUri: String, gongAccountEmail: String) {
         self.source = source
         self.accessToken = accessToken
         self.refreshToken = refreshToken
@@ -52,6 +54,8 @@ public struct AuthenticationProperty: Codable, JSONEncodable, Hashable {
         self.accessKey = accessKey
         self.accessKeySecret = accessKeySecret
         self.endpointUrl = endpointUrl
+        self.accountName = accountName
+        self.accountKey = accountKey
         self.instanceSubdomain = instanceSubdomain
         self.clientId = clientId
         self.clientSecret = clientSecret
@@ -76,6 +80,8 @@ public struct AuthenticationProperty: Codable, JSONEncodable, Hashable {
         case accessKey = "access_key"
         case accessKeySecret = "access_key_secret"
         case endpointUrl = "endpoint_url"
+        case accountName = "account_name"
+        case accountKey = "account_key"
         case instanceSubdomain = "instance_subdomain"
         case clientId = "client_id"
         case clientSecret = "client_secret"
@@ -103,6 +109,8 @@ public struct AuthenticationProperty: Codable, JSONEncodable, Hashable {
         try container.encode(accessKey, forKey: .accessKey)
         try container.encode(accessKeySecret, forKey: .accessKeySecret)
         try container.encodeIfPresent(endpointUrl, forKey: .endpointUrl)
+        try container.encode(accountName, forKey: .accountName)
+        try container.encode(accountKey, forKey: .accountKey)
         try container.encode(instanceSubdomain, forKey: .instanceSubdomain)
         try container.encode(clientId, forKey: .clientId)
         try container.encode(clientSecret, forKey: .clientSecret)
