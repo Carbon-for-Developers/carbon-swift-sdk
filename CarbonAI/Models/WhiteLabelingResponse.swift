@@ -31,10 +31,10 @@ public struct WhiteLabelingResponse: Codable, JSONEncodable, Hashable {
     // Encodable protocol methods
 
     public func encode(to encoder: Encoder) throws {
-        var container = encoder.container(keyedBy: CodingKeys.self)
-        try container.encode(removeBranding, forKey: .removeBranding)
-        try container.encode(integrations, forKey: .integrations)
-        try container.encode(customLimits, forKey: .customLimits)
+        var codingContainer = encoder.container(keyedBy: CodingKeys.self)
+        try codingContainer.encode(removeBranding, forKey: .removeBranding)
+        try codingContainer.encode(integrations, forKey: .integrations)
+        try codingContainer.encode(customLimits, forKey: .customLimits)
     }
 }
 

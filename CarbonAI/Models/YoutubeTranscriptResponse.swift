@@ -34,11 +34,11 @@ public struct YoutubeTranscriptResponse: Codable, JSONEncodable, Hashable {
     // Encodable protocol methods
 
     public func encode(to encoder: Encoder) throws {
-        var container = encoder.container(keyedBy: CodingKeys.self)
-        try container.encode(status, forKey: .status)
-        try container.encode(error, forKey: .error)
-        try container.encode(data, forKey: .data)
-        try container.encode(rawTranscript, forKey: .rawTranscript)
+        var codingContainer = encoder.container(keyedBy: CodingKeys.self)
+        try codingContainer.encode(status, forKey: .status)
+        try codingContainer.encode(error, forKey: .error)
+        try codingContainer.encode(data, forKey: .data)
+        try codingContainer.encode(rawTranscript, forKey: .rawTranscript)
     }
 }
 

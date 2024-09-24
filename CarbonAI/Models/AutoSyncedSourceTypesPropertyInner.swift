@@ -19,7 +19,7 @@ public struct AutoSyncedSourceTypesPropertyInner: Codable, JSONEncodable, Hashab
     // Encodable protocol methods
 
     public func encode(to encoder: Encoder) throws {
-        var container = encoder.container(keyedBy: CodingKeys.self)
+        var codingContainer = encoder.container(keyedBy: CodingKeys.self)
     }
 }
 

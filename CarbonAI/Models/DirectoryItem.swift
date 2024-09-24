@@ -34,11 +34,11 @@ public struct DirectoryItem: Codable, JSONEncodable, Hashable {
     // Encodable protocol methods
 
     public func encode(to encoder: Encoder) throws {
-        var container = encoder.container(keyedBy: CodingKeys.self)
-        try container.encode(id, forKey: .id)
-        try container.encode(name, forKey: .name)
-        try container.encode(isSynced, forKey: .isSynced)
-        try container.encode(hasChildren, forKey: .hasChildren)
+        var codingContainer = encoder.container(keyedBy: CodingKeys.self)
+        try codingContainer.encode(id, forKey: .id)
+        try codingContainer.encode(name, forKey: .name)
+        try codingContainer.encode(isSynced, forKey: .isSynced)
+        try codingContainer.encode(hasChildren, forKey: .hasChildren)
     }
 }
 

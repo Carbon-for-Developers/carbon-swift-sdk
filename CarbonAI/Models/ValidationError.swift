@@ -31,10 +31,10 @@ public struct ValidationError: Codable, JSONEncodable, Hashable {
     // Encodable protocol methods
 
     public func encode(to encoder: Encoder) throws {
-        var container = encoder.container(keyedBy: CodingKeys.self)
-        try container.encode(loc, forKey: .loc)
-        try container.encode(msg, forKey: .msg)
-        try container.encode(type, forKey: .type)
+        var codingContainer = encoder.container(keyedBy: CodingKeys.self)
+        try codingContainer.encode(loc, forKey: .loc)
+        try codingContainer.encode(msg, forKey: .msg)
+        try codingContainer.encode(type, forKey: .type)
     }
 }
 

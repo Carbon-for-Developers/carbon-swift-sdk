@@ -37,12 +37,12 @@ public struct EmbeddingsAndChunksQueryInput: Codable, JSONEncodable, Hashable {
     // Encodable protocol methods
 
     public func encode(to encoder: Encoder) throws {
-        var container = encoder.container(keyedBy: CodingKeys.self)
-        try container.encodeIfPresent(pagination, forKey: .pagination)
-        try container.encodeIfPresent(orderBy, forKey: .orderBy)
-        try container.encodeIfPresent(orderDir, forKey: .orderDir)
-        try container.encode(filters, forKey: .filters)
-        try container.encodeIfPresent(includeVectors, forKey: .includeVectors)
+        var codingContainer = encoder.container(keyedBy: CodingKeys.self)
+        try codingContainer.encodeIfPresent(pagination, forKey: .pagination)
+        try codingContainer.encodeIfPresent(orderBy, forKey: .orderBy)
+        try codingContainer.encodeIfPresent(orderDir, forKey: .orderDir)
+        try codingContainer.encode(filters, forKey: .filters)
+        try codingContainer.encodeIfPresent(includeVectors, forKey: .includeVectors)
     }
 }
 

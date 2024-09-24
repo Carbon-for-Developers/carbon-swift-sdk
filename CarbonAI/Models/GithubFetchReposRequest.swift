@@ -28,9 +28,9 @@ public struct GithubFetchReposRequest: Codable, JSONEncodable, Hashable {
     // Encodable protocol methods
 
     public func encode(to encoder: Encoder) throws {
-        var container = encoder.container(keyedBy: CodingKeys.self)
-        try container.encode(repos, forKey: .repos)
-        try container.encodeIfPresent(dataSourceId, forKey: .dataSourceId)
+        var codingContainer = encoder.container(keyedBy: CodingKeys.self)
+        try codingContainer.encode(repos, forKey: .repos)
+        try codingContainer.encodeIfPresent(dataSourceId, forKey: .dataSourceId)
     }
 }
 

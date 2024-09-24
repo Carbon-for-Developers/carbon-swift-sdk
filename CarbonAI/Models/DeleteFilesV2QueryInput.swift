@@ -32,10 +32,10 @@ public struct DeleteFilesV2QueryInput: Codable, JSONEncodable, Hashable {
     // Encodable protocol methods
 
     public func encode(to encoder: Encoder) throws {
-        var container = encoder.container(keyedBy: CodingKeys.self)
-        try container.encodeIfPresent(filters, forKey: .filters)
-        try container.encodeIfPresent(sendWebhook, forKey: .sendWebhook)
-        try container.encodeIfPresent(preserveFileRecord, forKey: .preserveFileRecord)
+        var codingContainer = encoder.container(keyedBy: CodingKeys.self)
+        try codingContainer.encodeIfPresent(filters, forKey: .filters)
+        try codingContainer.encodeIfPresent(sendWebhook, forKey: .sendWebhook)
+        try codingContainer.encodeIfPresent(preserveFileRecord, forKey: .preserveFileRecord)
     }
 }
 

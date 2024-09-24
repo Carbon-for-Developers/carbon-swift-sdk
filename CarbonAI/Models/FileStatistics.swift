@@ -40,13 +40,13 @@ public struct FileStatistics: Codable, JSONEncodable, Hashable {
     // Encodable protocol methods
 
     public func encode(to encoder: Encoder) throws {
-        var container = encoder.container(keyedBy: CodingKeys.self)
-        try container.encode(fileFormat, forKey: .fileFormat)
-        try container.encode(fileSize, forKey: .fileSize)
-        try container.encode(numCharacters, forKey: .numCharacters)
-        try container.encode(numTokens, forKey: .numTokens)
-        try container.encode(numEmbeddings, forKey: .numEmbeddings)
-        try container.encode(mimeType, forKey: .mimeType)
+        var codingContainer = encoder.container(keyedBy: CodingKeys.self)
+        try codingContainer.encode(fileFormat, forKey: .fileFormat)
+        try codingContainer.encode(fileSize, forKey: .fileSize)
+        try codingContainer.encode(numCharacters, forKey: .numCharacters)
+        try codingContainer.encode(numTokens, forKey: .numTokens)
+        try codingContainer.encode(numEmbeddings, forKey: .numEmbeddings)
+        try codingContainer.encode(mimeType, forKey: .mimeType)
     }
 }
 

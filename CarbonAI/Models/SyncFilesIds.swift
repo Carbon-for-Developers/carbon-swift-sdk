@@ -28,9 +28,9 @@ public struct SyncFilesIds: Codable, JSONEncodable, Hashable {
     // Encodable protocol methods
 
     public func encode(to encoder: Encoder) throws {
-        var container = encoder.container(keyedBy: CodingKeys.self)
-        try container.encode(id, forKey: .id)
-        try container.encode(rootId, forKey: .rootId)
+        var codingContainer = encoder.container(keyedBy: CodingKeys.self)
+        try codingContainer.encode(id, forKey: .id)
+        try codingContainer.encode(rootId, forKey: .rootId)
     }
 }
 

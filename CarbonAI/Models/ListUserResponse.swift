@@ -49,16 +49,16 @@ public struct ListUserResponse: Codable, JSONEncodable, Hashable {
     // Encodable protocol methods
 
     public func encode(to encoder: Encoder) throws {
-        var container = encoder.container(keyedBy: CodingKeys.self)
-        try container.encode(id, forKey: .id)
-        try container.encode(organizationId, forKey: .organizationId)
-        try container.encode(organizationSuppliedUserId, forKey: .organizationSuppliedUserId)
-        try container.encode(createdAt, forKey: .createdAt)
-        try container.encode(updatedAt, forKey: .updatedAt)
-        try container.encode(deletedAt, forKey: .deletedAt)
-        try container.encode(enabledFeatures, forKey: .enabledFeatures)
-        try container.encode(customLimits, forKey: .customLimits)
-        try container.encode(autoSyncEnabledSources, forKey: .autoSyncEnabledSources)
+        var codingContainer = encoder.container(keyedBy: CodingKeys.self)
+        try codingContainer.encode(id, forKey: .id)
+        try codingContainer.encode(organizationId, forKey: .organizationId)
+        try codingContainer.encode(organizationSuppliedUserId, forKey: .organizationSuppliedUserId)
+        try codingContainer.encode(createdAt, forKey: .createdAt)
+        try codingContainer.encode(updatedAt, forKey: .updatedAt)
+        try codingContainer.encode(deletedAt, forKey: .deletedAt)
+        try codingContainer.encode(enabledFeatures, forKey: .enabledFeatures)
+        try codingContainer.encode(customLimits, forKey: .customLimits)
+        try codingContainer.encode(autoSyncEnabledSources, forKey: .autoSyncEnabledSources)
     }
 }
 

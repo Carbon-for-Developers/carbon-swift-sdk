@@ -31,10 +31,10 @@ public struct AzureBlobStorageAuthentication: Codable, JSONEncodable, Hashable {
     // Encodable protocol methods
 
     public func encode(to encoder: Encoder) throws {
-        var container = encoder.container(keyedBy: CodingKeys.self)
-        try container.encode(source, forKey: .source)
-        try container.encode(accountName, forKey: .accountName)
-        try container.encode(accountKey, forKey: .accountKey)
+        var codingContainer = encoder.container(keyedBy: CodingKeys.self)
+        try codingContainer.encode(source, forKey: .source)
+        try codingContainer.encode(accountName, forKey: .accountName)
+        try codingContainer.encode(accountKey, forKey: .accountKey)
     }
 }
 

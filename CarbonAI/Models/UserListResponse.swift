@@ -28,9 +28,9 @@ public struct UserListResponse: Codable, JSONEncodable, Hashable {
     // Encodable protocol methods
 
     public func encode(to encoder: Encoder) throws {
-        var container = encoder.container(keyedBy: CodingKeys.self)
-        try container.encode(users, forKey: .users)
-        try container.encode(count, forKey: .count)
+        var codingContainer = encoder.container(keyedBy: CodingKeys.self)
+        try codingContainer.encode(users, forKey: .users)
+        try codingContainer.encode(count, forKey: .count)
     }
 }
 

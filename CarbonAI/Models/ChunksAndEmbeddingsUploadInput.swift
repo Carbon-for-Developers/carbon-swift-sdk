@@ -37,12 +37,12 @@ public struct ChunksAndEmbeddingsUploadInput: Codable, JSONEncodable, Hashable {
     // Encodable protocol methods
 
     public func encode(to encoder: Encoder) throws {
-        var container = encoder.container(keyedBy: CodingKeys.self)
-        try container.encode(embeddingModel, forKey: .embeddingModel)
-        try container.encode(chunksAndEmbeddings, forKey: .chunksAndEmbeddings)
-        try container.encodeIfPresent(overwriteExisting, forKey: .overwriteExisting)
-        try container.encodeIfPresent(chunksOnly, forKey: .chunksOnly)
-        try container.encodeIfPresent(customCredentials, forKey: .customCredentials)
+        var codingContainer = encoder.container(keyedBy: CodingKeys.self)
+        try codingContainer.encode(embeddingModel, forKey: .embeddingModel)
+        try codingContainer.encode(chunksAndEmbeddings, forKey: .chunksAndEmbeddings)
+        try codingContainer.encodeIfPresent(overwriteExisting, forKey: .overwriteExisting)
+        try codingContainer.encodeIfPresent(chunksOnly, forKey: .chunksOnly)
+        try codingContainer.encodeIfPresent(customCredentials, forKey: .customCredentials)
     }
 }
 

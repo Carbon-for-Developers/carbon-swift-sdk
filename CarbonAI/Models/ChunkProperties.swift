@@ -31,10 +31,10 @@ public struct ChunkProperties: Codable, JSONEncodable, Hashable {
     // Encodable protocol methods
 
     public func encode(to encoder: Encoder) throws {
-        var container = encoder.container(keyedBy: CodingKeys.self)
-        try container.encode(setPageAsBoundary, forKey: .setPageAsBoundary)
-        try container.encode(prependFilenameToChunks, forKey: .prependFilenameToChunks)
-        try container.encode(maxItemsPerChunk, forKey: .maxItemsPerChunk)
+        var codingContainer = encoder.container(keyedBy: CodingKeys.self)
+        try codingContainer.encode(setPageAsBoundary, forKey: .setPageAsBoundary)
+        try codingContainer.encode(prependFilenameToChunks, forKey: .prependFilenameToChunks)
+        try codingContainer.encode(maxItemsPerChunk, forKey: .maxItemsPerChunk)
     }
 }
 

@@ -36,11 +36,11 @@ public struct S3AuthRequest: Codable, JSONEncodable, Hashable {
     // Encodable protocol methods
 
     public func encode(to encoder: Encoder) throws {
-        var container = encoder.container(keyedBy: CodingKeys.self)
-        try container.encode(accessKey, forKey: .accessKey)
-        try container.encode(accessKeySecret, forKey: .accessKeySecret)
-        try container.encodeIfPresent(syncSourceItems, forKey: .syncSourceItems)
-        try container.encodeIfPresent(endpointUrl, forKey: .endpointUrl)
+        var codingContainer = encoder.container(keyedBy: CodingKeys.self)
+        try codingContainer.encode(accessKey, forKey: .accessKey)
+        try codingContainer.encode(accessKeySecret, forKey: .accessKeySecret)
+        try codingContainer.encodeIfPresent(syncSourceItems, forKey: .syncSourceItems)
+        try codingContainer.encodeIfPresent(endpointUrl, forKey: .endpointUrl)
     }
 }
 

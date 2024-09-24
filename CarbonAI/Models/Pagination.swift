@@ -28,9 +28,9 @@ public struct Pagination: Codable, JSONEncodable, Hashable {
     // Encodable protocol methods
 
     public func encode(to encoder: Encoder) throws {
-        var container = encoder.container(keyedBy: CodingKeys.self)
-        try container.encodeIfPresent(limit, forKey: .limit)
-        try container.encodeIfPresent(offset, forKey: .offset)
+        var codingContainer = encoder.container(keyedBy: CodingKeys.self)
+        try codingContainer.encodeIfPresent(limit, forKey: .limit)
+        try codingContainer.encodeIfPresent(offset, forKey: .offset)
     }
 }
 

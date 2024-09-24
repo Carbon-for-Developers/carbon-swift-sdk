@@ -30,9 +30,9 @@ public struct SlackFilters: Codable, JSONEncodable, Hashable {
     // Encodable protocol methods
 
     public func encode(to encoder: Encoder) throws {
-        var container = encoder.container(keyedBy: CodingKeys.self)
-        try container.encode(conversationId, forKey: .conversationId)
-        try container.encodeIfPresent(after, forKey: .after)
+        var codingContainer = encoder.container(keyedBy: CodingKeys.self)
+        try codingContainer.encode(conversationId, forKey: .conversationId)
+        try codingContainer.encodeIfPresent(after, forKey: .after)
     }
 }
 

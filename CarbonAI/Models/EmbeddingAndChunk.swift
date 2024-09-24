@@ -37,12 +37,12 @@ public struct EmbeddingAndChunk: Codable, JSONEncodable, Hashable {
     // Encodable protocol methods
 
     public func encode(to encoder: Encoder) throws {
-        var container = encoder.container(keyedBy: CodingKeys.self)
-        try container.encode(userFileId, forKey: .userFileId)
-        try container.encode(chunkIndex, forKey: .chunkIndex)
-        try container.encode(sourceContent, forKey: .sourceContent)
-        try container.encode(embedding, forKey: .embedding)
-        try container.encode(contentMetadata, forKey: .contentMetadata)
+        var codingContainer = encoder.container(keyedBy: CodingKeys.self)
+        try codingContainer.encode(userFileId, forKey: .userFileId)
+        try codingContainer.encode(chunkIndex, forKey: .chunkIndex)
+        try codingContainer.encode(sourceContent, forKey: .sourceContent)
+        try codingContainer.encode(embedding, forKey: .embedding)
+        try codingContainer.encode(contentMetadata, forKey: .contentMetadata)
     }
 }
 

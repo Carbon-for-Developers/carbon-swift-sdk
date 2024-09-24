@@ -28,9 +28,9 @@ public struct AzureBlobGetFileInput: Codable, JSONEncodable, Hashable {
     // Encodable protocol methods
 
     public func encode(to encoder: Encoder) throws {
-        var container = encoder.container(keyedBy: CodingKeys.self)
-        try container.encodeIfPresent(id, forKey: .id)
-        try container.encodeIfPresent(container, forKey: .container)
+        var codingContainer = encoder.container(keyedBy: CodingKeys.self)
+        try codingContainer.encodeIfPresent(id, forKey: .id)
+        try codingContainer.encodeIfPresent(container, forKey: .container)
     }
 }
 

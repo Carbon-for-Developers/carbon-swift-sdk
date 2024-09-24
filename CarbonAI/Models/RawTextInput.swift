@@ -53,17 +53,17 @@ public struct RawTextInput: Codable, JSONEncodable, Hashable {
     // Encodable protocol methods
 
     public func encode(to encoder: Encoder) throws {
-        var container = encoder.container(keyedBy: CodingKeys.self)
-        try container.encode(contents, forKey: .contents)
-        try container.encodeIfPresent(name, forKey: .name)
-        try container.encodeIfPresent(chunkSize, forKey: .chunkSize)
-        try container.encodeIfPresent(chunkOverlap, forKey: .chunkOverlap)
-        try container.encodeIfPresent(skipEmbeddingGeneration, forKey: .skipEmbeddingGeneration)
-        try container.encodeIfPresent(overwriteFileId, forKey: .overwriteFileId)
-        try container.encodeIfPresent(embeddingModel, forKey: .embeddingModel)
-        try container.encodeIfPresent(generateSparseVectors, forKey: .generateSparseVectors)
-        try container.encodeIfPresent(coldStorageParams, forKey: .coldStorageParams)
-        try container.encodeIfPresent(generateChunksOnly, forKey: .generateChunksOnly)
+        var codingContainer = encoder.container(keyedBy: CodingKeys.self)
+        try codingContainer.encode(contents, forKey: .contents)
+        try codingContainer.encodeIfPresent(name, forKey: .name)
+        try codingContainer.encodeIfPresent(chunkSize, forKey: .chunkSize)
+        try codingContainer.encodeIfPresent(chunkOverlap, forKey: .chunkOverlap)
+        try codingContainer.encodeIfPresent(skipEmbeddingGeneration, forKey: .skipEmbeddingGeneration)
+        try codingContainer.encodeIfPresent(overwriteFileId, forKey: .overwriteFileId)
+        try codingContainer.encodeIfPresent(embeddingModel, forKey: .embeddingModel)
+        try codingContainer.encodeIfPresent(generateSparseVectors, forKey: .generateSparseVectors)
+        try codingContainer.encodeIfPresent(coldStorageParams, forKey: .coldStorageParams)
+        try codingContainer.encodeIfPresent(generateChunksOnly, forKey: .generateChunksOnly)
     }
 }
 

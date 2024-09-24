@@ -61,20 +61,20 @@ public struct DocumentResponse: Codable, JSONEncodable, Hashable {
     // Encodable protocol methods
 
     public func encode(to encoder: Encoder) throws {
-        var container = encoder.container(keyedBy: CodingKeys.self)
-        try container.encode(tags, forKey: .tags)
-        try container.encode(content, forKey: .content)
-        try container.encode(fileId, forKey: .fileId)
-        try container.encode(parentFileId, forKey: .parentFileId)
-        try container.encode(source, forKey: .source)
-        try container.encode(sourceUrl, forKey: .sourceUrl)
-        try container.encode(sourceType, forKey: .sourceType)
-        try container.encode(presignedUrl, forKey: .presignedUrl)
-        try container.encode(vector, forKey: .vector)
-        try container.encode(score, forKey: .score)
-        try container.encode(rank, forKey: .rank)
-        try container.encode(contentMetadata, forKey: .contentMetadata)
-        try container.encode(chunkIndex, forKey: .chunkIndex)
+        var codingContainer = encoder.container(keyedBy: CodingKeys.self)
+        try codingContainer.encode(tags, forKey: .tags)
+        try codingContainer.encode(content, forKey: .content)
+        try codingContainer.encode(fileId, forKey: .fileId)
+        try codingContainer.encode(parentFileId, forKey: .parentFileId)
+        try codingContainer.encode(source, forKey: .source)
+        try codingContainer.encode(sourceUrl, forKey: .sourceUrl)
+        try codingContainer.encode(sourceType, forKey: .sourceType)
+        try codingContainer.encode(presignedUrl, forKey: .presignedUrl)
+        try codingContainer.encode(vector, forKey: .vector)
+        try codingContainer.encode(score, forKey: .score)
+        try codingContainer.encode(rank, forKey: .rank)
+        try codingContainer.encode(contentMetadata, forKey: .contentMetadata)
+        try codingContainer.encode(chunkIndex, forKey: .chunkIndex)
     }
 }
 

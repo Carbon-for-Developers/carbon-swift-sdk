@@ -37,12 +37,12 @@ public struct ResyncFileQueryInput: Codable, JSONEncodable, Hashable {
     // Encodable protocol methods
 
     public func encode(to encoder: Encoder) throws {
-        var container = encoder.container(keyedBy: CodingKeys.self)
-        try container.encode(fileId, forKey: .fileId)
-        try container.encodeIfPresent(chunkSize, forKey: .chunkSize)
-        try container.encodeIfPresent(chunkOverlap, forKey: .chunkOverlap)
-        try container.encodeIfPresent(forceEmbeddingGeneration, forKey: .forceEmbeddingGeneration)
-        try container.encodeIfPresent(skipFileProcessing, forKey: .skipFileProcessing)
+        var codingContainer = encoder.container(keyedBy: CodingKeys.self)
+        try codingContainer.encode(fileId, forKey: .fileId)
+        try codingContainer.encodeIfPresent(chunkSize, forKey: .chunkSize)
+        try codingContainer.encodeIfPresent(chunkOverlap, forKey: .chunkOverlap)
+        try codingContainer.encodeIfPresent(forceEmbeddingGeneration, forKey: .forceEmbeddingGeneration)
+        try codingContainer.encodeIfPresent(skipFileProcessing, forKey: .skipFileProcessing)
     }
 }
 

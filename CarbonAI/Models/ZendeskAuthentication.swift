@@ -31,10 +31,10 @@ public struct ZendeskAuthentication: Codable, JSONEncodable, Hashable {
     // Encodable protocol methods
 
     public func encode(to encoder: Encoder) throws {
-        var container = encoder.container(keyedBy: CodingKeys.self)
-        try container.encode(source, forKey: .source)
-        try container.encode(accessToken, forKey: .accessToken)
-        try container.encode(subdomain, forKey: .subdomain)
+        var codingContainer = encoder.container(keyedBy: CodingKeys.self)
+        try codingContainer.encode(source, forKey: .source)
+        try codingContainer.encode(accessToken, forKey: .accessToken)
+        try codingContainer.encode(subdomain, forKey: .subdomain)
     }
 }
 
