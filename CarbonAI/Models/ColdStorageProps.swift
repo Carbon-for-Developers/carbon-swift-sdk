@@ -30,9 +30,9 @@ public struct ColdStorageProps: Codable, JSONEncodable, Hashable {
     // Encodable protocol methods
 
     public func encode(to encoder: Encoder) throws {
-        var container = encoder.container(keyedBy: CodingKeys.self)
-        try container.encodeIfPresent(enableColdStorage, forKey: .enableColdStorage)
-        try container.encodeIfPresent(hotStorageTimeToLive, forKey: .hotStorageTimeToLive)
+        var codingContainer = encoder.container(keyedBy: CodingKeys.self)
+        try codingContainer.encodeIfPresent(enableColdStorage, forKey: .enableColdStorage)
+        try codingContainer.encodeIfPresent(hotStorageTimeToLive, forKey: .hotStorageTimeToLive)
     }
 }
 

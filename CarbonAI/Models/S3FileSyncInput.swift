@@ -68,22 +68,22 @@ public struct S3FileSyncInput: Codable, JSONEncodable, Hashable {
     // Encodable protocol methods
 
     public func encode(to encoder: Encoder) throws {
-        var container = encoder.container(keyedBy: CodingKeys.self)
-        try container.encodeIfPresent(tags, forKey: .tags)
-        try container.encode(ids, forKey: .ids)
-        try container.encodeIfPresent(chunkSize, forKey: .chunkSize)
-        try container.encodeIfPresent(chunkOverlap, forKey: .chunkOverlap)
-        try container.encodeIfPresent(skipEmbeddingGeneration, forKey: .skipEmbeddingGeneration)
-        try container.encodeIfPresent(embeddingModel, forKey: .embeddingModel)
-        try container.encodeIfPresent(generateSparseVectors, forKey: .generateSparseVectors)
-        try container.encodeIfPresent(prependFilenameToChunks, forKey: .prependFilenameToChunks)
-        try container.encodeIfPresent(maxItemsPerChunk, forKey: .maxItemsPerChunk)
-        try container.encodeIfPresent(setPageAsBoundary, forKey: .setPageAsBoundary)
-        try container.encodeIfPresent(dataSourceId, forKey: .dataSourceId)
-        try container.encodeIfPresent(requestId, forKey: .requestId)
-        try container.encodeIfPresent(useOcr, forKey: .useOcr)
-        try container.encodeIfPresent(parsePdfTablesWithOcr, forKey: .parsePdfTablesWithOcr)
-        try container.encodeIfPresent(fileSyncConfig, forKey: .fileSyncConfig)
+        var codingContainer = encoder.container(keyedBy: CodingKeys.self)
+        try codingContainer.encodeIfPresent(tags, forKey: .tags)
+        try codingContainer.encode(ids, forKey: .ids)
+        try codingContainer.encodeIfPresent(chunkSize, forKey: .chunkSize)
+        try codingContainer.encodeIfPresent(chunkOverlap, forKey: .chunkOverlap)
+        try codingContainer.encodeIfPresent(skipEmbeddingGeneration, forKey: .skipEmbeddingGeneration)
+        try codingContainer.encodeIfPresent(embeddingModel, forKey: .embeddingModel)
+        try codingContainer.encodeIfPresent(generateSparseVectors, forKey: .generateSparseVectors)
+        try codingContainer.encodeIfPresent(prependFilenameToChunks, forKey: .prependFilenameToChunks)
+        try codingContainer.encodeIfPresent(maxItemsPerChunk, forKey: .maxItemsPerChunk)
+        try codingContainer.encodeIfPresent(setPageAsBoundary, forKey: .setPageAsBoundary)
+        try codingContainer.encodeIfPresent(dataSourceId, forKey: .dataSourceId)
+        try codingContainer.encodeIfPresent(requestId, forKey: .requestId)
+        try codingContainer.encodeIfPresent(useOcr, forKey: .useOcr)
+        try codingContainer.encodeIfPresent(parsePdfTablesWithOcr, forKey: .parsePdfTablesWithOcr)
+        try codingContainer.encodeIfPresent(fileSyncConfig, forKey: .fileSyncConfig)
     }
 }
 

@@ -31,10 +31,10 @@ public struct OrganizationUserDataSourceFilters: Codable, JSONEncodable, Hashabl
     // Encodable protocol methods
 
     public func encode(to encoder: Encoder) throws {
-        var container = encoder.container(keyedBy: CodingKeys.self)
-        try container.encodeIfPresent(source, forKey: .source)
-        try container.encodeIfPresent(ids, forKey: .ids)
-        try container.encodeIfPresent(revokedAccess, forKey: .revokedAccess)
+        var codingContainer = encoder.container(keyedBy: CodingKeys.self)
+        try codingContainer.encodeIfPresent(source, forKey: .source)
+        try codingContainer.encodeIfPresent(ids, forKey: .ids)
+        try codingContainer.encodeIfPresent(revokedAccess, forKey: .revokedAccess)
     }
 }
 

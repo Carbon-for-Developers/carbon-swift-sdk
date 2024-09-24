@@ -28,9 +28,9 @@ public struct ConnectDataSourceInput: Codable, JSONEncodable, Hashable {
     // Encodable protocol methods
 
     public func encode(to encoder: Encoder) throws {
-        var container = encoder.container(keyedBy: CodingKeys.self)
-        try container.encode(authentication, forKey: .authentication)
-        try container.encodeIfPresent(syncOptions, forKey: .syncOptions)
+        var codingContainer = encoder.container(keyedBy: CodingKeys.self)
+        try codingContainer.encode(authentication, forKey: .authentication)
+        try codingContainer.encodeIfPresent(syncOptions, forKey: .syncOptions)
     }
 }
 

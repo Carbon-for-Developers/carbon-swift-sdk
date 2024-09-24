@@ -28,9 +28,9 @@ public struct ListRequest: Codable, JSONEncodable, Hashable {
     // Encodable protocol methods
 
     public func encode(to encoder: Encoder) throws {
-        var container = encoder.container(keyedBy: CodingKeys.self)
-        try container.encode(dataSourceId, forKey: .dataSourceId)
-        try container.encodeIfPresent(parentId, forKey: .parentId)
+        var codingContainer = encoder.container(keyedBy: CodingKeys.self)
+        try codingContainer.encode(dataSourceId, forKey: .dataSourceId)
+        try codingContainer.encodeIfPresent(parentId, forKey: .parentId)
     }
 }
 

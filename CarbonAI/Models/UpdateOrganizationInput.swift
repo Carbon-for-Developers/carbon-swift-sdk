@@ -29,9 +29,9 @@ public struct UpdateOrganizationInput: Codable, JSONEncodable, Hashable {
     // Encodable protocol methods
 
     public func encode(to encoder: Encoder) throws {
-        var container = encoder.container(keyedBy: CodingKeys.self)
-        try container.encodeIfPresent(globalUserConfig, forKey: .globalUserConfig)
-        try container.encodeIfPresent(dataSourceConfigs, forKey: .dataSourceConfigs)
+        var codingContainer = encoder.container(keyedBy: CodingKeys.self)
+        try codingContainer.encodeIfPresent(globalUserConfig, forKey: .globalUserConfig)
+        try codingContainer.encodeIfPresent(dataSourceConfigs, forKey: .dataSourceConfigs)
     }
 }
 

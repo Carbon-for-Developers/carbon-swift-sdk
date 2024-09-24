@@ -34,10 +34,10 @@ public struct UserConfigurationNullable: Codable, JSONEncodable, Hashable {
     // Encodable protocol methods
 
     public func encode(to encoder: Encoder) throws {
-        var container = encoder.container(keyedBy: CodingKeys.self)
-        try container.encodeIfPresent(autoSyncEnabledSources, forKey: .autoSyncEnabledSources)
-        try container.encodeIfPresent(maxFiles, forKey: .maxFiles)
-        try container.encodeIfPresent(maxFilesPerUpload, forKey: .maxFilesPerUpload)
+        var codingContainer = encoder.container(keyedBy: CodingKeys.self)
+        try codingContainer.encodeIfPresent(autoSyncEnabledSources, forKey: .autoSyncEnabledSources)
+        try codingContainer.encodeIfPresent(maxFiles, forKey: .maxFiles)
+        try codingContainer.encodeIfPresent(maxFilesPerUpload, forKey: .maxFilesPerUpload)
     }
 }
 

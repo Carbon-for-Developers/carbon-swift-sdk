@@ -59,11 +59,11 @@ public struct SentWebhookPayload: Codable, JSONEncodable, Hashable {
     // Encodable protocol methods
 
     public func encode(to encoder: Encoder) throws {
-        var container = encoder.container(keyedBy: CodingKeys.self)
-        try container.encodeIfPresent(webhookType, forKey: .webhookType)
-        try container.encodeIfPresent(customerId, forKey: .customerId)
-        try container.encodeIfPresent(timestamp, forKey: .timestamp)
-        try container.encodeIfPresent(object, forKey: .object)
+        var codingContainer = encoder.container(keyedBy: CodingKeys.self)
+        try codingContainer.encodeIfPresent(webhookType, forKey: .webhookType)
+        try codingContainer.encodeIfPresent(customerId, forKey: .customerId)
+        try codingContainer.encodeIfPresent(timestamp, forKey: .timestamp)
+        try codingContainer.encodeIfPresent(object, forKey: .object)
     }
 }
 

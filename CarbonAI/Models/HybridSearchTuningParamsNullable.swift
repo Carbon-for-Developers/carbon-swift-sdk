@@ -29,9 +29,9 @@ public struct HybridSearchTuningParamsNullable: Codable, JSONEncodable, Hashable
     // Encodable protocol methods
 
     public func encode(to encoder: Encoder) throws {
-        var container = encoder.container(keyedBy: CodingKeys.self)
-        try container.encode(weightA, forKey: .weightA)
-        try container.encode(weightB, forKey: .weightB)
+        var codingContainer = encoder.container(keyedBy: CodingKeys.self)
+        try codingContainer.encode(weightA, forKey: .weightA)
+        try codingContainer.encode(weightB, forKey: .weightB)
     }
 }
 

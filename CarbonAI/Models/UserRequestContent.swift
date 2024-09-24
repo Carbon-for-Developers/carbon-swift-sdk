@@ -25,8 +25,8 @@ public struct UserRequestContent: Codable, JSONEncodable, Hashable {
     // Encodable protocol methods
 
     public func encode(to encoder: Encoder) throws {
-        var container = encoder.container(keyedBy: CodingKeys.self)
-        try container.encode(customerId, forKey: .customerId)
+        var codingContainer = encoder.container(keyedBy: CodingKeys.self)
+        try codingContainer.encode(customerId, forKey: .customerId)
     }
 }
 

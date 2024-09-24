@@ -28,9 +28,9 @@ public struct ModifyUserConfigurationInput: Codable, JSONEncodable, Hashable {
     // Encodable protocol methods
 
     public func encode(to encoder: Encoder) throws {
-        var container = encoder.container(keyedBy: CodingKeys.self)
-        try container.encode(configurationKeyName, forKey: .configurationKeyName)
-        try container.encode(value, forKey: .value)
+        var codingContainer = encoder.container(keyedBy: CodingKeys.self)
+        try codingContainer.encode(configurationKeyName, forKey: .configurationKeyName)
+        try codingContainer.encode(value, forKey: .value)
     }
 }
 

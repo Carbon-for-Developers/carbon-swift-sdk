@@ -53,15 +53,15 @@ public struct FileSyncConfig: Codable, JSONEncodable, Hashable {
     // Encodable protocol methods
 
     public func encode(to encoder: Encoder) throws {
-        var container = encoder.container(keyedBy: CodingKeys.self)
-        try container.encodeIfPresent(autoSyncedSourceTypes, forKey: .autoSyncedSourceTypes)
-        try container.encodeIfPresent(syncAttachments, forKey: .syncAttachments)
-        try container.encodeIfPresent(detectAudioLanguage, forKey: .detectAudioLanguage)
-        try container.encodeIfPresent(transcriptionService, forKey: .transcriptionService)
-        try container.encodeIfPresent(includeSpeakerLabels, forKey: .includeSpeakerLabels)
-        try container.encodeIfPresent(splitRows, forKey: .splitRows)
-        try container.encodeIfPresent(generateChunksOnly, forKey: .generateChunksOnly)
-        try container.encodeIfPresent(skipFileProcessing, forKey: .skipFileProcessing)
+        var codingContainer = encoder.container(keyedBy: CodingKeys.self)
+        try codingContainer.encodeIfPresent(autoSyncedSourceTypes, forKey: .autoSyncedSourceTypes)
+        try codingContainer.encodeIfPresent(syncAttachments, forKey: .syncAttachments)
+        try codingContainer.encodeIfPresent(detectAudioLanguage, forKey: .detectAudioLanguage)
+        try codingContainer.encodeIfPresent(transcriptionService, forKey: .transcriptionService)
+        try codingContainer.encodeIfPresent(includeSpeakerLabels, forKey: .includeSpeakerLabels)
+        try codingContainer.encodeIfPresent(splitRows, forKey: .splitRows)
+        try codingContainer.encodeIfPresent(generateChunksOnly, forKey: .generateChunksOnly)
+        try codingContainer.encodeIfPresent(skipFileProcessing, forKey: .skipFileProcessing)
     }
 }
 

@@ -37,12 +37,12 @@ public struct ListUsersRequest: Codable, JSONEncodable, Hashable {
     // Encodable protocol methods
 
     public func encode(to encoder: Encoder) throws {
-        var container = encoder.container(keyedBy: CodingKeys.self)
-        try container.encodeIfPresent(pagination, forKey: .pagination)
-        try container.encodeIfPresent(filters, forKey: .filters)
-        try container.encodeIfPresent(orderBy, forKey: .orderBy)
-        try container.encodeIfPresent(orderDir, forKey: .orderDir)
-        try container.encodeIfPresent(includeCount, forKey: .includeCount)
+        var codingContainer = encoder.container(keyedBy: CodingKeys.self)
+        try codingContainer.encodeIfPresent(pagination, forKey: .pagination)
+        try codingContainer.encodeIfPresent(filters, forKey: .filters)
+        try codingContainer.encodeIfPresent(orderBy, forKey: .orderBy)
+        try codingContainer.encodeIfPresent(orderDir, forKey: .orderDir)
+        try codingContainer.encodeIfPresent(includeCount, forKey: .includeCount)
     }
 }
 

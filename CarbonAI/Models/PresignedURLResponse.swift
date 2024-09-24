@@ -25,8 +25,8 @@ public struct PresignedURLResponse: Codable, JSONEncodable, Hashable {
     // Encodable protocol methods
 
     public func encode(to encoder: Encoder) throws {
-        var container = encoder.container(keyedBy: CodingKeys.self)
-        try container.encode(presignedUrl, forKey: .presignedUrl)
+        var codingContainer = encoder.container(keyedBy: CodingKeys.self)
+        try codingContainer.encode(presignedUrl, forKey: .presignedUrl)
     }
 }
 

@@ -34,11 +34,11 @@ public struct SingleChunksAndEmbeddingsUploadInput: Codable, JSONEncodable, Hash
     // Encodable protocol methods
 
     public func encode(to encoder: Encoder) throws {
-        var container = encoder.container(keyedBy: CodingKeys.self)
-        try container.encode(fileId, forKey: .fileId)
-        try container.encodeIfPresent(chunkSize, forKey: .chunkSize)
-        try container.encodeIfPresent(chunkOverlap, forKey: .chunkOverlap)
-        try container.encode(chunksAndEmbeddings, forKey: .chunksAndEmbeddings)
+        var codingContainer = encoder.container(keyedBy: CodingKeys.self)
+        try codingContainer.encode(fileId, forKey: .fileId)
+        try codingContainer.encodeIfPresent(chunkSize, forKey: .chunkSize)
+        try codingContainer.encodeIfPresent(chunkOverlap, forKey: .chunkOverlap)
+        try codingContainer.encode(chunksAndEmbeddings, forKey: .chunksAndEmbeddings)
     }
 }
 

@@ -25,8 +25,8 @@ public struct BodyCreateUploadFileUploadfilePost: Codable, JSONEncodable, Hashab
     // Encodable protocol methods
 
     public func encode(to encoder: Encoder) throws {
-        var container = encoder.container(keyedBy: CodingKeys.self)
-        try container.encode(file, forKey: .file)
+        var codingContainer = encoder.container(keyedBy: CodingKeys.self)
+        try codingContainer.encode(file, forKey: .file)
     }
 }
 

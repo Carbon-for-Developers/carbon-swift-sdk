@@ -30,9 +30,9 @@ public struct DataSourceConfiguration: Codable, JSONEncodable, Hashable {
     // Encodable protocol methods
 
     public func encode(to encoder: Encoder) throws {
-        var container = encoder.container(keyedBy: CodingKeys.self)
-        try container.encodeIfPresent(allowedFileFormats, forKey: .allowedFileFormats)
-        try container.encodeIfPresent(googleWorkspaceDocsSaveAs, forKey: .googleWorkspaceDocsSaveAs)
+        var codingContainer = encoder.container(keyedBy: CodingKeys.self)
+        try codingContainer.encodeIfPresent(allowedFileFormats, forKey: .allowedFileFormats)
+        try codingContainer.encodeIfPresent(googleWorkspaceDocsSaveAs, forKey: .googleWorkspaceDocsSaveAs)
     }
 }
 

@@ -64,21 +64,21 @@ public struct OutlookSyncInput: Codable, JSONEncodable, Hashable {
     // Encodable protocol methods
 
     public func encode(to encoder: Encoder) throws {
-        var container = encoder.container(keyedBy: CodingKeys.self)
-        try container.encodeIfPresent(tags, forKey: .tags)
-        try container.encodeIfPresent(folder, forKey: .folder)
-        try container.encode(filters, forKey: .filters)
-        try container.encodeIfPresent(chunkSize, forKey: .chunkSize)
-        try container.encodeIfPresent(chunkOverlap, forKey: .chunkOverlap)
-        try container.encodeIfPresent(skipEmbeddingGeneration, forKey: .skipEmbeddingGeneration)
-        try container.encodeIfPresent(embeddingModel, forKey: .embeddingModel)
-        try container.encodeIfPresent(generateSparseVectors, forKey: .generateSparseVectors)
-        try container.encodeIfPresent(prependFilenameToChunks, forKey: .prependFilenameToChunks)
-        try container.encodeIfPresent(dataSourceId, forKey: .dataSourceId)
-        try container.encodeIfPresent(requestId, forKey: .requestId)
-        try container.encodeIfPresent(syncAttachments, forKey: .syncAttachments)
-        try container.encodeIfPresent(fileSyncConfig, forKey: .fileSyncConfig)
-        try container.encodeIfPresent(incrementalSync, forKey: .incrementalSync)
+        var codingContainer = encoder.container(keyedBy: CodingKeys.self)
+        try codingContainer.encodeIfPresent(tags, forKey: .tags)
+        try codingContainer.encodeIfPresent(folder, forKey: .folder)
+        try codingContainer.encode(filters, forKey: .filters)
+        try codingContainer.encodeIfPresent(chunkSize, forKey: .chunkSize)
+        try codingContainer.encodeIfPresent(chunkOverlap, forKey: .chunkOverlap)
+        try codingContainer.encodeIfPresent(skipEmbeddingGeneration, forKey: .skipEmbeddingGeneration)
+        try codingContainer.encodeIfPresent(embeddingModel, forKey: .embeddingModel)
+        try codingContainer.encodeIfPresent(generateSparseVectors, forKey: .generateSparseVectors)
+        try codingContainer.encodeIfPresent(prependFilenameToChunks, forKey: .prependFilenameToChunks)
+        try codingContainer.encodeIfPresent(dataSourceId, forKey: .dataSourceId)
+        try codingContainer.encodeIfPresent(requestId, forKey: .requestId)
+        try codingContainer.encodeIfPresent(syncAttachments, forKey: .syncAttachments)
+        try codingContainer.encodeIfPresent(fileSyncConfig, forKey: .fileSyncConfig)
+        try codingContainer.encodeIfPresent(incrementalSync, forKey: .incrementalSync)
     }
 }
 

@@ -34,11 +34,11 @@ public struct ConfluenceAuthentication: Codable, JSONEncodable, Hashable {
     // Encodable protocol methods
 
     public func encode(to encoder: Encoder) throws {
-        var container = encoder.container(keyedBy: CodingKeys.self)
-        try container.encode(source, forKey: .source)
-        try container.encode(accessToken, forKey: .accessToken)
-        try container.encodeIfPresent(refreshToken, forKey: .refreshToken)
-        try container.encode(subdomain, forKey: .subdomain)
+        var codingContainer = encoder.container(keyedBy: CodingKeys.self)
+        try codingContainer.encode(source, forKey: .source)
+        try codingContainer.encode(accessToken, forKey: .accessToken)
+        try codingContainer.encodeIfPresent(refreshToken, forKey: .refreshToken)
+        try codingContainer.encode(subdomain, forKey: .subdomain)
     }
 }
 

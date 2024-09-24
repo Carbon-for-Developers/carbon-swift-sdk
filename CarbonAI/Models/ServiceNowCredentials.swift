@@ -34,11 +34,11 @@ public struct ServiceNowCredentials: Codable, JSONEncodable, Hashable {
     // Encodable protocol methods
 
     public func encode(to encoder: Encoder) throws {
-        var container = encoder.container(keyedBy: CodingKeys.self)
-        try container.encode(instanceSubdomain, forKey: .instanceSubdomain)
-        try container.encode(clientId, forKey: .clientId)
-        try container.encode(clientSecret, forKey: .clientSecret)
-        try container.encode(redirectUri, forKey: .redirectUri)
+        var codingContainer = encoder.container(keyedBy: CodingKeys.self)
+        try codingContainer.encode(instanceSubdomain, forKey: .instanceSubdomain)
+        try codingContainer.encode(clientId, forKey: .clientId)
+        try codingContainer.encode(clientSecret, forKey: .clientSecret)
+        try codingContainer.encode(redirectUri, forKey: .redirectUri)
     }
 }
 

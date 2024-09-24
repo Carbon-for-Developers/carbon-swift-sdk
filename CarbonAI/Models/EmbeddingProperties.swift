@@ -28,9 +28,9 @@ public struct EmbeddingProperties: Codable, JSONEncodable, Hashable {
     // Encodable protocol methods
 
     public func encode(to encoder: Encoder) throws {
-        var container = encoder.container(keyedBy: CodingKeys.self)
-        try container.encode(chunkSize, forKey: .chunkSize)
-        try container.encode(chunkOverlap, forKey: .chunkOverlap)
+        var codingContainer = encoder.container(keyedBy: CodingKeys.self)
+        try codingContainer.encode(chunkSize, forKey: .chunkSize)
+        try codingContainer.encode(chunkOverlap, forKey: .chunkOverlap)
     }
 }
 

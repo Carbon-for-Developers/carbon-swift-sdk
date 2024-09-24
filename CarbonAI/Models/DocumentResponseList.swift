@@ -25,8 +25,8 @@ public struct DocumentResponseList: Codable, JSONEncodable, Hashable {
     // Encodable protocol methods
 
     public func encode(to encoder: Encoder) throws {
-        var container = encoder.container(keyedBy: CodingKeys.self)
-        try container.encode(documents, forKey: .documents)
+        var codingContainer = encoder.container(keyedBy: CodingKeys.self)
+        try codingContainer.encode(documents, forKey: .documents)
     }
 }
 

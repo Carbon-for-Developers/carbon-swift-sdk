@@ -31,10 +31,10 @@ public struct ChunksAndEmbeddings: Codable, JSONEncodable, Hashable {
     // Encodable protocol methods
 
     public func encode(to encoder: Encoder) throws {
-        var container = encoder.container(keyedBy: CodingKeys.self)
-        try container.encode(chunkNumber, forKey: .chunkNumber)
-        try container.encode(chunk, forKey: .chunk)
-        try container.encodeIfPresent(embedding, forKey: .embedding)
+        var codingContainer = encoder.container(keyedBy: CodingKeys.self)
+        try codingContainer.encode(chunkNumber, forKey: .chunkNumber)
+        try codingContainer.encode(chunk, forKey: .chunk)
+        try codingContainer.encodeIfPresent(embedding, forKey: .embedding)
     }
 }
 

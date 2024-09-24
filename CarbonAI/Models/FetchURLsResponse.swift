@@ -31,10 +31,10 @@ public struct FetchURLsResponse: Codable, JSONEncodable, Hashable {
     // Encodable protocol methods
 
     public func encode(to encoder: Encoder) throws {
-        var container = encoder.container(keyedBy: CodingKeys.self)
-        try container.encode(urls, forKey: .urls)
-        try container.encode(htmlContent, forKey: .htmlContent)
-        try container.encode(errorMessage, forKey: .errorMessage)
+        var codingContainer = encoder.container(keyedBy: CodingKeys.self)
+        try codingContainer.encode(urls, forKey: .urls)
+        try codingContainer.encode(htmlContent, forKey: .htmlContent)
+        try codingContainer.encode(errorMessage, forKey: .errorMessage)
     }
 }
 

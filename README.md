@@ -58,6 +58,8 @@ Connect external data to LLMs, no matter the source.
   * [`carbonai.integrations.listLabels`](#carbonaiintegrationslistlabels)
   * [`carbonai.integrations.listOutlookCategories`](#carbonaiintegrationslistoutlookcategories)
   * [`carbonai.integrations.listRepos`](#carbonaiintegrationslistrepos)
+  * [`carbonai.integrations.syncAzureBlobFiles`](#carbonaiintegrationssyncazureblobfiles)
+  * [`carbonai.integrations.syncAzureBlobStorage`](#carbonaiintegrationssyncazureblobstorage)
   * [`carbonai.integrations.syncConfluence`](#carbonaiintegrationssyncconfluence)
   * [`carbonai.integrations.syncDataSourceItems`](#carbonaiintegrationssyncdatasourceitems)
   * [`carbonai.integrations.syncFiles`](#carbonaiintegrationssyncfiles)
@@ -2058,6 +2060,8 @@ let authentication = AuthenticationProperty(
     accessKey: "accessKey_example",
     accessKeySecret: "accessKeySecret_example",
     endpointUrl: "endpointUrl_example",
+    accountName: "accountName_example",
+    accountKey: "accountKey_example",
     instanceSubdomain: "instanceSubdomain_example",
     clientId: "clientId_example",
     clientSecret: "clientSecret_example",
@@ -3039,6 +3043,189 @@ let listReposResponse = try await carbonai.integrations.listRepos(
 #### 🌐 Endpoint<a id="🌐-endpoint"></a>
 
 `/integrations/github/repos` `GET`
+
+[🔙 **Back to Table of Contents**](#table-of-contents)
+
+---
+
+
+### `carbonai.integrations.syncAzureBlobFiles`<a id="carbonaiintegrationssyncazureblobfiles"></a>
+
+After optionally loading the items via /integrations/items/sync and integrations/items/list, use the container name 
+and file name as the ID in this endpoint to sync them into Carbon. Additional parameters below can associate 
+data with the selected items or modify the sync behavior
+
+#### 🛠️ Usage<a id="🛠️-usage"></a>
+
+```swift
+let ids = [
+AzureBlobGetFileInput(
+    id: "id_example",
+    container: "container_example"
+)
+]
+let tags = "TODO"
+let chunkSize = 987
+let chunkOverlap = 987
+let skipEmbeddingGeneration = true
+let embeddingModel = EmbeddingGenerators(
+    
+)
+let generateSparseVectors = true
+let prependFilenameToChunks = true
+let maxItemsPerChunk = 987
+let setPageAsBoundary = true
+let dataSourceId = 987
+let requestId = "requestId_example"
+let useOcr = true
+let parsePdfTablesWithOcr = true
+let fileSyncConfig = FileSyncConfigNullable(
+    autoSyncedSourceTypes: [
+    AutoSyncedSourceTypesPropertyInner(
+        
+    )
+    ],
+    syncAttachments: false,
+    detectAudioLanguage: false,
+    transcriptionService: TranscriptionServiceNullable.assemblyai,
+    includeSpeakerLabels: false,
+    splitRows: false,
+    generateChunksOnly: false,
+    skipFileProcessing: false
+)
+let syncAzureBlobFilesResponse = try await carbonai.integrations.syncAzureBlobFiles(
+    ids: ids,
+    tags: tags,
+    chunkSize: chunkSize,
+    chunkOverlap: chunkOverlap,
+    skipEmbeddingGeneration: skipEmbeddingGeneration,
+    embeddingModel: embeddingModel,
+    generateSparseVectors: generateSparseVectors,
+    prependFilenameToChunks: prependFilenameToChunks,
+    maxItemsPerChunk: maxItemsPerChunk,
+    setPageAsBoundary: setPageAsBoundary,
+    dataSourceId: dataSourceId,
+    requestId: requestId,
+    useOcr: useOcr,
+    parsePdfTablesWithOcr: parsePdfTablesWithOcr,
+    fileSyncConfig: fileSyncConfig
+)
+```
+
+#### ⚙️ Parameters<a id="⚙️-parameters"></a>
+
+##### ids: `[AzureBlobGetFileInput]`<a id="ids-azureblobgetfileinput"></a>
+
+
+##### tags: `AnyCodable`<a id="tags-anycodable"></a>
+
+
+##### chunk_size: `Int`<a id="chunk_size-int"></a>
+
+
+##### chunk_overlap: `Int`<a id="chunk_overlap-int"></a>
+
+
+##### skip_embedding_generation: `Bool`<a id="skip_embedding_generation-bool"></a>
+
+
+##### embedding_model: `EmbeddingGenerators`<a id="embedding_model-embeddinggenerators"></a>
+
+
+##### generate_sparse_vectors: `Bool`<a id="generate_sparse_vectors-bool"></a>
+
+
+##### prepend_filename_to_chunks: `Bool`<a id="prepend_filename_to_chunks-bool"></a>
+
+
+##### max_items_per_chunk: `Int`<a id="max_items_per_chunk-int"></a>
+
+Number of objects per chunk. For csv, tsv, xlsx, and json files only.
+
+
+##### set_page_as_boundary: `Bool`<a id="set_page_as_boundary-bool"></a>
+
+
+##### data_source_id: `Int`<a id="data_source_id-int"></a>
+
+
+##### request_id: `String`<a id="request_id-string"></a>
+
+
+##### use_ocr: `Bool`<a id="use_ocr-bool"></a>
+
+
+##### parse_pdf_tables_with_ocr: `Bool`<a id="parse_pdf_tables_with_ocr-bool"></a>
+
+
+##### file_sync_config: [`FileSyncConfigNullable`](./CarbonAI/Models/FileSyncConfigNullable.swift)<a id="file_sync_config-filesyncconfignullablecarbonaimodelsfilesyncconfignullableswift"></a>
+
+
+#### 🔄 Return<a id="🔄-return"></a>
+
+[GenericSuccessResponse](./CarbonAI/Models/GenericSuccessResponse.swift)
+
+#### 🌐 Endpoint<a id="🌐-endpoint"></a>
+
+`/integrations/azure_blob_storage/files` `POST`
+
+[🔙 **Back to Table of Contents**](#table-of-contents)
+
+---
+
+
+### `carbonai.integrations.syncAzureBlobStorage`<a id="carbonaiintegrationssyncazureblobstorage"></a>
+
+This endpoint can be used to connect Azure Blob Storage.
+
+For Azure Blob Storage, follow these steps:
+<ol>
+  <li>Create a new Azure Storage account and grant the following permissions:
+    <ul>
+      <li>List containers.</li>
+      <li>Read from specific containers and blobs to sync with Carbon. Ensure any future containers or blobs carry the same permissions.</li>
+    </ul>
+  </li>
+  <li>Generate a shared access signature (SAS) token or an access key for the storage account.</li>
+</ol>
+
+Once created, provide us with the following details to generate the connection URL:
+<ol>
+  <li>Storage Account KeyName.</li>
+  <li>Storage Account Name.</li>
+</ol>
+
+#### 🛠️ Usage<a id="🛠️-usage"></a>
+
+```swift
+let accountName = "accountName_example"
+let accountKey = "accountKey_example"
+let syncSourceItems = true
+let syncAzureBlobStorageResponse = try await carbonai.integrations.syncAzureBlobStorage(
+    accountName: accountName,
+    accountKey: accountKey,
+    syncSourceItems: syncSourceItems
+)
+```
+
+#### ⚙️ Parameters<a id="⚙️-parameters"></a>
+
+##### account_name: `String`<a id="account_name-string"></a>
+
+
+##### account_key: `String`<a id="account_key-string"></a>
+
+
+##### sync_source_items: `Bool`<a id="sync_source_items-bool"></a>
+
+
+#### 🔄 Return<a id="🔄-return"></a>
+
+[OrganizationUserDataSourceAPI](./CarbonAI/Models/OrganizationUserDataSourceAPI.swift)
+
+#### 🌐 Endpoint<a id="🌐-endpoint"></a>
+
+`/integrations/azure_blob_storage` `POST`
 
 [🔙 **Back to Table of Contents**](#table-of-contents)
 

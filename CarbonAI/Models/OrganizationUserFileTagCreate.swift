@@ -28,9 +28,9 @@ public struct OrganizationUserFileTagCreate: Codable, JSONEncodable, Hashable {
     // Encodable protocol methods
 
     public func encode(to encoder: Encoder) throws {
-        var container = encoder.container(keyedBy: CodingKeys.self)
-        try container.encode(tags, forKey: .tags)
-        try container.encode(organizationUserFileId, forKey: .organizationUserFileId)
+        var codingContainer = encoder.container(keyedBy: CodingKeys.self)
+        try codingContainer.encode(tags, forKey: .tags)
+        try codingContainer.encode(organizationUserFileId, forKey: .organizationUserFileId)
     }
 }
 

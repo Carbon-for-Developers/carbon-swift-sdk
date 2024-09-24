@@ -28,9 +28,9 @@ public struct EmbeddingsAndChunksFilters: Codable, JSONEncodable, Hashable {
     // Encodable protocol methods
 
     public func encode(to encoder: Encoder) throws {
-        var container = encoder.container(keyedBy: CodingKeys.self)
-        try container.encode(userFileId, forKey: .userFileId)
-        try container.encodeIfPresent(embeddingModel, forKey: .embeddingModel)
+        var codingContainer = encoder.container(keyedBy: CodingKeys.self)
+        try codingContainer.encode(userFileId, forKey: .userFileId)
+        try codingContainer.encodeIfPresent(embeddingModel, forKey: .embeddingModel)
     }
 }
 

@@ -49,16 +49,16 @@ public struct RSSFeedInput: Codable, JSONEncodable, Hashable {
     // Encodable protocol methods
 
     public func encode(to encoder: Encoder) throws {
-        var container = encoder.container(keyedBy: CodingKeys.self)
-        try container.encodeIfPresent(tags, forKey: .tags)
-        try container.encode(url, forKey: .url)
-        try container.encodeIfPresent(chunkSize, forKey: .chunkSize)
-        try container.encodeIfPresent(chunkOverlap, forKey: .chunkOverlap)
-        try container.encodeIfPresent(skipEmbeddingGeneration, forKey: .skipEmbeddingGeneration)
-        try container.encodeIfPresent(embeddingModel, forKey: .embeddingModel)
-        try container.encodeIfPresent(generateSparseVectors, forKey: .generateSparseVectors)
-        try container.encodeIfPresent(prependFilenameToChunks, forKey: .prependFilenameToChunks)
-        try container.encodeIfPresent(requestId, forKey: .requestId)
+        var codingContainer = encoder.container(keyedBy: CodingKeys.self)
+        try codingContainer.encodeIfPresent(tags, forKey: .tags)
+        try codingContainer.encode(url, forKey: .url)
+        try codingContainer.encodeIfPresent(chunkSize, forKey: .chunkSize)
+        try codingContainer.encodeIfPresent(chunkOverlap, forKey: .chunkOverlap)
+        try codingContainer.encodeIfPresent(skipEmbeddingGeneration, forKey: .skipEmbeddingGeneration)
+        try codingContainer.encodeIfPresent(embeddingModel, forKey: .embeddingModel)
+        try codingContainer.encodeIfPresent(generateSparseVectors, forKey: .generateSparseVectors)
+        try codingContainer.encodeIfPresent(prependFilenameToChunks, forKey: .prependFilenameToChunks)
+        try codingContainer.encodeIfPresent(requestId, forKey: .requestId)
     }
 }
 

@@ -34,11 +34,11 @@ public struct ListItemsFilters: Codable, JSONEncodable, Hashable {
     // Encodable protocol methods
 
     public func encode(to encoder: Encoder) throws {
-        var container = encoder.container(keyedBy: CodingKeys.self)
-        try container.encodeIfPresent(externalIds, forKey: .externalIds)
-        try container.encodeIfPresent(ids, forKey: .ids)
-        try container.encodeIfPresent(name, forKey: .name)
-        try container.encodeIfPresent(rootFilesOnly, forKey: .rootFilesOnly)
+        var codingContainer = encoder.container(keyedBy: CodingKeys.self)
+        try codingContainer.encodeIfPresent(externalIds, forKey: .externalIds)
+        try codingContainer.encodeIfPresent(ids, forKey: .ids)
+        try codingContainer.encodeIfPresent(name, forKey: .name)
+        try codingContainer.encodeIfPresent(rootFilesOnly, forKey: .rootFilesOnly)
     }
 }
 

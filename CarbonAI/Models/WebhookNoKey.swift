@@ -43,14 +43,14 @@ public struct WebhookNoKey: Codable, JSONEncodable, Hashable {
     // Encodable protocol methods
 
     public func encode(to encoder: Encoder) throws {
-        var container = encoder.container(keyedBy: CodingKeys.self)
-        try container.encode(id, forKey: .id)
-        try container.encode(organizationId, forKey: .organizationId)
-        try container.encode(url, forKey: .url)
-        try container.encode(status, forKey: .status)
-        try container.encode(statusReason, forKey: .statusReason)
-        try container.encode(createdAt, forKey: .createdAt)
-        try container.encode(updatedAt, forKey: .updatedAt)
+        var codingContainer = encoder.container(keyedBy: CodingKeys.self)
+        try codingContainer.encode(id, forKey: .id)
+        try codingContainer.encode(organizationId, forKey: .organizationId)
+        try codingContainer.encode(url, forKey: .url)
+        try codingContainer.encode(status, forKey: .status)
+        try codingContainer.encode(statusReason, forKey: .statusReason)
+        try codingContainer.encode(createdAt, forKey: .createdAt)
+        try codingContainer.encode(updatedAt, forKey: .updatedAt)
     }
 }
 

@@ -20,7 +20,7 @@ public struct SourceProperty: Codable, JSONEncodable, Hashable {
     // Encodable protocol methods
 
     public func encode(to encoder: Encoder) throws {
-        var container = encoder.container(keyedBy: CodingKeys.self)
+        var codingContainer = encoder.container(keyedBy: CodingKeys.self)
     }
 }
 

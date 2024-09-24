@@ -43,14 +43,14 @@ public struct OrganizationUserFilesToSyncQueryInput: Codable, JSONEncodable, Has
     // Encodable protocol methods
 
     public func encode(to encoder: Encoder) throws {
-        var container = encoder.container(keyedBy: CodingKeys.self)
-        try container.encodeIfPresent(pagination, forKey: .pagination)
-        try container.encodeIfPresent(orderBy, forKey: .orderBy)
-        try container.encodeIfPresent(orderDir, forKey: .orderDir)
-        try container.encodeIfPresent(filters, forKey: .filters)
-        try container.encodeIfPresent(includeRawFile, forKey: .includeRawFile)
-        try container.encodeIfPresent(includeParsedTextFile, forKey: .includeParsedTextFile)
-        try container.encodeIfPresent(includeAdditionalFiles, forKey: .includeAdditionalFiles)
+        var codingContainer = encoder.container(keyedBy: CodingKeys.self)
+        try codingContainer.encodeIfPresent(pagination, forKey: .pagination)
+        try codingContainer.encodeIfPresent(orderBy, forKey: .orderBy)
+        try codingContainer.encodeIfPresent(orderDir, forKey: .orderDir)
+        try codingContainer.encodeIfPresent(filters, forKey: .filters)
+        try codingContainer.encodeIfPresent(includeRawFile, forKey: .includeRawFile)
+        try codingContainer.encodeIfPresent(includeParsedTextFile, forKey: .includeParsedTextFile)
+        try codingContainer.encodeIfPresent(includeAdditionalFiles, forKey: .includeAdditionalFiles)
     }
 }
 

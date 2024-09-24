@@ -31,10 +31,10 @@ public struct FreskdeskAuthentication: Codable, JSONEncodable, Hashable {
     // Encodable protocol methods
 
     public func encode(to encoder: Encoder) throws {
-        var container = encoder.container(keyedBy: CodingKeys.self)
-        try container.encode(source, forKey: .source)
-        try container.encode(domain, forKey: .domain)
-        try container.encode(apiKey, forKey: .apiKey)
+        var codingContainer = encoder.container(keyedBy: CodingKeys.self)
+        try codingContainer.encode(source, forKey: .source)
+        try codingContainer.encode(domain, forKey: .domain)
+        try codingContainer.encode(apiKey, forKey: .apiKey)
     }
 }
 
