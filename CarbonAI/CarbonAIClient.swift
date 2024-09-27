@@ -4,6 +4,7 @@ public class CarbonAIClient {
     public var customerId: String?;
     public var basePath: String
     public lazy var auth: AuthAPI = { return AuthAPI(client: self) }()
+    public lazy var cRM: CRMAPI = { return CRMAPI(client: self) }()
     public lazy var dataSources: DataSourcesAPI = { return DataSourcesAPI(client: self) }()
     public lazy var embeddings: EmbeddingsAPI = { return EmbeddingsAPI(client: self) }()
     public lazy var files: FilesAPI = { return FilesAPI(client: self) }()

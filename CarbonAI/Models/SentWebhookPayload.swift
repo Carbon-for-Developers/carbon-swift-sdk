@@ -25,6 +25,7 @@ public struct SentWebhookPayload: Codable, JSONEncodable, Hashable {
         case fileError = "FILE_ERROR"
         case fileReady = "FILE_READY"
         case fileStatisticsAggregated = "FILE_STATISTICS_AGGREGATED"
+        case fileSyncing = "FILE_SYNCING"
         case fileSyncLimitReached = "FILE_SYNC_LIMIT_REACHED"
         case movedToColdStorage = "MOVED_TO_COLD_STORAGE"
         case movedToHotStorage = "MOVED_TO_HOT_STORAGE"
