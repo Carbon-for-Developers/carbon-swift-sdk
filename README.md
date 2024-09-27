@@ -22,6 +22,14 @@ Connect external data to LLMs, no matter the source.
 - [Reference](#reference)
   * [`carbonai.auth.getAccessToken`](#carbonaiauthgetaccesstoken)
   * [`carbonai.auth.getWhiteLabeling`](#carbonaiauthgetwhitelabeling)
+  * [`carbonai.cRM.getAccount`](#carbonaicrmgetaccount)
+  * [`carbonai.cRM.getAccounts`](#carbonaicrmgetaccounts)
+  * [`carbonai.cRM.getContact`](#carbonaicrmgetcontact)
+  * [`carbonai.cRM.getContacts`](#carbonaicrmgetcontacts)
+  * [`carbonai.cRM.getLead`](#carbonaicrmgetlead)
+  * [`carbonai.cRM.getLeads`](#carbonaicrmgetleads)
+  * [`carbonai.cRM.getOpportunities`](#carbonaicrmgetopportunities)
+  * [`carbonai.cRM.getOpportunity`](#carbonaicrmgetopportunity)
   * [`carbonai.dataSources.queryUserDataSources`](#carbonaidatasourcesqueryuserdatasources)
   * [`carbonai.dataSources.revokeAccessToken`](#carbonaidatasourcesrevokeaccesstoken)
   * [`carbonai.embeddings.getDocuments`](#carbonaiembeddingsgetdocuments)
@@ -213,6 +221,503 @@ let getWhiteLabelingResponse = try await carbonai.auth.getWhiteLabeling()
 #### 🌐 Endpoint<a id="🌐-endpoint"></a>
 
 `/auth/v1/white_labeling` `GET`
+
+[🔙 **Back to Table of Contents**](#table-of-contents)
+
+---
+
+
+### `carbonai.cRM.getAccount`<a id="carbonaicrmgetaccount"></a>
+
+Get Account
+
+#### 🛠️ Usage<a id="🛠️-usage"></a>
+
+```swift
+let id = "id_example"
+let dataSourceId = 987
+let includeRemoteData = false
+let includes = [
+BaseIncludes.tasks
+]
+let getAccountResponse = try await carbonai.cRM.getAccount(
+    id: id,
+    dataSourceId: dataSourceId,
+    includeRemoteData: includeRemoteData,
+    includes: includes
+)
+```
+
+#### ⚙️ Parameters<a id="⚙️-parameters"></a>
+
+##### id: `String`<a id="id-string"></a>
+
+
+##### dataSourceId: `Int`<a id="datasourceid-int"></a>
+
+
+##### includeRemoteData: `Bool`<a id="includeremotedata-bool"></a>
+
+
+##### includes: `[BaseIncludes]`<a id="includes-baseincludes"></a>
+
+
+#### 🔄 Return<a id="🔄-return"></a>
+
+[Account](./CarbonAI/Models/Account.swift)
+
+#### 🌐 Endpoint<a id="🌐-endpoint"></a>
+
+`/integrations/data/crm/accounts/{id}` `GET`
+
+[🔙 **Back to Table of Contents**](#table-of-contents)
+
+---
+
+
+### `carbonai.cRM.getAccounts`<a id="carbonaicrmgetaccounts"></a>
+
+Get Accounts
+
+#### 🛠️ Usage<a id="🛠️-usage"></a>
+
+```swift
+let dataSourceId = 987
+let includeRemoteData = true
+let nextCursor = "nextCursor_example"
+let pageSize = 987
+let orderDir = OrderDirV2Nullable(
+    
+)
+let includes = [
+BaseIncludes.tasks
+]
+let filters = AccountFilters(
+    ownerId: "ownerId_example",
+    name: "name_example"
+)
+let orderBy = AccountsOrderByNullable(
+    
+)
+let getAccountsResponse = try await carbonai.cRM.getAccounts(
+    dataSourceId: dataSourceId,
+    includeRemoteData: includeRemoteData,
+    nextCursor: nextCursor,
+    pageSize: pageSize,
+    orderDir: orderDir,
+    includes: includes,
+    filters: filters,
+    orderBy: orderBy
+)
+```
+
+#### ⚙️ Parameters<a id="⚙️-parameters"></a>
+
+##### data_source_id: `Int`<a id="data_source_id-int"></a>
+
+
+##### include_remote_data: `Bool`<a id="include_remote_data-bool"></a>
+
+
+##### next_cursor: `String`<a id="next_cursor-string"></a>
+
+
+##### page_size: `Int`<a id="page_size-int"></a>
+
+
+##### order_dir: `OrderDirV2Nullable`<a id="order_dir-orderdirv2nullable"></a>
+
+
+##### includes: `[BaseIncludes]`<a id="includes-baseincludes"></a>
+
+
+##### filters: [`AccountFilters`](./CarbonAI/Models/AccountFilters.swift)<a id="filters-accountfilterscarbonaimodelsaccountfiltersswift"></a>
+
+
+##### order_by: `AccountsOrderByNullable`<a id="order_by-accountsorderbynullable"></a>
+
+
+#### 🔄 Return<a id="🔄-return"></a>
+
+[AccountResponse](./CarbonAI/Models/AccountResponse.swift)
+
+#### 🌐 Endpoint<a id="🌐-endpoint"></a>
+
+`/integrations/data/crm/accounts` `POST`
+
+[🔙 **Back to Table of Contents**](#table-of-contents)
+
+---
+
+
+### `carbonai.cRM.getContact`<a id="carbonaicrmgetcontact"></a>
+
+Get Contact
+
+#### 🛠️ Usage<a id="🛠️-usage"></a>
+
+```swift
+let id = "id_example"
+let dataSourceId = 987
+let includeRemoteData = false
+let includes = [
+BaseIncludes.tasks
+]
+let getContactResponse = try await carbonai.cRM.getContact(
+    id: id,
+    dataSourceId: dataSourceId,
+    includeRemoteData: includeRemoteData,
+    includes: includes
+)
+```
+
+#### ⚙️ Parameters<a id="⚙️-parameters"></a>
+
+##### id: `String`<a id="id-string"></a>
+
+
+##### dataSourceId: `Int`<a id="datasourceid-int"></a>
+
+
+##### includeRemoteData: `Bool`<a id="includeremotedata-bool"></a>
+
+
+##### includes: `[BaseIncludes]`<a id="includes-baseincludes"></a>
+
+
+#### 🔄 Return<a id="🔄-return"></a>
+
+[Contact](./CarbonAI/Models/Contact.swift)
+
+#### 🌐 Endpoint<a id="🌐-endpoint"></a>
+
+`/integrations/data/crm/contacts/{id}` `GET`
+
+[🔙 **Back to Table of Contents**](#table-of-contents)
+
+---
+
+
+### `carbonai.cRM.getContacts`<a id="carbonaicrmgetcontacts"></a>
+
+Get Contacts
+
+#### 🛠️ Usage<a id="🛠️-usage"></a>
+
+```swift
+let dataSourceId = 987
+let includeRemoteData = true
+let nextCursor = "nextCursor_example"
+let pageSize = 987
+let orderDir = OrderDirV2Nullable(
+    
+)
+let includes = [
+BaseIncludes.tasks
+]
+let filters = ContactFilters(
+    ownerId: "ownerId_example",
+    name: "name_example",
+    accountId: "accountId_example"
+)
+let orderBy = ContactsOrderByNullable(
+    
+)
+let getContactsResponse = try await carbonai.cRM.getContacts(
+    dataSourceId: dataSourceId,
+    includeRemoteData: includeRemoteData,
+    nextCursor: nextCursor,
+    pageSize: pageSize,
+    orderDir: orderDir,
+    includes: includes,
+    filters: filters,
+    orderBy: orderBy
+)
+```
+
+#### ⚙️ Parameters<a id="⚙️-parameters"></a>
+
+##### data_source_id: `Int`<a id="data_source_id-int"></a>
+
+
+##### include_remote_data: `Bool`<a id="include_remote_data-bool"></a>
+
+
+##### next_cursor: `String`<a id="next_cursor-string"></a>
+
+
+##### page_size: `Int`<a id="page_size-int"></a>
+
+
+##### order_dir: `OrderDirV2Nullable`<a id="order_dir-orderdirv2nullable"></a>
+
+
+##### includes: `[BaseIncludes]`<a id="includes-baseincludes"></a>
+
+
+##### filters: [`ContactFilters`](./CarbonAI/Models/ContactFilters.swift)<a id="filters-contactfilterscarbonaimodelscontactfiltersswift"></a>
+
+
+##### order_by: `ContactsOrderByNullable`<a id="order_by-contactsorderbynullable"></a>
+
+
+#### 🔄 Return<a id="🔄-return"></a>
+
+[ContactsResponse](./CarbonAI/Models/ContactsResponse.swift)
+
+#### 🌐 Endpoint<a id="🌐-endpoint"></a>
+
+`/integrations/data/crm/contacts` `POST`
+
+[🔙 **Back to Table of Contents**](#table-of-contents)
+
+---
+
+
+### `carbonai.cRM.getLead`<a id="carbonaicrmgetlead"></a>
+
+Get Lead
+
+#### 🛠️ Usage<a id="🛠️-usage"></a>
+
+```swift
+let id = "id_example"
+let dataSourceId = 987
+let includeRemoteData = false
+let includes = [
+BaseIncludes.tasks
+]
+let getLeadResponse = try await carbonai.cRM.getLead(
+    id: id,
+    dataSourceId: dataSourceId,
+    includeRemoteData: includeRemoteData,
+    includes: includes
+)
+```
+
+#### ⚙️ Parameters<a id="⚙️-parameters"></a>
+
+##### id: `String`<a id="id-string"></a>
+
+
+##### dataSourceId: `Int`<a id="datasourceid-int"></a>
+
+
+##### includeRemoteData: `Bool`<a id="includeremotedata-bool"></a>
+
+
+##### includes: `[BaseIncludes]`<a id="includes-baseincludes"></a>
+
+
+#### 🔄 Return<a id="🔄-return"></a>
+
+[Lead](./CarbonAI/Models/Lead.swift)
+
+#### 🌐 Endpoint<a id="🌐-endpoint"></a>
+
+`/integrations/data/crm/leads/{id}` `GET`
+
+[🔙 **Back to Table of Contents**](#table-of-contents)
+
+---
+
+
+### `carbonai.cRM.getLeads`<a id="carbonaicrmgetleads"></a>
+
+Get Leads
+
+#### 🛠️ Usage<a id="🛠️-usage"></a>
+
+```swift
+let dataSourceId = 987
+let includeRemoteData = true
+let nextCursor = "nextCursor_example"
+let pageSize = 987
+let orderDir = OrderDirV2Nullable(
+    
+)
+let includes = [
+BaseIncludes.tasks
+]
+let filters = LeadFilters(
+    ownerId: "ownerId_example",
+    name: "name_example",
+    convertedAccountId: "convertedAccountId_example",
+    convertedContactId: "convertedContactId_example"
+)
+let orderBy = LeadsOrderByNullable(
+    
+)
+let getLeadsResponse = try await carbonai.cRM.getLeads(
+    dataSourceId: dataSourceId,
+    includeRemoteData: includeRemoteData,
+    nextCursor: nextCursor,
+    pageSize: pageSize,
+    orderDir: orderDir,
+    includes: includes,
+    filters: filters,
+    orderBy: orderBy
+)
+```
+
+#### ⚙️ Parameters<a id="⚙️-parameters"></a>
+
+##### data_source_id: `Int`<a id="data_source_id-int"></a>
+
+
+##### include_remote_data: `Bool`<a id="include_remote_data-bool"></a>
+
+
+##### next_cursor: `String`<a id="next_cursor-string"></a>
+
+
+##### page_size: `Int`<a id="page_size-int"></a>
+
+
+##### order_dir: `OrderDirV2Nullable`<a id="order_dir-orderdirv2nullable"></a>
+
+
+##### includes: `[BaseIncludes]`<a id="includes-baseincludes"></a>
+
+
+##### filters: [`LeadFilters`](./CarbonAI/Models/LeadFilters.swift)<a id="filters-leadfilterscarbonaimodelsleadfiltersswift"></a>
+
+
+##### order_by: `LeadsOrderByNullable`<a id="order_by-leadsorderbynullable"></a>
+
+
+#### 🔄 Return<a id="🔄-return"></a>
+
+[LeadsResponse](./CarbonAI/Models/LeadsResponse.swift)
+
+#### 🌐 Endpoint<a id="🌐-endpoint"></a>
+
+`/integrations/data/crm/leads` `POST`
+
+[🔙 **Back to Table of Contents**](#table-of-contents)
+
+---
+
+
+### `carbonai.cRM.getOpportunities`<a id="carbonaicrmgetopportunities"></a>
+
+Get Opportunities
+
+#### 🛠️ Usage<a id="🛠️-usage"></a>
+
+```swift
+let dataSourceId = 987
+let includeRemoteData = true
+let nextCursor = "nextCursor_example"
+let pageSize = 987
+let orderDir = OrderDirV2Nullable(
+    
+)
+let includes = [
+BaseIncludes.tasks
+]
+let filters = OpportunityFilters(
+    ownerId: "ownerId_example",
+    accountId: "accountId_example",
+    status: OpportunityStatusNullable.won,
+    stage: "stage_example"
+)
+let orderBy = OpportunitiesOrderByNullable(
+    
+)
+let getOpportunitiesResponse = try await carbonai.cRM.getOpportunities(
+    dataSourceId: dataSourceId,
+    includeRemoteData: includeRemoteData,
+    nextCursor: nextCursor,
+    pageSize: pageSize,
+    orderDir: orderDir,
+    includes: includes,
+    filters: filters,
+    orderBy: orderBy
+)
+```
+
+#### ⚙️ Parameters<a id="⚙️-parameters"></a>
+
+##### data_source_id: `Int`<a id="data_source_id-int"></a>
+
+
+##### include_remote_data: `Bool`<a id="include_remote_data-bool"></a>
+
+
+##### next_cursor: `String`<a id="next_cursor-string"></a>
+
+
+##### page_size: `Int`<a id="page_size-int"></a>
+
+
+##### order_dir: `OrderDirV2Nullable`<a id="order_dir-orderdirv2nullable"></a>
+
+
+##### includes: `[BaseIncludes]`<a id="includes-baseincludes"></a>
+
+
+##### filters: [`OpportunityFilters`](./CarbonAI/Models/OpportunityFilters.swift)<a id="filters-opportunityfilterscarbonaimodelsopportunityfiltersswift"></a>
+
+
+##### order_by: `OpportunitiesOrderByNullable`<a id="order_by-opportunitiesorderbynullable"></a>
+
+
+#### 🔄 Return<a id="🔄-return"></a>
+
+[OpportunitiesResponse](./CarbonAI/Models/OpportunitiesResponse.swift)
+
+#### 🌐 Endpoint<a id="🌐-endpoint"></a>
+
+`/integrations/data/crm/opportunities` `POST`
+
+[🔙 **Back to Table of Contents**](#table-of-contents)
+
+---
+
+
+### `carbonai.cRM.getOpportunity`<a id="carbonaicrmgetopportunity"></a>
+
+Get Opportunity
+
+#### 🛠️ Usage<a id="🛠️-usage"></a>
+
+```swift
+let id = "id_example"
+let dataSourceId = 987
+let includeRemoteData = false
+let includes = [
+BaseIncludes.tasks
+]
+let getOpportunityResponse = try await carbonai.cRM.getOpportunity(
+    id: id,
+    dataSourceId: dataSourceId,
+    includeRemoteData: includeRemoteData,
+    includes: includes
+)
+```
+
+#### ⚙️ Parameters<a id="⚙️-parameters"></a>
+
+##### id: `String`<a id="id-string"></a>
+
+
+##### dataSourceId: `Int`<a id="datasourceid-int"></a>
+
+
+##### includeRemoteData: `Bool`<a id="includeremotedata-bool"></a>
+
+
+##### includes: `[BaseIncludes]`<a id="includes-baseincludes"></a>
+
+
+#### 🔄 Return<a id="🔄-return"></a>
+
+[Opportunity](./CarbonAI/Models/Opportunity.swift)
+
+#### 🌐 Endpoint<a id="🌐-endpoint"></a>
+
+`/integrations/data/crm/opportunities/{id}` `GET`
 
 [🔙 **Back to Table of Contents**](#table-of-contents)
 
