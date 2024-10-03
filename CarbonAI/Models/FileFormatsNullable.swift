@@ -18,6 +18,7 @@ public enum FileFormatsNullable: String, Codable, CaseIterable {
     case docx = "DOCX"
     case pptx = "PPTX"
     case xlsx = "XLSX"
+    case xlsm = "XLSM"
     case md = "MD"
     case rtf = "RTF"
     case json = "JSON"
