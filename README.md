@@ -6,7 +6,7 @@
 
 Connect external data to LLMs, no matter the source.
 
-[![CocoaPods](https://img.shields.io/badge/pod-v0.3.37-blue)](https://cocoapods.org/pods/CarbonAI)
+[![CocoaPods](https://img.shields.io/badge/pod-v0.3.38-blue)](https://cocoapods.org/pods/CarbonAI)
 
 </div>
 
@@ -122,7 +122,7 @@ github "Carbon-for-Developers/carbon-swift-sdk"
 ### CocoaPods<a id="cocoapods"></a>
 
 1. Add `source 'https://github.com/CocoaPods/Specs.git'` to your `Podfile`
-2. Add `pod 'CarbonAI', '~> 0.3.37'` to your `Podfile`
+2. Add `pod 'CarbonAI', '~> 0.3.38'` to your `Podfile`
 
 Your `Podfile` should look like:
 ```ruby
@@ -130,7 +130,7 @@ Your `Podfile` should look like:
 source 'https://github.com/CocoaPods/Specs.git'
 
 target 'Example' do
-  pod 'CarbonAI', '~> 0.3.37'
+  pod 'CarbonAI', '~> 0.3.38'
 end
 ```
 3. Run `pod install`
@@ -139,7 +139,7 @@ end
 ❯ pod install
 Analyzing dependencies
 Downloading dependencies
-Installing CarbonAI 0.3.37
+Installing CarbonAI 0.3.38
 Generating Pods project
 Integrating client project
 Pod installation complete! There is 1 dependency from the Podfile and 2 total pods installed.
