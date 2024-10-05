@@ -2153,6 +2153,7 @@ let splitRows = false
 let enableColdStorage = false
 let hotStorageTimeToLive = 987
 let generateChunksOnly = false
+let storeFileOnly = false
 let uploadResponse = try await carbonai.files.upload(
     file: file,
     chunkSize: chunkSize,
@@ -2172,7 +2173,8 @@ let uploadResponse = try await carbonai.files.upload(
     splitRows: splitRows,
     enableColdStorage: enableColdStorage,
     hotStorageTimeToLive: hotStorageTimeToLive,
-    generateChunksOnly: generateChunksOnly
+    generateChunksOnly: generateChunksOnly,
+    storeFileOnly: storeFileOnly
 )
 ```
 
@@ -2271,6 +2273,11 @@ Time in seconds after which the file will be moved to cold storage.
 If this flag is enabled, the file will be chunked and stored with Carbon,             but no embeddings will be generated. This overrides the skip_embedding_generation flag.
 
 
+##### storeFileOnly: `Bool`<a id="storefileonly-bool"></a>
+
+If this flag is enabled, the file will be stored with Carbon, but no processing will be done.
+
+
 #### 🔄 Return<a id="🔄-return"></a>
 
 [UserFile](./CarbonAI/Models/UserFile.swift)
@@ -2319,6 +2326,7 @@ let coldStorageParams = ColdStorageProps(
     hotStorageTimeToLive: 123
 )
 let generateChunksOnly = true
+let storeFileOnly = true
 let uploadFromUrlResponse = try await carbonai.files.uploadFromUrl(
     url: url,
     fileName: fileName,
@@ -2338,7 +2346,8 @@ let uploadFromUrlResponse = try await carbonai.files.uploadFromUrl(
     mediaType: mediaType,
     splitRows: splitRows,
     coldStorageParams: coldStorageParams,
-    generateChunksOnly: generateChunksOnly
+    generateChunksOnly: generateChunksOnly,
+    storeFileOnly: storeFileOnly
 )
 ```
 
@@ -2405,6 +2414,11 @@ Number of objects per chunk. For csv, tsv, xlsx, and json files only.
 If this flag is enabled, the file will be chunked and stored with Carbon,         but no embeddings will be generated. This overrides the skip_embedding_generation flag.
 
 
+##### store_file_only: `Bool`<a id="store_file_only-bool"></a>
+
+If this flag is enabled, the file will be stored with Carbon, but no processing will be done.
+
+
 #### 🔄 Return<a id="🔄-return"></a>
 
 [UserFile](./CarbonAI/Models/UserFile.swift)
@@ -2449,6 +2463,7 @@ let coldStorageParams = ColdStorageProps(
     hotStorageTimeToLive: 123
 )
 let generateChunksOnly = true
+let storeFileOnly = true
 let uploadTextResponse = try await carbonai.files.uploadText(
     contents: contents,
     name: name,
@@ -2459,7 +2474,8 @@ let uploadTextResponse = try await carbonai.files.uploadText(
     embeddingModel: embeddingModel,
     generateSparseVectors: generateSparseVectors,
     coldStorageParams: coldStorageParams,
-    generateChunksOnly: generateChunksOnly
+    generateChunksOnly: generateChunksOnly,
+    storeFileOnly: storeFileOnly
 )
 ```
 
@@ -2495,6 +2511,11 @@ let uploadTextResponse = try await carbonai.files.uploadText(
 ##### generate_chunks_only: `Bool`<a id="generate_chunks_only-bool"></a>
 
 If this flag is enabled, the file will be chunked and stored with Carbon,         but no embeddings will be generated. This overrides the skip_embedding_generation flag.
+
+
+##### store_file_only: `Bool`<a id="store_file_only-bool"></a>
+
+If this flag is enabled, the file will be stored with Carbon, but no processing will be done.
 
 
 #### 🔄 Return<a id="🔄-return"></a>
@@ -2600,6 +2621,7 @@ let syncOptions = SyncOptions(
         includeSpeakerLabels: false,
         splitRows: false,
         generateChunksOnly: false,
+        storeFileOnly: false,
         skipFileProcessing: false
     ),
     automaticallyOpenFilePicker: false
@@ -2668,6 +2690,7 @@ let fileSyncConfig = FileSyncConfigNullable(
     includeSpeakerLabels: false,
     splitRows: false,
     generateChunksOnly: false,
+    storeFileOnly: false,
     skipFileProcessing: false
 )
 let connectFreshdeskResponse = try await carbonai.integrations.connectFreshdesk(
@@ -2779,6 +2802,7 @@ let fileSyncConfig = FileSyncConfigNullable(
     includeSpeakerLabels: false,
     splitRows: false,
     generateChunksOnly: false,
+    storeFileOnly: false,
     skipFileProcessing: false
 )
 let connectGitbookResponse = try await carbonai.integrations.connectGitbook(
@@ -2888,6 +2912,7 @@ let fileSyncConfig = FileSyncConfigNullable(
     includeSpeakerLabels: false,
     splitRows: false,
     generateChunksOnly: false,
+    storeFileOnly: false,
     skipFileProcessing: false
 )
 let connectGuruResponse = try await carbonai.integrations.connectGuru(
@@ -3073,6 +3098,7 @@ let fileSyncConfig = FileSyncConfigNullable(
     includeSpeakerLabels: false,
     splitRows: false,
     generateChunksOnly: false,
+    storeFileOnly: false,
     skipFileProcessing: false
 )
 let automaticallyOpenFilePicker = true
@@ -3596,6 +3622,7 @@ let fileSyncConfig = FileSyncConfigNullable(
     includeSpeakerLabels: false,
     splitRows: false,
     generateChunksOnly: false,
+    storeFileOnly: false,
     skipFileProcessing: false
 )
 let syncAzureBlobFilesResponse = try await carbonai.integrations.syncAzureBlobFiles(
@@ -3781,6 +3808,7 @@ let fileSyncConfig = FileSyncConfigNullable(
     includeSpeakerLabels: false,
     splitRows: false,
     generateChunksOnly: false,
+    storeFileOnly: false,
     skipFileProcessing: false
 )
 let syncConfluenceResponse = try await carbonai.integrations.syncConfluence(
@@ -3942,6 +3970,7 @@ let fileSyncConfig = FileSyncConfigNullable(
     includeSpeakerLabels: false,
     splitRows: false,
     generateChunksOnly: false,
+    storeFileOnly: false,
     skipFileProcessing: false
 )
 let syncFilesResponse = try await carbonai.integrations.syncFiles(
@@ -4110,6 +4139,7 @@ let fileSyncConfig = FileSyncConfigNullable(
     includeSpeakerLabels: false,
     splitRows: false,
     generateChunksOnly: false,
+    storeFileOnly: false,
     skipFileProcessing: false
 )
 let syncGitbookResponse = try await carbonai.integrations.syncGitbook(
@@ -4256,6 +4286,7 @@ let fileSyncConfig = FileSyncConfigNullable(
     includeSpeakerLabels: false,
     splitRows: false,
     generateChunksOnly: false,
+    storeFileOnly: false,
     skipFileProcessing: false
 )
 let incrementalSync = true
@@ -4423,6 +4454,7 @@ let fileSyncConfig = FileSyncConfigNullable(
     includeSpeakerLabels: false,
     splitRows: false,
     generateChunksOnly: false,
+    storeFileOnly: false,
     skipFileProcessing: false
 )
 let incrementalSync = true
@@ -4652,6 +4684,7 @@ let fileSyncConfig = FileSyncConfigNullable(
     includeSpeakerLabels: false,
     splitRows: false,
     generateChunksOnly: false,
+    storeFileOnly: false,
     skipFileProcessing: false
 )
 let syncS3FilesResponse = try await carbonai.integrations.syncS3Files(
@@ -5314,6 +5347,7 @@ let urlsToScrape = [
 ]
 let downloadCssAndMedia = true
 let generateChunksOnly = true
+let storeFileOnly = true
 let scrapeSitemapResponse = try await carbonai.utilities.scrapeSitemap(
     url: url,
     tags: tags,
@@ -5332,7 +5366,8 @@ let scrapeSitemapResponse = try await carbonai.utilities.scrapeSitemap(
     urlPathsToExclude: urlPathsToExclude,
     urlsToScrape: urlsToScrape,
     downloadCssAndMedia: downloadCssAndMedia,
-    generateChunksOnly: generateChunksOnly
+    generateChunksOnly: generateChunksOnly,
+    storeFileOnly: storeFileOnly
 )
 ```
 
@@ -5400,6 +5435,11 @@ Whether the scraper should download css and media from the page (images, fonts, 
 ##### generate_chunks_only: `Bool`<a id="generate_chunks_only-bool"></a>
 
 If this flag is enabled, the file will be chunked and stored with Carbon,           but no embeddings will be generated. This overrides the skip_embedding_generation flag.
+
+
+##### store_file_only: `Bool`<a id="store_file_only-bool"></a>
+
+If this flag is enabled, the file will be stored with Carbon, but no processing will be done.
 
 
 #### 🌐 Endpoint<a id="🌐-endpoint"></a>

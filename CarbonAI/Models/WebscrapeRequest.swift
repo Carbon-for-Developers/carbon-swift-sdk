@@ -32,8 +32,10 @@ public struct WebscrapeRequest: Codable, JSONEncodable, Hashable {
     public var downloadCssAndMedia: Bool? = false
     /** If this flag is enabled, the file will be chunked and stored with Carbon,           but no embeddings will be generated. This overrides the skip_embedding_generation flag. */
     public var generateChunksOnly: Bool? = false
+    /** If this flag is enabled, the file will be stored with Carbon, but no processing will be done. */
+    public var storeFileOnly: Bool? = false
 
-    public init(tags: [String: Tags1]? = nil, url: String, recursionDepth: Int? = 3, maxPagesToScrape: Int? = 100, chunkSize: Int? = 1500, chunkOverlap: Int? = 20, skipEmbeddingGeneration: Bool? = false, enableAutoSync: Bool? = false, generateSparseVectors: Bool? = false, prependFilenameToChunks: Bool? = false, htmlTagsToSkip: [String]? = nil, cssClassesToSkip: [String]? = nil, cssSelectorsToSkip: [String]? = nil, embeddingModel: EmbeddingGenerators? = nil, urlPathsToInclude: [String]? = nil, downloadCssAndMedia: Bool? = false, generateChunksOnly: Bool? = false) {
+    public init(tags: [String: Tags1]? = nil, url: String, recursionDepth: Int? = 3, maxPagesToScrape: Int? = 100, chunkSize: Int? = 1500, chunkOverlap: Int? = 20, skipEmbeddingGeneration: Bool? = false, enableAutoSync: Bool? = false, generateSparseVectors: Bool? = false, prependFilenameToChunks: Bool? = false, htmlTagsToSkip: [String]? = nil, cssClassesToSkip: [String]? = nil, cssSelectorsToSkip: [String]? = nil, embeddingModel: EmbeddingGenerators? = nil, urlPathsToInclude: [String]? = nil, downloadCssAndMedia: Bool? = false, generateChunksOnly: Bool? = false, storeFileOnly: Bool? = false) {
         self.tags = tags
         self.url = url
         self.recursionDepth = recursionDepth
@@ -51,6 +53,7 @@ public struct WebscrapeRequest: Codable, JSONEncodable, Hashable {
         self.urlPathsToInclude = urlPathsToInclude
         self.downloadCssAndMedia = downloadCssAndMedia
         self.generateChunksOnly = generateChunksOnly
+        self.storeFileOnly = storeFileOnly
     }
 
     public enum CodingKeys: String, CodingKey, CaseIterable {
@@ -71,6 +74,7 @@ public struct WebscrapeRequest: Codable, JSONEncodable, Hashable {
         case urlPathsToInclude = "url_paths_to_include"
         case downloadCssAndMedia = "download_css_and_media"
         case generateChunksOnly = "generate_chunks_only"
+        case storeFileOnly = "store_file_only"
     }
 
     // Encodable protocol methods
@@ -94,6 +98,7 @@ public struct WebscrapeRequest: Codable, JSONEncodable, Hashable {
         try codingContainer.encodeIfPresent(urlPathsToInclude, forKey: .urlPathsToInclude)
         try codingContainer.encodeIfPresent(downloadCssAndMedia, forKey: .downloadCssAndMedia)
         try codingContainer.encodeIfPresent(generateChunksOnly, forKey: .generateChunksOnly)
+        try codingContainer.encodeIfPresent(storeFileOnly, forKey: .storeFileOnly)
     }
 }
 

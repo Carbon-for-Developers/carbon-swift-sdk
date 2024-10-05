@@ -23,8 +23,10 @@ public struct RawTextInput: Codable, JSONEncodable, Hashable {
     public var coldStorageParams: ColdStorageProps?
     /** If this flag is enabled, the file will be chunked and stored with Carbon,         but no embeddings will be generated. This overrides the skip_embedding_generation flag. */
     public var generateChunksOnly: Bool? = false
+    /** If this flag is enabled, the file will be stored with Carbon, but no processing will be done. */
+    public var storeFileOnly: Bool? = false
 
-    public init(contents: String, name: String? = nil, chunkSize: Int? = nil, chunkOverlap: Int? = nil, skipEmbeddingGeneration: Bool? = false, overwriteFileId: Int? = nil, embeddingModel: EmbeddingGeneratorsNullable? = nil, generateSparseVectors: Bool? = false, coldStorageParams: ColdStorageProps? = nil, generateChunksOnly: Bool? = false) {
+    public init(contents: String, name: String? = nil, chunkSize: Int? = nil, chunkOverlap: Int? = nil, skipEmbeddingGeneration: Bool? = false, overwriteFileId: Int? = nil, embeddingModel: EmbeddingGeneratorsNullable? = nil, generateSparseVectors: Bool? = false, coldStorageParams: ColdStorageProps? = nil, generateChunksOnly: Bool? = false, storeFileOnly: Bool? = false) {
         self.contents = contents
         self.name = name
         self.chunkSize = chunkSize
@@ -35,6 +37,7 @@ public struct RawTextInput: Codable, JSONEncodable, Hashable {
         self.generateSparseVectors = generateSparseVectors
         self.coldStorageParams = coldStorageParams
         self.generateChunksOnly = generateChunksOnly
+        self.storeFileOnly = storeFileOnly
     }
 
     public enum CodingKeys: String, CodingKey, CaseIterable {
@@ -48,6 +51,7 @@ public struct RawTextInput: Codable, JSONEncodable, Hashable {
         case generateSparseVectors = "generate_sparse_vectors"
         case coldStorageParams = "cold_storage_params"
         case generateChunksOnly = "generate_chunks_only"
+        case storeFileOnly = "store_file_only"
     }
 
     // Encodable protocol methods
@@ -64,6 +68,7 @@ public struct RawTextInput: Codable, JSONEncodable, Hashable {
         try codingContainer.encodeIfPresent(generateSparseVectors, forKey: .generateSparseVectors)
         try codingContainer.encodeIfPresent(coldStorageParams, forKey: .coldStorageParams)
         try codingContainer.encodeIfPresent(generateChunksOnly, forKey: .generateChunksOnly)
+        try codingContainer.encodeIfPresent(storeFileOnly, forKey: .storeFileOnly)
     }
 }
 
