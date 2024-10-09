@@ -51,6 +51,13 @@ Connect external data to LLMs, no matter the source.
   * [`carbonai.files.upload`](#carbonaifilesupload)
   * [`carbonai.files.uploadFromUrl`](#carbonaifilesuploadfromurl)
   * [`carbonai.files.uploadText`](#carbonaifilesuploadtext)
+  * [`carbonai.github.getIssue`](#carbonaigithubgetissue)
+  * [`carbonai.github.getIssues`](#carbonaigithubgetissues)
+  * [`carbonai.github.getPr`](#carbonaigithubgetpr)
+  * [`carbonai.github.getPrComments`](#carbonaigithubgetprcomments)
+  * [`carbonai.github.getPrCommits`](#carbonaigithubgetprcommits)
+  * [`carbonai.github.getPrFiles`](#carbonaigithubgetprfiles)
+  * [`carbonai.github.getPullRequests`](#carbonaigithubgetpullrequests)
   * [`carbonai.integrations.cancel`](#carbonaiintegrationscancel)
   * [`carbonai.integrations.connectDataSource`](#carbonaiintegrationsconnectdatasource)
   * [`carbonai.integrations.connectFreshdesk`](#carbonaiintegrationsconnectfreshdesk)
@@ -2525,6 +2532,461 @@ If this flag is enabled, the file will be stored with Carbon, but no processing 
 #### 🌐 Endpoint<a id="🌐-endpoint"></a>
 
 `/upload_text` `POST`
+
+[🔙 **Back to Table of Contents**](#table-of-contents)
+
+---
+
+
+### `carbonai.github.getIssue`<a id="carbonaigithubgetissue"></a>
+
+Issue
+
+#### 🛠️ Usage<a id="🛠️-usage"></a>
+
+```swift
+let issueNumber = 987
+let includeRemoteData = false
+let dataSourceId = 987
+let repository = "repository_example"
+let getIssueResponse = try await carbonai.github.getIssue(
+    issueNumber: issueNumber,
+    includeRemoteData: includeRemoteData,
+    dataSourceId: dataSourceId,
+    repository: repository
+)
+```
+
+#### ⚙️ Parameters<a id="⚙️-parameters"></a>
+
+##### issueNumber: `Int`<a id="issuenumber-int"></a>
+
+
+##### includeRemoteData: `Bool`<a id="includeremotedata-bool"></a>
+
+
+##### dataSourceId: `Int`<a id="datasourceid-int"></a>
+
+
+##### repository: `String`<a id="repository-string"></a>
+
+
+#### 🔄 Return<a id="🔄-return"></a>
+
+[Issue](./CarbonAI/Models/Issue.swift)
+
+#### 🌐 Endpoint<a id="🌐-endpoint"></a>
+
+`/integrations/data/github/issues/{issue_number}` `GET`
+
+[🔙 **Back to Table of Contents**](#table-of-contents)
+
+---
+
+
+### `carbonai.github.getIssues`<a id="carbonaigithubgetissues"></a>
+
+Issues
+
+#### 🛠️ Usage<a id="🛠️-usage"></a>
+
+```swift
+let dataSourceId = 987
+let repository = "repository_example"
+let includeRemoteData = true
+let page = 987
+let pageSize = 987
+let nextCursor = "nextCursor_example"
+let filters = IssuesFilter(
+    state: PRStateInput.closed
+)
+let orderBy = IssuesOrderBy(
+    
+)
+let orderDir = OrderDirV2Nullable(
+    
+)
+let getIssuesResponse = try await carbonai.github.getIssues(
+    dataSourceId: dataSourceId,
+    repository: repository,
+    includeRemoteData: includeRemoteData,
+    page: page,
+    pageSize: pageSize,
+    nextCursor: nextCursor,
+    filters: filters,
+    orderBy: orderBy,
+    orderDir: orderDir
+)
+```
+
+#### ⚙️ Parameters<a id="⚙️-parameters"></a>
+
+##### data_source_id: `Int`<a id="data_source_id-int"></a>
+
+
+##### repository: `String`<a id="repository-string"></a>
+
+Full name of the repository, denoted as {owner}/{repo}
+
+
+##### include_remote_data: `Bool`<a id="include_remote_data-bool"></a>
+
+
+##### page: `Int`<a id="page-int"></a>
+
+
+##### page_size: `Int`<a id="page_size-int"></a>
+
+
+##### next_cursor: `String`<a id="next_cursor-string"></a>
+
+
+##### filters: [`IssuesFilter`](./CarbonAI/Models/IssuesFilter.swift)<a id="filters-issuesfiltercarbonaimodelsissuesfilterswift"></a>
+
+
+##### order_by: `IssuesOrderBy`<a id="order_by-issuesorderby"></a>
+
+
+##### order_dir: `OrderDirV2Nullable`<a id="order_dir-orderdirv2nullable"></a>
+
+
+#### 🔄 Return<a id="🔄-return"></a>
+
+[IssuesResponse](./CarbonAI/Models/IssuesResponse.swift)
+
+#### 🌐 Endpoint<a id="🌐-endpoint"></a>
+
+`/integrations/data/github/issues` `POST`
+
+[🔙 **Back to Table of Contents**](#table-of-contents)
+
+---
+
+
+### `carbonai.github.getPr`<a id="carbonaigithubgetpr"></a>
+
+Get Pr
+
+#### 🛠️ Usage<a id="🛠️-usage"></a>
+
+```swift
+let pullNumber = 987
+let includeRemoteData = false
+let dataSourceId = 987
+let repository = "repository_example"
+let getPrResponse = try await carbonai.github.getPr(
+    pullNumber: pullNumber,
+    includeRemoteData: includeRemoteData,
+    dataSourceId: dataSourceId,
+    repository: repository
+)
+```
+
+#### ⚙️ Parameters<a id="⚙️-parameters"></a>
+
+##### pullNumber: `Int`<a id="pullnumber-int"></a>
+
+
+##### includeRemoteData: `Bool`<a id="includeremotedata-bool"></a>
+
+
+##### dataSourceId: `Int`<a id="datasourceid-int"></a>
+
+
+##### repository: `String`<a id="repository-string"></a>
+
+
+#### 🔄 Return<a id="🔄-return"></a>
+
+[PullRequestExtended](./CarbonAI/Models/PullRequestExtended.swift)
+
+#### 🌐 Endpoint<a id="🌐-endpoint"></a>
+
+`/integrations/data/github/pull_requests/{pull_number}` `GET`
+
+[🔙 **Back to Table of Contents**](#table-of-contents)
+
+---
+
+
+### `carbonai.github.getPrComments`<a id="carbonaigithubgetprcomments"></a>
+
+Pr Comments
+
+#### 🛠️ Usage<a id="🛠️-usage"></a>
+
+```swift
+let dataSourceId = 987
+let repository = "repository_example"
+let pullNumber = 987
+let includeRemoteData = true
+let page = 987
+let pageSize = 987
+let nextCursor = "nextCursor_example"
+let orderBy = CommentsOrderBy(
+    
+)
+let orderDir = OrderDirV2Nullable(
+    
+)
+let getPrCommentsResponse = try await carbonai.github.getPrComments(
+    dataSourceId: dataSourceId,
+    repository: repository,
+    pullNumber: pullNumber,
+    includeRemoteData: includeRemoteData,
+    page: page,
+    pageSize: pageSize,
+    nextCursor: nextCursor,
+    orderBy: orderBy,
+    orderDir: orderDir
+)
+```
+
+#### ⚙️ Parameters<a id="⚙️-parameters"></a>
+
+##### data_source_id: `Int`<a id="data_source_id-int"></a>
+
+
+##### repository: `String`<a id="repository-string"></a>
+
+Full name of the repository, denoted as {owner}/{repo}
+
+
+##### pull_number: `Int`<a id="pull_number-int"></a>
+
+
+##### include_remote_data: `Bool`<a id="include_remote_data-bool"></a>
+
+
+##### page: `Int`<a id="page-int"></a>
+
+
+##### page_size: `Int`<a id="page_size-int"></a>
+
+
+##### next_cursor: `String`<a id="next_cursor-string"></a>
+
+
+##### order_by: `CommentsOrderBy`<a id="order_by-commentsorderby"></a>
+
+
+##### order_dir: `OrderDirV2Nullable`<a id="order_dir-orderdirv2nullable"></a>
+
+
+#### 🔄 Return<a id="🔄-return"></a>
+
+[CommentsResponse](./CarbonAI/Models/CommentsResponse.swift)
+
+#### 🌐 Endpoint<a id="🌐-endpoint"></a>
+
+`/integrations/data/github/pull_requests/comments` `POST`
+
+[🔙 **Back to Table of Contents**](#table-of-contents)
+
+---
+
+
+### `carbonai.github.getPrCommits`<a id="carbonaigithubgetprcommits"></a>
+
+Pr Commits
+
+#### 🛠️ Usage<a id="🛠️-usage"></a>
+
+```swift
+let dataSourceId = 987
+let repository = "repository_example"
+let pullNumber = 987
+let includeRemoteData = true
+let page = 987
+let pageSize = 987
+let nextCursor = "nextCursor_example"
+let getPrCommitsResponse = try await carbonai.github.getPrCommits(
+    dataSourceId: dataSourceId,
+    repository: repository,
+    pullNumber: pullNumber,
+    includeRemoteData: includeRemoteData,
+    page: page,
+    pageSize: pageSize,
+    nextCursor: nextCursor
+)
+```
+
+#### ⚙️ Parameters<a id="⚙️-parameters"></a>
+
+##### data_source_id: `Int`<a id="data_source_id-int"></a>
+
+
+##### repository: `String`<a id="repository-string"></a>
+
+Full name of the repository, denoted as {owner}/{repo}
+
+
+##### pull_number: `Int`<a id="pull_number-int"></a>
+
+
+##### include_remote_data: `Bool`<a id="include_remote_data-bool"></a>
+
+
+##### page: `Int`<a id="page-int"></a>
+
+
+##### page_size: `Int`<a id="page_size-int"></a>
+
+
+##### next_cursor: `String`<a id="next_cursor-string"></a>
+
+
+#### 🔄 Return<a id="🔄-return"></a>
+
+[CommitsResponse](./CarbonAI/Models/CommitsResponse.swift)
+
+#### 🌐 Endpoint<a id="🌐-endpoint"></a>
+
+`/integrations/data/github/pull_requests/commits` `POST`
+
+[🔙 **Back to Table of Contents**](#table-of-contents)
+
+---
+
+
+### `carbonai.github.getPrFiles`<a id="carbonaigithubgetprfiles"></a>
+
+Pr Files
+
+#### 🛠️ Usage<a id="🛠️-usage"></a>
+
+```swift
+let dataSourceId = 987
+let repository = "repository_example"
+let pullNumber = 987
+let includeRemoteData = true
+let page = 987
+let pageSize = 987
+let nextCursor = "nextCursor_example"
+let getPrFilesResponse = try await carbonai.github.getPrFiles(
+    dataSourceId: dataSourceId,
+    repository: repository,
+    pullNumber: pullNumber,
+    includeRemoteData: includeRemoteData,
+    page: page,
+    pageSize: pageSize,
+    nextCursor: nextCursor
+)
+```
+
+#### ⚙️ Parameters<a id="⚙️-parameters"></a>
+
+##### data_source_id: `Int`<a id="data_source_id-int"></a>
+
+
+##### repository: `String`<a id="repository-string"></a>
+
+Full name of the repository, denoted as {owner}/{repo}
+
+
+##### pull_number: `Int`<a id="pull_number-int"></a>
+
+
+##### include_remote_data: `Bool`<a id="include_remote_data-bool"></a>
+
+
+##### page: `Int`<a id="page-int"></a>
+
+
+##### page_size: `Int`<a id="page_size-int"></a>
+
+
+##### next_cursor: `String`<a id="next_cursor-string"></a>
+
+
+#### 🔄 Return<a id="🔄-return"></a>
+
+[FilesResponse](./CarbonAI/Models/FilesResponse.swift)
+
+#### 🌐 Endpoint<a id="🌐-endpoint"></a>
+
+`/integrations/data/github/pull_requests/files` `POST`
+
+[🔙 **Back to Table of Contents**](#table-of-contents)
+
+---
+
+
+### `carbonai.github.getPullRequests`<a id="carbonaigithubgetpullrequests"></a>
+
+Get Prs
+
+#### 🛠️ Usage<a id="🛠️-usage"></a>
+
+```swift
+let dataSourceId = 987
+let repository = "repository_example"
+let includeRemoteData = true
+let page = 987
+let pageSize = 987
+let nextCursor = "nextCursor_example"
+let filters = PullRequestFilters(
+    state: PRStateInput.closed,
+    base: "base_example",
+    head: "head_example"
+)
+let orderBy = PROrderBy(
+    
+)
+let orderDir = OrderDirV2Nullable(
+    
+)
+let getPullRequestsResponse = try await carbonai.github.getPullRequests(
+    dataSourceId: dataSourceId,
+    repository: repository,
+    includeRemoteData: includeRemoteData,
+    page: page,
+    pageSize: pageSize,
+    nextCursor: nextCursor,
+    filters: filters,
+    orderBy: orderBy,
+    orderDir: orderDir
+)
+```
+
+#### ⚙️ Parameters<a id="⚙️-parameters"></a>
+
+##### data_source_id: `Int`<a id="data_source_id-int"></a>
+
+
+##### repository: `String`<a id="repository-string"></a>
+
+Full name of the repository, denoted as {owner}/{repo}
+
+
+##### include_remote_data: `Bool`<a id="include_remote_data-bool"></a>
+
+
+##### page: `Int`<a id="page-int"></a>
+
+
+##### page_size: `Int`<a id="page_size-int"></a>
+
+
+##### next_cursor: `String`<a id="next_cursor-string"></a>
+
+
+##### filters: [`PullRequestFilters`](./CarbonAI/Models/PullRequestFilters.swift)<a id="filters-pullrequestfilterscarbonaimodelspullrequestfiltersswift"></a>
+
+
+##### order_by: `PROrderBy`<a id="order_by-prorderby"></a>
+
+
+##### order_dir: `OrderDirV2Nullable`<a id="order_dir-orderdirv2nullable"></a>
+
+
+#### 🔄 Return<a id="🔄-return"></a>
+
+[PullRequestResponse](./CarbonAI/Models/PullRequestResponse.swift)
+
+#### 🌐 Endpoint<a id="🌐-endpoint"></a>
+
+`/integrations/data/github/pull_requests` `POST`
 
 [🔙 **Back to Table of Contents**](#table-of-contents)
 

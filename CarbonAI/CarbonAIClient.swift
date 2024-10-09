@@ -8,6 +8,7 @@ public class CarbonAIClient {
     public lazy var dataSources: DataSourcesAPI = { return DataSourcesAPI(client: self) }()
     public lazy var embeddings: EmbeddingsAPI = { return EmbeddingsAPI(client: self) }()
     public lazy var files: FilesAPI = { return FilesAPI(client: self) }()
+    public lazy var github: GithubAPI = { return GithubAPI(client: self) }()
     public lazy var integrations: IntegrationsAPI = { return IntegrationsAPI(client: self) }()
     public lazy var organizations: OrganizationsAPI = { return OrganizationsAPI(client: self) }()
     public lazy var users: UsersAPI = { return UsersAPI(client: self) }()
