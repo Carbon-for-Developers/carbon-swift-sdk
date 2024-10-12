@@ -1190,6 +1190,9 @@ let filters = OrganizationUserFilesToSyncFilters(
     requestIds: [
     "requestIds_example"
     ],
+    uploadIds: [
+    "uploadIds_example"
+    ],
     syncErrorMessage: "syncErrorMessage_example",
     includeContainers: false,
     externalUrls: [
@@ -1529,6 +1532,9 @@ let filters = OrganizationUserFilesToSyncFilters(
     requestIds: [
     "requestIds_example"
     ],
+    uploadIds: [
+    "uploadIds_example"
+    ],
     syncErrorMessage: "syncErrorMessage_example",
     includeContainers: false,
     externalUrls: [
@@ -1677,6 +1683,9 @@ let filters = OrganizationUserFilesToSyncFilters(
     requestIds: [
     "requestIds_example"
     ],
+    uploadIds: [
+    "uploadIds_example"
+    ],
     syncErrorMessage: "syncErrorMessage_example",
     includeContainers: false,
     externalUrls: [
@@ -1754,6 +1763,9 @@ let filters = OrganizationUserFilesToSyncFilters(
     nonSyncedOnly: false,
     requestIds: [
     "requestIds_example"
+    ],
+    uploadIds: [
+    "uploadIds_example"
     ],
     syncErrorMessage: "syncErrorMessage_example",
     includeContainers: false,
@@ -1882,6 +1894,9 @@ let filters = OrganizationUserFilesToSyncFilters(
     requestIds: [
     "requestIds_example"
     ],
+    uploadIds: [
+    "uploadIds_example"
+    ],
     syncErrorMessage: "syncErrorMessage_example",
     includeContainers: false,
     externalUrls: [
@@ -1991,6 +2006,9 @@ let filters = OrganizationUserFilesToSyncFilters(
     nonSyncedOnly: false,
     requestIds: [
     "requestIds_example"
+    ],
+    uploadIds: [
+    "uploadIds_example"
     ],
     syncErrorMessage: "syncErrorMessage_example",
     includeContainers: false,

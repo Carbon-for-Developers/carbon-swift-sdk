@@ -39,6 +39,8 @@ public struct OrganizationUserFilesToSyncFilters: Codable, JSONEncodable, Hashab
     public var nonSyncedOnly: Bool? = false
     /** Filter by request ID(s) which were used to sync the files */
     public var requestIds: [String]?
+    /** Filter by upload ID(s) which were used to sync the files */
+    public var uploadIds: [String]?
     /** The error message of the file. The query will return files with error messages that contain this string. To search for files with no error message, use an empty string. */
     public var syncErrorMessage: String?
     /** If true, the query will return containers in the response. Containers are files that group other files together and have no content themselves. Default behavior is to include containers. */
@@ -48,7 +50,7 @@ public struct OrganizationUserFilesToSyncFilters: Codable, JSONEncodable, Hashab
     /** Filter files based on their type at the source (for example help center tickets and articles) */
     public var fileTypesAtSource: [AutoSyncedSourceTypesPropertyInner]?
 
-    public init(tags: [String: Tags1]? = nil, source: SourceProperty? = nil, name: String? = nil, tagsV2: AnyCodable? = nil, ids: [Int]? = nil, externalFileIds: [String]? = nil, syncStatuses: [ExternalFileSyncStatuses]? = nil, parentFileIds: [Int]? = nil, organizationUserDataSourceId: [Int]? = nil, embeddingGenerators: [EmbeddingGenerators]? = nil, rootFilesOnly: Bool? = nil, includeAllChildren: Bool? = false, nonSyncedOnly: Bool? = false, requestIds: [String]? = nil, syncErrorMessage: String? = nil, includeContainers: Bool? = nil, externalUrls: [String]? = nil, fileTypesAtSource: [AutoSyncedSourceTypesPropertyInner]? = nil) {
+    public init(tags: [String: Tags1]? = nil, source: SourceProperty? = nil, name: String? = nil, tagsV2: AnyCodable? = nil, ids: [Int]? = nil, externalFileIds: [String]? = nil, syncStatuses: [ExternalFileSyncStatuses]? = nil, parentFileIds: [Int]? = nil, organizationUserDataSourceId: [Int]? = nil, embeddingGenerators: [EmbeddingGenerators]? = nil, rootFilesOnly: Bool? = nil, includeAllChildren: Bool? = false, nonSyncedOnly: Bool? = false, requestIds: [String]? = nil, uploadIds: [String]? = nil, syncErrorMessage: String? = nil, includeContainers: Bool? = nil, externalUrls: [String]? = nil, fileTypesAtSource: [AutoSyncedSourceTypesPropertyInner]? = nil) {
         self.tags = tags
         self.source = source
         self.name = name
@@ -63,6 +65,7 @@ public struct OrganizationUserFilesToSyncFilters: Codable, JSONEncodable, Hashab
         self.includeAllChildren = includeAllChildren
         self.nonSyncedOnly = nonSyncedOnly
         self.requestIds = requestIds
+        self.uploadIds = uploadIds
         self.syncErrorMessage = syncErrorMessage
         self.includeContainers = includeContainers
         self.externalUrls = externalUrls
@@ -84,6 +87,7 @@ public struct OrganizationUserFilesToSyncFilters: Codable, JSONEncodable, Hashab
         case includeAllChildren = "include_all_children"
         case nonSyncedOnly = "non_synced_only"
         case requestIds = "request_ids"
+        case uploadIds = "upload_ids"
         case syncErrorMessage = "sync_error_message"
         case includeContainers = "include_containers"
         case externalUrls = "external_urls"
@@ -108,6 +112,7 @@ public struct OrganizationUserFilesToSyncFilters: Codable, JSONEncodable, Hashab
         try codingContainer.encodeIfPresent(includeAllChildren, forKey: .includeAllChildren)
         try codingContainer.encodeIfPresent(nonSyncedOnly, forKey: .nonSyncedOnly)
         try codingContainer.encodeIfPresent(requestIds, forKey: .requestIds)
+        try codingContainer.encodeIfPresent(uploadIds, forKey: .uploadIds)
         try codingContainer.encodeIfPresent(syncErrorMessage, forKey: .syncErrorMessage)
         try codingContainer.encodeIfPresent(includeContainers, forKey: .includeContainers)
         try codingContainer.encodeIfPresent(externalUrls, forKey: .externalUrls)
