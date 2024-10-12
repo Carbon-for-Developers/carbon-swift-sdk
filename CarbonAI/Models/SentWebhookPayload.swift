@@ -14,6 +14,7 @@ public struct SentWebhookPayload: Codable, JSONEncodable, Hashable {
 
     public enum WebhookType: String, Codable, CaseIterable {
         case add = "ADD"
+        case allFilesProcessed = "ALL_FILES_PROCESSED"
         case allUploadedFilesQueued = "ALL_UPLOADED_FILES_QUEUED"
         case cancel = "CANCEL"
         case checkup = "CHECKUP"
