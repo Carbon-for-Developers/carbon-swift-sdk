@@ -5361,7 +5361,10 @@ let globalUserConfig = UserConfigurationNullable(
         
     ),
     maxFiles: 123,
-    maxFilesPerUpload: 123
+    maxFilesPerUpload: 123,
+    maxCharacters: 123,
+    maxCharactersPerFile: 123,
+    maxCharactersPerUpload: 123
 )
 let dataSourceConfigs = "TODO"
 let updateResponse = try await carbonai.organizations.update(
@@ -5600,11 +5603,17 @@ let autoSyncEnabledSources = AutoSyncEnabledSourcesProperty(
 )
 let maxFiles = 987
 let maxFilesPerUpload = 987
+let maxCharacters = 987
+let maxCharactersPerFile = 987
+let maxCharactersPerUpload = 987
 let updateUsersResponse = try await carbonai.users.updateUsers(
     customerIds: customerIds,
     autoSyncEnabledSources: autoSyncEnabledSources,
     maxFiles: maxFiles,
-    maxFilesPerUpload: maxFilesPerUpload
+    maxFilesPerUpload: maxFilesPerUpload,
+    maxCharacters: maxCharacters,
+    maxCharactersPerFile: maxCharactersPerFile,
+    maxCharactersPerUpload: maxCharactersPerUpload
 )
 ```
 
@@ -5626,6 +5635,21 @@ Custom file upload limit for the user over *all* user's files across all uploads
 ##### max_files_per_upload: `Int`<a id="max_files_per_upload-int"></a>
 
 Custom file upload limit for the user across a single upload.         If set, then the user will not be allowed to upload more files than this limit in a single upload. If not set,         or if set to -1, then the user will have no limit.
+
+
+##### max_characters: `Int`<a id="max_characters-int"></a>
+
+Custom character upload limit for the user over *all* user's files across all uploads.          If set, then the user will not be allowed to upload more characters than this limit. If not set, or if set to -1,         then the user will have no limit.
+
+
+##### max_characters_per_file: `Int`<a id="max_characters_per_file-int"></a>
+
+A single file upload from the user can not exceed this character limit.         If set, then the file will not be synced if it exceeds this limit. If not set, or if set to -1, then the          user will have no limit.
+
+
+##### max_characters_per_upload: `Int`<a id="max_characters_per_upload-int"></a>
+
+Custom character upload limit for the user across a single upload.         If set, then the user won't be able to sync more than this many characters in one upload.          If not set, or if set to -1, then the user will have no limit.
 
 
 #### 🔄 Return<a id="🔄-return"></a>
@@ -5828,6 +5852,7 @@ let urlsToScrape = [
 let downloadCssAndMedia = true
 let generateChunksOnly = true
 let storeFileOnly = true
+let usePremiumProxies = true
 let scrapeSitemapResponse = try await carbonai.utilities.scrapeSitemap(
     url: url,
     tags: tags,
@@ -5847,7 +5872,8 @@ let scrapeSitemapResponse = try await carbonai.utilities.scrapeSitemap(
     urlsToScrape: urlsToScrape,
     downloadCssAndMedia: downloadCssAndMedia,
     generateChunksOnly: generateChunksOnly,
-    storeFileOnly: storeFileOnly
+    storeFileOnly: storeFileOnly,
+    usePremiumProxies: usePremiumProxies
 )
 ```
 
@@ -5920,6 +5946,11 @@ If this flag is enabled, the file will be chunked and stored with Carbon,       
 ##### store_file_only: `Bool`<a id="store_file_only-bool"></a>
 
 If this flag is enabled, the file will be stored with Carbon, but no processing will be done.
+
+
+##### use_premium_proxies: `Bool`<a id="use_premium_proxies-bool"></a>
+
+If the default proxies are blocked and not returning results, this flag can be enabled to use              alternate proxies (residential and office). Scrapes might take longer to finish with this flag enabled.         
 
 
 #### 🌐 Endpoint<a id="🌐-endpoint"></a>
