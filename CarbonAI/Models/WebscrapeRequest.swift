@@ -34,8 +34,10 @@ public struct WebscrapeRequest: Codable, JSONEncodable, Hashable {
     public var generateChunksOnly: Bool? = false
     /** If this flag is enabled, the file will be stored with Carbon, but no processing will be done. */
     public var storeFileOnly: Bool? = false
+    /** If the default proxies are blocked and not returning results, this flag can be enabled to use              alternate proxies (residential and office). Scrapes might take longer to finish with this flag enabled.          */
+    public var usePremiumProxies: Bool? = false
 
-    public init(tags: [String: Tags1]? = nil, url: String, recursionDepth: Int? = 3, maxPagesToScrape: Int? = 100, chunkSize: Int? = 1500, chunkOverlap: Int? = 20, skipEmbeddingGeneration: Bool? = false, enableAutoSync: Bool? = false, generateSparseVectors: Bool? = false, prependFilenameToChunks: Bool? = false, htmlTagsToSkip: [String]? = nil, cssClassesToSkip: [String]? = nil, cssSelectorsToSkip: [String]? = nil, embeddingModel: EmbeddingGenerators? = nil, urlPathsToInclude: [String]? = nil, downloadCssAndMedia: Bool? = false, generateChunksOnly: Bool? = false, storeFileOnly: Bool? = false) {
+    public init(tags: [String: Tags1]? = nil, url: String, recursionDepth: Int? = 3, maxPagesToScrape: Int? = 100, chunkSize: Int? = 1500, chunkOverlap: Int? = 20, skipEmbeddingGeneration: Bool? = false, enableAutoSync: Bool? = false, generateSparseVectors: Bool? = false, prependFilenameToChunks: Bool? = false, htmlTagsToSkip: [String]? = nil, cssClassesToSkip: [String]? = nil, cssSelectorsToSkip: [String]? = nil, embeddingModel: EmbeddingGenerators? = nil, urlPathsToInclude: [String]? = nil, downloadCssAndMedia: Bool? = false, generateChunksOnly: Bool? = false, storeFileOnly: Bool? = false, usePremiumProxies: Bool? = false) {
         self.tags = tags
         self.url = url
         self.recursionDepth = recursionDepth
@@ -54,6 +56,7 @@ public struct WebscrapeRequest: Codable, JSONEncodable, Hashable {
         self.downloadCssAndMedia = downloadCssAndMedia
         self.generateChunksOnly = generateChunksOnly
         self.storeFileOnly = storeFileOnly
+        self.usePremiumProxies = usePremiumProxies
     }
 
     public enum CodingKeys: String, CodingKey, CaseIterable {
@@ -75,6 +78,7 @@ public struct WebscrapeRequest: Codable, JSONEncodable, Hashable {
         case downloadCssAndMedia = "download_css_and_media"
         case generateChunksOnly = "generate_chunks_only"
         case storeFileOnly = "store_file_only"
+        case usePremiumProxies = "use_premium_proxies"
     }
 
     // Encodable protocol methods
@@ -99,6 +103,7 @@ public struct WebscrapeRequest: Codable, JSONEncodable, Hashable {
         try codingContainer.encodeIfPresent(downloadCssAndMedia, forKey: .downloadCssAndMedia)
         try codingContainer.encodeIfPresent(generateChunksOnly, forKey: .generateChunksOnly)
         try codingContainer.encodeIfPresent(storeFileOnly, forKey: .storeFileOnly)
+        try codingContainer.encodeIfPresent(usePremiumProxies, forKey: .usePremiumProxies)
     }
 }
 

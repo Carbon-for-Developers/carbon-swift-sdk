@@ -839,7 +839,8 @@ open class UtilitiesAPI {
         urlsToScrape: [String]? = nil, 
         downloadCssAndMedia: Bool? = nil, 
         generateChunksOnly: Bool? = nil, 
-        storeFileOnly: Bool? = nil
+        storeFileOnly: Bool? = nil, 
+        usePremiumProxies: Bool? = nil
     ) async throws -> AnyCodable {
         let sitemapScrapeRequest = SitemapScrapeRequest(
             tags: tags,
@@ -860,7 +861,8 @@ open class UtilitiesAPI {
             urlsToScrape: urlsToScrape,
             downloadCssAndMedia: downloadCssAndMedia,
             generateChunksOnly: generateChunksOnly,
-            storeFileOnly: storeFileOnly
+            storeFileOnly: storeFileOnly,
+            usePremiumProxies: usePremiumProxies
         )
         return try await withCheckedThrowingContinuation { continuation in
             scrapeSitemapWithRequestBuilder(sitemapScrapeRequest: sitemapScrapeRequest).execute { result in
@@ -902,7 +904,8 @@ open class UtilitiesAPI {
         urlsToScrape: [String]? = nil, 
         downloadCssAndMedia: Bool? = nil, 
         generateChunksOnly: Bool? = nil, 
-        storeFileOnly: Bool? = nil
+        storeFileOnly: Bool? = nil, 
+        usePremiumProxies: Bool? = nil
     ) async throws -> AnyCodable {
         let sitemapScrapeRequest = SitemapScrapeRequest(
             tags: tags,
@@ -923,7 +926,8 @@ open class UtilitiesAPI {
             urlsToScrape: urlsToScrape,
             downloadCssAndMedia: downloadCssAndMedia,
             generateChunksOnly: generateChunksOnly,
-            storeFileOnly: storeFileOnly
+            storeFileOnly: storeFileOnly,
+            usePremiumProxies: usePremiumProxies
         )
         return try await withCheckedThrowingContinuation { continuation in
             scrapeSitemapWithRequestBuilder(sitemapScrapeRequest: sitemapScrapeRequest).execute { result in

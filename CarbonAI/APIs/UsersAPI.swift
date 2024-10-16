@@ -786,12 +786,18 @@ open class UsersAPI {
         customerIds: [String],
         autoSyncEnabledSources: AutoSyncEnabledSourcesProperty? = nil, 
         maxFiles: Int? = nil, 
-        maxFilesPerUpload: Int? = nil
+        maxFilesPerUpload: Int? = nil, 
+        maxCharacters: Int? = nil, 
+        maxCharactersPerFile: Int? = nil, 
+        maxCharactersPerUpload: Int? = nil
     ) async throws -> GenericSuccessResponse {
         let updateUsersInput = UpdateUsersInput(
             autoSyncEnabledSources: autoSyncEnabledSources,
             maxFiles: maxFiles,
             maxFilesPerUpload: maxFilesPerUpload,
+            maxCharacters: maxCharacters,
+            maxCharactersPerFile: maxCharactersPerFile,
+            maxCharactersPerUpload: maxCharactersPerUpload,
             customerIds: customerIds
         )
         return try await withCheckedThrowingContinuation { continuation in
@@ -819,12 +825,18 @@ open class UsersAPI {
         customerIds: [String],
         autoSyncEnabledSources: AutoSyncEnabledSourcesProperty? = nil, 
         maxFiles: Int? = nil, 
-        maxFilesPerUpload: Int? = nil
+        maxFilesPerUpload: Int? = nil, 
+        maxCharacters: Int? = nil, 
+        maxCharactersPerFile: Int? = nil, 
+        maxCharactersPerUpload: Int? = nil
     ) async throws -> GenericSuccessResponse {
         let updateUsersInput = UpdateUsersInput(
             autoSyncEnabledSources: autoSyncEnabledSources,
             maxFiles: maxFiles,
             maxFilesPerUpload: maxFilesPerUpload,
+            maxCharacters: maxCharacters,
+            maxCharactersPerFile: maxCharactersPerFile,
+            maxCharactersPerUpload: maxCharactersPerUpload,
             customerIds: customerIds
         )
         return try await withCheckedThrowingContinuation { continuation in
