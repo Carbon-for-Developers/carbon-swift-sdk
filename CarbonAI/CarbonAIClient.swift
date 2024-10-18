@@ -14,6 +14,7 @@ public class CarbonAIClient {
     public lazy var users: UsersAPI = { return UsersAPI(client: self) }()
     public lazy var utilities: UtilitiesAPI = { return UtilitiesAPI(client: self) }()
     public lazy var webhooks: WebhooksAPI = { return WebhooksAPI(client: self) }()
+    public lazy var whiteLabel: WhiteLabelAPI = { return WhiteLabelAPI(client: self) }()
 
     public init(
         accessToken: String?,
