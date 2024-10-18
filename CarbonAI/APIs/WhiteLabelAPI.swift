@@ -583,6 +583,8 @@ open class WhiteLabelAPI {
         credentials: Credentials? = nil
     ) async throws -> AnyCodable {
         let whiteLabelUpdateRequest = WhiteLabelUpdateRequest(
+            dataSourceType: dataSourceType!,
+            credentials: credentials!
         )
         return try await withCheckedThrowingContinuation { continuation in
             updateWithRequestBuilder(whiteLabelUpdateRequest: whiteLabelUpdateRequest).execute { result in
@@ -610,6 +612,8 @@ open class WhiteLabelAPI {
         credentials: Credentials? = nil
     ) async throws -> AnyCodable {
         let whiteLabelUpdateRequest = WhiteLabelUpdateRequest(
+            dataSourceType: dataSourceType!,
+            credentials: credentials!
         )
         return try await withCheckedThrowingContinuation { continuation in
             updateWithRequestBuilder(whiteLabelUpdateRequest: whiteLabelUpdateRequest).execute { result in
