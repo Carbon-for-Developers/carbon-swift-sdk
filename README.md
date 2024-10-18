@@ -105,6 +105,10 @@ Connect external data to LLMs, no matter the source.
   * [`carbonai.webhooks.addUrl`](#carbonaiwebhooksaddurl)
   * [`carbonai.webhooks.deleteUrl`](#carbonaiwebhooksdeleteurl)
   * [`carbonai.webhooks.urls`](#carbonaiwebhooksurls)
+  * [`carbonai.whiteLabel.create`](#carbonaiwhitelabelcreate)
+  * [`carbonai.whiteLabel.delete`](#carbonaiwhitelabeldelete)
+  * [`carbonai.whiteLabel.list`](#carbonaiwhitelabellist)
+  * [`carbonai.whiteLabel.update`](#carbonaiwhitelabelupdate)
 
 <!-- tocstop -->
 
@@ -6209,6 +6213,152 @@ let urlsResponse = try await carbonai.webhooks.urls(
 #### 🌐 Endpoint<a id="🌐-endpoint"></a>
 
 `/webhooks` `POST`
+
+[🔙 **Back to Table of Contents**](#table-of-contents)
+
+---
+
+
+### `carbonai.whiteLabel.create`<a id="carbonaiwhitelabelcreate"></a>
+
+Create White Labels
+
+#### 🛠️ Usage<a id="🛠️-usage"></a>
+
+```swift
+let createResponse = try await carbonai.whiteLabel.create(
+)
+```
+
+#### ⚙️ Request Body<a id="⚙️-request-body"></a>
+
+`[WhiteLabelCreateRequestInner]`
+
+
+#### 🌐 Endpoint<a id="🌐-endpoint"></a>
+
+`/white_label/create` `POST`
+
+[🔙 **Back to Table of Contents**](#table-of-contents)
+
+---
+
+
+### `carbonai.whiteLabel.delete`<a id="carbonaiwhitelabeldelete"></a>
+
+Delete White Labels
+
+#### 🛠️ Usage<a id="🛠️-usage"></a>
+
+```swift
+let ids = [
+123
+]
+let deleteResponse = try await carbonai.whiteLabel.delete(
+    ids: ids
+)
+```
+
+#### ⚙️ Parameters<a id="⚙️-parameters"></a>
+
+##### ids: `[Int]`<a id="ids-int"></a>
+
+
+#### 🌐 Endpoint<a id="🌐-endpoint"></a>
+
+`/white_label/delete` `POST`
+
+[🔙 **Back to Table of Contents**](#table-of-contents)
+
+---
+
+
+### `carbonai.whiteLabel.list`<a id="carbonaiwhitelabellist"></a>
+
+List White Labels
+
+#### 🛠️ Usage<a id="🛠️-usage"></a>
+
+```swift
+let pagination = Pagination(
+    limit: 123,
+    offset: 123
+)
+let orderBy = WhiteLabelOrderByColumns(
+    
+)
+let orderDir = OrderDir(
+    
+)
+let filters = WhiteLabelFilters(
+    ids: [
+    123
+    ],
+    dataSourceType: [
+    OauthBasedConnectors.box
+    ]
+)
+let listResponse = try await carbonai.whiteLabel.list(
+    pagination: pagination,
+    orderBy: orderBy,
+    orderDir: orderDir,
+    filters: filters
+)
+```
+
+#### ⚙️ Parameters<a id="⚙️-parameters"></a>
+
+##### pagination: [`Pagination`](./CarbonAI/Models/Pagination.swift)<a id="pagination-paginationcarbonaimodelspaginationswift"></a>
+
+
+##### order_by: `WhiteLabelOrderByColumns`<a id="order_by-whitelabelorderbycolumns"></a>
+
+
+##### order_dir: `OrderDir`<a id="order_dir-orderdir"></a>
+
+
+##### filters: [`WhiteLabelFilters`](./CarbonAI/Models/WhiteLabelFilters.swift)<a id="filters-whitelabelfilterscarbonaimodelswhitelabelfiltersswift"></a>
+
+
+#### 🌐 Endpoint<a id="🌐-endpoint"></a>
+
+`/white_label/list` `POST`
+
+[🔙 **Back to Table of Contents**](#table-of-contents)
+
+---
+
+
+### `carbonai.whiteLabel.update`<a id="carbonaiwhitelabelupdate"></a>
+
+Update White Label
+
+#### 🛠️ Usage<a id="🛠️-usage"></a>
+
+```swift
+let dataSourceType = "dataSourceType_example"
+let credentials = Credentials(
+    clientId: "clientId_example",
+    redirectUri: "redirectUri_example",
+    clientSecret: "clientSecret_example"
+)
+let updateResponse = try await carbonai.whiteLabel.update(
+    dataSourceType: dataSourceType,
+    credentials: credentials
+)
+```
+
+#### ⚙️ Parameters<a id="⚙️-parameters"></a>
+
+##### data_source_type: `String`<a id="data_source_type-string"></a>
+
+
+##### credentials: [`Credentials`](./CarbonAI/Models/Credentials.swift)<a id="credentials-credentialscarbonaimodelscredentialsswift"></a>
+
+
+#### 🌐 Endpoint<a id="🌐-endpoint"></a>
+
+`/white_label/update` `POST`
 
 [🔙 **Back to Table of Contents**](#table-of-contents)
 
