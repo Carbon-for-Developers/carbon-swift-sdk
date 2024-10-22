@@ -925,4 +925,172 @@ open class UsersAPI {
         fatalError("Error: Unable to send request to POST /update_users")
     }
 
+
+    /**
+     Me Endpoint
+     
+     - parameter apiResponseQueue: The queue on which api response is dispatched.
+     - parameter completion: completion handler to receive the data and the error objects
+     */
+    @discardableResult
+    open class func whoAmISync(apiResponseQueue: DispatchQueue = CarbonAIAPI.apiResponseQueue, completion: @escaping ((_ data: UserResponse?, _ error: Error?) -> Void)) -> RequestTask {
+        return whoAmIWithRequestBuilder().execute(apiResponseQueue) { result in
+            switch result {
+            case let .success(response):
+                completion(response.body, nil)
+            case let .failure(error):
+                completion(nil, error)
+            }
+        }
+    }
+
+    /**
+     Me Endpoint
+     
+     - parameter apiResponseQueue: The queue on which api response is dispatched.
+     - parameter completion: completion handler to receive the data and the error objects
+     */
+    @available(iOS 13.0, macOS 10.15, tvOS 13.0, watchOS 6.0, *)
+    private class func whoAmIAsyncMappedParams() async throws -> UserResponse {
+        return try await withCheckedThrowingContinuation { continuation in
+            whoAmIWithRequestBuilder().execute { result in
+                switch result {
+                case let .success(response):
+                    continuation.resume(returning: response.body)
+                case let .failure(error):
+                    continuation.resume(throwing: error)
+                }
+            }
+        }
+    }
+
+    /**
+     Me Endpoint
+     
+     - parameter apiResponseQueue: The queue on which api response is dispatched.
+     - parameter completion: completion handler to receive the data and the error objects
+     */
+    @available(iOS 13.0, macOS 10.15, tvOS 13.0, watchOS 6.0, *)
+    open class func whoAmI(
+    ) async throws -> UserResponse {
+        return try await withCheckedThrowingContinuation { continuation in
+            whoAmIWithRequestBuilder().execute { result in
+                switch result {
+                case let .success(response):
+                    continuation.resume(returning: response.body)
+                case let .failure(error):
+                    continuation.resume(throwing: error)
+                }
+            }
+        }
+    }
+
+
+    /**
+     Me Endpoint
+     
+     - parameter apiResponseQueue: The queue on which api response is dispatched.
+     - parameter completion: completion handler to receive the data and the error objects
+     */
+    @available(iOS 13.0, macOS 10.15, tvOS 13.0, watchOS 6.0, *)
+    open func whoAmI(
+    ) async throws -> UserResponse {
+        return try await withCheckedThrowingContinuation { continuation in
+            whoAmIWithRequestBuilder().execute { result in
+                switch result {
+                case let .success(response):
+                    continuation.resume(returning: response.body)
+                case let .failure(error):
+                    continuation.resume(throwing: error)
+                }
+            }
+        }
+    }
+
+
+
+    /**
+     Me Endpoint
+     - GET /whoami
+     - API Key:
+       - type: apiKey authorization 
+       - name: accessToken
+     - API Key:
+       - type: apiKey authorization 
+       - name: apiKey
+     - API Key:
+       - type: apiKey customer-id 
+       - name: customerId
+     - returns: RequestBuilder<UserResponse> 
+     */
+    open class func whoAmIWithRequestBuilder(
+    ) -> RequestBuilder<UserResponse> {
+        let basePath = CarbonAIAPI.basePath;
+        let localVariablePath = "/whoami"
+        let localVariableURLString = basePath + localVariablePath
+        let localVariableParameters: [String: Any]? = nil
+
+        var localVariableUrlComponents = URLComponents(string: localVariableURLString)
+
+        let localVariableNillableHeaders: [String: Any?] = [
+            :
+        ]
+
+        var localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
+
+        do {
+            try Authentication.setAuthenticationParameters(headers: &localVariableHeaderParameters, url: &localVariableUrlComponents, in: "header", name: "authorization", value: CarbonAIAPI.accessToken, prefix: "Token ")
+            try Authentication.setAuthenticationParameters(headers: &localVariableHeaderParameters, url: &localVariableUrlComponents, in: "header", name: "authorization", value: CarbonAIAPI.apiKey, prefix: "Bearer ")
+            try Authentication.setAuthenticationParameters(headers: &localVariableHeaderParameters, url: &localVariableUrlComponents, in: "header", name: "customer-id", value: CarbonAIAPI.customerId, prefix: nil)
+            let localVariableRequestBuilder: RequestBuilder<UserResponse>.Type = CarbonAIAPI.requestBuilderFactory.getBuilder()
+            let URLString = localVariableUrlComponents?.string ?? localVariableURLString
+            return localVariableRequestBuilder.init(method: "GET", URLString: URLString, parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        } catch {
+            print("Error: \(error)")
+        }
+        fatalError("Error: Unable to send request to GET /whoami")
+    }
+
+    /**
+     Me Endpoint
+     - GET /whoami
+     - API Key:
+       - type: apiKey authorization 
+       - name: accessToken
+     - API Key:
+       - type: apiKey authorization 
+       - name: apiKey
+     - API Key:
+       - type: apiKey customer-id 
+       - name: customerId
+     - returns: RequestBuilder<UserResponse> 
+     */
+    open func whoAmIWithRequestBuilder(
+    ) -> RequestBuilder<UserResponse> {
+        let basePath = self.client!.basePath;
+        let localVariablePath = "/whoami"
+        let localVariableURLString = basePath + localVariablePath
+        let localVariableParameters: [String: Any]? = nil
+
+        var localVariableUrlComponents = URLComponents(string: localVariableURLString)
+
+        let localVariableNillableHeaders: [String: Any?] = [
+            :
+        ]
+
+        var localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
+
+        do {
+            try Authentication.setAuthenticationParameters(headers: &localVariableHeaderParameters, url: &localVariableUrlComponents, in: "header", name: "authorization", value: self.client!.accessToken, prefix: "Token ")
+            try Authentication.setAuthenticationParameters(headers: &localVariableHeaderParameters, url: &localVariableUrlComponents, in: "header", name: "authorization", value: self.client!.apiKey, prefix: "Bearer ")
+            try Authentication.setAuthenticationParameters(headers: &localVariableHeaderParameters, url: &localVariableUrlComponents, in: "header", name: "customer-id", value: self.client!.customerId, prefix: nil)
+            let localVariableRequestBuilder: RequestBuilder<UserResponse>.Type = CarbonAIAPI.requestBuilderFactory.getBuilder()
+            let URLString = localVariableUrlComponents?.string ?? localVariableURLString
+            return localVariableRequestBuilder.init(method: "GET", URLString: URLString, parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        } catch {
+            print("Error: \(error)")
+        }
+        fatalError("Error: Unable to send request to GET /whoami")
+    }
+
 }

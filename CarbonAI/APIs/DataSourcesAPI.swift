@@ -19,6 +19,194 @@ open class DataSourcesAPI {
     }
 
     /**
+     Add Data Source Tags
+     
+     - parameter addDataSourceTagsInput: (body)  
+     - parameter apiResponseQueue: The queue on which api response is dispatched.
+     - parameter completion: completion handler to receive the data and the error objects
+     */
+    @discardableResult
+    open class func addTagsSync(addDataSourceTagsInput: AddDataSourceTagsInput, apiResponseQueue: DispatchQueue = CarbonAIAPI.apiResponseQueue, completion: @escaping ((_ data: OrganizationUserDataSourceAPI?, _ error: Error?) -> Void)) -> RequestTask {
+        return addTagsWithRequestBuilder(addDataSourceTagsInput: addDataSourceTagsInput).execute(apiResponseQueue) { result in
+            switch result {
+            case let .success(response):
+                completion(response.body, nil)
+            case let .failure(error):
+                completion(nil, error)
+            }
+        }
+    }
+
+    /**
+     Add Data Source Tags
+     
+     - parameter addDataSourceTagsInput: (body)  
+     - parameter apiResponseQueue: The queue on which api response is dispatched.
+     - parameter completion: completion handler to receive the data and the error objects
+     */
+    @available(iOS 13.0, macOS 10.15, tvOS 13.0, watchOS 6.0, *)
+    private class func addTagsAsyncMappedParams(addDataSourceTagsInput: AddDataSourceTagsInput) async throws -> OrganizationUserDataSourceAPI {
+        return try await withCheckedThrowingContinuation { continuation in
+            addTagsWithRequestBuilder(addDataSourceTagsInput: addDataSourceTagsInput).execute { result in
+                switch result {
+                case let .success(response):
+                    continuation.resume(returning: response.body)
+                case let .failure(error):
+                    continuation.resume(throwing: error)
+                }
+            }
+        }
+    }
+
+    /**
+     Add Data Source Tags
+     
+     - parameter addDataSourceTagsInput: (body)  
+     - parameter apiResponseQueue: The queue on which api response is dispatched.
+     - parameter completion: completion handler to receive the data and the error objects
+     */
+    @available(iOS 13.0, macOS 10.15, tvOS 13.0, watchOS 6.0, *)
+    open class func addTags(
+        tags: AnyCodable,
+        dataSourceId: Int
+    ) async throws -> OrganizationUserDataSourceAPI {
+        let addDataSourceTagsInput = AddDataSourceTagsInput(
+            tags: tags,
+            dataSourceId: dataSourceId
+        )
+        return try await withCheckedThrowingContinuation { continuation in
+            addTagsWithRequestBuilder(addDataSourceTagsInput: addDataSourceTagsInput).execute { result in
+                switch result {
+                case let .success(response):
+                    continuation.resume(returning: response.body)
+                case let .failure(error):
+                    continuation.resume(throwing: error)
+                }
+            }
+        }
+    }
+
+
+    /**
+     Add Data Source Tags
+     
+     - parameter addDataSourceTagsInput: (body)  
+     - parameter apiResponseQueue: The queue on which api response is dispatched.
+     - parameter completion: completion handler to receive the data and the error objects
+     */
+    @available(iOS 13.0, macOS 10.15, tvOS 13.0, watchOS 6.0, *)
+    open func addTags(
+        tags: AnyCodable,
+        dataSourceId: Int
+    ) async throws -> OrganizationUserDataSourceAPI {
+        let addDataSourceTagsInput = AddDataSourceTagsInput(
+            tags: tags,
+            dataSourceId: dataSourceId
+        )
+        return try await withCheckedThrowingContinuation { continuation in
+            addTagsWithRequestBuilder(addDataSourceTagsInput: addDataSourceTagsInput).execute { result in
+                switch result {
+                case let .success(response):
+                    continuation.resume(returning: response.body)
+                case let .failure(error):
+                    continuation.resume(throwing: error)
+                }
+            }
+        }
+    }
+
+
+
+    /**
+     Add Data Source Tags
+     - POST /data_sources/tags/add
+     - API Key:
+       - type: apiKey authorization 
+       - name: accessToken
+     - API Key:
+       - type: apiKey authorization 
+       - name: apiKey
+     - API Key:
+       - type: apiKey customer-id 
+       - name: customerId
+     - parameter addDataSourceTagsInput: (body)  
+     - returns: RequestBuilder<OrganizationUserDataSourceAPI> 
+     */
+    open class func addTagsWithRequestBuilder(
+            addDataSourceTagsInput: AddDataSourceTagsInput
+    ) -> RequestBuilder<OrganizationUserDataSourceAPI> {
+        let basePath = CarbonAIAPI.basePath;
+        let localVariablePath = "/data_sources/tags/add"
+        let localVariableURLString = basePath + localVariablePath
+        let localVariableParameters = JSONEncodingHelper.encodingParameters(forEncodableObject: addDataSourceTagsInput)
+
+        var localVariableUrlComponents = URLComponents(string: localVariableURLString)
+
+        let localVariableNillableHeaders: [String: Any?] = [
+            :
+        ]
+
+        var localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
+
+        do {
+            try Authentication.setAuthenticationParameters(headers: &localVariableHeaderParameters, url: &localVariableUrlComponents, in: "header", name: "authorization", value: CarbonAIAPI.accessToken, prefix: "Token ")
+            try Authentication.setAuthenticationParameters(headers: &localVariableHeaderParameters, url: &localVariableUrlComponents, in: "header", name: "authorization", value: CarbonAIAPI.apiKey, prefix: "Bearer ")
+            try Authentication.setAuthenticationParameters(headers: &localVariableHeaderParameters, url: &localVariableUrlComponents, in: "header", name: "customer-id", value: CarbonAIAPI.customerId, prefix: nil)
+            let localVariableRequestBuilder: RequestBuilder<OrganizationUserDataSourceAPI>.Type = CarbonAIAPI.requestBuilderFactory.getBuilder()
+            let URLString = localVariableUrlComponents?.string ?? localVariableURLString
+            return localVariableRequestBuilder.init(method: "POST", URLString: URLString, parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        } catch {
+            print("Error: \(error)")
+        }
+        fatalError("Error: Unable to send request to POST /data_sources/tags/add")
+    }
+
+    /**
+     Add Data Source Tags
+     - POST /data_sources/tags/add
+     - API Key:
+       - type: apiKey authorization 
+       - name: accessToken
+     - API Key:
+       - type: apiKey authorization 
+       - name: apiKey
+     - API Key:
+       - type: apiKey customer-id 
+       - name: customerId
+     - parameter addDataSourceTagsInput: (body)  
+     - returns: RequestBuilder<OrganizationUserDataSourceAPI> 
+     */
+    open func addTagsWithRequestBuilder(
+            addDataSourceTagsInput: AddDataSourceTagsInput
+    ) -> RequestBuilder<OrganizationUserDataSourceAPI> {
+        let basePath = self.client!.basePath;
+        let localVariablePath = "/data_sources/tags/add"
+        let localVariableURLString = basePath + localVariablePath
+        let localVariableParameters = JSONEncodingHelper.encodingParameters(forEncodableObject: addDataSourceTagsInput)
+
+        var localVariableUrlComponents = URLComponents(string: localVariableURLString)
+
+        let localVariableNillableHeaders: [String: Any?] = [
+            :
+        ]
+
+        var localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
+
+        do {
+            try Authentication.setAuthenticationParameters(headers: &localVariableHeaderParameters, url: &localVariableUrlComponents, in: "header", name: "authorization", value: self.client!.accessToken, prefix: "Token ")
+            try Authentication.setAuthenticationParameters(headers: &localVariableHeaderParameters, url: &localVariableUrlComponents, in: "header", name: "authorization", value: self.client!.apiKey, prefix: "Bearer ")
+            try Authentication.setAuthenticationParameters(headers: &localVariableHeaderParameters, url: &localVariableUrlComponents, in: "header", name: "customer-id", value: self.client!.customerId, prefix: nil)
+            let localVariableRequestBuilder: RequestBuilder<OrganizationUserDataSourceAPI>.Type = CarbonAIAPI.requestBuilderFactory.getBuilder()
+            let URLString = localVariableUrlComponents?.string ?? localVariableURLString
+            return localVariableRequestBuilder.init(method: "POST", URLString: URLString, parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        } catch {
+            print("Error: \(error)")
+        }
+        fatalError("Error: Unable to send request to POST /data_sources/tags/add")
+    }
+
+
+    /**
      User Data Sources
      
      - parameter organizationUserDataSourceQueryInput: (body)  
@@ -211,6 +399,198 @@ open class DataSourcesAPI {
             print("Error: \(error)")
         }
         fatalError("Error: Unable to send request to POST /user_data_sources")
+    }
+
+
+    /**
+     Remove Data Source Tags
+     
+     - parameter removeDataSourceTagsInput: (body)  
+     - parameter apiResponseQueue: The queue on which api response is dispatched.
+     - parameter completion: completion handler to receive the data and the error objects
+     */
+    @discardableResult
+    open class func removeTagsSync(removeDataSourceTagsInput: RemoveDataSourceTagsInput, apiResponseQueue: DispatchQueue = CarbonAIAPI.apiResponseQueue, completion: @escaping ((_ data: OrganizationUserDataSourceAPI?, _ error: Error?) -> Void)) -> RequestTask {
+        return removeTagsWithRequestBuilder(removeDataSourceTagsInput: removeDataSourceTagsInput).execute(apiResponseQueue) { result in
+            switch result {
+            case let .success(response):
+                completion(response.body, nil)
+            case let .failure(error):
+                completion(nil, error)
+            }
+        }
+    }
+
+    /**
+     Remove Data Source Tags
+     
+     - parameter removeDataSourceTagsInput: (body)  
+     - parameter apiResponseQueue: The queue on which api response is dispatched.
+     - parameter completion: completion handler to receive the data and the error objects
+     */
+    @available(iOS 13.0, macOS 10.15, tvOS 13.0, watchOS 6.0, *)
+    private class func removeTagsAsyncMappedParams(removeDataSourceTagsInput: RemoveDataSourceTagsInput) async throws -> OrganizationUserDataSourceAPI {
+        return try await withCheckedThrowingContinuation { continuation in
+            removeTagsWithRequestBuilder(removeDataSourceTagsInput: removeDataSourceTagsInput).execute { result in
+                switch result {
+                case let .success(response):
+                    continuation.resume(returning: response.body)
+                case let .failure(error):
+                    continuation.resume(throwing: error)
+                }
+            }
+        }
+    }
+
+    /**
+     Remove Data Source Tags
+     
+     - parameter removeDataSourceTagsInput: (body)  
+     - parameter apiResponseQueue: The queue on which api response is dispatched.
+     - parameter completion: completion handler to receive the data and the error objects
+     */
+    @available(iOS 13.0, macOS 10.15, tvOS 13.0, watchOS 6.0, *)
+    open class func removeTags(
+        dataSourceId: Int,
+        tagsToRemove: [String]? = nil, 
+        removeAllTags: Bool? = nil
+    ) async throws -> OrganizationUserDataSourceAPI {
+        let removeDataSourceTagsInput = RemoveDataSourceTagsInput(
+            dataSourceId: dataSourceId,
+            tagsToRemove: tagsToRemove,
+            removeAllTags: removeAllTags
+        )
+        return try await withCheckedThrowingContinuation { continuation in
+            removeTagsWithRequestBuilder(removeDataSourceTagsInput: removeDataSourceTagsInput).execute { result in
+                switch result {
+                case let .success(response):
+                    continuation.resume(returning: response.body)
+                case let .failure(error):
+                    continuation.resume(throwing: error)
+                }
+            }
+        }
+    }
+
+
+    /**
+     Remove Data Source Tags
+     
+     - parameter removeDataSourceTagsInput: (body)  
+     - parameter apiResponseQueue: The queue on which api response is dispatched.
+     - parameter completion: completion handler to receive the data and the error objects
+     */
+    @available(iOS 13.0, macOS 10.15, tvOS 13.0, watchOS 6.0, *)
+    open func removeTags(
+        dataSourceId: Int,
+        tagsToRemove: [String]? = nil, 
+        removeAllTags: Bool? = nil
+    ) async throws -> OrganizationUserDataSourceAPI {
+        let removeDataSourceTagsInput = RemoveDataSourceTagsInput(
+            dataSourceId: dataSourceId,
+            tagsToRemove: tagsToRemove,
+            removeAllTags: removeAllTags
+        )
+        return try await withCheckedThrowingContinuation { continuation in
+            removeTagsWithRequestBuilder(removeDataSourceTagsInput: removeDataSourceTagsInput).execute { result in
+                switch result {
+                case let .success(response):
+                    continuation.resume(returning: response.body)
+                case let .failure(error):
+                    continuation.resume(throwing: error)
+                }
+            }
+        }
+    }
+
+
+
+    /**
+     Remove Data Source Tags
+     - POST /data_sources/tags/remove
+     - API Key:
+       - type: apiKey authorization 
+       - name: accessToken
+     - API Key:
+       - type: apiKey authorization 
+       - name: apiKey
+     - API Key:
+       - type: apiKey customer-id 
+       - name: customerId
+     - parameter removeDataSourceTagsInput: (body)  
+     - returns: RequestBuilder<OrganizationUserDataSourceAPI> 
+     */
+    open class func removeTagsWithRequestBuilder(
+            removeDataSourceTagsInput: RemoveDataSourceTagsInput
+    ) -> RequestBuilder<OrganizationUserDataSourceAPI> {
+        let basePath = CarbonAIAPI.basePath;
+        let localVariablePath = "/data_sources/tags/remove"
+        let localVariableURLString = basePath + localVariablePath
+        let localVariableParameters = JSONEncodingHelper.encodingParameters(forEncodableObject: removeDataSourceTagsInput)
+
+        var localVariableUrlComponents = URLComponents(string: localVariableURLString)
+
+        let localVariableNillableHeaders: [String: Any?] = [
+            :
+        ]
+
+        var localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
+
+        do {
+            try Authentication.setAuthenticationParameters(headers: &localVariableHeaderParameters, url: &localVariableUrlComponents, in: "header", name: "authorization", value: CarbonAIAPI.accessToken, prefix: "Token ")
+            try Authentication.setAuthenticationParameters(headers: &localVariableHeaderParameters, url: &localVariableUrlComponents, in: "header", name: "authorization", value: CarbonAIAPI.apiKey, prefix: "Bearer ")
+            try Authentication.setAuthenticationParameters(headers: &localVariableHeaderParameters, url: &localVariableUrlComponents, in: "header", name: "customer-id", value: CarbonAIAPI.customerId, prefix: nil)
+            let localVariableRequestBuilder: RequestBuilder<OrganizationUserDataSourceAPI>.Type = CarbonAIAPI.requestBuilderFactory.getBuilder()
+            let URLString = localVariableUrlComponents?.string ?? localVariableURLString
+            return localVariableRequestBuilder.init(method: "POST", URLString: URLString, parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        } catch {
+            print("Error: \(error)")
+        }
+        fatalError("Error: Unable to send request to POST /data_sources/tags/remove")
+    }
+
+    /**
+     Remove Data Source Tags
+     - POST /data_sources/tags/remove
+     - API Key:
+       - type: apiKey authorization 
+       - name: accessToken
+     - API Key:
+       - type: apiKey authorization 
+       - name: apiKey
+     - API Key:
+       - type: apiKey customer-id 
+       - name: customerId
+     - parameter removeDataSourceTagsInput: (body)  
+     - returns: RequestBuilder<OrganizationUserDataSourceAPI> 
+     */
+    open func removeTagsWithRequestBuilder(
+            removeDataSourceTagsInput: RemoveDataSourceTagsInput
+    ) -> RequestBuilder<OrganizationUserDataSourceAPI> {
+        let basePath = self.client!.basePath;
+        let localVariablePath = "/data_sources/tags/remove"
+        let localVariableURLString = basePath + localVariablePath
+        let localVariableParameters = JSONEncodingHelper.encodingParameters(forEncodableObject: removeDataSourceTagsInput)
+
+        var localVariableUrlComponents = URLComponents(string: localVariableURLString)
+
+        let localVariableNillableHeaders: [String: Any?] = [
+            :
+        ]
+
+        var localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
+
+        do {
+            try Authentication.setAuthenticationParameters(headers: &localVariableHeaderParameters, url: &localVariableUrlComponents, in: "header", name: "authorization", value: self.client!.accessToken, prefix: "Token ")
+            try Authentication.setAuthenticationParameters(headers: &localVariableHeaderParameters, url: &localVariableUrlComponents, in: "header", name: "authorization", value: self.client!.apiKey, prefix: "Bearer ")
+            try Authentication.setAuthenticationParameters(headers: &localVariableHeaderParameters, url: &localVariableUrlComponents, in: "header", name: "customer-id", value: self.client!.customerId, prefix: nil)
+            let localVariableRequestBuilder: RequestBuilder<OrganizationUserDataSourceAPI>.Type = CarbonAIAPI.requestBuilderFactory.getBuilder()
+            let URLString = localVariableUrlComponents?.string ?? localVariableURLString
+            return localVariableRequestBuilder.init(method: "POST", URLString: URLString, parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        } catch {
+            print("Error: \(error)")
+        }
+        fatalError("Error: Unable to send request to POST /data_sources/tags/remove")
     }
 
 

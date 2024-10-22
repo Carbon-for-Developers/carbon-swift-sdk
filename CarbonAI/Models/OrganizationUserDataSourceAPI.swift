@@ -12,6 +12,7 @@ import AnyCodable
 
 public struct OrganizationUserDataSourceAPI: Codable, JSONEncodable, Hashable {
 
+    public var tags: AnyCodable
     public var id: Int
     public var dataSourceExternalId: String?
     public var dataSourceType: DataSourceType
@@ -30,7 +31,8 @@ public struct OrganizationUserDataSourceAPI: Codable, JSONEncodable, Hashable {
     public var filesSyncedAt: Date?
     public var dataSourceMetadata: AnyCodable
 
-    public init(id: Int, dataSourceExternalId: String?, dataSourceType: DataSourceType, token: AnyCodable?, syncStatus: DataSourceSyncStatuses, sourceItemsSyncedAt: Date?, organizationUserId: Int, organizationId: Int, organizationSuppliedUserId: String, revokedAccess: Bool, lastSyncedAt: Date, lastSyncAction: DataSourceLastSyncActions, enableAutoSync: Bool?, createdAt: Date, updatedAt: Date, filesSyncedAt: Date?, dataSourceMetadata: AnyCodable) {
+    public init(tags: AnyCodable, id: Int, dataSourceExternalId: String?, dataSourceType: DataSourceType, token: AnyCodable?, syncStatus: DataSourceSyncStatuses, sourceItemsSyncedAt: Date?, organizationUserId: Int, organizationId: Int, organizationSuppliedUserId: String, revokedAccess: Bool, lastSyncedAt: Date, lastSyncAction: DataSourceLastSyncActions, enableAutoSync: Bool?, createdAt: Date, updatedAt: Date, filesSyncedAt: Date?, dataSourceMetadata: AnyCodable) {
+        self.tags = tags
         self.id = id
         self.dataSourceExternalId = dataSourceExternalId
         self.dataSourceType = dataSourceType
@@ -51,6 +53,7 @@ public struct OrganizationUserDataSourceAPI: Codable, JSONEncodable, Hashable {
     }
 
     public enum CodingKeys: String, CodingKey, CaseIterable {
+        case tags
         case id
         case dataSourceExternalId = "data_source_external_id"
         case dataSourceType = "data_source_type"
@@ -74,6 +77,7 @@ public struct OrganizationUserDataSourceAPI: Codable, JSONEncodable, Hashable {
 
     public func encode(to encoder: Encoder) throws {
         var codingContainer = encoder.container(keyedBy: CodingKeys.self)
+        try codingContainer.encode(tags, forKey: .tags)
         try codingContainer.encode(id, forKey: .id)
         try codingContainer.encode(dataSourceExternalId, forKey: .dataSourceExternalId)
         try codingContainer.encode(dataSourceType, forKey: .dataSourceType)

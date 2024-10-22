@@ -15,17 +15,20 @@ public struct WhiteLabelingResponse: Codable, JSONEncodable, Hashable {
     public var removeBranding: Bool
     public var integrations: AnyCodable
     public var customLimits: AnyCodable
+    public var connectorSettings: AnyCodable
 
-    public init(removeBranding: Bool, integrations: AnyCodable, customLimits: AnyCodable) {
+    public init(removeBranding: Bool, integrations: AnyCodable, customLimits: AnyCodable, connectorSettings: AnyCodable) {
         self.removeBranding = removeBranding
         self.integrations = integrations
         self.customLimits = customLimits
+        self.connectorSettings = connectorSettings
     }
 
     public enum CodingKeys: String, CodingKey, CaseIterable {
         case removeBranding = "remove_branding"
         case integrations
         case customLimits = "custom_limits"
+        case connectorSettings = "connector_settings"
     }
 
     // Encodable protocol methods
@@ -35,6 +38,7 @@ public struct WhiteLabelingResponse: Codable, JSONEncodable, Hashable {
         try codingContainer.encode(removeBranding, forKey: .removeBranding)
         try codingContainer.encode(integrations, forKey: .integrations)
         try codingContainer.encode(customLimits, forKey: .customLimits)
+        try codingContainer.encode(connectorSettings, forKey: .connectorSettings)
     }
 }
 

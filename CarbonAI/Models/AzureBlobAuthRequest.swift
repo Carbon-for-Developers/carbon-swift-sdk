@@ -15,17 +15,21 @@ public struct AzureBlobAuthRequest: Codable, JSONEncodable, Hashable {
     public var accountName: String
     public var accountKey: String
     public var syncSourceItems: Bool? = true
+    /** Tags to be associated with the data source. If the data source already has tags set, then an upsert will be performed. */
+    public var dataSourceTags: AnyCodable?
 
-    public init(accountName: String, accountKey: String, syncSourceItems: Bool? = true) {
+    public init(accountName: String, accountKey: String, syncSourceItems: Bool? = true, dataSourceTags: AnyCodable? = nil) {
         self.accountName = accountName
         self.accountKey = accountKey
         self.syncSourceItems = syncSourceItems
+        self.dataSourceTags = dataSourceTags
     }
 
     public enum CodingKeys: String, CodingKey, CaseIterable {
         case accountName = "account_name"
         case accountKey = "account_key"
         case syncSourceItems = "sync_source_items"
+        case dataSourceTags = "data_source_tags"
     }
 
     // Encodable protocol methods
@@ -35,6 +39,7 @@ public struct AzureBlobAuthRequest: Codable, JSONEncodable, Hashable {
         try codingContainer.encode(accountName, forKey: .accountName)
         try codingContainer.encode(accountKey, forKey: .accountKey)
         try codingContainer.encodeIfPresent(syncSourceItems, forKey: .syncSourceItems)
+        try codingContainer.encodeIfPresent(dataSourceTags, forKey: .dataSourceTags)
     }
 }
 

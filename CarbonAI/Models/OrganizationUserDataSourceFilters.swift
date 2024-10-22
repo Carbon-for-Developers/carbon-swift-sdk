@@ -12,17 +12,21 @@ import AnyCodable
 
 public struct OrganizationUserDataSourceFilters: Codable, JSONEncodable, Hashable {
 
+    /**          Tags to filter by. Supports logical AND and OR operations. Input should be like below:         {             \"OR\": [                 {                 \"key\": \"subject\",                 \"value\": \"holy-bible\",                 \"negate\": false                 },                 {                     \"key\": \"person-of-interest\",                     \"value\": \"jesus christ\",                     \"negate\": false                 },                 {                     \"key\": \"genre\",                     \"value\": \"fiction\",                     \"negate\": true                 }                 {                     \"AND\": [                         {                             \"key\": \"subject\",                             \"value\": \"tao-te-ching\",                             \"negate\": true                         },                         {                             \"key\": \"author\",                             \"value\": \"lao-tzu\",                             \"negate\": false                         }                     ]                 }             ]         }         For a single filter, the filter block can be placed within either an \"AND\" or \"OR\" block.          */
+    public var tags: AnyCodable?
     public var source: DataSourceTypeNullable?
     public var ids: [Int]?
     public var revokedAccess: Bool?
 
-    public init(source: DataSourceTypeNullable? = nil, ids: [Int]? = nil, revokedAccess: Bool? = nil) {
+    public init(tags: AnyCodable? = nil, source: DataSourceTypeNullable? = nil, ids: [Int]? = nil, revokedAccess: Bool? = nil) {
+        self.tags = tags
         self.source = source
         self.ids = ids
         self.revokedAccess = revokedAccess
     }
 
     public enum CodingKeys: String, CodingKey, CaseIterable {
+        case tags
         case source
         case ids
         case revokedAccess = "revoked_access"
@@ -32,6 +36,7 @@ public struct OrganizationUserDataSourceFilters: Codable, JSONEncodable, Hashabl
 
     public func encode(to encoder: Encoder) throws {
         var codingContainer = encoder.container(keyedBy: CodingKeys.self)
+        try codingContainer.encodeIfPresent(tags, forKey: .tags)
         try codingContainer.encodeIfPresent(source, forKey: .source)
         try codingContainer.encodeIfPresent(ids, forKey: .ids)
         try codingContainer.encodeIfPresent(revokedAccess, forKey: .revokedAccess)
