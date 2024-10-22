@@ -33,8 +33,10 @@ public struct SyncOptions: Codable, JSONEncodable, Hashable {
     public var fileSyncConfig: FileSyncConfigNullable?
     /** Automatically open source file picker after the OAuth flow is complete. This flag is currently supported by         BOX, DROPBOX, GOOGLE_DRIVE, ONEDRIVE, SHAREPOINT. It will be ignored for other data sources. */
     public var automaticallyOpenFilePicker: Bool?
+    /** Tags to be associated with the data source. If the data source already has tags set, then an upsert will be performed. */
+    public var dataSourceTags: AnyCodable?
 
-    public init(tags: AnyCodable? = nil, chunkSize: Int? = 1500, chunkOverlap: Int? = 20, skipEmbeddingGeneration: Bool? = false, embeddingModel: EmbeddingGeneratorsNullable? = nil, generateSparseVectors: Bool? = false, prependFilenameToChunks: Bool? = false, maxItemsPerChunk: Int? = nil, syncFilesOnConnection: Bool? = true, setPageAsBoundary: Bool? = false, requestId: String? = nil, enableFilePicker: Bool? = true, syncSourceItems: Bool? = true, incrementalSync: Bool? = false, fileSyncConfig: FileSyncConfigNullable? = nil, automaticallyOpenFilePicker: Bool? = nil) {
+    public init(tags: AnyCodable? = nil, chunkSize: Int? = 1500, chunkOverlap: Int? = 20, skipEmbeddingGeneration: Bool? = false, embeddingModel: EmbeddingGeneratorsNullable? = nil, generateSparseVectors: Bool? = false, prependFilenameToChunks: Bool? = false, maxItemsPerChunk: Int? = nil, syncFilesOnConnection: Bool? = true, setPageAsBoundary: Bool? = false, requestId: String? = nil, enableFilePicker: Bool? = true, syncSourceItems: Bool? = true, incrementalSync: Bool? = false, fileSyncConfig: FileSyncConfigNullable? = nil, automaticallyOpenFilePicker: Bool? = nil, dataSourceTags: AnyCodable? = nil) {
         self.tags = tags
         self.chunkSize = chunkSize
         self.chunkOverlap = chunkOverlap
@@ -51,6 +53,7 @@ public struct SyncOptions: Codable, JSONEncodable, Hashable {
         self.incrementalSync = incrementalSync
         self.fileSyncConfig = fileSyncConfig
         self.automaticallyOpenFilePicker = automaticallyOpenFilePicker
+        self.dataSourceTags = dataSourceTags
     }
 
     public enum CodingKeys: String, CodingKey, CaseIterable {
@@ -70,6 +73,7 @@ public struct SyncOptions: Codable, JSONEncodable, Hashable {
         case incrementalSync = "incremental_sync"
         case fileSyncConfig = "file_sync_config"
         case automaticallyOpenFilePicker = "automatically_open_file_picker"
+        case dataSourceTags = "data_source_tags"
     }
 
     // Encodable protocol methods
@@ -92,6 +96,7 @@ public struct SyncOptions: Codable, JSONEncodable, Hashable {
         try codingContainer.encodeIfPresent(incrementalSync, forKey: .incrementalSync)
         try codingContainer.encodeIfPresent(fileSyncConfig, forKey: .fileSyncConfig)
         try codingContainer.encodeIfPresent(automaticallyOpenFilePicker, forKey: .automaticallyOpenFilePicker)
+        try codingContainer.encodeIfPresent(dataSourceTags, forKey: .dataSourceTags)
     }
 }
 

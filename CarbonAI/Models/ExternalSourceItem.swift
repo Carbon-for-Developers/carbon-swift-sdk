@@ -28,10 +28,11 @@ public struct ExternalSourceItem: Codable, JSONEncodable, Hashable {
     public var itemType: String?
     public var rootExternalId: String?
     public var externalUrl: String?
+    public var fileFormat: String?
     public var createdAt: Date
     public var updatedAt: Date
 
-    public init(id: Int, externalId: String, source: DataSourceType, name: String, syncedAt: Date, isSelectable: Bool?, isExpandable: Bool?, organizationId: Int, organizationSuppliedUserId: String, organizationUserId: Int, organizationUserDataSourceId: Int, organizationUserFileToSyncId: Int?, parentExternalId: String?, itemType: String?, rootExternalId: String?, externalUrl: String?, createdAt: Date, updatedAt: Date) {
+    public init(id: Int, externalId: String, source: DataSourceType, name: String, syncedAt: Date, isSelectable: Bool?, isExpandable: Bool?, organizationId: Int, organizationSuppliedUserId: String, organizationUserId: Int, organizationUserDataSourceId: Int, organizationUserFileToSyncId: Int?, parentExternalId: String?, itemType: String?, rootExternalId: String?, externalUrl: String?, fileFormat: String?, createdAt: Date, updatedAt: Date) {
         self.id = id
         self.externalId = externalId
         self.source = source
@@ -48,6 +49,7 @@ public struct ExternalSourceItem: Codable, JSONEncodable, Hashable {
         self.itemType = itemType
         self.rootExternalId = rootExternalId
         self.externalUrl = externalUrl
+        self.fileFormat = fileFormat
         self.createdAt = createdAt
         self.updatedAt = updatedAt
     }
@@ -69,6 +71,7 @@ public struct ExternalSourceItem: Codable, JSONEncodable, Hashable {
         case itemType = "item_type"
         case rootExternalId = "root_external_id"
         case externalUrl = "external_url"
+        case fileFormat = "file_format"
         case createdAt = "created_at"
         case updatedAt = "updated_at"
     }
@@ -93,6 +96,7 @@ public struct ExternalSourceItem: Codable, JSONEncodable, Hashable {
         try codingContainer.encode(itemType, forKey: .itemType)
         try codingContainer.encode(rootExternalId, forKey: .rootExternalId)
         try codingContainer.encode(externalUrl, forKey: .externalUrl)
+        try codingContainer.encode(fileFormat, forKey: .fileFormat)
         try codingContainer.encode(createdAt, forKey: .createdAt)
         try codingContainer.encode(updatedAt, forKey: .updatedAt)
     }

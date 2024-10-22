@@ -31,8 +31,9 @@ public struct UserResponse: Codable, JSONEncodable, Hashable {
     public var enabledFeatures: AnyCodable?
     public var customLimits: AnyCodable
     public var autoSyncEnabledSources: [AnyCodable]
+    public var connectorSettings: AnyCodable
 
-    public init(id: Int, organizationId: Int, organizationSuppliedUserId: String, createdAt: Date, updatedAt: Date, deletedAt: Date?, numFilesSynced: Int, numCharactersSynced: Int, numTokensSynced: Int, aggregateFileSize: AnyCodable, aggregateNumCharacters: AnyCodable, aggregateNumTokens: AnyCodable, aggregateNumEmbeddings: AnyCodable, aggregateNumFilesBySource: AnyCodable, aggregateNumFilesByFileFormat: AnyCodable, uniqueFileTags: [AnyCodable], enabledFeatures: AnyCodable?, customLimits: AnyCodable, autoSyncEnabledSources: [AnyCodable]) {
+    public init(id: Int, organizationId: Int, organizationSuppliedUserId: String, createdAt: Date, updatedAt: Date, deletedAt: Date?, numFilesSynced: Int, numCharactersSynced: Int, numTokensSynced: Int, aggregateFileSize: AnyCodable, aggregateNumCharacters: AnyCodable, aggregateNumTokens: AnyCodable, aggregateNumEmbeddings: AnyCodable, aggregateNumFilesBySource: AnyCodable, aggregateNumFilesByFileFormat: AnyCodable, uniqueFileTags: [AnyCodable], enabledFeatures: AnyCodable?, customLimits: AnyCodable, autoSyncEnabledSources: [AnyCodable], connectorSettings: AnyCodable) {
         self.id = id
         self.organizationId = organizationId
         self.organizationSuppliedUserId = organizationSuppliedUserId
@@ -52,6 +53,7 @@ public struct UserResponse: Codable, JSONEncodable, Hashable {
         self.enabledFeatures = enabledFeatures
         self.customLimits = customLimits
         self.autoSyncEnabledSources = autoSyncEnabledSources
+        self.connectorSettings = connectorSettings
     }
 
     public enum CodingKeys: String, CodingKey, CaseIterable {
@@ -74,6 +76,7 @@ public struct UserResponse: Codable, JSONEncodable, Hashable {
         case enabledFeatures = "enabled_features"
         case customLimits = "custom_limits"
         case autoSyncEnabledSources = "auto_sync_enabled_sources"
+        case connectorSettings = "connector_settings"
     }
 
     // Encodable protocol methods
@@ -99,6 +102,7 @@ public struct UserResponse: Codable, JSONEncodable, Hashable {
         try codingContainer.encode(enabledFeatures, forKey: .enabledFeatures)
         try codingContainer.encode(customLimits, forKey: .customLimits)
         try codingContainer.encode(autoSyncEnabledSources, forKey: .autoSyncEnabledSources)
+        try codingContainer.encode(connectorSettings, forKey: .connectorSettings)
     }
 }
 

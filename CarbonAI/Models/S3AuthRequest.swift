@@ -18,12 +18,15 @@ public struct S3AuthRequest: Codable, JSONEncodable, Hashable {
     public var syncSourceItems: Bool? = true
     /** You can specify a Digital Ocean endpoint URL to connect a Digital Ocean Space through this endpoint.         The URL should be of format <region>.digitaloceanspaces.com. It's not required for S3 buckets. */
     public var endpointUrl: String?
+    /** Tags to be associated with the data source. If the data source already has tags set, then an upsert will be performed. */
+    public var dataSourceTags: AnyCodable?
 
-    public init(accessKey: String, accessKeySecret: String, syncSourceItems: Bool? = true, endpointUrl: String? = nil) {
+    public init(accessKey: String, accessKeySecret: String, syncSourceItems: Bool? = true, endpointUrl: String? = nil, dataSourceTags: AnyCodable? = nil) {
         self.accessKey = accessKey
         self.accessKeySecret = accessKeySecret
         self.syncSourceItems = syncSourceItems
         self.endpointUrl = endpointUrl
+        self.dataSourceTags = dataSourceTags
     }
 
     public enum CodingKeys: String, CodingKey, CaseIterable {
@@ -31,6 +34,7 @@ public struct S3AuthRequest: Codable, JSONEncodable, Hashable {
         case accessKeySecret = "access_key_secret"
         case syncSourceItems = "sync_source_items"
         case endpointUrl = "endpoint_url"
+        case dataSourceTags = "data_source_tags"
     }
 
     // Encodable protocol methods
@@ -41,6 +45,7 @@ public struct S3AuthRequest: Codable, JSONEncodable, Hashable {
         try codingContainer.encode(accessKeySecret, forKey: .accessKeySecret)
         try codingContainer.encodeIfPresent(syncSourceItems, forKey: .syncSourceItems)
         try codingContainer.encodeIfPresent(endpointUrl, forKey: .endpointUrl)
+        try codingContainer.encodeIfPresent(dataSourceTags, forKey: .dataSourceTags)
     }
 }
 

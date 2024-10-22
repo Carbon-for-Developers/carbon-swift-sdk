@@ -30,7 +30,9 @@ Connect external data to LLMs, no matter the source.
   * [`carbonai.cRM.getLeads`](#carbonaicrmgetleads)
   * [`carbonai.cRM.getOpportunities`](#carbonaicrmgetopportunities)
   * [`carbonai.cRM.getOpportunity`](#carbonaicrmgetopportunity)
+  * [`carbonai.dataSources.addTags`](#carbonaidatasourcesaddtags)
   * [`carbonai.dataSources.queryUserDataSources`](#carbonaidatasourcesqueryuserdatasources)
+  * [`carbonai.dataSources.removeTags`](#carbonaidatasourcesremovetags)
   * [`carbonai.dataSources.revokeAccessToken`](#carbonaidatasourcesrevokeaccesstoken)
   * [`carbonai.embeddings.getDocuments`](#carbonaiembeddingsgetdocuments)
   * [`carbonai.embeddings.getEmbeddingsAndChunks`](#carbonaiembeddingsgetembeddingsandchunks)
@@ -94,6 +96,7 @@ Connect external data to LLMs, no matter the source.
   * [`carbonai.users.list`](#carbonaiuserslist)
   * [`carbonai.users.toggleUserFeatures`](#carbonaiuserstoggleuserfeatures)
   * [`carbonai.users.updateUsers`](#carbonaiusersupdateusers)
+  * [`carbonai.users.whoAmI`](#carbonaiuserswhoami)
   * [`carbonai.utilities.fetchUrls`](#carbonaiutilitiesfetchurls)
   * [`carbonai.utilities.fetchWebpage`](#carbonaiutilitiesfetchwebpage)
   * [`carbonai.utilities.fetchYoutubeTranscripts`](#carbonaiutilitiesfetchyoutubetranscripts)
@@ -735,6 +738,42 @@ let getOpportunityResponse = try await carbonai.cRM.getOpportunity(
 ---
 
 
+### `carbonai.dataSources.addTags`<a id="carbonaidatasourcesaddtags"></a>
+
+Add Data Source Tags
+
+#### 🛠️ Usage<a id="🛠️-usage"></a>
+
+```swift
+let tags = "TODO"
+let dataSourceId = 987
+let addTagsResponse = try await carbonai.dataSources.addTags(
+    tags: tags,
+    dataSourceId: dataSourceId
+)
+```
+
+#### ⚙️ Parameters<a id="⚙️-parameters"></a>
+
+##### tags: `AnyCodable`<a id="tags-anycodable"></a>
+
+
+##### data_source_id: `Int`<a id="data_source_id-int"></a>
+
+
+#### 🔄 Return<a id="🔄-return"></a>
+
+[OrganizationUserDataSourceAPI](./CarbonAI/Models/OrganizationUserDataSourceAPI.swift)
+
+#### 🌐 Endpoint<a id="🌐-endpoint"></a>
+
+`/data_sources/tags/add` `POST`
+
+[🔙 **Back to Table of Contents**](#table-of-contents)
+
+---
+
+
 ### `carbonai.dataSources.queryUserDataSources`<a id="carbonaidatasourcesqueryuserdatasources"></a>
 
 User Data Sources
@@ -753,6 +792,7 @@ let orderDir = OrderDir(
     
 )
 let filters = OrganizationUserDataSourceFilters(
+    tags: "TODO",
     source: DataSourceTypeNullable.googleCloudStorage,
     ids: [
     123
@@ -788,6 +828,49 @@ let queryUserDataSourcesResponse = try await carbonai.dataSources.queryUserDataS
 #### 🌐 Endpoint<a id="🌐-endpoint"></a>
 
 `/user_data_sources` `POST`
+
+[🔙 **Back to Table of Contents**](#table-of-contents)
+
+---
+
+
+### `carbonai.dataSources.removeTags`<a id="carbonaidatasourcesremovetags"></a>
+
+Remove Data Source Tags
+
+#### 🛠️ Usage<a id="🛠️-usage"></a>
+
+```swift
+let dataSourceId = 987
+let tagsToRemove = [
+"inner_example"
+]
+let removeAllTags = true
+let removeTagsResponse = try await carbonai.dataSources.removeTags(
+    dataSourceId: dataSourceId,
+    tagsToRemove: tagsToRemove,
+    removeAllTags: removeAllTags
+)
+```
+
+#### ⚙️ Parameters<a id="⚙️-parameters"></a>
+
+##### data_source_id: `Int`<a id="data_source_id-int"></a>
+
+
+##### tags_to_remove: `[String]`<a id="tags_to_remove-string"></a>
+
+
+##### remove_all_tags: `Bool`<a id="remove_all_tags-bool"></a>
+
+
+#### 🔄 Return<a id="🔄-return"></a>
+
+[OrganizationUserDataSourceAPI](./CarbonAI/Models/OrganizationUserDataSourceAPI.swift)
+
+#### 🌐 Endpoint<a id="🌐-endpoint"></a>
+
+`/data_sources/tags/remove` `POST`
 
 [🔙 **Back to Table of Contents**](#table-of-contents)
 
@@ -2294,7 +2377,7 @@ Enable cold storage for the file. If set to true, the file will be moved to cold
 
 ##### hotStorageTimeToLive: `Int`<a id="hotstoragetimetolive-int"></a>
 
-Time in seconds after which the file will be moved to cold storage.
+Time in days after which the file will be moved to cold storage. Must be one of [1, 3, 7, 14, 30].
 
 
 ##### generateChunksOnly: `Bool`<a id="generatechunksonly-bool"></a>
@@ -3108,7 +3191,8 @@ let syncOptions = SyncOptions(
         storeFileOnly: false,
         skipFileProcessing: false
     ),
-    automaticallyOpenFilePicker: false
+    automaticallyOpenFilePicker: false,
+    dataSourceTags: "TODO"
 )
 let connectDataSourceResponse = try await carbonai.integrations.connectDataSource(
     authentication: authentication,
@@ -3177,6 +3261,7 @@ let fileSyncConfig = FileSyncConfigNullable(
     storeFileOnly: false,
     skipFileProcessing: false
 )
+let dataSourceTags = "TODO"
 let connectFreshdeskResponse = try await carbonai.integrations.connectFreshdesk(
     domain: domain,
     apiKey: apiKey,
@@ -3190,7 +3275,8 @@ let connectFreshdeskResponse = try await carbonai.integrations.connectFreshdesk(
     syncFilesOnConnection: syncFilesOnConnection,
     requestId: requestId,
     syncSourceItems: syncSourceItems,
-    fileSyncConfig: fileSyncConfig
+    fileSyncConfig: fileSyncConfig,
+    dataSourceTags: dataSourceTags
 )
 ```
 
@@ -3235,6 +3321,11 @@ Enabling this flag will fetch all available content from the source to be listed
 
 
 ##### file_sync_config: [`FileSyncConfigNullable`](./CarbonAI/Models/FileSyncConfigNullable.swift)<a id="file_sync_config-filesyncconfignullablecarbonaimodelsfilesyncconfignullableswift"></a>
+
+
+##### data_source_tags: `AnyCodable`<a id="data_source_tags-anycodable"></a>
+
+Tags to be associated with the data source. If the data source already has tags set, then an upsert will be performed.
 
 
 #### 🔄 Return<a id="🔄-return"></a>
@@ -3289,6 +3380,7 @@ let fileSyncConfig = FileSyncConfigNullable(
     storeFileOnly: false,
     skipFileProcessing: false
 )
+let dataSourceTags = "TODO"
 let connectGitbookResponse = try await carbonai.integrations.connectGitbook(
     organization: organization,
     accessToken: accessToken,
@@ -3302,7 +3394,8 @@ let connectGitbookResponse = try await carbonai.integrations.connectGitbook(
     syncFilesOnConnection: syncFilesOnConnection,
     requestId: requestId,
     syncSourceItems: syncSourceItems,
-    fileSyncConfig: fileSyncConfig
+    fileSyncConfig: fileSyncConfig,
+    dataSourceTags: dataSourceTags
 )
 ```
 
@@ -3347,6 +3440,11 @@ Enabling this flag will fetch all available content from the source to be listed
 
 
 ##### file_sync_config: [`FileSyncConfigNullable`](./CarbonAI/Models/FileSyncConfigNullable.swift)<a id="file_sync_config-filesyncconfignullablecarbonaimodelsfilesyncconfignullableswift"></a>
+
+
+##### data_source_tags: `AnyCodable`<a id="data_source_tags-anycodable"></a>
+
+Tags to be associated with the data source. If the data source already has tags set, then an upsert will be performed.
 
 
 #### 🔄 Return<a id="🔄-return"></a>
@@ -3399,6 +3497,7 @@ let fileSyncConfig = FileSyncConfigNullable(
     storeFileOnly: false,
     skipFileProcessing: false
 )
+let dataSourceTags = "TODO"
 let connectGuruResponse = try await carbonai.integrations.connectGuru(
     username: username,
     accessToken: accessToken,
@@ -3412,7 +3511,8 @@ let connectGuruResponse = try await carbonai.integrations.connectGuru(
     syncFilesOnConnection: syncFilesOnConnection,
     requestId: requestId,
     syncSourceItems: syncSourceItems,
-    fileSyncConfig: fileSyncConfig
+    fileSyncConfig: fileSyncConfig,
+    dataSourceTags: dataSourceTags
 )
 ```
 
@@ -3459,6 +3559,11 @@ Enabling this flag will fetch all available content from the source to be listed
 ##### file_sync_config: [`FileSyncConfigNullable`](./CarbonAI/Models/FileSyncConfigNullable.swift)<a id="file_sync_config-filesyncconfignullablecarbonaimodelsfilesyncconfignullableswift"></a>
 
 
+##### data_source_tags: `AnyCodable`<a id="data_source_tags-anycodable"></a>
+
+Tags to be associated with the data source. If the data source already has tags set, then an upsert will be performed.
+
+
 #### 🔄 Return<a id="🔄-return"></a>
 
 [GenericSuccessResponse](./CarbonAI/Models/GenericSuccessResponse.swift)
@@ -3492,11 +3597,13 @@ let accessKey = "accessKey_example"
 let accessKeySecret = "accessKeySecret_example"
 let syncSourceItems = true
 let endpointUrl = "endpointUrl_example"
+let dataSourceTags = "TODO"
 let createAwsIamUserResponse = try await carbonai.integrations.createAwsIamUser(
     accessKey: accessKey,
     accessKeySecret: accessKeySecret,
     syncSourceItems: syncSourceItems,
-    endpointUrl: endpointUrl
+    endpointUrl: endpointUrl,
+    dataSourceTags: dataSourceTags
 )
 ```
 
@@ -3516,6 +3623,11 @@ Enabling this flag will fetch all available content from the source to be listed
 ##### endpoint_url: `String`<a id="endpoint_url-string"></a>
 
 You can specify a Digital Ocean endpoint URL to connect a Digital Ocean Space through this endpoint.         The URL should be of format <region>.digitaloceanspaces.com. It's not required for S3 buckets.
+
+
+##### data_source_tags: `AnyCodable`<a id="data_source_tags-anycodable"></a>
+
+Tags to be associated with the data source. If the data source already has tags set, then an upsert will be performed.
 
 
 #### 🔄 Return<a id="🔄-return"></a>
@@ -3593,6 +3705,7 @@ let servicenowCredentials = ServiceNowCredentialsNullable(
     clientSecret: "clientSecret_example",
     redirectUri: "redirectUri_example"
 )
+let dataSourceTags = "TODO"
 let getOauthUrlResponse = try await carbonai.integrations.getOauthUrl(
     service: service,
     tags: tags,
@@ -3622,7 +3735,8 @@ let getOauthUrlResponse = try await carbonai.integrations.getOauthUrl(
     fileSyncConfig: fileSyncConfig,
     automaticallyOpenFilePicker: automaticallyOpenFilePicker,
     gongAccountEmail: gongAccountEmail,
-    servicenowCredentials: servicenowCredentials
+    servicenowCredentials: servicenowCredentials,
+    dataSourceTags: dataSourceTags
 )
 ```
 
@@ -3735,6 +3849,11 @@ If you are connecting a Gong account, you need to input the email of the account
 
 
 ##### servicenow_credentials: [`ServiceNowCredentialsNullable`](./CarbonAI/Models/ServiceNowCredentialsNullable.swift)<a id="servicenow_credentials-servicenowcredentialsnullablecarbonaimodelsservicenowcredentialsnullableswift"></a>
+
+
+##### data_source_tags: `AnyCodable`<a id="data_source_tags-anycodable"></a>
+
+Tags to be associated with the data source. If the data source already has tags set, then an upsert will be performed.
 
 
 #### 🔄 Return<a id="🔄-return"></a>
@@ -4217,10 +4336,12 @@ Once created, provide us with the following details to generate the connection U
 let accountName = "accountName_example"
 let accountKey = "accountKey_example"
 let syncSourceItems = true
+let dataSourceTags = "TODO"
 let syncAzureBlobStorageResponse = try await carbonai.integrations.syncAzureBlobStorage(
     accountName: accountName,
     accountKey: accountKey,
-    syncSourceItems: syncSourceItems
+    syncSourceItems: syncSourceItems,
+    dataSourceTags: dataSourceTags
 )
 ```
 
@@ -4233,6 +4354,11 @@ let syncAzureBlobStorageResponse = try await carbonai.integrations.syncAzureBlob
 
 
 ##### sync_source_items: `Bool`<a id="sync_source_items-bool"></a>
+
+
+##### data_source_tags: `AnyCodable`<a id="data_source_tags-anycodable"></a>
+
+Tags to be associated with the data source. If the data source already has tags set, then an upsert will be performed.
 
 
 #### 🔄 Return<a id="🔄-return"></a>
@@ -4556,10 +4682,12 @@ expires you will need to manually update it through this endpoint.
 let username = "username_example"
 let accessToken = "accessToken_example"
 let syncSourceItems = true
+let dataSourceTags = "TODO"
 let syncGitHubResponse = try await carbonai.integrations.syncGitHub(
     username: username,
     accessToken: accessToken,
-    syncSourceItems: syncSourceItems
+    syncSourceItems: syncSourceItems,
+    dataSourceTags: dataSourceTags
 )
 ```
 
@@ -4574,6 +4702,11 @@ let syncGitHubResponse = try await carbonai.integrations.syncGitHub(
 ##### sync_source_items: `Bool`<a id="sync_source_items-bool"></a>
 
 Enabling this flag will fetch all available content from the source to be listed via list items endpoint
+
+
+##### data_source_tags: `AnyCodable`<a id="data_source_tags-anycodable"></a>
+
+Tags to be associated with the data source. If the data source already has tags set, then an upsert will be performed.
 
 
 #### 🔄 Return<a id="🔄-return"></a>
@@ -5071,6 +5204,7 @@ let embeddingModel = EmbeddingGenerators(
 let generateSparseVectors = true
 let prependFilenameToChunks = true
 let requestId = "requestId_example"
+let dataSourceTags = "TODO"
 let syncRssFeedResponse = try await carbonai.integrations.syncRssFeed(
     url: url,
     tags: tags,
@@ -5080,7 +5214,8 @@ let syncRssFeedResponse = try await carbonai.integrations.syncRssFeed(
     embeddingModel: embeddingModel,
     generateSparseVectors: generateSparseVectors,
     prependFilenameToChunks: prependFilenameToChunks,
-    requestId: requestId
+    requestId: requestId,
+    dataSourceTags: dataSourceTags
 )
 ```
 
@@ -5111,6 +5246,11 @@ let syncRssFeedResponse = try await carbonai.integrations.syncRssFeed(
 
 
 ##### request_id: `String`<a id="request_id-string"></a>
+
+
+##### data_source_tags: `AnyCodable`<a id="data_source_tags-anycodable"></a>
+
+Tags to be associated with the data source. If the data source already has tags set, then an upsert will be performed.
 
 
 #### 🔄 Return<a id="🔄-return"></a>
@@ -5663,6 +5803,29 @@ Custom character upload limit for the user across a single upload.         If se
 #### 🌐 Endpoint<a id="🌐-endpoint"></a>
 
 `/update_users` `POST`
+
+[🔙 **Back to Table of Contents**](#table-of-contents)
+
+---
+
+
+### `carbonai.users.whoAmI`<a id="carbonaiuserswhoami"></a>
+
+Me Endpoint
+
+#### 🛠️ Usage<a id="🛠️-usage"></a>
+
+```swift
+let whoAmIResponse = try await carbonai.users.whoAmI()
+```
+
+#### 🔄 Return<a id="🔄-return"></a>
+
+[UserResponse](./CarbonAI/Models/UserResponse.swift)
+
+#### 🌐 Endpoint<a id="🌐-endpoint"></a>
+
+`/whoami` `GET`
 
 [🔙 **Back to Table of Contents**](#table-of-contents)
 

@@ -451,7 +451,8 @@ open class IntegrationsAPI {
         syncFilesOnConnection: Bool? = nil, 
         requestId: String? = nil, 
         syncSourceItems: Bool? = nil, 
-        fileSyncConfig: FileSyncConfigNullable? = nil
+        fileSyncConfig: FileSyncConfigNullable? = nil, 
+        dataSourceTags: AnyCodable? = nil
     ) async throws -> GenericSuccessResponse {
         let freshDeskConnectRequest = FreshDeskConnectRequest(
             tags: tags,
@@ -466,7 +467,8 @@ open class IntegrationsAPI {
             syncFilesOnConnection: syncFilesOnConnection,
             requestId: requestId,
             syncSourceItems: syncSourceItems,
-            fileSyncConfig: fileSyncConfig
+            fileSyncConfig: fileSyncConfig,
+            dataSourceTags: dataSourceTags
         )
         return try await withCheckedThrowingContinuation { continuation in
             connectFreshdeskWithRequestBuilder(freshDeskConnectRequest: freshDeskConnectRequest).execute { result in
@@ -502,7 +504,8 @@ open class IntegrationsAPI {
         syncFilesOnConnection: Bool? = nil, 
         requestId: String? = nil, 
         syncSourceItems: Bool? = nil, 
-        fileSyncConfig: FileSyncConfigNullable? = nil
+        fileSyncConfig: FileSyncConfigNullable? = nil, 
+        dataSourceTags: AnyCodable? = nil
     ) async throws -> GenericSuccessResponse {
         let freshDeskConnectRequest = FreshDeskConnectRequest(
             tags: tags,
@@ -517,7 +520,8 @@ open class IntegrationsAPI {
             syncFilesOnConnection: syncFilesOnConnection,
             requestId: requestId,
             syncSourceItems: syncSourceItems,
-            fileSyncConfig: fileSyncConfig
+            fileSyncConfig: fileSyncConfig,
+            dataSourceTags: dataSourceTags
         )
         return try await withCheckedThrowingContinuation { continuation in
             connectFreshdeskWithRequestBuilder(freshDeskConnectRequest: freshDeskConnectRequest).execute { result in
@@ -685,7 +689,8 @@ open class IntegrationsAPI {
         syncFilesOnConnection: Bool? = nil, 
         requestId: String? = nil, 
         syncSourceItems: Bool? = nil, 
-        fileSyncConfig: FileSyncConfigNullable? = nil
+        fileSyncConfig: FileSyncConfigNullable? = nil, 
+        dataSourceTags: AnyCodable? = nil
     ) async throws -> GenericSuccessResponse {
         let gitbookConnectRequest = GitbookConnectRequest(
             tags: tags,
@@ -700,7 +705,8 @@ open class IntegrationsAPI {
             syncFilesOnConnection: syncFilesOnConnection,
             requestId: requestId,
             syncSourceItems: syncSourceItems,
-            fileSyncConfig: fileSyncConfig
+            fileSyncConfig: fileSyncConfig,
+            dataSourceTags: dataSourceTags
         )
         return try await withCheckedThrowingContinuation { continuation in
             connectGitbookWithRequestBuilder(gitbookConnectRequest: gitbookConnectRequest).execute { result in
@@ -736,7 +742,8 @@ open class IntegrationsAPI {
         syncFilesOnConnection: Bool? = nil, 
         requestId: String? = nil, 
         syncSourceItems: Bool? = nil, 
-        fileSyncConfig: FileSyncConfigNullable? = nil
+        fileSyncConfig: FileSyncConfigNullable? = nil, 
+        dataSourceTags: AnyCodable? = nil
     ) async throws -> GenericSuccessResponse {
         let gitbookConnectRequest = GitbookConnectRequest(
             tags: tags,
@@ -751,7 +758,8 @@ open class IntegrationsAPI {
             syncFilesOnConnection: syncFilesOnConnection,
             requestId: requestId,
             syncSourceItems: syncSourceItems,
-            fileSyncConfig: fileSyncConfig
+            fileSyncConfig: fileSyncConfig,
+            dataSourceTags: dataSourceTags
         )
         return try await withCheckedThrowingContinuation { continuation in
             connectGitbookWithRequestBuilder(gitbookConnectRequest: gitbookConnectRequest).execute { result in
@@ -919,7 +927,8 @@ open class IntegrationsAPI {
         syncFilesOnConnection: Bool? = nil, 
         requestId: String? = nil, 
         syncSourceItems: Bool? = nil, 
-        fileSyncConfig: FileSyncConfigNullable? = nil
+        fileSyncConfig: FileSyncConfigNullable? = nil, 
+        dataSourceTags: AnyCodable? = nil
     ) async throws -> GenericSuccessResponse {
         let guruConnectRequest = GuruConnectRequest(
             tags: tags,
@@ -934,7 +943,8 @@ open class IntegrationsAPI {
             syncFilesOnConnection: syncFilesOnConnection,
             requestId: requestId,
             syncSourceItems: syncSourceItems,
-            fileSyncConfig: fileSyncConfig
+            fileSyncConfig: fileSyncConfig,
+            dataSourceTags: dataSourceTags
         )
         return try await withCheckedThrowingContinuation { continuation in
             connectGuruWithRequestBuilder(guruConnectRequest: guruConnectRequest).execute { result in
@@ -970,7 +980,8 @@ open class IntegrationsAPI {
         syncFilesOnConnection: Bool? = nil, 
         requestId: String? = nil, 
         syncSourceItems: Bool? = nil, 
-        fileSyncConfig: FileSyncConfigNullable? = nil
+        fileSyncConfig: FileSyncConfigNullable? = nil, 
+        dataSourceTags: AnyCodable? = nil
     ) async throws -> GenericSuccessResponse {
         let guruConnectRequest = GuruConnectRequest(
             tags: tags,
@@ -985,7 +996,8 @@ open class IntegrationsAPI {
             syncFilesOnConnection: syncFilesOnConnection,
             requestId: requestId,
             syncSourceItems: syncSourceItems,
-            fileSyncConfig: fileSyncConfig
+            fileSyncConfig: fileSyncConfig,
+            dataSourceTags: dataSourceTags
         )
         return try await withCheckedThrowingContinuation { continuation in
             connectGuruWithRequestBuilder(guruConnectRequest: guruConnectRequest).execute { result in
@@ -1144,13 +1156,15 @@ open class IntegrationsAPI {
         accessKey: String,
         accessKeySecret: String,
         syncSourceItems: Bool? = nil, 
-        endpointUrl: String? = nil
+        endpointUrl: String? = nil, 
+        dataSourceTags: AnyCodable? = nil
     ) async throws -> OrganizationUserDataSourceAPI {
         let s3AuthRequest = S3AuthRequest(
             accessKey: accessKey,
             accessKeySecret: accessKeySecret,
             syncSourceItems: syncSourceItems,
-            endpointUrl: endpointUrl
+            endpointUrl: endpointUrl,
+            dataSourceTags: dataSourceTags
         )
         return try await withCheckedThrowingContinuation { continuation in
             createAwsIamUserWithRequestBuilder(s3AuthRequest: s3AuthRequest).execute { result in
@@ -1177,13 +1191,15 @@ open class IntegrationsAPI {
         accessKey: String,
         accessKeySecret: String,
         syncSourceItems: Bool? = nil, 
-        endpointUrl: String? = nil
+        endpointUrl: String? = nil, 
+        dataSourceTags: AnyCodable? = nil
     ) async throws -> OrganizationUserDataSourceAPI {
         let s3AuthRequest = S3AuthRequest(
             accessKey: accessKey,
             accessKeySecret: accessKeySecret,
             syncSourceItems: syncSourceItems,
-            endpointUrl: endpointUrl
+            endpointUrl: endpointUrl,
+            dataSourceTags: dataSourceTags
         )
         return try await withCheckedThrowingContinuation { continuation in
             createAwsIamUserWithRequestBuilder(s3AuthRequest: s3AuthRequest).execute { result in
@@ -1367,7 +1383,8 @@ open class IntegrationsAPI {
         fileSyncConfig: FileSyncConfigNullable? = nil, 
         automaticallyOpenFilePicker: Bool? = nil, 
         gongAccountEmail: String? = nil, 
-        servicenowCredentials: ServiceNowCredentialsNullable? = nil
+        servicenowCredentials: ServiceNowCredentialsNullable? = nil, 
+        dataSourceTags: AnyCodable? = nil
     ) async throws -> OuthURLResponse {
         let oAuthURLRequest = OAuthURLRequest(
             tags: tags,
@@ -1398,7 +1415,8 @@ open class IntegrationsAPI {
             fileSyncConfig: fileSyncConfig,
             automaticallyOpenFilePicker: automaticallyOpenFilePicker,
             gongAccountEmail: gongAccountEmail,
-            servicenowCredentials: servicenowCredentials
+            servicenowCredentials: servicenowCredentials,
+            dataSourceTags: dataSourceTags
         )
         return try await withCheckedThrowingContinuation { continuation in
             getOauthUrlWithRequestBuilder(oAuthURLRequest: oAuthURLRequest).execute { result in
@@ -1450,7 +1468,8 @@ open class IntegrationsAPI {
         fileSyncConfig: FileSyncConfigNullable? = nil, 
         automaticallyOpenFilePicker: Bool? = nil, 
         gongAccountEmail: String? = nil, 
-        servicenowCredentials: ServiceNowCredentialsNullable? = nil
+        servicenowCredentials: ServiceNowCredentialsNullable? = nil, 
+        dataSourceTags: AnyCodable? = nil
     ) async throws -> OuthURLResponse {
         let oAuthURLRequest = OAuthURLRequest(
             tags: tags,
@@ -1481,7 +1500,8 @@ open class IntegrationsAPI {
             fileSyncConfig: fileSyncConfig,
             automaticallyOpenFilePicker: automaticallyOpenFilePicker,
             gongAccountEmail: gongAccountEmail,
-            servicenowCredentials: servicenowCredentials
+            servicenowCredentials: servicenowCredentials,
+            dataSourceTags: dataSourceTags
         )
         return try await withCheckedThrowingContinuation { continuation in
             getOauthUrlWithRequestBuilder(oAuthURLRequest: oAuthURLRequest).execute { result in
@@ -3445,12 +3465,14 @@ open class IntegrationsAPI {
     open class func syncAzureBlobStorage(
         accountName: String,
         accountKey: String,
-        syncSourceItems: Bool? = nil
+        syncSourceItems: Bool? = nil, 
+        dataSourceTags: AnyCodable? = nil
     ) async throws -> OrganizationUserDataSourceAPI {
         let azureBlobAuthRequest = AzureBlobAuthRequest(
             accountName: accountName,
             accountKey: accountKey,
-            syncSourceItems: syncSourceItems
+            syncSourceItems: syncSourceItems,
+            dataSourceTags: dataSourceTags
         )
         return try await withCheckedThrowingContinuation { continuation in
             syncAzureBlobStorageWithRequestBuilder(azureBlobAuthRequest: azureBlobAuthRequest).execute { result in
@@ -3476,12 +3498,14 @@ open class IntegrationsAPI {
     open func syncAzureBlobStorage(
         accountName: String,
         accountKey: String,
-        syncSourceItems: Bool? = nil
+        syncSourceItems: Bool? = nil, 
+        dataSourceTags: AnyCodable? = nil
     ) async throws -> OrganizationUserDataSourceAPI {
         let azureBlobAuthRequest = AzureBlobAuthRequest(
             accountName: accountName,
             accountKey: accountKey,
-            syncSourceItems: syncSourceItems
+            syncSourceItems: syncSourceItems,
+            dataSourceTags: dataSourceTags
         )
         return try await withCheckedThrowingContinuation { continuation in
             syncAzureBlobStorageWithRequestBuilder(azureBlobAuthRequest: azureBlobAuthRequest).execute { result in
@@ -4321,12 +4345,14 @@ open class IntegrationsAPI {
     open class func syncGitHub(
         username: String,
         accessToken: String,
-        syncSourceItems: Bool? = nil
+        syncSourceItems: Bool? = nil, 
+        dataSourceTags: AnyCodable? = nil
     ) async throws -> GenericSuccessResponse {
         let githubConnectRequest = GithubConnectRequest(
             username: username,
             accessToken: accessToken,
-            syncSourceItems: syncSourceItems
+            syncSourceItems: syncSourceItems,
+            dataSourceTags: dataSourceTags
         )
         return try await withCheckedThrowingContinuation { continuation in
             syncGitHubWithRequestBuilder(githubConnectRequest: githubConnectRequest).execute { result in
@@ -4352,12 +4378,14 @@ open class IntegrationsAPI {
     open func syncGitHub(
         username: String,
         accessToken: String,
-        syncSourceItems: Bool? = nil
+        syncSourceItems: Bool? = nil, 
+        dataSourceTags: AnyCodable? = nil
     ) async throws -> GenericSuccessResponse {
         let githubConnectRequest = GithubConnectRequest(
             username: username,
             accessToken: accessToken,
-            syncSourceItems: syncSourceItems
+            syncSourceItems: syncSourceItems,
+            dataSourceTags: dataSourceTags
         )
         return try await withCheckedThrowingContinuation { continuation in
             syncGitHubWithRequestBuilder(githubConnectRequest: githubConnectRequest).execute { result in
@@ -5409,7 +5437,8 @@ open class IntegrationsAPI {
         embeddingModel: EmbeddingGenerators? = nil, 
         generateSparseVectors: Bool? = nil, 
         prependFilenameToChunks: Bool? = nil, 
-        requestId: String? = nil
+        requestId: String? = nil, 
+        dataSourceTags: AnyCodable? = nil
     ) async throws -> GenericSuccessResponse {
         let rSSFeedInput = RSSFeedInput(
             tags: tags,
@@ -5420,7 +5449,8 @@ open class IntegrationsAPI {
             embeddingModel: embeddingModel,
             generateSparseVectors: generateSparseVectors,
             prependFilenameToChunks: prependFilenameToChunks,
-            requestId: requestId
+            requestId: requestId,
+            dataSourceTags: dataSourceTags
         )
         return try await withCheckedThrowingContinuation { continuation in
             syncRssFeedWithRequestBuilder(rSSFeedInput: rSSFeedInput).execute { result in
@@ -5452,7 +5482,8 @@ open class IntegrationsAPI {
         embeddingModel: EmbeddingGenerators? = nil, 
         generateSparseVectors: Bool? = nil, 
         prependFilenameToChunks: Bool? = nil, 
-        requestId: String? = nil
+        requestId: String? = nil, 
+        dataSourceTags: AnyCodable? = nil
     ) async throws -> GenericSuccessResponse {
         let rSSFeedInput = RSSFeedInput(
             tags: tags,
@@ -5463,7 +5494,8 @@ open class IntegrationsAPI {
             embeddingModel: embeddingModel,
             generateSparseVectors: generateSparseVectors,
             prependFilenameToChunks: prependFilenameToChunks,
-            requestId: requestId
+            requestId: requestId,
+            dataSourceTags: dataSourceTags
         )
         return try await withCheckedThrowingContinuation { continuation in
             syncRssFeedWithRequestBuilder(rSSFeedInput: rSSFeedInput).execute { result in

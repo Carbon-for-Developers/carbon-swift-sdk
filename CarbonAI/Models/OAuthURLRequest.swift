@@ -52,8 +52,10 @@ public struct OAuthURLRequest: Codable, JSONEncodable, Hashable {
     /** If you are connecting a Gong account, you need to input the email of the account you         wish to connect. This email will be used to identify your carbon data source. */
     public var gongAccountEmail: String?
     public var servicenowCredentials: ServiceNowCredentialsNullable?
+    /** Tags to be associated with the data source. If the data source already has tags set, then an upsert will be performed. */
+    public var dataSourceTags: AnyCodable?
 
-    public init(tags: AnyCodable? = nil, scope: String? = nil, service: OauthBasedConnectors, chunkSize: Int? = 1500, chunkOverlap: Int? = 20, skipEmbeddingGeneration: Bool? = false, embeddingModel: EmbeddingGeneratorsNullable? = nil, zendeskSubdomain: String? = nil, microsoftTenant: String? = nil, sharepointSiteName: String? = nil, confluenceSubdomain: String? = nil, generateSparseVectors: Bool? = false, prependFilenameToChunks: Bool? = false, maxItemsPerChunk: Int? = nil, salesforceDomain: String? = nil, syncFilesOnConnection: Bool? = true, setPageAsBoundary: Bool? = false, dataSourceId: Int? = nil, connectingNewAccount: Bool? = false, requestId: String? = nil, useOcr: Bool? = false, parsePdfTablesWithOcr: Bool? = false, enableFilePicker: Bool? = true, syncSourceItems: Bool? = true, incrementalSync: Bool? = false, fileSyncConfig: FileSyncConfigNullable? = nil, automaticallyOpenFilePicker: Bool? = nil, gongAccountEmail: String? = nil, servicenowCredentials: ServiceNowCredentialsNullable? = nil) {
+    public init(tags: AnyCodable? = nil, scope: String? = nil, service: OauthBasedConnectors, chunkSize: Int? = 1500, chunkOverlap: Int? = 20, skipEmbeddingGeneration: Bool? = false, embeddingModel: EmbeddingGeneratorsNullable? = nil, zendeskSubdomain: String? = nil, microsoftTenant: String? = nil, sharepointSiteName: String? = nil, confluenceSubdomain: String? = nil, generateSparseVectors: Bool? = false, prependFilenameToChunks: Bool? = false, maxItemsPerChunk: Int? = nil, salesforceDomain: String? = nil, syncFilesOnConnection: Bool? = true, setPageAsBoundary: Bool? = false, dataSourceId: Int? = nil, connectingNewAccount: Bool? = false, requestId: String? = nil, useOcr: Bool? = false, parsePdfTablesWithOcr: Bool? = false, enableFilePicker: Bool? = true, syncSourceItems: Bool? = true, incrementalSync: Bool? = false, fileSyncConfig: FileSyncConfigNullable? = nil, automaticallyOpenFilePicker: Bool? = nil, gongAccountEmail: String? = nil, servicenowCredentials: ServiceNowCredentialsNullable? = nil, dataSourceTags: AnyCodable? = nil) {
         self.tags = tags
         self.scope = scope
         self.service = service
@@ -83,6 +85,7 @@ public struct OAuthURLRequest: Codable, JSONEncodable, Hashable {
         self.automaticallyOpenFilePicker = automaticallyOpenFilePicker
         self.gongAccountEmail = gongAccountEmail
         self.servicenowCredentials = servicenowCredentials
+        self.dataSourceTags = dataSourceTags
     }
 
     public enum CodingKeys: String, CodingKey, CaseIterable {
@@ -115,6 +118,7 @@ public struct OAuthURLRequest: Codable, JSONEncodable, Hashable {
         case automaticallyOpenFilePicker = "automatically_open_file_picker"
         case gongAccountEmail = "gong_account_email"
         case servicenowCredentials = "servicenow_credentials"
+        case dataSourceTags = "data_source_tags"
     }
 
     // Encodable protocol methods
@@ -150,6 +154,7 @@ public struct OAuthURLRequest: Codable, JSONEncodable, Hashable {
         try codingContainer.encodeIfPresent(automaticallyOpenFilePicker, forKey: .automaticallyOpenFilePicker)
         try codingContainer.encodeIfPresent(gongAccountEmail, forKey: .gongAccountEmail)
         try codingContainer.encodeIfPresent(servicenowCredentials, forKey: .servicenowCredentials)
+        try codingContainer.encodeIfPresent(dataSourceTags, forKey: .dataSourceTags)
     }
 }
 

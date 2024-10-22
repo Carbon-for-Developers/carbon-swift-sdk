@@ -26,8 +26,10 @@ public struct GitbookConnectRequest: Codable, JSONEncodable, Hashable {
     /** Enabling this flag will fetch all available content from the source to be listed via list items endpoint */
     public var syncSourceItems: Bool? = true
     public var fileSyncConfig: FileSyncConfigNullable?
+    /** Tags to be associated with the data source. If the data source already has tags set, then an upsert will be performed. */
+    public var dataSourceTags: AnyCodable?
 
-    public init(tags: AnyCodable? = nil, organization: String, accessToken: String, chunkSize: Int? = 1500, chunkOverlap: Int? = 20, skipEmbeddingGeneration: Bool? = false, embeddingModel: EmbeddingGenerators? = nil, generateSparseVectors: Bool? = false, prependFilenameToChunks: Bool? = false, syncFilesOnConnection: Bool? = true, requestId: String? = nil, syncSourceItems: Bool? = true, fileSyncConfig: FileSyncConfigNullable? = nil) {
+    public init(tags: AnyCodable? = nil, organization: String, accessToken: String, chunkSize: Int? = 1500, chunkOverlap: Int? = 20, skipEmbeddingGeneration: Bool? = false, embeddingModel: EmbeddingGenerators? = nil, generateSparseVectors: Bool? = false, prependFilenameToChunks: Bool? = false, syncFilesOnConnection: Bool? = true, requestId: String? = nil, syncSourceItems: Bool? = true, fileSyncConfig: FileSyncConfigNullable? = nil, dataSourceTags: AnyCodable? = nil) {
         self.tags = tags
         self.organization = organization
         self.accessToken = accessToken
@@ -41,6 +43,7 @@ public struct GitbookConnectRequest: Codable, JSONEncodable, Hashable {
         self.requestId = requestId
         self.syncSourceItems = syncSourceItems
         self.fileSyncConfig = fileSyncConfig
+        self.dataSourceTags = dataSourceTags
     }
 
     public enum CodingKeys: String, CodingKey, CaseIterable {
@@ -57,6 +60,7 @@ public struct GitbookConnectRequest: Codable, JSONEncodable, Hashable {
         case requestId = "request_id"
         case syncSourceItems = "sync_source_items"
         case fileSyncConfig = "file_sync_config"
+        case dataSourceTags = "data_source_tags"
     }
 
     // Encodable protocol methods
@@ -76,6 +80,7 @@ public struct GitbookConnectRequest: Codable, JSONEncodable, Hashable {
         try codingContainer.encodeIfPresent(requestId, forKey: .requestId)
         try codingContainer.encodeIfPresent(syncSourceItems, forKey: .syncSourceItems)
         try codingContainer.encodeIfPresent(fileSyncConfig, forKey: .fileSyncConfig)
+        try codingContainer.encodeIfPresent(dataSourceTags, forKey: .dataSourceTags)
     }
 }
 

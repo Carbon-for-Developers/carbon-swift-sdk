@@ -16,17 +16,21 @@ public struct GithubConnectRequest: Codable, JSONEncodable, Hashable {
     public var accessToken: String
     /** Enabling this flag will fetch all available content from the source to be listed via list items endpoint */
     public var syncSourceItems: Bool? = false
+    /** Tags to be associated with the data source. If the data source already has tags set, then an upsert will be performed. */
+    public var dataSourceTags: AnyCodable?
 
-    public init(username: String, accessToken: String, syncSourceItems: Bool? = false) {
+    public init(username: String, accessToken: String, syncSourceItems: Bool? = false, dataSourceTags: AnyCodable? = nil) {
         self.username = username
         self.accessToken = accessToken
         self.syncSourceItems = syncSourceItems
+        self.dataSourceTags = dataSourceTags
     }
 
     public enum CodingKeys: String, CodingKey, CaseIterable {
         case username
         case accessToken = "access_token"
         case syncSourceItems = "sync_source_items"
+        case dataSourceTags = "data_source_tags"
     }
 
     // Encodable protocol methods
@@ -36,6 +40,7 @@ public struct GithubConnectRequest: Codable, JSONEncodable, Hashable {
         try codingContainer.encode(username, forKey: .username)
         try codingContainer.encode(accessToken, forKey: .accessToken)
         try codingContainer.encodeIfPresent(syncSourceItems, forKey: .syncSourceItems)
+        try codingContainer.encodeIfPresent(dataSourceTags, forKey: .dataSourceTags)
     }
 }
 

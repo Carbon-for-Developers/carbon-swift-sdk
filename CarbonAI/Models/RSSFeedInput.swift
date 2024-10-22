@@ -21,8 +21,10 @@ public struct RSSFeedInput: Codable, JSONEncodable, Hashable {
     public var generateSparseVectors: Bool? = false
     public var prependFilenameToChunks: Bool? = false
     public var requestId: String?
+    /** Tags to be associated with the data source. If the data source already has tags set, then an upsert will be performed. */
+    public var dataSourceTags: AnyCodable?
 
-    public init(tags: AnyCodable? = nil, url: String, chunkSize: Int? = 1500, chunkOverlap: Int? = 20, skipEmbeddingGeneration: Bool? = false, embeddingModel: EmbeddingGenerators? = nil, generateSparseVectors: Bool? = false, prependFilenameToChunks: Bool? = false, requestId: String? = nil) {
+    public init(tags: AnyCodable? = nil, url: String, chunkSize: Int? = 1500, chunkOverlap: Int? = 20, skipEmbeddingGeneration: Bool? = false, embeddingModel: EmbeddingGenerators? = nil, generateSparseVectors: Bool? = false, prependFilenameToChunks: Bool? = false, requestId: String? = nil, dataSourceTags: AnyCodable? = nil) {
         self.tags = tags
         self.url = url
         self.chunkSize = chunkSize
@@ -32,6 +34,7 @@ public struct RSSFeedInput: Codable, JSONEncodable, Hashable {
         self.generateSparseVectors = generateSparseVectors
         self.prependFilenameToChunks = prependFilenameToChunks
         self.requestId = requestId
+        self.dataSourceTags = dataSourceTags
     }
 
     public enum CodingKeys: String, CodingKey, CaseIterable {
@@ -44,6 +47,7 @@ public struct RSSFeedInput: Codable, JSONEncodable, Hashable {
         case generateSparseVectors = "generate_sparse_vectors"
         case prependFilenameToChunks = "prepend_filename_to_chunks"
         case requestId = "request_id"
+        case dataSourceTags = "data_source_tags"
     }
 
     // Encodable protocol methods
@@ -59,6 +63,7 @@ public struct RSSFeedInput: Codable, JSONEncodable, Hashable {
         try codingContainer.encodeIfPresent(generateSparseVectors, forKey: .generateSparseVectors)
         try codingContainer.encodeIfPresent(prependFilenameToChunks, forKey: .prependFilenameToChunks)
         try codingContainer.encodeIfPresent(requestId, forKey: .requestId)
+        try codingContainer.encodeIfPresent(dataSourceTags, forKey: .dataSourceTags)
     }
 }
 
