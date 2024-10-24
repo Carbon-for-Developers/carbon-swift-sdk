@@ -16,9 +16,9 @@ public struct SharepointAuthentication: Codable, JSONEncodable, Hashable {
     public var accessToken: String
     public var refreshToken: String?
     public var tenantName: String?
-    public var siteName: String
+    public var siteName: String?
 
-    public init(source: AnyCodable?, accessToken: String, refreshToken: String? = nil, tenantName: String? = nil, siteName: String) {
+    public init(source: AnyCodable?, accessToken: String, refreshToken: String? = nil, tenantName: String? = nil, siteName: String? = nil) {
         self.source = source
         self.accessToken = accessToken
         self.refreshToken = refreshToken
@@ -42,7 +42,7 @@ public struct SharepointAuthentication: Codable, JSONEncodable, Hashable {
         try codingContainer.encode(accessToken, forKey: .accessToken)
         try codingContainer.encodeIfPresent(refreshToken, forKey: .refreshToken)
         try codingContainer.encodeIfPresent(tenantName, forKey: .tenantName)
-        try codingContainer.encode(siteName, forKey: .siteName)
+        try codingContainer.encodeIfPresent(siteName, forKey: .siteName)
     }
 }
 

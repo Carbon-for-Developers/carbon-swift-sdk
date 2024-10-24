@@ -783,7 +783,8 @@ User Data Sources
 ```swift
 let pagination = Pagination(
     limit: 123,
-    offset: 123
+    offset: 123,
+    startingId: 123
 )
 let orderBy = OrganizationUserDataSourceOrderByColumns(
     
@@ -1191,7 +1192,8 @@ let filters = EmbeddingsAndChunksFilters(
 )
 let pagination = Pagination(
     limit: 123,
-    offset: 123
+    offset: 123,
+    startingId: 123
 )
 let orderBy = EmbeddingsAndChunksOrderByColumns(
     
@@ -1293,7 +1295,8 @@ let filters = OrganizationUserFilesToSyncFilters(
 )
 let pagination = Pagination(
     limit: 123,
-    offset: 123
+    offset: 123,
+    startingId: 123
 )
 let orderBy = OrganizationUserFilesToSyncOrderByTypes(
     
@@ -1942,7 +1945,8 @@ the resulting query. It is `false` by default.
 ```swift
 let pagination = Pagination(
     limit: 123,
-    offset: 123
+    offset: 123,
+    startingId: 123
 )
 let orderBy = OrganizationUserFilesToSyncOrderByTypes(
     
@@ -2055,7 +2059,8 @@ This route is deprecated. Use `/user_files_v2` instead.
 ```swift
 let pagination = Pagination(
     limit: 123,
-    offset: 123
+    offset: 123,
+    startingId: 123
 )
 let orderBy = OrganizationUserFilesToSyncOrderByTypes(
     
@@ -3983,7 +3988,8 @@ let filters = ListItemsFiltersNullable(
 )
 let pagination = Pagination(
     limit: 123,
-    offset: 123
+    offset: 123,
+    startingId: 123
 )
 let orderBy = ExternalSourceItemsOrderBy(
     
@@ -5639,7 +5645,8 @@ List users within an organization
 ```swift
 let pagination = Pagination(
     limit: 123,
-    offset: 123
+    offset: 123,
+    startingId: 123
 )
 let filters = ListUsersFilters(
     customerIds: [
@@ -6224,7 +6231,8 @@ let filters = UserWebPagesFilters(
 )
 let pagination = Pagination(
     limit: 123,
-    offset: 123
+    offset: 123,
+    startingId: 123
 )
 let orderBy = UserWebPageOrderByTypes(
     
@@ -6334,7 +6342,8 @@ Webhook Urls
 ```swift
 let pagination = Pagination(
     limit: 123,
-    offset: 123
+    offset: 123,
+    startingId: 123
 )
 let orderBy = WebhookOrderByColumns(
     
@@ -6445,7 +6454,8 @@ List White Labels
 ```swift
 let pagination = Pagination(
     limit: 123,
-    offset: 123
+    offset: 123,
+    startingId: 123
 )
 let orderBy = WhiteLabelOrderByColumns(
     

@@ -17,7 +17,7 @@ public struct AuthenticationProperty: Codable, JSONEncodable, Hashable {
     public var refreshToken: String?
     public var workspaceId: String
     public var tenantName: String?
-    public var siteName: String
+    public var siteName: String?
     public var subdomain: String
     public var accessTokenSecret: String
     public var username: String
@@ -37,7 +37,7 @@ public struct AuthenticationProperty: Codable, JSONEncodable, Hashable {
     public var redirectUri: String
     public var gongAccountEmail: String
 
-    public init(source: AnyCodable?, accessToken: String, refreshToken: String? = nil, workspaceId: String, tenantName: String? = nil, siteName: String, subdomain: String, accessTokenSecret: String, username: String, zoteroId: String, organizationName: String, domain: String, apiKey: String, accessKey: String, accessKeySecret: String, endpointUrl: String? = nil, accountName: String, accountKey: String, instanceSubdomain: String, clientId: String, clientSecret: String, redirectUri: String, gongAccountEmail: String) {
+    public init(source: AnyCodable?, accessToken: String, refreshToken: String? = nil, workspaceId: String, tenantName: String? = nil, siteName: String? = nil, subdomain: String, accessTokenSecret: String, username: String, zoteroId: String, organizationName: String, domain: String, apiKey: String, accessKey: String, accessKeySecret: String, endpointUrl: String? = nil, accountName: String, accountKey: String, instanceSubdomain: String, clientId: String, clientSecret: String, redirectUri: String, gongAccountEmail: String) {
         self.source = source
         self.accessToken = accessToken
         self.refreshToken = refreshToken
@@ -98,7 +98,7 @@ public struct AuthenticationProperty: Codable, JSONEncodable, Hashable {
         try codingContainer.encodeIfPresent(refreshToken, forKey: .refreshToken)
         try codingContainer.encode(workspaceId, forKey: .workspaceId)
         try codingContainer.encodeIfPresent(tenantName, forKey: .tenantName)
-        try codingContainer.encode(siteName, forKey: .siteName)
+        try codingContainer.encodeIfPresent(siteName, forKey: .siteName)
         try codingContainer.encode(subdomain, forKey: .subdomain)
         try codingContainer.encode(accessTokenSecret, forKey: .accessTokenSecret)
         try codingContainer.encode(username, forKey: .username)

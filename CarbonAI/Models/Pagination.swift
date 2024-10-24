@@ -14,15 +14,18 @@ public struct Pagination: Codable, JSONEncodable, Hashable {
 
     public var limit: Int? = 10
     public var offset: Int? = 0
+    public var startingId: Int? = 0
 
-    public init(limit: Int? = 10, offset: Int? = 0) {
+    public init(limit: Int? = 10, offset: Int? = 0, startingId: Int? = 0) {
         self.limit = limit
         self.offset = offset
+        self.startingId = startingId
     }
 
     public enum CodingKeys: String, CodingKey, CaseIterable {
         case limit
         case offset
+        case startingId = "starting_id"
     }
 
     // Encodable protocol methods
@@ -31,6 +34,7 @@ public struct Pagination: Codable, JSONEncodable, Hashable {
         var codingContainer = encoder.container(keyedBy: CodingKeys.self)
         try codingContainer.encodeIfPresent(limit, forKey: .limit)
         try codingContainer.encodeIfPresent(offset, forKey: .offset)
+        try codingContainer.encodeIfPresent(startingId, forKey: .startingId)
     }
 }
 
