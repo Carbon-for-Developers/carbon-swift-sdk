@@ -2002,6 +2002,7 @@ let filters = OrganizationUserFilesToSyncFilters(
 let includeRawFile = true
 let includeParsedTextFile = true
 let includeAdditionalFiles = true
+let presignedUrlExpiryTimeSeconds = 987
 let queryUserFilesResponse = try await carbonai.files.queryUserFiles(
     pagination: pagination,
     orderBy: orderBy,
@@ -2009,7 +2010,8 @@ let queryUserFilesResponse = try await carbonai.files.queryUserFiles(
     filters: filters,
     includeRawFile: includeRawFile,
     includeParsedTextFile: includeParsedTextFile,
-    includeAdditionalFiles: includeAdditionalFiles
+    includeAdditionalFiles: includeAdditionalFiles,
+    presignedUrlExpiryTimeSeconds: presignedUrlExpiryTimeSeconds
 )
 ```
 
@@ -2017,23 +2019,42 @@ let queryUserFilesResponse = try await carbonai.files.queryUserFiles(
 
 ##### pagination: [`Pagination`](./CarbonAI/Models/Pagination.swift)<a id="pagination-paginationcarbonaimodelspaginationswift"></a>
 
+Pagination parameters for the query.
+
 
 ##### order_by: `OrganizationUserFilesToSyncOrderByTypes`<a id="order_by-organizationuserfilestosyncorderbytypes"></a>
+
+The field on OrganizationUserFilesToSYnc to order the results by.
 
 
 ##### order_dir: `OrderDir`<a id="order_dir-orderdir"></a>
 
+The direction to order the results by.
+
 
 ##### filters: [`OrganizationUserFilesToSyncFilters`](./CarbonAI/Models/OrganizationUserFilesToSyncFilters.swift)<a id="filters-organizationuserfilestosyncfilterscarbonaimodelsorganizationuserfilestosyncfiltersswift"></a>
+
+Filters to apply to the query.
 
 
 ##### include_raw_file: `Bool`<a id="include_raw_file-bool"></a>
 
+If true, the query will return presigned URLs for the raw file. Only relevant for the /user_files_v2 endpoint.
+
 
 ##### include_parsed_text_file: `Bool`<a id="include_parsed_text_file-bool"></a>
 
+If true, the query will return presigned URLs for the parsed text file. Only relevant for the /user_files_v2 endpoint.
+
 
 ##### include_additional_files: `Bool`<a id="include_additional_files-bool"></a>
+
+If true, the query will return presigned URLs for additional files. Only relevant for the /user_files_v2 endpoint.
+
+
+##### presigned_url_expiry_time_seconds: `Int`<a id="presigned_url_expiry_time_seconds-int"></a>
+
+The expiry time for the presigned URLs. Only relevant for the /user_files_v2 endpoint.
 
 
 #### 🔄 Return<a id="🔄-return"></a>
@@ -2116,6 +2137,7 @@ let filters = OrganizationUserFilesToSyncFilters(
 let includeRawFile = true
 let includeParsedTextFile = true
 let includeAdditionalFiles = true
+let presignedUrlExpiryTimeSeconds = 987
 let queryUserFilesDeprecatedResponse = try await carbonai.files.queryUserFilesDeprecated(
     pagination: pagination,
     orderBy: orderBy,
@@ -2123,7 +2145,8 @@ let queryUserFilesDeprecatedResponse = try await carbonai.files.queryUserFilesDe
     filters: filters,
     includeRawFile: includeRawFile,
     includeParsedTextFile: includeParsedTextFile,
-    includeAdditionalFiles: includeAdditionalFiles
+    includeAdditionalFiles: includeAdditionalFiles,
+    presignedUrlExpiryTimeSeconds: presignedUrlExpiryTimeSeconds
 )
 ```
 
@@ -2131,23 +2154,42 @@ let queryUserFilesDeprecatedResponse = try await carbonai.files.queryUserFilesDe
 
 ##### pagination: [`Pagination`](./CarbonAI/Models/Pagination.swift)<a id="pagination-paginationcarbonaimodelspaginationswift"></a>
 
+Pagination parameters for the query.
+
 
 ##### order_by: `OrganizationUserFilesToSyncOrderByTypes`<a id="order_by-organizationuserfilestosyncorderbytypes"></a>
+
+The field on OrganizationUserFilesToSYnc to order the results by.
 
 
 ##### order_dir: `OrderDir`<a id="order_dir-orderdir"></a>
 
+The direction to order the results by.
+
 
 ##### filters: [`OrganizationUserFilesToSyncFilters`](./CarbonAI/Models/OrganizationUserFilesToSyncFilters.swift)<a id="filters-organizationuserfilestosyncfilterscarbonaimodelsorganizationuserfilestosyncfiltersswift"></a>
+
+Filters to apply to the query.
 
 
 ##### include_raw_file: `Bool`<a id="include_raw_file-bool"></a>
 
+If true, the query will return presigned URLs for the raw file. Only relevant for the /user_files_v2 endpoint.
+
 
 ##### include_parsed_text_file: `Bool`<a id="include_parsed_text_file-bool"></a>
 
+If true, the query will return presigned URLs for the parsed text file. Only relevant for the /user_files_v2 endpoint.
+
 
 ##### include_additional_files: `Bool`<a id="include_additional_files-bool"></a>
+
+If true, the query will return presigned URLs for additional files. Only relevant for the /user_files_v2 endpoint.
+
+
+##### presigned_url_expiry_time_seconds: `Int`<a id="presigned_url_expiry_time_seconds-int"></a>
+
+The expiry time for the presigned URLs. Only relevant for the /user_files_v2 endpoint.
 
 
 #### 🔄 Return<a id="🔄-return"></a>
@@ -3663,6 +3705,9 @@ let service = OauthBasedConnectors(
 )
 let tags = TODO
 let scope = "scope_example"
+let scopes = [
+"inner_example"
+]
 let chunkSize = 987
 let chunkOverlap = 987
 let skipEmbeddingGeneration = true
@@ -3715,6 +3760,7 @@ let getOauthUrlResponse = try await carbonai.integrations.getOauthUrl(
     service: service,
     tags: tags,
     scope: scope,
+    scopes: scopes,
     chunkSize: chunkSize,
     chunkOverlap: chunkOverlap,
     skipEmbeddingGeneration: skipEmbeddingGeneration,
@@ -3754,6 +3800,11 @@ let getOauthUrlResponse = try await carbonai.integrations.getOauthUrl(
 
 
 ##### scope: `String`<a id="scope-string"></a>
+
+
+##### scopes: `[String]`<a id="scopes-string"></a>
+
+List of scopes to request from the OAuth provider. Please that the scopes will be used as it is, not          combined with the default props that Carbon uses. One scope should be one array element.
 
 
 ##### chunk_size: `Int`<a id="chunk_size-int"></a>
