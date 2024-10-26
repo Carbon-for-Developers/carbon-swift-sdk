@@ -14,6 +14,8 @@ public struct OAuthURLRequest: Codable, JSONEncodable, Hashable {
 
     public var tags: AnyCodable?
     public var scope: String?
+    /** List of scopes to request from the OAuth provider. Please that the scopes will be used as it is, not          combined with the default props that Carbon uses. One scope should be one array element. */
+    public var scopes: [String]?
     public var service: OauthBasedConnectors
     public var chunkSize: Int? = 1500
     public var chunkOverlap: Int? = 20
@@ -55,9 +57,10 @@ public struct OAuthURLRequest: Codable, JSONEncodable, Hashable {
     /** Tags to be associated with the data source. If the data source already has tags set, then an upsert will be performed. */
     public var dataSourceTags: AnyCodable?
 
-    public init(tags: AnyCodable? = nil, scope: String? = nil, service: OauthBasedConnectors, chunkSize: Int? = 1500, chunkOverlap: Int? = 20, skipEmbeddingGeneration: Bool? = false, embeddingModel: EmbeddingGeneratorsNullable? = nil, zendeskSubdomain: String? = nil, microsoftTenant: String? = nil, sharepointSiteName: String? = nil, confluenceSubdomain: String? = nil, generateSparseVectors: Bool? = false, prependFilenameToChunks: Bool? = false, maxItemsPerChunk: Int? = nil, salesforceDomain: String? = nil, syncFilesOnConnection: Bool? = true, setPageAsBoundary: Bool? = false, dataSourceId: Int? = nil, connectingNewAccount: Bool? = false, requestId: String? = nil, useOcr: Bool? = false, parsePdfTablesWithOcr: Bool? = false, enableFilePicker: Bool? = true, syncSourceItems: Bool? = true, incrementalSync: Bool? = false, fileSyncConfig: FileSyncConfigNullable? = nil, automaticallyOpenFilePicker: Bool? = nil, gongAccountEmail: String? = nil, servicenowCredentials: ServiceNowCredentialsNullable? = nil, dataSourceTags: AnyCodable? = nil) {
+    public init(tags: AnyCodable? = nil, scope: String? = nil, scopes: [String]? = nil, service: OauthBasedConnectors, chunkSize: Int? = 1500, chunkOverlap: Int? = 20, skipEmbeddingGeneration: Bool? = false, embeddingModel: EmbeddingGeneratorsNullable? = nil, zendeskSubdomain: String? = nil, microsoftTenant: String? = nil, sharepointSiteName: String? = nil, confluenceSubdomain: String? = nil, generateSparseVectors: Bool? = false, prependFilenameToChunks: Bool? = false, maxItemsPerChunk: Int? = nil, salesforceDomain: String? = nil, syncFilesOnConnection: Bool? = true, setPageAsBoundary: Bool? = false, dataSourceId: Int? = nil, connectingNewAccount: Bool? = false, requestId: String? = nil, useOcr: Bool? = false, parsePdfTablesWithOcr: Bool? = false, enableFilePicker: Bool? = true, syncSourceItems: Bool? = true, incrementalSync: Bool? = false, fileSyncConfig: FileSyncConfigNullable? = nil, automaticallyOpenFilePicker: Bool? = nil, gongAccountEmail: String? = nil, servicenowCredentials: ServiceNowCredentialsNullable? = nil, dataSourceTags: AnyCodable? = nil) {
         self.tags = tags
         self.scope = scope
+        self.scopes = scopes
         self.service = service
         self.chunkSize = chunkSize
         self.chunkOverlap = chunkOverlap
@@ -91,6 +94,7 @@ public struct OAuthURLRequest: Codable, JSONEncodable, Hashable {
     public enum CodingKeys: String, CodingKey, CaseIterable {
         case tags
         case scope
+        case scopes
         case service
         case chunkSize = "chunk_size"
         case chunkOverlap = "chunk_overlap"
@@ -127,6 +131,7 @@ public struct OAuthURLRequest: Codable, JSONEncodable, Hashable {
         var codingContainer = encoder.container(keyedBy: CodingKeys.self)
         try codingContainer.encodeIfPresent(tags, forKey: .tags)
         try codingContainer.encodeIfPresent(scope, forKey: .scope)
+        try codingContainer.encodeIfPresent(scopes, forKey: .scopes)
         try codingContainer.encode(service, forKey: .service)
         try codingContainer.encodeIfPresent(chunkSize, forKey: .chunkSize)
         try codingContainer.encodeIfPresent(chunkOverlap, forKey: .chunkOverlap)

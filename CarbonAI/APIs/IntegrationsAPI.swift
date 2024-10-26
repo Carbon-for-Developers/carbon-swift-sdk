@@ -1358,6 +1358,7 @@ open class IntegrationsAPI {
         service: OauthBasedConnectors,
         tags: AnyCodable? = nil, 
         scope: String? = nil, 
+        scopes: [String]? = nil, 
         chunkSize: Int? = nil, 
         chunkOverlap: Int? = nil, 
         skipEmbeddingGeneration: Bool? = nil, 
@@ -1389,6 +1390,7 @@ open class IntegrationsAPI {
         let oAuthURLRequest = OAuthURLRequest(
             tags: tags,
             scope: scope,
+            scopes: scopes,
             service: service,
             chunkSize: chunkSize,
             chunkOverlap: chunkOverlap,
@@ -1443,6 +1445,7 @@ open class IntegrationsAPI {
         service: OauthBasedConnectors,
         tags: AnyCodable? = nil, 
         scope: String? = nil, 
+        scopes: [String]? = nil, 
         chunkSize: Int? = nil, 
         chunkOverlap: Int? = nil, 
         skipEmbeddingGeneration: Bool? = nil, 
@@ -1474,6 +1477,7 @@ open class IntegrationsAPI {
         let oAuthURLRequest = OAuthURLRequest(
             tags: tags,
             scope: scope,
+            scopes: scopes,
             service: service,
             chunkSize: chunkSize,
             chunkOverlap: chunkOverlap,

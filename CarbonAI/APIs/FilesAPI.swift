@@ -1799,7 +1799,8 @@ open class FilesAPI {
         filters: OrganizationUserFilesToSyncFilters? = nil, 
         includeRawFile: Bool? = nil, 
         includeParsedTextFile: Bool? = nil, 
-        includeAdditionalFiles: Bool? = nil
+        includeAdditionalFiles: Bool? = nil, 
+        presignedUrlExpiryTimeSeconds: Int? = nil
     ) async throws -> UserFilesV2 {
         let organizationUserFilesToSyncQueryInput = OrganizationUserFilesToSyncQueryInput(
             pagination: pagination,
@@ -1808,7 +1809,8 @@ open class FilesAPI {
             filters: filters,
             includeRawFile: includeRawFile,
             includeParsedTextFile: includeParsedTextFile,
-            includeAdditionalFiles: includeAdditionalFiles
+            includeAdditionalFiles: includeAdditionalFiles,
+            presignedUrlExpiryTimeSeconds: presignedUrlExpiryTimeSeconds
         )
         return try await withCheckedThrowingContinuation { continuation in
             queryUserFilesWithRequestBuilder(organizationUserFilesToSyncQueryInput: organizationUserFilesToSyncQueryInput).execute { result in
@@ -1838,7 +1840,8 @@ open class FilesAPI {
         filters: OrganizationUserFilesToSyncFilters? = nil, 
         includeRawFile: Bool? = nil, 
         includeParsedTextFile: Bool? = nil, 
-        includeAdditionalFiles: Bool? = nil
+        includeAdditionalFiles: Bool? = nil, 
+        presignedUrlExpiryTimeSeconds: Int? = nil
     ) async throws -> UserFilesV2 {
         let organizationUserFilesToSyncQueryInput = OrganizationUserFilesToSyncQueryInput(
             pagination: pagination,
@@ -1847,7 +1850,8 @@ open class FilesAPI {
             filters: filters,
             includeRawFile: includeRawFile,
             includeParsedTextFile: includeParsedTextFile,
-            includeAdditionalFiles: includeAdditionalFiles
+            includeAdditionalFiles: includeAdditionalFiles,
+            presignedUrlExpiryTimeSeconds: presignedUrlExpiryTimeSeconds
         )
         return try await withCheckedThrowingContinuation { continuation in
             queryUserFilesWithRequestBuilder(organizationUserFilesToSyncQueryInput: organizationUserFilesToSyncQueryInput).execute { result in
@@ -2012,7 +2016,8 @@ open class FilesAPI {
         filters: OrganizationUserFilesToSyncFilters? = nil, 
         includeRawFile: Bool? = nil, 
         includeParsedTextFile: Bool? = nil, 
-        includeAdditionalFiles: Bool? = nil
+        includeAdditionalFiles: Bool? = nil, 
+        presignedUrlExpiryTimeSeconds: Int? = nil
     ) async throws -> [UserFile] {
         let organizationUserFilesToSyncQueryInput = OrganizationUserFilesToSyncQueryInput(
             pagination: pagination,
@@ -2021,7 +2026,8 @@ open class FilesAPI {
             filters: filters,
             includeRawFile: includeRawFile,
             includeParsedTextFile: includeParsedTextFile,
-            includeAdditionalFiles: includeAdditionalFiles
+            includeAdditionalFiles: includeAdditionalFiles,
+            presignedUrlExpiryTimeSeconds: presignedUrlExpiryTimeSeconds
         )
         return try await withCheckedThrowingContinuation { continuation in
             queryUserFilesDeprecatedWithRequestBuilder(organizationUserFilesToSyncQueryInput: organizationUserFilesToSyncQueryInput).execute { result in
@@ -2052,7 +2058,8 @@ open class FilesAPI {
         filters: OrganizationUserFilesToSyncFilters? = nil, 
         includeRawFile: Bool? = nil, 
         includeParsedTextFile: Bool? = nil, 
-        includeAdditionalFiles: Bool? = nil
+        includeAdditionalFiles: Bool? = nil, 
+        presignedUrlExpiryTimeSeconds: Int? = nil
     ) async throws -> [UserFile] {
         let organizationUserFilesToSyncQueryInput = OrganizationUserFilesToSyncQueryInput(
             pagination: pagination,
@@ -2061,7 +2068,8 @@ open class FilesAPI {
             filters: filters,
             includeRawFile: includeRawFile,
             includeParsedTextFile: includeParsedTextFile,
-            includeAdditionalFiles: includeAdditionalFiles
+            includeAdditionalFiles: includeAdditionalFiles,
+            presignedUrlExpiryTimeSeconds: presignedUrlExpiryTimeSeconds
         )
         return try await withCheckedThrowingContinuation { continuation in
             queryUserFilesDeprecatedWithRequestBuilder(organizationUserFilesToSyncQueryInput: organizationUserFilesToSyncQueryInput).execute { result in
