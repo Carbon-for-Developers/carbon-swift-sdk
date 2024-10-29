@@ -13,6 +13,7 @@ import AnyCodable
 /** Parameters for reranking the chunks using a specified model. This field accepts an object with details of the reranking model to be used; either &#39;Cohere&#39; or &#39;Jina&#39;. If provided, the specified reranking model will reorder the retrieved chunks based on their relevance to the query. */
 public struct RerankParamsNullable: Codable, JSONEncodable, Hashable {
 
+    /** The name of the model to use for reranking. Options: ['COHERE_RERANK_MULTILINGUAL_V3', 'JINA_RERANKER_MULTILINGUAL_V2', 'PONGO_RERANKER']. */
     public var model: String
 
     public init(model: String) {

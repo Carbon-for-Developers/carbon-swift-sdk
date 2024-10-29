@@ -12,6 +12,7 @@ import AnyCodable
 
 public struct RerankParams: Codable, JSONEncodable, Hashable {
 
+    /** The name of the model to use for reranking. Options: ['COHERE_RERANK_MULTILINGUAL_V3', 'JINA_RERANKER_MULTILINGUAL_V2', 'PONGO_RERANKER']. */
     public var model: String
 
     public init(model: String) {
