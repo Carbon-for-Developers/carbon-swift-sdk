@@ -16,12 +16,16 @@ public struct ListItemsFiltersNullable: Codable, JSONEncodable, Hashable {
     public var ids: [Int]?
     public var name: String?
     public var rootFilesOnly: Bool?
+    public var fileFormats: [StorageFileFormats]?
+    public var itemTypes: [ItemTypesPropertyInner]?
 
-    public init(externalIds: [String]? = nil, ids: [Int]? = nil, name: String? = nil, rootFilesOnly: Bool? = nil) {
+    public init(externalIds: [String]? = nil, ids: [Int]? = nil, name: String? = nil, rootFilesOnly: Bool? = nil, fileFormats: [StorageFileFormats]? = nil, itemTypes: [ItemTypesPropertyInner]? = nil) {
         self.externalIds = externalIds
         self.ids = ids
         self.name = name
         self.rootFilesOnly = rootFilesOnly
+        self.fileFormats = fileFormats
+        self.itemTypes = itemTypes
     }
 
     public enum CodingKeys: String, CodingKey, CaseIterable {
@@ -29,6 +33,8 @@ public struct ListItemsFiltersNullable: Codable, JSONEncodable, Hashable {
         case ids
         case name
         case rootFilesOnly = "root_files_only"
+        case fileFormats = "file_formats"
+        case itemTypes = "item_types"
     }
 
     // Encodable protocol methods
@@ -39,6 +45,8 @@ public struct ListItemsFiltersNullable: Codable, JSONEncodable, Hashable {
         try codingContainer.encodeIfPresent(ids, forKey: .ids)
         try codingContainer.encodeIfPresent(name, forKey: .name)
         try codingContainer.encodeIfPresent(rootFilesOnly, forKey: .rootFilesOnly)
+        try codingContainer.encodeIfPresent(fileFormats, forKey: .fileFormats)
+        try codingContainer.encodeIfPresent(itemTypes, forKey: .itemTypes)
     }
 }
 
