@@ -16,6 +16,7 @@ public struct UserFile: Codable, JSONEncodable, Hashable {
     public var id: Int
     public var source: DataSourceType
     public var organizationId: Int
+    public var organizationUserId: Int?
     public var organizationSuppliedUserId: String
     public var organizationUserDataSourceId: Int?
     public var externalFileId: String
@@ -51,11 +52,12 @@ public struct UserFile: Codable, JSONEncodable, Hashable {
     public var createdAt: Date
     public var updatedAt: Date
 
-    public init(tags: AnyCodable?, id: Int, source: DataSourceType, organizationId: Int, organizationSuppliedUserId: String, organizationUserDataSourceId: Int?, externalFileId: String, externalUrl: String?, syncStatus: ExternalFileSyncStatuses, syncErrorMessage: String?, lastSync: Date?, fileStatistics: FileStatisticsNullable?, fileMetadata: AnyCodable?, embeddingProperties: [String: EmbeddingProperties]?, chunkSize: Int?, chunkOverlap: Int?, chunkProperties: ChunkPropertiesNullable?, ocrProperties: AnyCodable, ocrJobStartedAt: Date?, name: String?, parentId: Int?, enableAutoSync: Bool?, presignedUrl: String?, parsedTextUrl: String?, additionalPresignedUrls: AnyCodable?, skipEmbeddingGeneration: Bool, sourceCreatedAt: Date?, generateSparseVectors: Bool?, requestId: String?, uploadId: String?, syncProperties: AnyCodable, messagesMetadata: AnyCodable, fileContentsDeleted: Bool = false, supportsColdStorage: Bool, hotStorageTimeToLive: Int?, embeddingStorageStatus: EmbeddingStorageStatus, createdAt: Date, updatedAt: Date) {
+    public init(tags: AnyCodable?, id: Int, source: DataSourceType, organizationId: Int, organizationUserId: Int?, organizationSuppliedUserId: String, organizationUserDataSourceId: Int?, externalFileId: String, externalUrl: String?, syncStatus: ExternalFileSyncStatuses, syncErrorMessage: String?, lastSync: Date?, fileStatistics: FileStatisticsNullable?, fileMetadata: AnyCodable?, embeddingProperties: [String: EmbeddingProperties]?, chunkSize: Int?, chunkOverlap: Int?, chunkProperties: ChunkPropertiesNullable?, ocrProperties: AnyCodable, ocrJobStartedAt: Date?, name: String?, parentId: Int?, enableAutoSync: Bool?, presignedUrl: String?, parsedTextUrl: String?, additionalPresignedUrls: AnyCodable?, skipEmbeddingGeneration: Bool, sourceCreatedAt: Date?, generateSparseVectors: Bool?, requestId: String?, uploadId: String?, syncProperties: AnyCodable, messagesMetadata: AnyCodable, fileContentsDeleted: Bool = false, supportsColdStorage: Bool, hotStorageTimeToLive: Int?, embeddingStorageStatus: EmbeddingStorageStatus, createdAt: Date, updatedAt: Date) {
         self.tags = tags
         self.id = id
         self.source = source
         self.organizationId = organizationId
+        self.organizationUserId = organizationUserId
         self.organizationSuppliedUserId = organizationSuppliedUserId
         self.organizationUserDataSourceId = organizationUserDataSourceId
         self.externalFileId = externalFileId
@@ -97,6 +99,7 @@ public struct UserFile: Codable, JSONEncodable, Hashable {
         case id
         case source
         case organizationId = "organization_id"
+        case organizationUserId = "organization_user_id"
         case organizationSuppliedUserId = "organization_supplied_user_id"
         case organizationUserDataSourceId = "organization_user_data_source_id"
         case externalFileId = "external_file_id"
@@ -141,6 +144,7 @@ public struct UserFile: Codable, JSONEncodable, Hashable {
         try codingContainer.encode(id, forKey: .id)
         try codingContainer.encode(source, forKey: .source)
         try codingContainer.encode(organizationId, forKey: .organizationId)
+        try codingContainer.encode(organizationUserId, forKey: .organizationUserId)
         try codingContainer.encode(organizationSuppliedUserId, forKey: .organizationSuppliedUserId)
         try codingContainer.encode(organizationUserDataSourceId, forKey: .organizationUserDataSourceId)
         try codingContainer.encode(externalFileId, forKey: .externalFileId)
