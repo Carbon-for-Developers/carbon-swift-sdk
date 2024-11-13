@@ -12,10 +12,13 @@ import AnyCodable
 
 public struct GoogleDriveWhiteLabelInput: Codable, JSONEncodable, Hashable {
 
-    public var dataSourceType: AnyCodable?
+    public enum DataSourceType: String, Codable, CaseIterable {
+        case googleDrive = "GOOGLE_DRIVE"
+    }
+    public var dataSourceType: DataSourceType
     public var credentials: GoogleDriveCredentials
 
-    public init(dataSourceType: AnyCodable?, credentials: GoogleDriveCredentials) {
+    public init(dataSourceType: DataSourceType, credentials: GoogleDriveCredentials) {
         self.dataSourceType = dataSourceType
         self.credentials = credentials
     }

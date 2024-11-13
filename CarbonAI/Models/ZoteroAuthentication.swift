@@ -12,13 +12,16 @@ import AnyCodable
 
 public struct ZoteroAuthentication: Codable, JSONEncodable, Hashable {
 
-    public var source: AnyCodable?
+    public enum Source: String, Codable, CaseIterable {
+        case zotero = "ZOTERO"
+    }
+    public var source: Source
     public var accessToken: String
     public var accessTokenSecret: String
     public var username: String
     public var zoteroId: String
 
-    public init(source: AnyCodable?, accessToken: String, accessTokenSecret: String, username: String, zoteroId: String) {
+    public init(source: Source, accessToken: String, accessTokenSecret: String, username: String, zoteroId: String) {
         self.source = source
         self.accessToken = accessToken
         self.accessTokenSecret = accessTokenSecret

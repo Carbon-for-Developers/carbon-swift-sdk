@@ -26,7 +26,7 @@ public struct DocumentResponse: Codable, JSONEncodable, Hashable {
     public var contentMetadata: AnyCodable?
     public var chunkIndex: Int?
 
-    public init(tags: [String: Tags]?, content: String, fileId: Int, parentFileId: Int?, source: String?, sourceUrl: String?, sourceType: DataSourceTypeNullable?, presignedUrl: String?, vector: [Double]?, score: Double?, rank: RankProperty?, contentMetadata: AnyCodable?, chunkIndex: Int?) {
+    public init(tags: [String: Tags]? = nil, content: String, fileId: Int, parentFileId: Int? = nil, source: String? = nil, sourceUrl: String? = nil, sourceType: DataSourceTypeNullable? = nil, presignedUrl: String? = nil, vector: [Double]?, score: Double? = nil, rank: RankProperty? = nil, contentMetadata: AnyCodable? = nil, chunkIndex: Int? = nil) {
         self.tags = tags
         self.content = content
         self.fileId = fileId
@@ -62,19 +62,19 @@ public struct DocumentResponse: Codable, JSONEncodable, Hashable {
 
     public func encode(to encoder: Encoder) throws {
         var codingContainer = encoder.container(keyedBy: CodingKeys.self)
-        try codingContainer.encode(tags, forKey: .tags)
+        try codingContainer.encodeIfPresent(tags, forKey: .tags)
         try codingContainer.encode(content, forKey: .content)
         try codingContainer.encode(fileId, forKey: .fileId)
-        try codingContainer.encode(parentFileId, forKey: .parentFileId)
-        try codingContainer.encode(source, forKey: .source)
-        try codingContainer.encode(sourceUrl, forKey: .sourceUrl)
-        try codingContainer.encode(sourceType, forKey: .sourceType)
-        try codingContainer.encode(presignedUrl, forKey: .presignedUrl)
+        try codingContainer.encodeIfPresent(parentFileId, forKey: .parentFileId)
+        try codingContainer.encodeIfPresent(source, forKey: .source)
+        try codingContainer.encodeIfPresent(sourceUrl, forKey: .sourceUrl)
+        try codingContainer.encodeIfPresent(sourceType, forKey: .sourceType)
+        try codingContainer.encodeIfPresent(presignedUrl, forKey: .presignedUrl)
         try codingContainer.encode(vector, forKey: .vector)
-        try codingContainer.encode(score, forKey: .score)
-        try codingContainer.encode(rank, forKey: .rank)
-        try codingContainer.encode(contentMetadata, forKey: .contentMetadata)
-        try codingContainer.encode(chunkIndex, forKey: .chunkIndex)
+        try codingContainer.encodeIfPresent(score, forKey: .score)
+        try codingContainer.encodeIfPresent(rank, forKey: .rank)
+        try codingContainer.encodeIfPresent(contentMetadata, forKey: .contentMetadata)
+        try codingContainer.encodeIfPresent(chunkIndex, forKey: .chunkIndex)
     }
 }
 

@@ -27,14 +27,14 @@ public struct OrganizationResponse: Codable, JSONEncodable, Hashable {
     public var fileStatisticsAggregatedAt: Date?
     public var periodEndsAt: Date?
     public var cancelAtPeriodEnd: Bool?
-    public var connectorSettings: AnyCodable
-    public var globalUserConfig: AnyCodable
-    public var fileSyncUsage: AnyCodable
-    public var loggingSettings: AnyCodable
+    public var connectorSettings: AnyCodable?
+    public var globalUserConfig: AnyCodable?
+    public var fileSyncUsage: AnyCodable?
+    public var loggingSettings: AnyCodable?
     public var createdAt: Date
     public var updatedAt: Date
 
-    public init(id: Int, name: String, nickname: String?, removeBranding: Bool, customBranding: AnyCodable?, customLimits: AnyCodable?, aggregateFileSize: AnyCodable, aggregateNumCharacters: AnyCodable, aggregateNumTokens: AnyCodable, aggregateNumEmbeddings: AnyCodable, aggregateNumFilesBySource: AnyCodable, aggregateNumFilesByFileFormat: AnyCodable, fileStatisticsAggregatedAt: Date?, periodEndsAt: Date?, cancelAtPeriodEnd: Bool?, connectorSettings: AnyCodable, globalUserConfig: AnyCodable, fileSyncUsage: AnyCodable, loggingSettings: AnyCodable, createdAt: Date, updatedAt: Date) {
+    public init(id: Int, name: String, nickname: String? = nil, removeBranding: Bool, customBranding: AnyCodable? = nil, customLimits: AnyCodable? = nil, aggregateFileSize: AnyCodable, aggregateNumCharacters: AnyCodable, aggregateNumTokens: AnyCodable, aggregateNumEmbeddings: AnyCodable, aggregateNumFilesBySource: AnyCodable, aggregateNumFilesByFileFormat: AnyCodable, fileStatisticsAggregatedAt: Date?, periodEndsAt: Date? = nil, cancelAtPeriodEnd: Bool? = nil, connectorSettings: AnyCodable? = nil, globalUserConfig: AnyCodable? = nil, fileSyncUsage: AnyCodable? = nil, loggingSettings: AnyCodable? = nil, createdAt: Date, updatedAt: Date) {
         self.id = id
         self.name = name
         self.nickname = nickname
@@ -88,10 +88,10 @@ public struct OrganizationResponse: Codable, JSONEncodable, Hashable {
         var codingContainer = encoder.container(keyedBy: CodingKeys.self)
         try codingContainer.encode(id, forKey: .id)
         try codingContainer.encode(name, forKey: .name)
-        try codingContainer.encode(nickname, forKey: .nickname)
+        try codingContainer.encodeIfPresent(nickname, forKey: .nickname)
         try codingContainer.encode(removeBranding, forKey: .removeBranding)
-        try codingContainer.encode(customBranding, forKey: .customBranding)
-        try codingContainer.encode(customLimits, forKey: .customLimits)
+        try codingContainer.encodeIfPresent(customBranding, forKey: .customBranding)
+        try codingContainer.encodeIfPresent(customLimits, forKey: .customLimits)
         try codingContainer.encode(aggregateFileSize, forKey: .aggregateFileSize)
         try codingContainer.encode(aggregateNumCharacters, forKey: .aggregateNumCharacters)
         try codingContainer.encode(aggregateNumTokens, forKey: .aggregateNumTokens)
@@ -99,12 +99,12 @@ public struct OrganizationResponse: Codable, JSONEncodable, Hashable {
         try codingContainer.encode(aggregateNumFilesBySource, forKey: .aggregateNumFilesBySource)
         try codingContainer.encode(aggregateNumFilesByFileFormat, forKey: .aggregateNumFilesByFileFormat)
         try codingContainer.encode(fileStatisticsAggregatedAt, forKey: .fileStatisticsAggregatedAt)
-        try codingContainer.encode(periodEndsAt, forKey: .periodEndsAt)
-        try codingContainer.encode(cancelAtPeriodEnd, forKey: .cancelAtPeriodEnd)
-        try codingContainer.encode(connectorSettings, forKey: .connectorSettings)
-        try codingContainer.encode(globalUserConfig, forKey: .globalUserConfig)
-        try codingContainer.encode(fileSyncUsage, forKey: .fileSyncUsage)
-        try codingContainer.encode(loggingSettings, forKey: .loggingSettings)
+        try codingContainer.encodeIfPresent(periodEndsAt, forKey: .periodEndsAt)
+        try codingContainer.encodeIfPresent(cancelAtPeriodEnd, forKey: .cancelAtPeriodEnd)
+        try codingContainer.encodeIfPresent(connectorSettings, forKey: .connectorSettings)
+        try codingContainer.encodeIfPresent(globalUserConfig, forKey: .globalUserConfig)
+        try codingContainer.encodeIfPresent(fileSyncUsage, forKey: .fileSyncUsage)
+        try codingContainer.encodeIfPresent(loggingSettings, forKey: .loggingSettings)
         try codingContainer.encode(createdAt, forKey: .createdAt)
         try codingContainer.encode(updatedAt, forKey: .updatedAt)
     }

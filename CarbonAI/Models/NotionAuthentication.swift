@@ -12,11 +12,14 @@ import AnyCodable
 
 public struct NotionAuthentication: Codable, JSONEncodable, Hashable {
 
-    public var source: AnyCodable?
+    public enum Source: String, Codable, CaseIterable {
+        case notion = "NOTION"
+    }
+    public var source: Source
     public var accessToken: String
     public var workspaceId: String
 
-    public init(source: AnyCodable?, accessToken: String, workspaceId: String) {
+    public init(source: Source, accessToken: String, workspaceId: String) {
         self.source = source
         self.accessToken = accessToken
         self.workspaceId = workspaceId

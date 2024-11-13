@@ -12,12 +12,15 @@ import AnyCodable
 
 public struct ConfluenceAuthentication: Codable, JSONEncodable, Hashable {
 
-    public var source: AnyCodable?
+    public enum Source: String, Codable, CaseIterable {
+        case confluence = "CONFLUENCE"
+    }
+    public var source: Source
     public var accessToken: String
     public var refreshToken: String?
     public var subdomain: String
 
-    public init(source: AnyCodable?, accessToken: String, refreshToken: String? = nil, subdomain: String) {
+    public init(source: Source, accessToken: String, refreshToken: String? = nil, subdomain: String) {
         self.source = source
         self.accessToken = accessToken
         self.refreshToken = refreshToken

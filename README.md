@@ -31,6 +31,7 @@ Connect external data to LLMs, no matter the source.
   * [`carbonai.cRM.getOpportunities`](#carbonaicrmgetopportunities)
   * [`carbonai.cRM.getOpportunity`](#carbonaicrmgetopportunity)
   * [`carbonai.dataSources.addTags`](#carbonaidatasourcesaddtags)
+  * [`carbonai.dataSources.query`](#carbonaidatasourcesquery)
   * [`carbonai.dataSources.queryUserDataSources`](#carbonaidatasourcesqueryuserdatasources)
   * [`carbonai.dataSources.removeTags`](#carbonaidatasourcesremovetags)
   * [`carbonai.dataSources.revokeAccessToken`](#carbonaidatasourcesrevokeaccesstoken)
@@ -769,6 +770,67 @@ let addTagsResponse = try await carbonai.dataSources.addTags(
 #### 🌐 Endpoint<a id="🌐-endpoint"></a>
 
 `/data_sources/tags/add` `POST`
+
+[🔙 **Back to Table of Contents**](#table-of-contents)
+
+---
+
+
+### `carbonai.dataSources.query`<a id="carbonaidatasourcesquery"></a>
+
+Data Sources
+
+#### 🛠️ Usage<a id="🛠️-usage"></a>
+
+```swift
+let pagination = Pagination(
+    limit: 123,
+    offset: 123,
+    startingId: 123
+)
+let orderBy = OrganizationUserDataSourceOrderByColumns(
+    
+)
+let orderDir = OrderDir(
+    
+)
+let filters = OrganizationUserDataSourceFilters(
+    tags: "TODO",
+    source: DataSourceTypeNullable.googleCloudStorage,
+    ids: [
+    123
+    ],
+    revokedAccess: false
+)
+let queryResponse = try await carbonai.dataSources.query(
+    pagination: pagination,
+    orderBy: orderBy,
+    orderDir: orderDir,
+    filters: filters
+)
+```
+
+#### ⚙️ Parameters<a id="⚙️-parameters"></a>
+
+##### pagination: [`Pagination`](./CarbonAI/Models/Pagination.swift)<a id="pagination-paginationcarbonaimodelspaginationswift"></a>
+
+
+##### order_by: `OrganizationUserDataSourceOrderByColumns`<a id="order_by-organizationuserdatasourceorderbycolumns"></a>
+
+
+##### order_dir: `OrderDir`<a id="order_dir-orderdir"></a>
+
+
+##### filters: [`OrganizationUserDataSourceFilters`](./CarbonAI/Models/OrganizationUserDataSourceFilters.swift)<a id="filters-organizationuserdatasourcefilterscarbonaimodelsorganizationuserdatasourcefiltersswift"></a>
+
+
+#### 🔄 Return<a id="🔄-return"></a>
+
+[OrganizationUserDataSourceResponse](./CarbonAI/Models/OrganizationUserDataSourceResponse.swift)
+
+#### 🌐 Endpoint<a id="🌐-endpoint"></a>
+
+`/data_sources` `POST`
 
 [🔙 **Back to Table of Contents**](#table-of-contents)
 
@@ -2020,22 +2082,14 @@ let queryUserFilesResponse = try await carbonai.files.queryUserFiles(
 
 ##### pagination: [`Pagination`](./CarbonAI/Models/Pagination.swift)<a id="pagination-paginationcarbonaimodelspaginationswift"></a>
 
-Pagination parameters for the query.
-
 
 ##### order_by: `OrganizationUserFilesToSyncOrderByTypes`<a id="order_by-organizationuserfilestosyncorderbytypes"></a>
-
-The field on OrganizationUserFilesToSYnc to order the results by.
 
 
 ##### order_dir: `OrderDir`<a id="order_dir-orderdir"></a>
 
-The direction to order the results by.
-
 
 ##### filters: [`OrganizationUserFilesToSyncFilters`](./CarbonAI/Models/OrganizationUserFilesToSyncFilters.swift)<a id="filters-organizationuserfilestosyncfilterscarbonaimodelsorganizationuserfilestosyncfiltersswift"></a>
-
-Filters to apply to the query.
 
 
 ##### include_raw_file: `Bool`<a id="include_raw_file-bool"></a>
@@ -2155,22 +2209,14 @@ let queryUserFilesDeprecatedResponse = try await carbonai.files.queryUserFilesDe
 
 ##### pagination: [`Pagination`](./CarbonAI/Models/Pagination.swift)<a id="pagination-paginationcarbonaimodelspaginationswift"></a>
 
-Pagination parameters for the query.
-
 
 ##### order_by: `OrganizationUserFilesToSyncOrderByTypes`<a id="order_by-organizationuserfilestosyncorderbytypes"></a>
-
-The field on OrganizationUserFilesToSYnc to order the results by.
 
 
 ##### order_dir: `OrderDir`<a id="order_dir-orderdir"></a>
 
-The direction to order the results by.
-
 
 ##### filters: [`OrganizationUserFilesToSyncFilters`](./CarbonAI/Models/OrganizationUserFilesToSyncFilters.swift)<a id="filters-organizationuserfilestosyncfilterscarbonaimodelsorganizationuserfilestosyncfiltersswift"></a>
-
-Filters to apply to the query.
 
 
 ##### include_raw_file: `Bool`<a id="include_raw_file-bool"></a>
@@ -3185,7 +3231,7 @@ Connect Data Source
 
 ```swift
 let authentication = AuthenticationProperty(
-    source: "TODO",
+    source: "source_example",
     accessToken: "accessToken_example",
     refreshToken: "refreshToken_example",
     workspaceId: "workspaceId_example",
@@ -5615,7 +5661,8 @@ let globalUserConfig = UserConfigurationNullable(
     maxFilesPerUpload: 123,
     maxCharacters: 123,
     maxCharactersPerFile: 123,
-    maxCharactersPerUpload: 123
+    maxCharactersPerUpload: 123,
+    autoSyncInterval: 123
 )
 let dataSourceConfigs = "TODO"
 let updateResponse = try await carbonai.organizations.update(
@@ -5811,7 +5858,9 @@ Toggle User Features
 #### 🛠️ Usage<a id="🛠️-usage"></a>
 
 ```swift
-let configurationKeyName = "configurationKeyName_example"
+let configurationKeyName = ConfigurationKeys(
+    
+)
 let value = "TODO"
 let toggleUserFeaturesResponse = try await carbonai.users.toggleUserFeatures(
     configurationKeyName: configurationKeyName,
@@ -5821,7 +5870,7 @@ let toggleUserFeaturesResponse = try await carbonai.users.toggleUserFeatures(
 
 #### ⚙️ Parameters<a id="⚙️-parameters"></a>
 
-##### configuration_key_name: `String`<a id="configuration_key_name-string"></a>
+##### configuration_key_name: `ConfigurationKeys`<a id="configuration_key_name-configurationkeys"></a>
 
 
 ##### value: `AnyCodable`<a id="value-anycodable"></a>
@@ -5858,6 +5907,7 @@ let maxFilesPerUpload = 987
 let maxCharacters = 987
 let maxCharactersPerFile = 987
 let maxCharactersPerUpload = 987
+let autoSyncInterval = 987
 let updateUsersResponse = try await carbonai.users.updateUsers(
     customerIds: customerIds,
     autoSyncEnabledSources: autoSyncEnabledSources,
@@ -5865,7 +5915,8 @@ let updateUsersResponse = try await carbonai.users.updateUsers(
     maxFilesPerUpload: maxFilesPerUpload,
     maxCharacters: maxCharacters,
     maxCharactersPerFile: maxCharactersPerFile,
-    maxCharactersPerUpload: maxCharactersPerUpload
+    maxCharactersPerUpload: maxCharactersPerUpload,
+    autoSyncInterval: autoSyncInterval
 )
 ```
 
@@ -5902,6 +5953,11 @@ A single file upload from the user can not exceed this character limit.         
 ##### max_characters_per_upload: `Int`<a id="max_characters_per_upload-int"></a>
 
 Custom character upload limit for the user across a single upload.         If set, then the user won't be able to sync more than this many characters in one upload.          If not set, or if set to -1, then the user will have no limit.
+
+
+##### auto_sync_interval: `Int`<a id="auto_sync_interval-int"></a>
+
+The interval in hours at which the user's data sources should be synced. If not set or set to -1,          the user will be synced at the organization level interval or default interval if that is also not set.          Must be one of [3, 6, 12, 24]
 
 
 #### 🔄 Return<a id="🔄-return"></a>

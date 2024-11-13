@@ -12,11 +12,14 @@ import AnyCodable
 
 public struct FreskdeskAuthentication: Codable, JSONEncodable, Hashable {
 
-    public var source: AnyCodable?
+    public enum Source: String, Codable, CaseIterable {
+        case freshdesk = "FRESHDESK"
+    }
+    public var source: Source
     public var domain: String
     public var apiKey: String
 
-    public init(source: AnyCodable?, domain: String, apiKey: String) {
+    public init(source: Source, domain: String, apiKey: String) {
         self.source = source
         self.domain = domain
         self.apiKey = apiKey

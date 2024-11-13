@@ -12,11 +12,11 @@ import AnyCodable
 
 public struct ChunkProperties: Codable, JSONEncodable, Hashable {
 
-    public var setPageAsBoundary: Bool = false
-    public var prependFilenameToChunks: Bool = false
+    public var setPageAsBoundary: Bool? = false
+    public var prependFilenameToChunks: Bool? = false
     public var maxItemsPerChunk: Int?
 
-    public init(setPageAsBoundary: Bool = false, prependFilenameToChunks: Bool = false, maxItemsPerChunk: Int?) {
+    public init(setPageAsBoundary: Bool? = false, prependFilenameToChunks: Bool? = false, maxItemsPerChunk: Int? = nil) {
         self.setPageAsBoundary = setPageAsBoundary
         self.prependFilenameToChunks = prependFilenameToChunks
         self.maxItemsPerChunk = maxItemsPerChunk
@@ -32,9 +32,9 @@ public struct ChunkProperties: Codable, JSONEncodable, Hashable {
 
     public func encode(to encoder: Encoder) throws {
         var codingContainer = encoder.container(keyedBy: CodingKeys.self)
-        try codingContainer.encode(setPageAsBoundary, forKey: .setPageAsBoundary)
-        try codingContainer.encode(prependFilenameToChunks, forKey: .prependFilenameToChunks)
-        try codingContainer.encode(maxItemsPerChunk, forKey: .maxItemsPerChunk)
+        try codingContainer.encodeIfPresent(setPageAsBoundary, forKey: .setPageAsBoundary)
+        try codingContainer.encodeIfPresent(prependFilenameToChunks, forKey: .prependFilenameToChunks)
+        try codingContainer.encodeIfPresent(maxItemsPerChunk, forKey: .maxItemsPerChunk)
     }
 }
 

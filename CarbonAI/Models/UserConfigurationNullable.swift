@@ -24,14 +24,17 @@ public struct UserConfigurationNullable: Codable, JSONEncodable, Hashable {
     public var maxCharactersPerFile: Int?
     /** Custom character upload limit for the user across a single upload.         If set, then the user won't be able to sync more than this many characters in one upload.          If not set, or if set to -1, then the user will have no limit. */
     public var maxCharactersPerUpload: Int?
+    /** The interval in hours at which the user's data sources should be synced. If not set or set to -1,          the user will be synced at the organization level interval or default interval if that is also not set.          Must be one of [3, 6, 12, 24] */
+    public var autoSyncInterval: Int?
 
-    public init(autoSyncEnabledSources: AutoSyncEnabledSourcesProperty? = nil, maxFiles: Int? = nil, maxFilesPerUpload: Int? = nil, maxCharacters: Int? = nil, maxCharactersPerFile: Int? = nil, maxCharactersPerUpload: Int? = nil) {
+    public init(autoSyncEnabledSources: AutoSyncEnabledSourcesProperty? = nil, maxFiles: Int? = nil, maxFilesPerUpload: Int? = nil, maxCharacters: Int? = nil, maxCharactersPerFile: Int? = nil, maxCharactersPerUpload: Int? = nil, autoSyncInterval: Int? = nil) {
         self.autoSyncEnabledSources = autoSyncEnabledSources
         self.maxFiles = maxFiles
         self.maxFilesPerUpload = maxFilesPerUpload
         self.maxCharacters = maxCharacters
         self.maxCharactersPerFile = maxCharactersPerFile
         self.maxCharactersPerUpload = maxCharactersPerUpload
+        self.autoSyncInterval = autoSyncInterval
     }
 
     public enum CodingKeys: String, CodingKey, CaseIterable {
@@ -41,6 +44,7 @@ public struct UserConfigurationNullable: Codable, JSONEncodable, Hashable {
         case maxCharacters = "max_characters"
         case maxCharactersPerFile = "max_characters_per_file"
         case maxCharactersPerUpload = "max_characters_per_upload"
+        case autoSyncInterval = "auto_sync_interval"
     }
 
     // Encodable protocol methods
@@ -53,6 +57,7 @@ public struct UserConfigurationNullable: Codable, JSONEncodable, Hashable {
         try codingContainer.encodeIfPresent(maxCharacters, forKey: .maxCharacters)
         try codingContainer.encodeIfPresent(maxCharactersPerFile, forKey: .maxCharactersPerFile)
         try codingContainer.encodeIfPresent(maxCharactersPerUpload, forKey: .maxCharactersPerUpload)
+        try codingContainer.encodeIfPresent(autoSyncInterval, forKey: .autoSyncInterval)
     }
 }
 

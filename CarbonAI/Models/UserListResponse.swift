@@ -15,7 +15,7 @@ public struct UserListResponse: Codable, JSONEncodable, Hashable {
     public var users: [ListUserResponse]
     public var count: Int?
 
-    public init(users: [ListUserResponse], count: Int?) {
+    public init(users: [ListUserResponse], count: Int? = nil) {
         self.users = users
         self.count = count
     }
@@ -30,7 +30,7 @@ public struct UserListResponse: Codable, JSONEncodable, Hashable {
     public func encode(to encoder: Encoder) throws {
         var codingContainer = encoder.container(keyedBy: CodingKeys.self)
         try codingContainer.encode(users, forKey: .users)
-        try codingContainer.encode(count, forKey: .count)
+        try codingContainer.encodeIfPresent(count, forKey: .count)
     }
 }
 

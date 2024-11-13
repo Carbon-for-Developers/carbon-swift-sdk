@@ -12,12 +12,15 @@ import AnyCodable
 
 public struct GongAuthentication: Codable, JSONEncodable, Hashable {
 
-    public var source: AnyCodable?
+    public enum Source: String, Codable, CaseIterable {
+        case gong = "GONG"
+    }
+    public var source: Source
     public var accessToken: String
     public var refreshToken: String?
     public var gongAccountEmail: String
 
-    public init(source: AnyCodable?, accessToken: String, refreshToken: String? = nil, gongAccountEmail: String) {
+    public init(source: Source, accessToken: String, refreshToken: String? = nil, gongAccountEmail: String) {
         self.source = source
         self.accessToken = accessToken
         self.refreshToken = refreshToken

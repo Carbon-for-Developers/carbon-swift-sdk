@@ -30,7 +30,7 @@ public struct Opportunity: Codable, JSONEncodable, Hashable {
     public var events: [Event]?
     public var remoteData: AnyCodable?
 
-    public init(description: String?, id: String, owner: PartialOwner, name: String?, amount: Int?, account: PartialAccountNullable?, contact: PartialContactNullable?, stage: String?, status: OpportunityStatusNullable?, closeDate: String?, lastActivityAt: String?, createdAt: String, updatedAt: String, isDeleted: Bool, tasks: [Task]?, events: [Event]?, remoteData: AnyCodable?) {
+    public init(description: String?, id: String, owner: PartialOwner, name: String?, amount: Int?, account: PartialAccountNullable?, contact: PartialContactNullable?, stage: String?, status: OpportunityStatusNullable?, closeDate: String?, lastActivityAt: String?, createdAt: String, updatedAt: String, isDeleted: Bool, tasks: [Task]? = nil, events: [Event]? = nil, remoteData: AnyCodable?) {
         self.description = description
         self.id = id
         self.owner = owner
@@ -88,8 +88,8 @@ public struct Opportunity: Codable, JSONEncodable, Hashable {
         try codingContainer.encode(createdAt, forKey: .createdAt)
         try codingContainer.encode(updatedAt, forKey: .updatedAt)
         try codingContainer.encode(isDeleted, forKey: .isDeleted)
-        try codingContainer.encode(tasks, forKey: .tasks)
-        try codingContainer.encode(events, forKey: .events)
+        try codingContainer.encodeIfPresent(tasks, forKey: .tasks)
+        try codingContainer.encodeIfPresent(events, forKey: .events)
         try codingContainer.encode(remoteData, forKey: .remoteData)
     }
 }
