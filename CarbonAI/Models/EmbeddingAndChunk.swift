@@ -18,7 +18,7 @@ public struct EmbeddingAndChunk: Codable, JSONEncodable, Hashable {
     public var embedding: [Double]?
     public var contentMetadata: AnyCodable?
 
-    public init(userFileId: Int, chunkIndex: Int?, sourceContent: String, embedding: [Double]?, contentMetadata: AnyCodable?) {
+    public init(userFileId: Int, chunkIndex: Int? = nil, sourceContent: String, embedding: [Double]? = nil, contentMetadata: AnyCodable? = nil) {
         self.userFileId = userFileId
         self.chunkIndex = chunkIndex
         self.sourceContent = sourceContent
@@ -39,10 +39,10 @@ public struct EmbeddingAndChunk: Codable, JSONEncodable, Hashable {
     public func encode(to encoder: Encoder) throws {
         var codingContainer = encoder.container(keyedBy: CodingKeys.self)
         try codingContainer.encode(userFileId, forKey: .userFileId)
-        try codingContainer.encode(chunkIndex, forKey: .chunkIndex)
+        try codingContainer.encodeIfPresent(chunkIndex, forKey: .chunkIndex)
         try codingContainer.encode(sourceContent, forKey: .sourceContent)
-        try codingContainer.encode(embedding, forKey: .embedding)
-        try codingContainer.encode(contentMetadata, forKey: .contentMetadata)
+        try codingContainer.encodeIfPresent(embedding, forKey: .embedding)
+        try codingContainer.encodeIfPresent(contentMetadata, forKey: .contentMetadata)
     }
 }
 

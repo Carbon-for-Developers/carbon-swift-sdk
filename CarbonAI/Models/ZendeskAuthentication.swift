@@ -12,11 +12,14 @@ import AnyCodable
 
 public struct ZendeskAuthentication: Codable, JSONEncodable, Hashable {
 
-    public var source: AnyCodable?
+    public enum Source: String, Codable, CaseIterable {
+        case zendesk = "ZENDESK"
+    }
+    public var source: Source
     public var accessToken: String
     public var subdomain: String
 
-    public init(source: AnyCodable?, accessToken: String, subdomain: String) {
+    public init(source: Source, accessToken: String, subdomain: String) {
         self.source = source
         self.accessToken = accessToken
         self.subdomain = subdomain

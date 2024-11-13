@@ -12,7 +12,10 @@ import AnyCodable
 
 public struct AuthenticationProperty: Codable, JSONEncodable, Hashable {
 
-    public var source: AnyCodable?
+    public enum Source: String, Codable, CaseIterable {
+        case gong = "GONG"
+    }
+    public var source: Source
     public var accessToken: String
     public var refreshToken: String?
     public var workspaceId: String
@@ -37,7 +40,7 @@ public struct AuthenticationProperty: Codable, JSONEncodable, Hashable {
     public var redirectUri: String
     public var gongAccountEmail: String
 
-    public init(source: AnyCodable?, accessToken: String, refreshToken: String? = nil, workspaceId: String, tenantName: String? = nil, siteName: String? = nil, subdomain: String, accessTokenSecret: String, username: String, zoteroId: String, organizationName: String, domain: String, apiKey: String, accessKey: String, accessKeySecret: String, endpointUrl: String? = nil, accountName: String, accountKey: String, instanceSubdomain: String, clientId: String, clientSecret: String, redirectUri: String, gongAccountEmail: String) {
+    public init(source: Source, accessToken: String, refreshToken: String? = nil, workspaceId: String, tenantName: String? = nil, siteName: String? = nil, subdomain: String, accessTokenSecret: String, username: String, zoteroId: String, organizationName: String, domain: String, apiKey: String, accessKey: String, accessKeySecret: String, endpointUrl: String? = nil, accountName: String, accountKey: String, instanceSubdomain: String, clientId: String, clientSecret: String, redirectUri: String, gongAccountEmail: String) {
         self.source = source
         self.accessToken = accessToken
         self.refreshToken = refreshToken

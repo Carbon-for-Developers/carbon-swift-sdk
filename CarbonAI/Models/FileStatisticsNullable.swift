@@ -19,7 +19,7 @@ public struct FileStatisticsNullable: Codable, JSONEncodable, Hashable {
     public var numEmbeddings: Int?
     public var mimeType: String?
 
-    public init(fileFormat: FileFormatsNullable?, fileSize: Int?, numCharacters: Int?, numTokens: Int?, numEmbeddings: Int?, mimeType: String?) {
+    public init(fileFormat: FileFormatsNullable? = nil, fileSize: Int? = nil, numCharacters: Int? = nil, numTokens: Int? = nil, numEmbeddings: Int? = nil, mimeType: String? = nil) {
         self.fileFormat = fileFormat
         self.fileSize = fileSize
         self.numCharacters = numCharacters
@@ -41,12 +41,12 @@ public struct FileStatisticsNullable: Codable, JSONEncodable, Hashable {
 
     public func encode(to encoder: Encoder) throws {
         var codingContainer = encoder.container(keyedBy: CodingKeys.self)
-        try codingContainer.encode(fileFormat, forKey: .fileFormat)
-        try codingContainer.encode(fileSize, forKey: .fileSize)
-        try codingContainer.encode(numCharacters, forKey: .numCharacters)
-        try codingContainer.encode(numTokens, forKey: .numTokens)
-        try codingContainer.encode(numEmbeddings, forKey: .numEmbeddings)
-        try codingContainer.encode(mimeType, forKey: .mimeType)
+        try codingContainer.encodeIfPresent(fileFormat, forKey: .fileFormat)
+        try codingContainer.encodeIfPresent(fileSize, forKey: .fileSize)
+        try codingContainer.encodeIfPresent(numCharacters, forKey: .numCharacters)
+        try codingContainer.encodeIfPresent(numTokens, forKey: .numTokens)
+        try codingContainer.encodeIfPresent(numEmbeddings, forKey: .numEmbeddings)
+        try codingContainer.encodeIfPresent(mimeType, forKey: .mimeType)
     }
 }
 

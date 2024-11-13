@@ -15,9 +15,9 @@ public struct WhiteLabelingResponse: Codable, JSONEncodable, Hashable {
     public var removeBranding: Bool
     public var integrations: AnyCodable
     public var customLimits: AnyCodable
-    public var connectorSettings: AnyCodable
+    public var connectorSettings: AnyCodable?
 
-    public init(removeBranding: Bool, integrations: AnyCodable, customLimits: AnyCodable, connectorSettings: AnyCodable) {
+    public init(removeBranding: Bool, integrations: AnyCodable, customLimits: AnyCodable, connectorSettings: AnyCodable? = nil) {
         self.removeBranding = removeBranding
         self.integrations = integrations
         self.customLimits = customLimits
@@ -38,7 +38,7 @@ public struct WhiteLabelingResponse: Codable, JSONEncodable, Hashable {
         try codingContainer.encode(removeBranding, forKey: .removeBranding)
         try codingContainer.encode(integrations, forKey: .integrations)
         try codingContainer.encode(customLimits, forKey: .customLimits)
-        try codingContainer.encode(connectorSettings, forKey: .connectorSettings)
+        try codingContainer.encodeIfPresent(connectorSettings, forKey: .connectorSettings)
     }
 }
 

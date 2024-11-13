@@ -14,10 +14,10 @@ public struct DirectoryItem: Codable, JSONEncodable, Hashable {
 
     public var id: String
     public var name: String
-    public var isSynced: Bool = false
-    public var hasChildren: Bool = false
+    public var isSynced: Bool? = false
+    public var hasChildren: Bool? = false
 
-    public init(id: String, name: String, isSynced: Bool = false, hasChildren: Bool = false) {
+    public init(id: String, name: String, isSynced: Bool? = false, hasChildren: Bool? = false) {
         self.id = id
         self.name = name
         self.isSynced = isSynced
@@ -37,8 +37,8 @@ public struct DirectoryItem: Codable, JSONEncodable, Hashable {
         var codingContainer = encoder.container(keyedBy: CodingKeys.self)
         try codingContainer.encode(id, forKey: .id)
         try codingContainer.encode(name, forKey: .name)
-        try codingContainer.encode(isSynced, forKey: .isSynced)
-        try codingContainer.encode(hasChildren, forKey: .hasChildren)
+        try codingContainer.encodeIfPresent(isSynced, forKey: .isSynced)
+        try codingContainer.encodeIfPresent(hasChildren, forKey: .hasChildren)
     }
 }
 

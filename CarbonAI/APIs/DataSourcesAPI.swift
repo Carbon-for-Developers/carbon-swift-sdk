@@ -207,6 +207,186 @@ open class DataSourcesAPI {
 
 
     /**
+     Data Sources
+     
+     - parameter organizationUserDataSourceQueryInput: (body)  
+     - parameter apiResponseQueue: The queue on which api response is dispatched.
+     - parameter completion: completion handler to receive the data and the error objects
+     */
+    @discardableResult
+    open class func querySync(organizationUserDataSourceQueryInput: OrganizationUserDataSourceQueryInput, apiResponseQueue: DispatchQueue = CarbonAIAPI.apiResponseQueue, completion: @escaping ((_ data: OrganizationUserDataSourceResponse?, _ error: Error?) -> Void)) -> RequestTask {
+        return queryWithRequestBuilder(organizationUserDataSourceQueryInput: organizationUserDataSourceQueryInput).execute(apiResponseQueue) { result in
+            switch result {
+            case let .success(response):
+                completion(response.body, nil)
+            case let .failure(error):
+                completion(nil, error)
+            }
+        }
+    }
+
+    /**
+     Data Sources
+     
+     - parameter organizationUserDataSourceQueryInput: (body)  
+     - parameter apiResponseQueue: The queue on which api response is dispatched.
+     - parameter completion: completion handler to receive the data and the error objects
+     */
+    @available(iOS 13.0, macOS 10.15, tvOS 13.0, watchOS 6.0, *)
+    private class func queryAsyncMappedParams(organizationUserDataSourceQueryInput: OrganizationUserDataSourceQueryInput) async throws -> OrganizationUserDataSourceResponse {
+        return try await withCheckedThrowingContinuation { continuation in
+            queryWithRequestBuilder(organizationUserDataSourceQueryInput: organizationUserDataSourceQueryInput).execute { result in
+                switch result {
+                case let .success(response):
+                    continuation.resume(returning: response.body)
+                case let .failure(error):
+                    continuation.resume(throwing: error)
+                }
+            }
+        }
+    }
+
+    /**
+     Data Sources
+     
+     - parameter organizationUserDataSourceQueryInput: (body)  
+     - parameter apiResponseQueue: The queue on which api response is dispatched.
+     - parameter completion: completion handler to receive the data and the error objects
+     */
+    @available(iOS 13.0, macOS 10.15, tvOS 13.0, watchOS 6.0, *)
+    open class func query(
+        pagination: Pagination? = nil, 
+        orderBy: OrganizationUserDataSourceOrderByColumns? = nil, 
+        orderDir: OrderDir? = nil, 
+        filters: OrganizationUserDataSourceFilters? = nil
+    ) async throws -> OrganizationUserDataSourceResponse {
+        let organizationUserDataSourceQueryInput = OrganizationUserDataSourceQueryInput(
+            pagination: pagination,
+            orderBy: orderBy,
+            orderDir: orderDir,
+            filters: filters
+        )
+        return try await withCheckedThrowingContinuation { continuation in
+            queryWithRequestBuilder(organizationUserDataSourceQueryInput: organizationUserDataSourceQueryInput).execute { result in
+                switch result {
+                case let .success(response):
+                    continuation.resume(returning: response.body)
+                case let .failure(error):
+                    continuation.resume(throwing: error)
+                }
+            }
+        }
+    }
+
+
+    /**
+     Data Sources
+     
+     - parameter organizationUserDataSourceQueryInput: (body)  
+     - parameter apiResponseQueue: The queue on which api response is dispatched.
+     - parameter completion: completion handler to receive the data and the error objects
+     */
+    @available(iOS 13.0, macOS 10.15, tvOS 13.0, watchOS 6.0, *)
+    open func query(
+        pagination: Pagination? = nil, 
+        orderBy: OrganizationUserDataSourceOrderByColumns? = nil, 
+        orderDir: OrderDir? = nil, 
+        filters: OrganizationUserDataSourceFilters? = nil
+    ) async throws -> OrganizationUserDataSourceResponse {
+        let organizationUserDataSourceQueryInput = OrganizationUserDataSourceQueryInput(
+            pagination: pagination,
+            orderBy: orderBy,
+            orderDir: orderDir,
+            filters: filters
+        )
+        return try await withCheckedThrowingContinuation { continuation in
+            queryWithRequestBuilder(organizationUserDataSourceQueryInput: organizationUserDataSourceQueryInput).execute { result in
+                switch result {
+                case let .success(response):
+                    continuation.resume(returning: response.body)
+                case let .failure(error):
+                    continuation.resume(throwing: error)
+                }
+            }
+        }
+    }
+
+
+
+    /**
+     Data Sources
+     - POST /data_sources
+     - API Key:
+       - type: apiKey authorization 
+       - name: apiKey
+     - parameter organizationUserDataSourceQueryInput: (body)  
+     - returns: RequestBuilder<OrganizationUserDataSourceResponse> 
+     */
+    open class func queryWithRequestBuilder(
+            organizationUserDataSourceQueryInput: OrganizationUserDataSourceQueryInput
+    ) -> RequestBuilder<OrganizationUserDataSourceResponse> {
+        let basePath = CarbonAIAPI.basePath;
+        let localVariablePath = "/data_sources"
+        let localVariableURLString = basePath + localVariablePath
+        let localVariableParameters = JSONEncodingHelper.encodingParameters(forEncodableObject: organizationUserDataSourceQueryInput)
+
+        var localVariableUrlComponents = URLComponents(string: localVariableURLString)
+
+        let localVariableNillableHeaders: [String: Any?] = [
+            :
+        ]
+
+        var localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
+
+        do {
+            try Authentication.setAuthenticationParameters(headers: &localVariableHeaderParameters, url: &localVariableUrlComponents, in: "header", name: "authorization", value: CarbonAIAPI.apiKey, prefix: "Bearer ")
+            let localVariableRequestBuilder: RequestBuilder<OrganizationUserDataSourceResponse>.Type = CarbonAIAPI.requestBuilderFactory.getBuilder()
+            let URLString = localVariableUrlComponents?.string ?? localVariableURLString
+            return localVariableRequestBuilder.init(method: "POST", URLString: URLString, parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        } catch {
+            print("Error: \(error)")
+        }
+        fatalError("Error: Unable to send request to POST /data_sources")
+    }
+
+    /**
+     Data Sources
+     - POST /data_sources
+     - API Key:
+       - type: apiKey authorization 
+       - name: apiKey
+     - parameter organizationUserDataSourceQueryInput: (body)  
+     - returns: RequestBuilder<OrganizationUserDataSourceResponse> 
+     */
+    open func queryWithRequestBuilder(
+            organizationUserDataSourceQueryInput: OrganizationUserDataSourceQueryInput
+    ) -> RequestBuilder<OrganizationUserDataSourceResponse> {
+        let basePath = self.client!.basePath;
+        let localVariablePath = "/data_sources"
+        let localVariableURLString = basePath + localVariablePath
+        let localVariableParameters = JSONEncodingHelper.encodingParameters(forEncodableObject: organizationUserDataSourceQueryInput)
+
+        var localVariableUrlComponents = URLComponents(string: localVariableURLString)
+
+        let localVariableNillableHeaders: [String: Any?] = [
+            :
+        ]
+
+        var localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
+
+        do {
+            try Authentication.setAuthenticationParameters(headers: &localVariableHeaderParameters, url: &localVariableUrlComponents, in: "header", name: "authorization", value: self.client!.apiKey, prefix: "Bearer ")
+            let localVariableRequestBuilder: RequestBuilder<OrganizationUserDataSourceResponse>.Type = CarbonAIAPI.requestBuilderFactory.getBuilder()
+            let URLString = localVariableUrlComponents?.string ?? localVariableURLString
+            return localVariableRequestBuilder.init(method: "POST", URLString: URLString, parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        } catch {
+            print("Error: \(error)")
+        }
+        fatalError("Error: Unable to send request to POST /data_sources")
+    }
+
+
+    /**
      User Data Sources
      
      - parameter organizationUserDataSourceQueryInput: (body)  

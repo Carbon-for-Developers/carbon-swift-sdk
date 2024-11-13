@@ -12,7 +12,10 @@ import AnyCodable
 
 public struct ServiceNowAuthentication: Codable, JSONEncodable, Hashable {
 
-    public var source: AnyCodable?
+    public enum Source: String, Codable, CaseIterable {
+        case servicenow = "SERVICENOW"
+    }
+    public var source: Source
     public var accessToken: String
     public var refreshToken: String?
     public var instanceSubdomain: String
@@ -20,7 +23,7 @@ public struct ServiceNowAuthentication: Codable, JSONEncodable, Hashable {
     public var clientSecret: String
     public var redirectUri: String
 
-    public init(source: AnyCodable?, accessToken: String, refreshToken: String? = nil, instanceSubdomain: String, clientId: String, clientSecret: String, redirectUri: String) {
+    public init(source: Source, accessToken: String, refreshToken: String? = nil, instanceSubdomain: String, clientId: String, clientSecret: String, redirectUri: String) {
         self.source = source
         self.accessToken = accessToken
         self.refreshToken = refreshToken

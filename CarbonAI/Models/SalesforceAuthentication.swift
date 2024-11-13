@@ -12,12 +12,15 @@ import AnyCodable
 
 public struct SalesforceAuthentication: Codable, JSONEncodable, Hashable {
 
-    public var source: AnyCodable?
+    public enum Source: String, Codable, CaseIterable {
+        case salesforce = "SALESFORCE"
+    }
+    public var source: Source
     public var accessToken: String
     public var refreshToken: String?
     public var domain: String
 
-    public init(source: AnyCodable?, accessToken: String, refreshToken: String? = nil, domain: String) {
+    public init(source: Source, accessToken: String, refreshToken: String? = nil, domain: String) {
         self.source = source
         self.accessToken = accessToken
         self.refreshToken = refreshToken

@@ -19,10 +19,10 @@ public struct ListUserResponse: Codable, JSONEncodable, Hashable {
     public var updatedAt: Date
     public var deletedAt: Date?
     public var enabledFeatures: AnyCodable?
-    public var customLimits: AnyCodable
-    public var autoSyncEnabledSources: [AnyCodable]
+    public var customLimits: AnyCodable?
+    public var autoSyncEnabledSources: [AnyCodable]?
 
-    public init(id: Int, organizationId: Int, organizationSuppliedUserId: String, createdAt: Date, updatedAt: Date, deletedAt: Date?, enabledFeatures: AnyCodable?, customLimits: AnyCodable, autoSyncEnabledSources: [AnyCodable]) {
+    public init(id: Int, organizationId: Int, organizationSuppliedUserId: String, createdAt: Date, updatedAt: Date, deletedAt: Date?, enabledFeatures: AnyCodable?, customLimits: AnyCodable? = nil, autoSyncEnabledSources: [AnyCodable]? = nil) {
         self.id = id
         self.organizationId = organizationId
         self.organizationSuppliedUserId = organizationSuppliedUserId
@@ -57,8 +57,8 @@ public struct ListUserResponse: Codable, JSONEncodable, Hashable {
         try codingContainer.encode(updatedAt, forKey: .updatedAt)
         try codingContainer.encode(deletedAt, forKey: .deletedAt)
         try codingContainer.encode(enabledFeatures, forKey: .enabledFeatures)
-        try codingContainer.encode(customLimits, forKey: .customLimits)
-        try codingContainer.encode(autoSyncEnabledSources, forKey: .autoSyncEnabledSources)
+        try codingContainer.encodeIfPresent(customLimits, forKey: .customLimits)
+        try codingContainer.encodeIfPresent(autoSyncEnabledSources, forKey: .autoSyncEnabledSources)
     }
 }
 

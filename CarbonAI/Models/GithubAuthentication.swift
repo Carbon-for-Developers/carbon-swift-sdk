@@ -12,11 +12,14 @@ import AnyCodable
 
 public struct GithubAuthentication: Codable, JSONEncodable, Hashable {
 
-    public var source: AnyCodable?
+    public enum Source: String, Codable, CaseIterable {
+        case github = "GITHUB"
+    }
+    public var source: Source
     public var accessToken: String
     public var username: String
 
-    public init(source: AnyCodable?, accessToken: String, username: String) {
+    public init(source: Source, accessToken: String, username: String) {
         self.source = source
         self.accessToken = accessToken
         self.username = username

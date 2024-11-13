@@ -12,10 +12,10 @@ import AnyCodable
 
 public struct ModifyUserConfigurationInput: Codable, JSONEncodable, Hashable {
 
-    public var configurationKeyName: String
+    public var configurationKeyName: ConfigurationKeys
     public var value: AnyCodable
 
-    public init(configurationKeyName: String, value: AnyCodable) {
+    public init(configurationKeyName: ConfigurationKeys, value: AnyCodable) {
         self.configurationKeyName = configurationKeyName
         self.value = value
     }

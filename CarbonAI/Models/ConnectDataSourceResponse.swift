@@ -15,7 +15,7 @@ public struct ConnectDataSourceResponse: Codable, JSONEncodable, Hashable {
     public var dataSource: OrganizationUserDataSourceAPI
     public var syncUrl: String?
 
-    public init(dataSource: OrganizationUserDataSourceAPI, syncUrl: String?) {
+    public init(dataSource: OrganizationUserDataSourceAPI, syncUrl: String? = nil) {
         self.dataSource = dataSource
         self.syncUrl = syncUrl
     }
@@ -30,7 +30,7 @@ public struct ConnectDataSourceResponse: Codable, JSONEncodable, Hashable {
     public func encode(to encoder: Encoder) throws {
         var codingContainer = encoder.container(keyedBy: CodingKeys.self)
         try codingContainer.encode(dataSource, forKey: .dataSource)
-        try codingContainer.encode(syncUrl, forKey: .syncUrl)
+        try codingContainer.encodeIfPresent(syncUrl, forKey: .syncUrl)
     }
 }
 

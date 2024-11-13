@@ -30,7 +30,7 @@ public struct UserFile: Codable, JSONEncodable, Hashable {
     public var chunkSize: Int?
     public var chunkOverlap: Int?
     public var chunkProperties: ChunkPropertiesNullable?
-    public var ocrProperties: AnyCodable
+    public var ocrProperties: AnyCodable?
     public var ocrJobStartedAt: Date?
     public var name: String?
     public var parentId: Int?
@@ -43,16 +43,16 @@ public struct UserFile: Codable, JSONEncodable, Hashable {
     public var generateSparseVectors: Bool?
     public var requestId: String?
     public var uploadId: String?
-    public var syncProperties: AnyCodable
-    public var messagesMetadata: AnyCodable
-    public var fileContentsDeleted: Bool = false
+    public var syncProperties: AnyCodable?
+    public var messagesMetadata: AnyCodable?
+    public var fileContentsDeleted: Bool? = false
     public var supportsColdStorage: Bool
     public var hotStorageTimeToLive: Int?
     public var embeddingStorageStatus: EmbeddingStorageStatus
     public var createdAt: Date
     public var updatedAt: Date
 
-    public init(tags: AnyCodable?, id: Int, source: DataSourceType, organizationId: Int, organizationUserId: Int?, organizationSuppliedUserId: String, organizationUserDataSourceId: Int?, externalFileId: String, externalUrl: String?, syncStatus: ExternalFileSyncStatuses, syncErrorMessage: String?, lastSync: Date?, fileStatistics: FileStatisticsNullable?, fileMetadata: AnyCodable?, embeddingProperties: [String: EmbeddingProperties]?, chunkSize: Int?, chunkOverlap: Int?, chunkProperties: ChunkPropertiesNullable?, ocrProperties: AnyCodable, ocrJobStartedAt: Date?, name: String?, parentId: Int?, enableAutoSync: Bool?, presignedUrl: String?, parsedTextUrl: String?, additionalPresignedUrls: AnyCodable?, skipEmbeddingGeneration: Bool, sourceCreatedAt: Date?, generateSparseVectors: Bool?, requestId: String?, uploadId: String?, syncProperties: AnyCodable, messagesMetadata: AnyCodable, fileContentsDeleted: Bool = false, supportsColdStorage: Bool, hotStorageTimeToLive: Int?, embeddingStorageStatus: EmbeddingStorageStatus, createdAt: Date, updatedAt: Date) {
+    public init(tags: AnyCodable? = nil, id: Int, source: DataSourceType, organizationId: Int, organizationUserId: Int?, organizationSuppliedUserId: String, organizationUserDataSourceId: Int? = nil, externalFileId: String, externalUrl: String? = nil, syncStatus: ExternalFileSyncStatuses, syncErrorMessage: String? = nil, lastSync: Date? = nil, fileStatistics: FileStatisticsNullable? = nil, fileMetadata: AnyCodable? = nil, embeddingProperties: [String: EmbeddingProperties]? = nil, chunkSize: Int? = nil, chunkOverlap: Int? = nil, chunkProperties: ChunkPropertiesNullable? = nil, ocrProperties: AnyCodable? = nil, ocrJobStartedAt: Date? = nil, name: String? = nil, parentId: Int? = nil, enableAutoSync: Bool? = nil, presignedUrl: String? = nil, parsedTextUrl: String? = nil, additionalPresignedUrls: AnyCodable? = nil, skipEmbeddingGeneration: Bool, sourceCreatedAt: Date? = nil, generateSparseVectors: Bool? = nil, requestId: String? = nil, uploadId: String? = nil, syncProperties: AnyCodable? = nil, messagesMetadata: AnyCodable? = nil, fileContentsDeleted: Bool? = false, supportsColdStorage: Bool, hotStorageTimeToLive: Int? = nil, embeddingStorageStatus: EmbeddingStorageStatus, createdAt: Date, updatedAt: Date) {
         self.tags = tags
         self.id = id
         self.source = source
@@ -140,42 +140,42 @@ public struct UserFile: Codable, JSONEncodable, Hashable {
 
     public func encode(to encoder: Encoder) throws {
         var codingContainer = encoder.container(keyedBy: CodingKeys.self)
-        try codingContainer.encode(tags, forKey: .tags)
+        try codingContainer.encodeIfPresent(tags, forKey: .tags)
         try codingContainer.encode(id, forKey: .id)
         try codingContainer.encode(source, forKey: .source)
         try codingContainer.encode(organizationId, forKey: .organizationId)
         try codingContainer.encode(organizationUserId, forKey: .organizationUserId)
         try codingContainer.encode(organizationSuppliedUserId, forKey: .organizationSuppliedUserId)
-        try codingContainer.encode(organizationUserDataSourceId, forKey: .organizationUserDataSourceId)
+        try codingContainer.encodeIfPresent(organizationUserDataSourceId, forKey: .organizationUserDataSourceId)
         try codingContainer.encode(externalFileId, forKey: .externalFileId)
-        try codingContainer.encode(externalUrl, forKey: .externalUrl)
+        try codingContainer.encodeIfPresent(externalUrl, forKey: .externalUrl)
         try codingContainer.encode(syncStatus, forKey: .syncStatus)
-        try codingContainer.encode(syncErrorMessage, forKey: .syncErrorMessage)
-        try codingContainer.encode(lastSync, forKey: .lastSync)
-        try codingContainer.encode(fileStatistics, forKey: .fileStatistics)
-        try codingContainer.encode(fileMetadata, forKey: .fileMetadata)
-        try codingContainer.encode(embeddingProperties, forKey: .embeddingProperties)
-        try codingContainer.encode(chunkSize, forKey: .chunkSize)
-        try codingContainer.encode(chunkOverlap, forKey: .chunkOverlap)
-        try codingContainer.encode(chunkProperties, forKey: .chunkProperties)
-        try codingContainer.encode(ocrProperties, forKey: .ocrProperties)
-        try codingContainer.encode(ocrJobStartedAt, forKey: .ocrJobStartedAt)
-        try codingContainer.encode(name, forKey: .name)
-        try codingContainer.encode(parentId, forKey: .parentId)
-        try codingContainer.encode(enableAutoSync, forKey: .enableAutoSync)
-        try codingContainer.encode(presignedUrl, forKey: .presignedUrl)
-        try codingContainer.encode(parsedTextUrl, forKey: .parsedTextUrl)
-        try codingContainer.encode(additionalPresignedUrls, forKey: .additionalPresignedUrls)
+        try codingContainer.encodeIfPresent(syncErrorMessage, forKey: .syncErrorMessage)
+        try codingContainer.encodeIfPresent(lastSync, forKey: .lastSync)
+        try codingContainer.encodeIfPresent(fileStatistics, forKey: .fileStatistics)
+        try codingContainer.encodeIfPresent(fileMetadata, forKey: .fileMetadata)
+        try codingContainer.encodeIfPresent(embeddingProperties, forKey: .embeddingProperties)
+        try codingContainer.encodeIfPresent(chunkSize, forKey: .chunkSize)
+        try codingContainer.encodeIfPresent(chunkOverlap, forKey: .chunkOverlap)
+        try codingContainer.encodeIfPresent(chunkProperties, forKey: .chunkProperties)
+        try codingContainer.encodeIfPresent(ocrProperties, forKey: .ocrProperties)
+        try codingContainer.encodeIfPresent(ocrJobStartedAt, forKey: .ocrJobStartedAt)
+        try codingContainer.encodeIfPresent(name, forKey: .name)
+        try codingContainer.encodeIfPresent(parentId, forKey: .parentId)
+        try codingContainer.encodeIfPresent(enableAutoSync, forKey: .enableAutoSync)
+        try codingContainer.encodeIfPresent(presignedUrl, forKey: .presignedUrl)
+        try codingContainer.encodeIfPresent(parsedTextUrl, forKey: .parsedTextUrl)
+        try codingContainer.encodeIfPresent(additionalPresignedUrls, forKey: .additionalPresignedUrls)
         try codingContainer.encode(skipEmbeddingGeneration, forKey: .skipEmbeddingGeneration)
-        try codingContainer.encode(sourceCreatedAt, forKey: .sourceCreatedAt)
-        try codingContainer.encode(generateSparseVectors, forKey: .generateSparseVectors)
-        try codingContainer.encode(requestId, forKey: .requestId)
-        try codingContainer.encode(uploadId, forKey: .uploadId)
-        try codingContainer.encode(syncProperties, forKey: .syncProperties)
-        try codingContainer.encode(messagesMetadata, forKey: .messagesMetadata)
-        try codingContainer.encode(fileContentsDeleted, forKey: .fileContentsDeleted)
+        try codingContainer.encodeIfPresent(sourceCreatedAt, forKey: .sourceCreatedAt)
+        try codingContainer.encodeIfPresent(generateSparseVectors, forKey: .generateSparseVectors)
+        try codingContainer.encodeIfPresent(requestId, forKey: .requestId)
+        try codingContainer.encodeIfPresent(uploadId, forKey: .uploadId)
+        try codingContainer.encodeIfPresent(syncProperties, forKey: .syncProperties)
+        try codingContainer.encodeIfPresent(messagesMetadata, forKey: .messagesMetadata)
+        try codingContainer.encodeIfPresent(fileContentsDeleted, forKey: .fileContentsDeleted)
         try codingContainer.encode(supportsColdStorage, forKey: .supportsColdStorage)
-        try codingContainer.encode(hotStorageTimeToLive, forKey: .hotStorageTimeToLive)
+        try codingContainer.encodeIfPresent(hotStorageTimeToLive, forKey: .hotStorageTimeToLive)
         try codingContainer.encode(embeddingStorageStatus, forKey: .embeddingStorageStatus)
         try codingContainer.encode(createdAt, forKey: .createdAt)
         try codingContainer.encode(updatedAt, forKey: .updatedAt)

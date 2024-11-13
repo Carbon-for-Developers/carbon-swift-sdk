@@ -12,13 +12,16 @@ import AnyCodable
 
 public struct S3Authentication: Codable, JSONEncodable, Hashable {
 
-    public var source: AnyCodable?
+    public enum Source: String, Codable, CaseIterable {
+        case s3 = "S3"
+    }
+    public var source: Source
     public var accessKey: String
     public var accessKeySecret: String
     /** You can specify a Digital Ocean endpoint URL to connect a Digital Ocean Space through this endpoint.         The URL should be of format <region>.digitaloceanspaces.com. It's not required for S3 buckets. */
     public var endpointUrl: String?
 
-    public init(source: AnyCodable?, accessKey: String, accessKeySecret: String, endpointUrl: String? = nil) {
+    public init(source: Source, accessKey: String, accessKeySecret: String, endpointUrl: String? = nil) {
         self.source = source
         self.accessKey = accessKey
         self.accessKeySecret = accessKeySecret

@@ -12,11 +12,14 @@ import AnyCodable
 
 public struct AzureBlobStorageAuthentication: Codable, JSONEncodable, Hashable {
 
-    public var source: AnyCodable?
+    public enum Source: String, Codable, CaseIterable {
+        case azureBlobStorage = "AZURE_BLOB_STORAGE"
+    }
+    public var source: Source
     public var accountName: String
     public var accountKey: String
 
-    public init(source: AnyCodable?, accountName: String, accountKey: String) {
+    public init(source: Source, accountName: String, accountKey: String) {
         self.source = source
         self.accountName = accountName
         self.accountKey = accountKey

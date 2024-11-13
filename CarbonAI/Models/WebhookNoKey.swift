@@ -20,7 +20,7 @@ public struct WebhookNoKey: Codable, JSONEncodable, Hashable {
     public var createdAt: Date
     public var updatedAt: Date
 
-    public init(id: Int, organizationId: Int, url: String, status: WebhookStatus, statusReason: String?, createdAt: Date, updatedAt: Date) {
+    public init(id: Int, organizationId: Int, url: String, status: WebhookStatus, statusReason: String? = nil, createdAt: Date, updatedAt: Date) {
         self.id = id
         self.organizationId = organizationId
         self.url = url
@@ -48,7 +48,7 @@ public struct WebhookNoKey: Codable, JSONEncodable, Hashable {
         try codingContainer.encode(organizationId, forKey: .organizationId)
         try codingContainer.encode(url, forKey: .url)
         try codingContainer.encode(status, forKey: .status)
-        try codingContainer.encode(statusReason, forKey: .statusReason)
+        try codingContainer.encodeIfPresent(statusReason, forKey: .statusReason)
         try codingContainer.encode(createdAt, forKey: .createdAt)
         try codingContainer.encode(updatedAt, forKey: .updatedAt)
     }

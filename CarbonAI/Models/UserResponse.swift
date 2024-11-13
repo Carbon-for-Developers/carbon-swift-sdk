@@ -29,11 +29,11 @@ public struct UserResponse: Codable, JSONEncodable, Hashable {
     public var aggregateNumFilesByFileFormat: AnyCodable
     public var uniqueFileTags: [AnyCodable]
     public var enabledFeatures: AnyCodable?
-    public var customLimits: AnyCodable
-    public var autoSyncEnabledSources: [AnyCodable]
-    public var connectorSettings: AnyCodable
+    public var customLimits: AnyCodable?
+    public var autoSyncEnabledSources: [AnyCodable]?
+    public var connectorSettings: AnyCodable?
 
-    public init(id: Int, organizationId: Int, organizationSuppliedUserId: String, createdAt: Date, updatedAt: Date, deletedAt: Date?, numFilesSynced: Int, numCharactersSynced: Int, numTokensSynced: Int, aggregateFileSize: AnyCodable, aggregateNumCharacters: AnyCodable, aggregateNumTokens: AnyCodable, aggregateNumEmbeddings: AnyCodable, aggregateNumFilesBySource: AnyCodable, aggregateNumFilesByFileFormat: AnyCodable, uniqueFileTags: [AnyCodable], enabledFeatures: AnyCodable?, customLimits: AnyCodable, autoSyncEnabledSources: [AnyCodable], connectorSettings: AnyCodable) {
+    public init(id: Int, organizationId: Int, organizationSuppliedUserId: String, createdAt: Date, updatedAt: Date, deletedAt: Date?, numFilesSynced: Int, numCharactersSynced: Int, numTokensSynced: Int, aggregateFileSize: AnyCodable, aggregateNumCharacters: AnyCodable, aggregateNumTokens: AnyCodable, aggregateNumEmbeddings: AnyCodable, aggregateNumFilesBySource: AnyCodable, aggregateNumFilesByFileFormat: AnyCodable, uniqueFileTags: [AnyCodable], enabledFeatures: AnyCodable?, customLimits: AnyCodable? = nil, autoSyncEnabledSources: [AnyCodable]? = nil, connectorSettings: AnyCodable? = nil) {
         self.id = id
         self.organizationId = organizationId
         self.organizationSuppliedUserId = organizationSuppliedUserId
@@ -100,9 +100,9 @@ public struct UserResponse: Codable, JSONEncodable, Hashable {
         try codingContainer.encode(aggregateNumFilesByFileFormat, forKey: .aggregateNumFilesByFileFormat)
         try codingContainer.encode(uniqueFileTags, forKey: .uniqueFileTags)
         try codingContainer.encode(enabledFeatures, forKey: .enabledFeatures)
-        try codingContainer.encode(customLimits, forKey: .customLimits)
-        try codingContainer.encode(autoSyncEnabledSources, forKey: .autoSyncEnabledSources)
-        try codingContainer.encode(connectorSettings, forKey: .connectorSettings)
+        try codingContainer.encodeIfPresent(customLimits, forKey: .customLimits)
+        try codingContainer.encodeIfPresent(autoSyncEnabledSources, forKey: .autoSyncEnabledSources)
+        try codingContainer.encodeIfPresent(connectorSettings, forKey: .connectorSettings)
     }
 }
 

@@ -592,7 +592,7 @@ open class UsersAPI {
     @available(*, deprecated, message: "This operation is deprecated.")
     @available(iOS 13.0, macOS 10.15, tvOS 13.0, watchOS 6.0, *)
     open class func toggleUserFeatures(
-        configurationKeyName: String,
+        configurationKeyName: ConfigurationKeys,
         value: AnyCodable
     ) async throws -> GenericSuccessResponse {
         let modifyUserConfigurationInput = ModifyUserConfigurationInput(
@@ -622,7 +622,7 @@ open class UsersAPI {
     @available(*, deprecated, message: "This operation is deprecated.")
     @available(iOS 13.0, macOS 10.15, tvOS 13.0, watchOS 6.0, *)
     open func toggleUserFeatures(
-        configurationKeyName: String,
+        configurationKeyName: ConfigurationKeys,
         value: AnyCodable
     ) async throws -> GenericSuccessResponse {
         let modifyUserConfigurationInput = ModifyUserConfigurationInput(
@@ -789,7 +789,8 @@ open class UsersAPI {
         maxFilesPerUpload: Int? = nil, 
         maxCharacters: Int? = nil, 
         maxCharactersPerFile: Int? = nil, 
-        maxCharactersPerUpload: Int? = nil
+        maxCharactersPerUpload: Int? = nil, 
+        autoSyncInterval: Int? = nil
     ) async throws -> GenericSuccessResponse {
         let updateUsersInput = UpdateUsersInput(
             autoSyncEnabledSources: autoSyncEnabledSources,
@@ -798,6 +799,7 @@ open class UsersAPI {
             maxCharacters: maxCharacters,
             maxCharactersPerFile: maxCharactersPerFile,
             maxCharactersPerUpload: maxCharactersPerUpload,
+            autoSyncInterval: autoSyncInterval,
             customerIds: customerIds
         )
         return try await withCheckedThrowingContinuation { continuation in
@@ -828,7 +830,8 @@ open class UsersAPI {
         maxFilesPerUpload: Int? = nil, 
         maxCharacters: Int? = nil, 
         maxCharactersPerFile: Int? = nil, 
-        maxCharactersPerUpload: Int? = nil
+        maxCharactersPerUpload: Int? = nil, 
+        autoSyncInterval: Int? = nil
     ) async throws -> GenericSuccessResponse {
         let updateUsersInput = UpdateUsersInput(
             autoSyncEnabledSources: autoSyncEnabledSources,
@@ -837,6 +840,7 @@ open class UsersAPI {
             maxCharacters: maxCharacters,
             maxCharactersPerFile: maxCharactersPerFile,
             maxCharactersPerUpload: maxCharactersPerUpload,
+            autoSyncInterval: autoSyncInterval,
             customerIds: customerIds
         )
         return try await withCheckedThrowingContinuation { continuation in

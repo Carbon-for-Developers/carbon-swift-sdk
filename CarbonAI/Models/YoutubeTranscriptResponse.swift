@@ -17,7 +17,7 @@ public struct YoutubeTranscriptResponse: Codable, JSONEncodable, Hashable {
     public var data: String?
     public var rawTranscript: [[String: RawTranscriptPropertyInnerValue]]?
 
-    public init(status: String, error: String?, data: String?, rawTranscript: [[String: RawTranscriptPropertyInnerValue]]?) {
+    public init(status: String, error: String? = nil, data: String? = nil, rawTranscript: [[String: RawTranscriptPropertyInnerValue]]? = nil) {
         self.status = status
         self.error = error
         self.data = data
@@ -36,9 +36,9 @@ public struct YoutubeTranscriptResponse: Codable, JSONEncodable, Hashable {
     public func encode(to encoder: Encoder) throws {
         var codingContainer = encoder.container(keyedBy: CodingKeys.self)
         try codingContainer.encode(status, forKey: .status)
-        try codingContainer.encode(error, forKey: .error)
-        try codingContainer.encode(data, forKey: .data)
-        try codingContainer.encode(rawTranscript, forKey: .rawTranscript)
+        try codingContainer.encodeIfPresent(error, forKey: .error)
+        try codingContainer.encodeIfPresent(data, forKey: .data)
+        try codingContainer.encodeIfPresent(rawTranscript, forKey: .rawTranscript)
     }
 }
 

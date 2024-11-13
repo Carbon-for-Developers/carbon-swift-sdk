@@ -35,7 +35,7 @@ public struct Lead: Codable, JSONEncodable, Hashable {
     public var events: [Event]?
     public var remoteData: AnyCodable?
 
-    public init(title: String?, description: String?, id: String, owner: PartialOwner, source: String?, status: String?, company: String?, firstName: String?, lastName: String?, addresses: [Address], phoneNumbers: [PhoneNumber], emails: [Email], convertedAt: String?, convertedAccount: PartialAccountNullable?, convertedContact: PartialContactNullable?, lastActivityAt: String?, createdAt: String, updatedAt: String, isDeleted: Bool, tasks: [Task]?, events: [Event]?, remoteData: AnyCodable?) {
+    public init(title: String?, description: String?, id: String, owner: PartialOwner, source: String?, status: String?, company: String?, firstName: String?, lastName: String?, addresses: [Address], phoneNumbers: [PhoneNumber], emails: [Email], convertedAt: String?, convertedAccount: PartialAccountNullable?, convertedContact: PartialContactNullable?, lastActivityAt: String?, createdAt: String, updatedAt: String, isDeleted: Bool, tasks: [Task]? = nil, events: [Event]? = nil, remoteData: AnyCodable?) {
         self.title = title
         self.description = description
         self.id = id
@@ -108,8 +108,8 @@ public struct Lead: Codable, JSONEncodable, Hashable {
         try codingContainer.encode(createdAt, forKey: .createdAt)
         try codingContainer.encode(updatedAt, forKey: .updatedAt)
         try codingContainer.encode(isDeleted, forKey: .isDeleted)
-        try codingContainer.encode(tasks, forKey: .tasks)
-        try codingContainer.encode(events, forKey: .events)
+        try codingContainer.encodeIfPresent(tasks, forKey: .tasks)
+        try codingContainer.encodeIfPresent(events, forKey: .events)
         try codingContainer.encode(remoteData, forKey: .remoteData)
     }
 }

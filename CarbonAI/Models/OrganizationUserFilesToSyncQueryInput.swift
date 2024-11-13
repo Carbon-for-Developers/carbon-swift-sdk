@@ -12,13 +12,9 @@ import AnyCodable
 
 public struct OrganizationUserFilesToSyncQueryInput: Codable, JSONEncodable, Hashable {
 
-    /** Pagination parameters for the query. */
     public var pagination: Pagination?
-    /** The field on OrganizationUserFilesToSYnc to order the results by. */
     public var orderBy: OrganizationUserFilesToSyncOrderByTypes?
-    /** The direction to order the results by. */
     public var orderDir: OrderDir?
-    /** Filters to apply to the query. */
     public var filters: OrganizationUserFilesToSyncFilters?
     /** If true, the query will return presigned URLs for the raw file. Only relevant for the /user_files_v2 endpoint. */
     public var includeRawFile: Bool?

@@ -16,7 +16,7 @@ public struct FetchURLsResponse: Codable, JSONEncodable, Hashable {
     public var htmlContent: String
     public var errorMessage: String?
 
-    public init(urls: [String], htmlContent: String, errorMessage: String?) {
+    public init(urls: [String], htmlContent: String, errorMessage: String? = nil) {
         self.urls = urls
         self.htmlContent = htmlContent
         self.errorMessage = errorMessage
@@ -34,7 +34,7 @@ public struct FetchURLsResponse: Codable, JSONEncodable, Hashable {
         var codingContainer = encoder.container(keyedBy: CodingKeys.self)
         try codingContainer.encode(urls, forKey: .urls)
         try codingContainer.encode(htmlContent, forKey: .htmlContent)
-        try codingContainer.encode(errorMessage, forKey: .errorMessage)
+        try codingContainer.encodeIfPresent(errorMessage, forKey: .errorMessage)
     }
 }
 

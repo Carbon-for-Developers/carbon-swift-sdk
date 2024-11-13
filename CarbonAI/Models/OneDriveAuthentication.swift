@@ -12,12 +12,15 @@ import AnyCodable
 
 public struct OneDriveAuthentication: Codable, JSONEncodable, Hashable {
 
-    public var source: AnyCodable?
+    public enum Source: String, Codable, CaseIterable {
+        case onedrive = "ONEDRIVE"
+    }
+    public var source: Source
     public var accessToken: String
     public var refreshToken: String?
     public var tenantName: String?
 
-    public init(source: AnyCodable?, accessToken: String, refreshToken: String? = nil, tenantName: String? = nil) {
+    public init(source: Source, accessToken: String, refreshToken: String? = nil, tenantName: String? = nil) {
         self.source = source
         self.accessToken = accessToken
         self.refreshToken = refreshToken
