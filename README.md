@@ -5431,7 +5431,8 @@ data with the selected items or modify the sync behavior
 let ids = [
 S3GetFileInput(
     id: "id_example",
-    bucket: "bucket_example"
+    bucket: "bucket_example",
+    _prefix: "_prefix_example"
 )
 ]
 let tags = "TODO"
@@ -5486,6 +5487,8 @@ let syncS3FilesResponse = try await carbonai.integrations.syncS3Files(
 #### ⚙️ Parameters<a id="⚙️-parameters"></a>
 
 ##### ids: `[S3GetFileInput]`<a id="ids-s3getfileinput"></a>
+
+Each input should be one of the following: A bucket name, a bucket name and a prefix, or a          bucket name and an object key. A prefix is the common path for all objects you want to sync.          Paths should end with a forward slash.
 
 
 ##### tags: `AnyCodable`<a id="tags-anycodable"></a>

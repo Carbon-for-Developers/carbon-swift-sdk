@@ -13,6 +13,7 @@ import AnyCodable
 public struct S3FileSyncInput: Codable, JSONEncodable, Hashable {
 
     public var tags: AnyCodable?
+    /** Each input should be one of the following: A bucket name, a bucket name and a prefix, or a          bucket name and an object key. A prefix is the common path for all objects you want to sync.          Paths should end with a forward slash. */
     public var ids: [S3GetFileInput]
     public var chunkSize: Int? = 1500
     public var chunkOverlap: Int? = 20
