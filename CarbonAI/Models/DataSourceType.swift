@@ -50,6 +50,7 @@ public enum DataSourceType: String, Codable, CaseIterable {
     case slack = "SLACK"
     case guru = "GURU"
     case gong = "GONG"
+    case document360 = "DOCUMENT360"
     case jpg = "JPG"
     case png = "PNG"
     case jpeg = "JPEG"

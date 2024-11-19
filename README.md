@@ -63,6 +63,7 @@ Connect external data to LLMs, no matter the source.
   * [`carbonai.github.getPullRequests`](#carbonaigithubgetpullrequests)
   * [`carbonai.integrations.cancel`](#carbonaiintegrationscancel)
   * [`carbonai.integrations.connectDataSource`](#carbonaiintegrationsconnectdatasource)
+  * [`carbonai.integrations.connectDocument360`](#carbonaiintegrationsconnectdocument360)
   * [`carbonai.integrations.connectFreshdesk`](#carbonaiintegrationsconnectfreshdesk)
   * [`carbonai.integrations.connectGitbook`](#carbonaiintegrationsconnectgitbook)
   * [`carbonai.integrations.connectGuru`](#carbonaiintegrationsconnectguru)
@@ -3309,6 +3310,125 @@ let connectDataSourceResponse = try await carbonai.integrations.connectDataSourc
 #### 🌐 Endpoint<a id="🌐-endpoint"></a>
 
 `/integrations/connect` `POST`
+
+[🔙 **Back to Table of Contents**](#table-of-contents)
+
+---
+
+
+### `carbonai.integrations.connectDocument360`<a id="carbonaiintegrationsconnectdocument360"></a>
+
+You will need an access token to connect your Document360 account. To obtain an access token, follow the steps highlighted 
+here https://apidocs.document360.com/apidocs/api-token.
+
+#### 🛠️ Usage<a id="🛠️-usage"></a>
+
+```swift
+let accountEmail = "accountEmail_example"
+let accessToken = "accessToken_example"
+let tags = "TODO"
+let chunkSize = 987
+let chunkOverlap = 987
+let skipEmbeddingGeneration = true
+let embeddingModel = EmbeddingGenerators(
+    
+)
+let generateSparseVectors = true
+let prependFilenameToChunks = true
+let syncFilesOnConnection = true
+let requestId = "requestId_example"
+let syncSourceItems = true
+let fileSyncConfig = FileSyncConfigNullable(
+    autoSyncedSourceTypes: [
+    AutoSyncedSourceTypesPropertyInner(
+        
+    )
+    ],
+    syncAttachments: false,
+    detectAudioLanguage: false,
+    transcriptionService: TranscriptionServiceNullable.assemblyai,
+    includeSpeakerLabels: false,
+    splitRows: false,
+    generateChunksOnly: false,
+    storeFileOnly: false,
+    skipFileProcessing: false
+)
+let dataSourceTags = "TODO"
+let connectDocument360Response = try await carbonai.integrations.connectDocument360(
+    accountEmail: accountEmail,
+    accessToken: accessToken,
+    tags: tags,
+    chunkSize: chunkSize,
+    chunkOverlap: chunkOverlap,
+    skipEmbeddingGeneration: skipEmbeddingGeneration,
+    embeddingModel: embeddingModel,
+    generateSparseVectors: generateSparseVectors,
+    prependFilenameToChunks: prependFilenameToChunks,
+    syncFilesOnConnection: syncFilesOnConnection,
+    requestId: requestId,
+    syncSourceItems: syncSourceItems,
+    fileSyncConfig: fileSyncConfig,
+    dataSourceTags: dataSourceTags
+)
+```
+
+#### ⚙️ Parameters<a id="⚙️-parameters"></a>
+
+##### account_email: `String`<a id="account_email-string"></a>
+
+This email will be used to identify your carbon data source. It should have access to the          Document360 account you wish to connect.
+
+
+##### access_token: `String`<a id="access_token-string"></a>
+
+
+##### tags: `AnyCodable`<a id="tags-anycodable"></a>
+
+
+##### chunk_size: `Int`<a id="chunk_size-int"></a>
+
+
+##### chunk_overlap: `Int`<a id="chunk_overlap-int"></a>
+
+
+##### skip_embedding_generation: `Bool`<a id="skip_embedding_generation-bool"></a>
+
+
+##### embedding_model: `EmbeddingGenerators`<a id="embedding_model-embeddinggenerators"></a>
+
+
+##### generate_sparse_vectors: `Bool`<a id="generate_sparse_vectors-bool"></a>
+
+
+##### prepend_filename_to_chunks: `Bool`<a id="prepend_filename_to_chunks-bool"></a>
+
+
+##### sync_files_on_connection: `Bool`<a id="sync_files_on_connection-bool"></a>
+
+
+##### request_id: `String`<a id="request_id-string"></a>
+
+
+##### sync_source_items: `Bool`<a id="sync_source_items-bool"></a>
+
+Enabling this flag will fetch all available content from the source to be listed via list items endpoint
+
+
+##### file_sync_config: [`FileSyncConfigNullable`](./CarbonAI/Models/FileSyncConfigNullable.swift)<a id="file_sync_config-filesyncconfignullablecarbonaimodelsfilesyncconfignullableswift"></a>
+
+
+##### data_source_tags: `AnyCodable`<a id="data_source_tags-anycodable"></a>
+
+Tags to be associated with the data source. If the data source already has tags set, then an upsert will be performed.
+
+
+#### 🔄 Return<a id="🔄-return"></a>
+
+[GenericSuccessResponse](./CarbonAI/Models/GenericSuccessResponse.swift)
+
+#### 🌐 Endpoint<a id="🌐-endpoint"></a>
+
+`/integrations/document360` `POST`
 
 [🔙 **Back to Table of Contents**](#table-of-contents)
 
