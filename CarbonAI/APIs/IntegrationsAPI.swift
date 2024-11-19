@@ -391,6 +391,244 @@ open class IntegrationsAPI {
 
 
     /**
+     Document360 Connect
+     
+     - parameter document360ConnectRequest: (body)  
+     - parameter apiResponseQueue: The queue on which api response is dispatched.
+     - parameter completion: completion handler to receive the data and the error objects
+     */
+    @discardableResult
+    open class func connectDocument360Sync(document360ConnectRequest: Document360ConnectRequest, apiResponseQueue: DispatchQueue = CarbonAIAPI.apiResponseQueue, completion: @escaping ((_ data: GenericSuccessResponse?, _ error: Error?) -> Void)) -> RequestTask {
+        return connectDocument360WithRequestBuilder(document360ConnectRequest: document360ConnectRequest).execute(apiResponseQueue) { result in
+            switch result {
+            case let .success(response):
+                completion(response.body, nil)
+            case let .failure(error):
+                completion(nil, error)
+            }
+        }
+    }
+
+    /**
+     Document360 Connect
+     
+     - parameter document360ConnectRequest: (body)  
+     - parameter apiResponseQueue: The queue on which api response is dispatched.
+     - parameter completion: completion handler to receive the data and the error objects
+     */
+    @available(iOS 13.0, macOS 10.15, tvOS 13.0, watchOS 6.0, *)
+    private class func connectDocument360AsyncMappedParams(document360ConnectRequest: Document360ConnectRequest) async throws -> GenericSuccessResponse {
+        return try await withCheckedThrowingContinuation { continuation in
+            connectDocument360WithRequestBuilder(document360ConnectRequest: document360ConnectRequest).execute { result in
+                switch result {
+                case let .success(response):
+                    continuation.resume(returning: response.body)
+                case let .failure(error):
+                    continuation.resume(throwing: error)
+                }
+            }
+        }
+    }
+
+    /**
+     Document360 Connect
+     
+     - parameter document360ConnectRequest: (body)  
+     - parameter apiResponseQueue: The queue on which api response is dispatched.
+     - parameter completion: completion handler to receive the data and the error objects
+     */
+    @available(iOS 13.0, macOS 10.15, tvOS 13.0, watchOS 6.0, *)
+    open class func connectDocument360(
+        accountEmail: String,
+        accessToken: String,
+        tags: AnyCodable? = nil, 
+        chunkSize: Int? = nil, 
+        chunkOverlap: Int? = nil, 
+        skipEmbeddingGeneration: Bool? = nil, 
+        embeddingModel: EmbeddingGenerators? = nil, 
+        generateSparseVectors: Bool? = nil, 
+        prependFilenameToChunks: Bool? = nil, 
+        syncFilesOnConnection: Bool? = nil, 
+        requestId: String? = nil, 
+        syncSourceItems: Bool? = nil, 
+        fileSyncConfig: FileSyncConfigNullable? = nil, 
+        dataSourceTags: AnyCodable? = nil
+    ) async throws -> GenericSuccessResponse {
+        let document360ConnectRequest = Document360ConnectRequest(
+            tags: tags,
+            accountEmail: accountEmail,
+            accessToken: accessToken,
+            chunkSize: chunkSize,
+            chunkOverlap: chunkOverlap,
+            skipEmbeddingGeneration: skipEmbeddingGeneration,
+            embeddingModel: embeddingModel,
+            generateSparseVectors: generateSparseVectors,
+            prependFilenameToChunks: prependFilenameToChunks,
+            syncFilesOnConnection: syncFilesOnConnection,
+            requestId: requestId,
+            syncSourceItems: syncSourceItems,
+            fileSyncConfig: fileSyncConfig,
+            dataSourceTags: dataSourceTags
+        )
+        return try await withCheckedThrowingContinuation { continuation in
+            connectDocument360WithRequestBuilder(document360ConnectRequest: document360ConnectRequest).execute { result in
+                switch result {
+                case let .success(response):
+                    continuation.resume(returning: response.body)
+                case let .failure(error):
+                    continuation.resume(throwing: error)
+                }
+            }
+        }
+    }
+
+
+    /**
+     Document360 Connect
+     
+     - parameter document360ConnectRequest: (body)  
+     - parameter apiResponseQueue: The queue on which api response is dispatched.
+     - parameter completion: completion handler to receive the data and the error objects
+     */
+    @available(iOS 13.0, macOS 10.15, tvOS 13.0, watchOS 6.0, *)
+    open func connectDocument360(
+        accountEmail: String,
+        accessToken: String,
+        tags: AnyCodable? = nil, 
+        chunkSize: Int? = nil, 
+        chunkOverlap: Int? = nil, 
+        skipEmbeddingGeneration: Bool? = nil, 
+        embeddingModel: EmbeddingGenerators? = nil, 
+        generateSparseVectors: Bool? = nil, 
+        prependFilenameToChunks: Bool? = nil, 
+        syncFilesOnConnection: Bool? = nil, 
+        requestId: String? = nil, 
+        syncSourceItems: Bool? = nil, 
+        fileSyncConfig: FileSyncConfigNullable? = nil, 
+        dataSourceTags: AnyCodable? = nil
+    ) async throws -> GenericSuccessResponse {
+        let document360ConnectRequest = Document360ConnectRequest(
+            tags: tags,
+            accountEmail: accountEmail,
+            accessToken: accessToken,
+            chunkSize: chunkSize,
+            chunkOverlap: chunkOverlap,
+            skipEmbeddingGeneration: skipEmbeddingGeneration,
+            embeddingModel: embeddingModel,
+            generateSparseVectors: generateSparseVectors,
+            prependFilenameToChunks: prependFilenameToChunks,
+            syncFilesOnConnection: syncFilesOnConnection,
+            requestId: requestId,
+            syncSourceItems: syncSourceItems,
+            fileSyncConfig: fileSyncConfig,
+            dataSourceTags: dataSourceTags
+        )
+        return try await withCheckedThrowingContinuation { continuation in
+            connectDocument360WithRequestBuilder(document360ConnectRequest: document360ConnectRequest).execute { result in
+                switch result {
+                case let .success(response):
+                    continuation.resume(returning: response.body)
+                case let .failure(error):
+                    continuation.resume(throwing: error)
+                }
+            }
+        }
+    }
+
+
+
+    /**
+     Document360 Connect
+     - POST /integrations/document360
+     - You will need an access token to connect your Document360 account. To obtain an access token, follow the steps highlighted  here https://apidocs.document360.com/apidocs/api-token.
+     - API Key:
+       - type: apiKey authorization 
+       - name: accessToken
+     - API Key:
+       - type: apiKey authorization 
+       - name: apiKey
+     - API Key:
+       - type: apiKey customer-id 
+       - name: customerId
+     - parameter document360ConnectRequest: (body)  
+     - returns: RequestBuilder<GenericSuccessResponse> You will need an access token to connect your Document360 account. To obtain an access token, follow the steps highlighted  here https://apidocs.document360.com/apidocs/api-token.
+     */
+    open class func connectDocument360WithRequestBuilder(
+            document360ConnectRequest: Document360ConnectRequest
+    ) -> RequestBuilder<GenericSuccessResponse> {
+        let basePath = CarbonAIAPI.basePath;
+        let localVariablePath = "/integrations/document360"
+        let localVariableURLString = basePath + localVariablePath
+        let localVariableParameters = JSONEncodingHelper.encodingParameters(forEncodableObject: document360ConnectRequest)
+
+        var localVariableUrlComponents = URLComponents(string: localVariableURLString)
+
+        let localVariableNillableHeaders: [String: Any?] = [
+            :
+        ]
+
+        var localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
+
+        do {
+            try Authentication.setAuthenticationParameters(headers: &localVariableHeaderParameters, url: &localVariableUrlComponents, in: "header", name: "authorization", value: CarbonAIAPI.accessToken, prefix: "Token ")
+            try Authentication.setAuthenticationParameters(headers: &localVariableHeaderParameters, url: &localVariableUrlComponents, in: "header", name: "authorization", value: CarbonAIAPI.apiKey, prefix: "Bearer ")
+            try Authentication.setAuthenticationParameters(headers: &localVariableHeaderParameters, url: &localVariableUrlComponents, in: "header", name: "customer-id", value: CarbonAIAPI.customerId, prefix: nil)
+            let localVariableRequestBuilder: RequestBuilder<GenericSuccessResponse>.Type = CarbonAIAPI.requestBuilderFactory.getBuilder()
+            let URLString = localVariableUrlComponents?.string ?? localVariableURLString
+            return localVariableRequestBuilder.init(method: "POST", URLString: URLString, parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        } catch {
+            print("Error: \(error)")
+        }
+        fatalError("Error: Unable to send request to POST /integrations/document360")
+    }
+
+    /**
+     Document360 Connect
+     - POST /integrations/document360
+     - You will need an access token to connect your Document360 account. To obtain an access token, follow the steps highlighted  here https://apidocs.document360.com/apidocs/api-token.
+     - API Key:
+       - type: apiKey authorization 
+       - name: accessToken
+     - API Key:
+       - type: apiKey authorization 
+       - name: apiKey
+     - API Key:
+       - type: apiKey customer-id 
+       - name: customerId
+     - parameter document360ConnectRequest: (body)  
+     - returns: RequestBuilder<GenericSuccessResponse> You will need an access token to connect your Document360 account. To obtain an access token, follow the steps highlighted  here https://apidocs.document360.com/apidocs/api-token.
+     */
+    open func connectDocument360WithRequestBuilder(
+            document360ConnectRequest: Document360ConnectRequest
+    ) -> RequestBuilder<GenericSuccessResponse> {
+        let basePath = self.client!.basePath;
+        let localVariablePath = "/integrations/document360"
+        let localVariableURLString = basePath + localVariablePath
+        let localVariableParameters = JSONEncodingHelper.encodingParameters(forEncodableObject: document360ConnectRequest)
+
+        var localVariableUrlComponents = URLComponents(string: localVariableURLString)
+
+        let localVariableNillableHeaders: [String: Any?] = [
+            :
+        ]
+
+        var localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
+
+        do {
+            try Authentication.setAuthenticationParameters(headers: &localVariableHeaderParameters, url: &localVariableUrlComponents, in: "header", name: "authorization", value: self.client!.accessToken, prefix: "Token ")
+            try Authentication.setAuthenticationParameters(headers: &localVariableHeaderParameters, url: &localVariableUrlComponents, in: "header", name: "authorization", value: self.client!.apiKey, prefix: "Bearer ")
+            try Authentication.setAuthenticationParameters(headers: &localVariableHeaderParameters, url: &localVariableUrlComponents, in: "header", name: "customer-id", value: self.client!.customerId, prefix: nil)
+            let localVariableRequestBuilder: RequestBuilder<GenericSuccessResponse>.Type = CarbonAIAPI.requestBuilderFactory.getBuilder()
+            let URLString = localVariableUrlComponents?.string ?? localVariableURLString
+            return localVariableRequestBuilder.init(method: "POST", URLString: URLString, parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true)
+        } catch {
+            print("Error: \(error)")
+        }
+        fatalError("Error: Unable to send request to POST /integrations/document360")
+    }
+
+
+    /**
      Freshdesk Connect
      
      - parameter freshDeskConnectRequest: (body)  
