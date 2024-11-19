@@ -7,7 +7,7 @@ targets:
     sources: [CarbonAI]
     info:
       path: ./Info.plist
-      version: 0.3.50
+      version: 0.3.51
     settings:
       APPLICATION_EXTENSION_API_ONLY: true
     scheme: {}
