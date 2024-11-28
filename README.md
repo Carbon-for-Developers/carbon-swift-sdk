@@ -3284,7 +3284,8 @@ let syncOptions = SyncOptions(
         splitRows: false,
         generateChunksOnly: false,
         storeFileOnly: false,
-        skipFileProcessing: false
+        skipFileProcessing: false,
+        parsedTextFormat: ParsedTextFormatsNullable.plainText
     ),
     automaticallyOpenFilePicker: false,
     dataSourceTags: "TODO"
@@ -3351,7 +3352,8 @@ let fileSyncConfig = FileSyncConfigNullable(
     splitRows: false,
     generateChunksOnly: false,
     storeFileOnly: false,
-    skipFileProcessing: false
+    skipFileProcessing: false,
+    parsedTextFormat: ParsedTextFormatsNullable.plainText
 )
 let dataSourceTags = "TODO"
 let connectDocument360Response = try await carbonai.integrations.connectDocument360(
@@ -3473,7 +3475,8 @@ let fileSyncConfig = FileSyncConfigNullable(
     splitRows: false,
     generateChunksOnly: false,
     storeFileOnly: false,
-    skipFileProcessing: false
+    skipFileProcessing: false,
+    parsedTextFormat: ParsedTextFormatsNullable.plainText
 )
 let dataSourceTags = "TODO"
 let connectFreshdeskResponse = try await carbonai.integrations.connectFreshdesk(
@@ -3592,7 +3595,8 @@ let fileSyncConfig = FileSyncConfigNullable(
     splitRows: false,
     generateChunksOnly: false,
     storeFileOnly: false,
-    skipFileProcessing: false
+    skipFileProcessing: false,
+    parsedTextFormat: ParsedTextFormatsNullable.plainText
 )
 let dataSourceTags = "TODO"
 let connectGitbookResponse = try await carbonai.integrations.connectGitbook(
@@ -3709,7 +3713,8 @@ let fileSyncConfig = FileSyncConfigNullable(
     splitRows: false,
     generateChunksOnly: false,
     storeFileOnly: false,
-    skipFileProcessing: false
+    skipFileProcessing: false,
+    parsedTextFormat: ParsedTextFormatsNullable.plainText
 )
 let dataSourceTags = "TODO"
 let connectGuruResponse = try await carbonai.integrations.connectGuru(
@@ -3912,7 +3917,8 @@ let fileSyncConfig = FileSyncConfigNullable(
     splitRows: false,
     generateChunksOnly: false,
     storeFileOnly: false,
-    skipFileProcessing: false
+    skipFileProcessing: false,
+    parsedTextFormat: ParsedTextFormatsNullable.plainText
 )
 let automaticallyOpenFilePicker = true
 let gongAccountEmail = "gongAccountEmail_example"
@@ -4499,7 +4505,8 @@ let fileSyncConfig = FileSyncConfigNullable(
     splitRows: false,
     generateChunksOnly: false,
     storeFileOnly: false,
-    skipFileProcessing: false
+    skipFileProcessing: false,
+    parsedTextFormat: ParsedTextFormatsNullable.plainText
 )
 let syncAzureBlobFilesResponse = try await carbonai.integrations.syncAzureBlobFiles(
     ids: ids,
@@ -4692,7 +4699,8 @@ let fileSyncConfig = FileSyncConfigNullable(
     splitRows: false,
     generateChunksOnly: false,
     storeFileOnly: false,
-    skipFileProcessing: false
+    skipFileProcessing: false,
+    parsedTextFormat: ParsedTextFormatsNullable.plainText
 )
 let syncConfluenceResponse = try await carbonai.integrations.syncConfluence(
     dataSourceId: dataSourceId,
@@ -4854,7 +4862,8 @@ let fileSyncConfig = FileSyncConfigNullable(
     splitRows: false,
     generateChunksOnly: false,
     storeFileOnly: false,
-    skipFileProcessing: false
+    skipFileProcessing: false,
+    parsedTextFormat: ParsedTextFormatsNullable.plainText
 )
 let syncFilesResponse = try await carbonai.integrations.syncFiles(
     dataSourceId: dataSourceId,
@@ -5030,7 +5039,8 @@ let fileSyncConfig = FileSyncConfigNullable(
     splitRows: false,
     generateChunksOnly: false,
     storeFileOnly: false,
-    skipFileProcessing: false
+    skipFileProcessing: false,
+    parsedTextFormat: ParsedTextFormatsNullable.plainText
 )
 let syncGitbookResponse = try await carbonai.integrations.syncGitbook(
     spaceIds: spaceIds,
@@ -5177,7 +5187,8 @@ let fileSyncConfig = FileSyncConfigNullable(
     splitRows: false,
     generateChunksOnly: false,
     storeFileOnly: false,
-    skipFileProcessing: false
+    skipFileProcessing: false,
+    parsedTextFormat: ParsedTextFormatsNullable.plainText
 )
 let incrementalSync = true
 let syncGmailResponse = try await carbonai.integrations.syncGmail(
@@ -5345,7 +5356,8 @@ let fileSyncConfig = FileSyncConfigNullable(
     splitRows: false,
     generateChunksOnly: false,
     storeFileOnly: false,
-    skipFileProcessing: false
+    skipFileProcessing: false,
+    parsedTextFormat: ParsedTextFormatsNullable.plainText
 )
 let incrementalSync = true
 let syncOutlookResponse = try await carbonai.integrations.syncOutlook(
@@ -5583,7 +5595,8 @@ let fileSyncConfig = FileSyncConfigNullable(
     splitRows: false,
     generateChunksOnly: false,
     storeFileOnly: false,
-    skipFileProcessing: false
+    skipFileProcessing: false,
+    parsedTextFormat: ParsedTextFormatsNullable.plainText
 )
 let syncS3FilesResponse = try await carbonai.integrations.syncS3Files(
     ids: ids,
