@@ -40,7 +40,6 @@ Connect external data to LLMs, no matter the source.
   * [`carbonai.embeddings.list`](#carbonaiembeddingslist)
   * [`carbonai.embeddings.uploadChunksAndEmbeddings`](#carbonaiembeddingsuploadchunksandembeddings)
   * [`carbonai.files.createUserFileTags`](#carbonaifilescreateuserfiletags)
-  * [`carbonai.files.delete`](#carbonaifilesdelete)
   * [`carbonai.files.deleteFileTags`](#carbonaifilesdeletefiletags)
   * [`carbonai.files.deleteMany`](#carbonaifilesdeletemany)
   * [`carbonai.files.deleteV2`](#carbonaifilesdeletev2)
@@ -1516,38 +1515,6 @@ let createUserFileTagsResponse = try await carbonai.files.createUserFileTags(
 #### 🌐 Endpoint<a id="🌐-endpoint"></a>
 
 `/create_user_file_tags` `POST`
-
-[🔙 **Back to Table of Contents**](#table-of-contents)
-
----
-
-
-### `carbonai.files.delete`<a id="carbonaifilesdelete"></a>
-![Deprecated](https://img.shields.io/badge/deprecated-yellow)
-
-Delete File Endpoint
-
-#### 🛠️ Usage<a id="🛠️-usage"></a>
-
-```swift
-let fileId = 987
-let deleteResponse = try await carbonai.files.delete(
-    fileId: fileId
-)
-```
-
-#### ⚙️ Parameters<a id="⚙️-parameters"></a>
-
-##### fileId: `Int`<a id="fileid-int"></a>
-
-
-#### 🔄 Return<a id="🔄-return"></a>
-
-[GenericSuccessResponse](./CarbonAI/Models/GenericSuccessResponse.swift)
-
-#### 🌐 Endpoint<a id="🌐-endpoint"></a>
-
-`/deletefile/{file_id}` `DELETE`
 
 [🔙 **Back to Table of Contents**](#table-of-contents)
 
